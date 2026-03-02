@@ -1,0 +1,478 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Interlinked &amp; Intertwined - Archive Search</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" vid="7">
+    
+    <style vid="8">
+        :root {
+            --bg-paper: #F2F0E9;
+            --ink-main: #0F1A15;
+            --ink-subtle: #4A5A50;
+            --accent-matcha: #7D9E52;
+            --accent-blur: rgba(125, 158, 82, 0.4);
+            
+            --font-display: 'Cormorant Garamond', serif;
+            --font-tech: 'Space Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--ink-main);
+            font-family: var(--font-tech);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.08;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .layout-container {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            padding: 3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+
+        .author-tag {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .canvas-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        svg.constellation {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .constellation-line {
+            stroke: var(--ink-subtle);
+            stroke-width: 1px;
+            stroke-dasharray: 4, 4;
+            fill: none;
+            opacity: 0.4;
+        }
+
+        .constellation-point {
+            fill: var(--bg-paper);
+            stroke: var(--ink-subtle);
+            stroke-width: 1px;
+            r: 4;
+        }
+
+        .orb {
+            fill: var(--accent-matcha);
+            filter: blur(40px);
+            opacity: 0.4;
+            mix-blend-mode: multiply;
+        }
+
+        .path-text {
+            font-family: var(--font-tech);
+            font-size: 0.75rem;
+            fill: var(--ink-subtle);
+            text-transform: lowercase;
+            letter-spacing: 0.05em;
+            opacity: 0.5;
+        }
+
+        .nav-label {
+            position: absolute;
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--ink-subtle);
+            opacity: 0.5;
+            transform: translate(-50%, -50%); 
+            white-space: nowrap;
+        }
+
+        .nav-label span.num {
+            font-family: var(--font-tech);
+            font-style: normal;
+            font-size: 0.7rem;
+            background: var(--ink-subtle);
+            color: var(--bg-paper);
+            padding: 2px 6px;
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .nav-1 { top: 20%; left: 30%; }
+        .nav-2 { top: 15%; left: 65%; }
+        .nav-3 { top: 50%; left: 75%; }
+        .nav-4 { top: 80%; left: 60%; }
+        .nav-5 { top: 65%; left: 25%; }
+
+        
+        .search-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(242, 240, 233, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100;
+            display: flex;
+            justify-content: flex-start;
+            padding: 3rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .search-sidebar {
+            width: 400px;
+            height: 100%;
+            background: var(--bg-paper);
+            border: 1px solid var(--ink-subtle);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 20px 0 60px rgba(0,0,0,0.05);
+            animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .search-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .search-header h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--ink-main);
+            padding: 0.5rem 0;
+            font-family: var(--font-tech);
+            font-size: 0.9rem;
+            color: var(--ink-main);
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: var(--ink-subtle);
+            opacity: 0.5;
+        }
+
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+
+        .filter-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-subtle);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border: 1px solid var(--ink-subtle);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tag.active {
+            background: var(--ink-main);
+            color: var(--bg-paper);
+            border-color: var(--ink-main);
+        }
+
+        .tag:hover:not(.active) {
+            border-color: var(--accent-matcha);
+            color: var(--accent-matcha);
+        }
+
+        .results-list {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-top: 1rem;
+            padding-right: 1rem;
+        }
+
+        .result-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(74, 90, 80, 0.1);
+            cursor: pointer;
+        }
+
+        .result-item:hover .result-title {
+            color: var(--accent-matcha);
+        }
+
+        .result-meta {
+            font-size: 0.65rem;
+            color: var(--ink-subtle);
+            margin-bottom: 0.2rem;
+        }
+
+        .result-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-style: italic;
+            transition: color 0.2s ease;
+        }
+
+        
+        .highlight-ring {
+            stroke: var(--accent-matcha);
+            stroke-width: 2px;
+            fill: none;
+            r: 12;
+            filter: drop-shadow(0 0 8px var(--accent-matcha));
+            animation: pulse 2s infinite;
+        }
+
+        .active-node {
+            fill: var(--accent-matcha) !important;
+            stroke: var(--accent-matcha) !important;
+            r: 6 !important;
+            opacity: 1 !important;
+        }
+
+        .active-label {
+            color: var(--ink-main) !important;
+            opacity: 1 !important;
+            font-weight: 600;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 0.4; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 3rem;
+            left: 450px;
+            background: none;
+            border: none;
+            font-family: var(--font-tech);
+            font-size: 0.8rem;
+            cursor: pointer;
+            color: var(--ink-main);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .close-btn::before {
+            content: '←';
+            font-size: 1.2rem;
+        }
+
+        .title-block {
+            text-align: right;
+            position: relative;
+            opacity: 0.3;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 400;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            color: var(--ink-main);
+            text-transform: uppercase;
+        }
+
+    </style>
+</head>
+<body vid="9">
+
+    <div class="noise-overlay" vid="10"></div>
+
+    
+    <div class="layout-container" vid="11">
+        <header vid="12">
+            <div class="author-tag" vid="13">Agust D / teo</div>
+        </header>
+
+        <div class="canvas-wrapper" vid="14">
+            <svg class="constellation" style="position: absolute; top:0; left:0; pointer-events: none;" vid="15">
+                <circle cx="35%" cy="30%" r="80" class="orb" vid="16"></circle>
+            </svg>
+
+            <svg class="constellation" id="diagram" preserveAspectRatio="none" vid="17">
+                <line x1="30%" y1="20%" x2="65%" y2="15%" class="constellation-line" vid="18"></line>
+                <line x1="65%" y1="15%" x2="75%" y2="50%" class="constellation-line" vid="19"></line>
+                <line x1="75%" y1="50%" x2="60%" y2="80%" class="constellation-line" vid="20"></line>
+                <line x1="60%" y1="80%" x2="25%" y2="65%" class="constellation-line" vid="21"></line>
+                <line x1="25%" y1="65%" x2="30%" y2="20%" class="constellation-line" vid="22"></line>
+                
+                <text x="45%" y="16%" transform="rotate(-5, 500, 200)" class="path-text" vid="23">thoughts collected in transit</text>
+                
+                
+                <circle cx="30%" cy="20%" class="highlight-ring" vid="24"></circle>
+                <circle cx="30%" cy="20%" class="constellation-point active-node" vid="25"></circle>
+                
+                
+                <circle cx="60%" cy="80%" class="highlight-ring" style="animation-delay: 0.5s" vid="26"></circle>
+                <circle cx="60%" cy="80%" class="constellation-point active-node" vid="27"></circle>
+                
+                <circle cx="65%" cy="15%" class="constellation-point" vid="28"></circle>
+                <circle cx="75%" cy="50%" class="constellation-point" vid="29"></circle>
+                <circle cx="25%" cy="65%" class="constellation-point" vid="30"></circle>
+            </svg>
+
+            <div class="nav-label nav-1 active-label" style="transform: translate(-10%, -150%);" vid="31">
+                <span class="num" style="background:var(--accent-matcha)" vid="32">1</span>Notes
+            </div>
+            <div class="nav-label nav-2" vid="33">
+                <span class="num" vid="34">2</span>Snippets
+            </div>
+            <div class="nav-label nav-3" vid="35">
+                <span class="num" vid="36">3</span>Quotes
+            </div>
+            <div class="nav-label nav-4 active-label" style="transform: translate(-10%, 60%);" vid="37">
+                <span class="num" style="background:var(--accent-matcha)" vid="38">4</span>Linguistic Treats
+            </div>
+            <div class="nav-label nav-5" vid="39">
+                <span class="num" vid="40">5</span>Concept Dives
+            </div>
+        </div>
+
+        <div class="title-block" vid="41">
+            <h1 style="font-size: 5rem;" vid="42">Interlinked</h1>
+        </div>
+    </div>
+
+    
+    <div class="search-modal-overlay" vid="43">
+        <button class="close-btn" vid="44">Esc to Close</button>
+        
+        <div class="search-sidebar" vid="45">
+            <div class="search-header" vid="46">
+                <h2 vid="47">The Archive</h2>
+                <p style="font-size: 0.75rem; color: var(--ink-subtle);" vid="48">Index of consciousness / Vol 1.</p>
+            </div>
+
+            <div class="search-input-wrapper" vid="49">
+                <input type="text" class="search-input" placeholder="Search by keyword..." value="linguistic" vid="50">
+            </div>
+
+            <div class="filter-section" vid="51">
+                <span class="filter-title" vid="52">Filter by Tag</span>
+                <div class="tag-cloud" vid="53">
+                    <span class="tag" vid="54">ephemera</span>
+                    <span class="tag active" vid="55">language</span>
+                    <span class="tag" vid="56">memory</span>
+                    <span class="tag" vid="57">process</span>
+                    <span class="tag" vid="58">sonder</span>
+                    <span class="tag" vid="59">silence</span>
+                </div>
+            </div>
+
+            <span class="filter-title" vid="60">Found Connections (2)</span>
+            <div class="results-list" vid="61">
+                <div class="result-item" vid="62">
+                    <div class="result-meta" vid="63">Node #01 • 12 Oct</div>
+                    <div class="result-title" vid="64">Etymology of Distance</div>
+                </div>
+                <div class="result-item" vid="65">
+                    <div class="result-meta" vid="66">Node #04 • 28 Oct</div>
+                    <div class="result-title" vid="67">Recursive definitions and their loop holes</div>
+                </div>
+                <div class="result-item" style="opacity: 0.4" vid="68">
+                    <div class="result-meta" vid="69">Node #02 • 05 Nov</div>
+                    <div class="result-title" vid="70">Shadow fragments...</div>
+                </div>
+            </div>
+
+            <div style="margin-top: auto; font-size: 0.6rem; color: var(--ink-subtle); letter-spacing: 0.1em;" vid="71">
+                TOTAL ARCHIVE ENTRIES: 142
+            </div>
+        </div>
+    </div>
+
+    <script vid="72">
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelector('.search-modal-overlay').style.display = 'none';
+                document.querySelectorAll('.active-node, .highlight-ring, .active-label').forEach(el => {
+                    el.classList.remove('active-node', 'highlight-ring', 'active-label');
+                    el.style.opacity = '1';
+                });
+                document.querySelector('.layout-container').style.filter = 'none';
+                document.querySelector('.title-block').style.opacity = '1';
+            }
+        });
+    </script>
+
+</body></html>
