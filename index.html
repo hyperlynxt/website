@@ -1,619 +1,322 @@
-```
 <html lang="en" vid="0"><head vid="1">
     <meta charset="UTF-8" vid="2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
-    <title vid="4">Sandro Kozmanishvili — Visual &amp; Digital</title>
-    <style vid="5">
+    <title vid="4">Interlinked &amp; Intertwined by teo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" vid="7">
+    
+    <style vid="8">
         :root {
-            --bg-color: #c9bfaf;
-            --text-color: #111111;
-            --secondary-color: #888888;
-            --hairline: #e5e5e5;
-            --accent: #000000;
-            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
-            --pad: 24px;
+            --bg-paper: #F2F0E9;
+            --ink-main: #0F1A15;
+            --ink-subtle: #4A5A50;
+            --accent-matcha: #7D9E52;
+            --accent-blur: rgba(125, 158, 82, 0.6);
+            
+            --font-display: 'Cormorant Garamond', serif;
+            --font-tech: 'Space Mono', monospace;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            cursor: none; 
         }
 
         body {
-            background-color: var(--bg-color);
-            background-image: url('https://asset.api.uivariant.com/e77c2d23-867e-4cdc-b4d9-50349c6603a1');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-blend-mode: hard-light;
-            opacity: 1;
-            color: var(--text-color);
-            font-family: var(--font-main);
+            background-color: var(--bg-paper);
+            color: var(--ink-main);
+            font-family: var(--font-tech);
             height: 100vh;
             width: 100vw;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            position: relative;
         }
 
         
-        #cursor-dot,
-        #cursor-outline {
+        .noise-overlay {
             position: fixed;
             top: 0;
             left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            pointer-events: none;
-            mix-blend-mode: difference;
-        }
-
-        #cursor-dot {
-            width: 6px;
-            height: 6px;
-            background-color: white;
-        }
-
-        #cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 1px solid white;
-            transition: width 0.2s, height 0.2s;
-        }
-
-        
-        .corner-index {
-            position: fixed;
-            font-family: var(--font-main);
-            font-weight: 500;
-            font-size: 2.5rem;
-            line-height: 1;
-            z-index: 1000;
-            color: var(--text-color);
-            transition: color 0.3s ease;
-        }
-
-        .corner-index:hover {
-            color: var(--secondary-color);
-        }
-
-        .tl { top: var(--pad); left: var(--pad); }
-        .tr { top: var(--pad); right: var(--pad); }
-        .bl { bottom: var(--pad); left: var(--pad); }
-        .br { bottom: var(--pad); right: var(--pad); }
-
-        
-        #canvas-zone {
-            position: relative;
-            height: 70vh;
-            width: 100%;
-            overflow: hidden;
-            border-bottom: 1px solid var(--hairline);
-        }
-
-        #ascii-canvas {
-            display: block;
             width: 100%;
             height: 100%;
-        }
-
-        #panel-zone {
-            height: 30vh;
-            width: 100%;
-            padding: var(--pad);
-            
-            display: grid;
-            grid-template-columns: 2fr 1.5fr 1fr;
-            gap: 40px;
-            align-content: start;
-            font-size: 0.85rem;
-            line-height: 1.5;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.08;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
         
-        h1, h2, h3 {
-            font-weight: 500;
+        .layout-container {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            padding: 3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        
+        header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+
+        .author-tag {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.5rem;
             letter-spacing: -0.02em;
         }
 
-        .panel-col {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .meta-line {
-            display: flex;
-            gap: 12px;
-            color: var(--secondary-color);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 4px;
-        }
-
-        .bio-text {
-            max-width: 400px;
-            color: var(--text-color);
-        }
-
-        .link-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .link-list a {
-            text-decoration: none;
-            color: var(--text-color);
+        
+        .canvas-wrapper {
             position: relative;
-            display: inline-block;
-            width: fit-content;
-        }
-
-        .link-list a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
             width: 100%;
-            height: 1px;
-            background: currentColor;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .link-list a:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .colophon {
-            margin-top: 24px;
-            color: var(--secondary-color);
-            font-size: 0.75rem;
-        }
-
-        .telemetry {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            color: var(--secondary-color);
-            text-align: right;
-            margin-top: auto;
-        }
-
-        
-        .hero-text {
-            position: absolute;
-            bottom: 24px;
-            left: var(--pad);
-            pointer-events: auto;
-        }
-
-        .hero-headline {
-            font-size: 3rem;
-            font-weight: 400;
-            letter-spacing: -0.03em;
-            margin-bottom: 8px;
-            mix-blend-mode: exclusion;
-            color: white; 
-            color: var(--text-color); 
-            mix-blend-mode: normal;
-        }
-
-        .hero-subline {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--secondary-color);
-        }
-
-        
-        #nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
+            height: 100%;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
         }
 
-        #nav-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
+        svg.constellation {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
         }
 
-        .nav-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            text-align: center;
+        
+        .constellation-line {
+            stroke: var(--ink-subtle);
+            stroke-width: 1px;
+            stroke-dasharray: 4, 4;
+            fill: none;
+            opacity: 0.8;
+            transition: stroke 0.3s ease;
         }
 
-        .nav-item {
-            font-size: 3rem;
-            font-weight: 300;
-            color: #ccc;
+        .constellation-point {
+            fill: var(--bg-paper);
+            stroke: var(--ink-subtle);
+            stroke-width: 1px;
+            r: 4;
+            transition: all 0.3s ease;
             cursor: pointer;
-            transition: color 0.3s;
         }
 
-        .nav-item:hover {
-            color: #111;
+        .constellation-point:hover {
+            fill: var(--accent-matcha);
+            stroke: var(--ink-main);
+            r: 6;
+        }
+
+        .orb {
+            fill: var(--accent-matcha);
+            filter: blur(40px);
+            opacity: 0.8;
+            mix-blend-mode: multiply;
+            transition: all 1.5s ease-in-out;
+            animation: float 10s infinite ease-in-out;
         }
 
         
-        .scramble-hover {
-            display: inline-block;
+        .path-text {
+            font-family: var(--font-tech);
+            font-size: 0.75rem;
+            fill: var(--ink-main);
+            text-transform: lowercase;
+            letter-spacing: 0.05em;
+        }
+
+        
+        
+        .nav-label {
+            position: absolute;
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--ink-main);
+            transform: translate(-50%, -50%); 
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .nav-label span.num {
+            font-family: var(--font-tech);
+            font-style: normal;
+            font-size: 0.7rem;
+            background: var(--ink-main);
+            color: var(--bg-paper);
+            padding: 2px 6px;
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .nav-label:hover {
+            color: var(--accent-matcha);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        
+        .nav-1 { top: 20%; left: 30%; }
+        .nav-2 { top: 15%; left: 65%; }
+        .nav-3 { top: 50%; left: 75%; }
+        .nav-4 { top: 80%; left: 60%; }
+        .nav-5 { top: 65%; left: 25%; }
+
+        
+        .title-block {
+            text-align: right;
+            position: relative;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 400;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            color: var(--ink-main);
+            text-transform: uppercase;
+            mix-blend-mode: multiply;
         }
         
-        @media (max-width: 768px) {
-            #panel-zone {
-                grid-template-columns: 1fr;
-                height: auto;
-                min-height: 30vh;
-            }
-            .corner-index {
-                font-size: 1.5rem;
-            }
-            .hero-headline {
-                font-size: 2rem;
-            }
+        .subtitle {
+            font-family: var(--font-tech);
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            color: var(--ink-subtle);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
+
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(30px, -20px); }
+            66% { transform: translate(-20px, 10px); }
+        }
+
+        @keyframes drawLine {
+            from { stroke-dashoffset: 1000; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        .draw-anim {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 2.5s ease-out forwards;
+        }
+
     </style>
 </head>
-<body vid="6">
+<body vid="9">
 
-    
-    <div id="cursor-dot" vid="7"></div>
-    <div id="cursor-outline" vid="8"></div>
+    <div class="noise-overlay" vid="10"></div>
 
-    
-    <div class="corner-index tl trigger-nav" vid="9">x</div>
-    <div class="corner-index tr trigger-nav" vid="10">t</div>
-    <div class="corner-index bl trigger-nav" vid="11">0</div>
-    <div class="corner-index br trigger-nav" vid="12">1</div>
+    <div class="layout-container" vid="11">
+        
+        
+        <header vid="12">
+            <div class="author-tag" vid="13">Agust D / teo</div>
+        </header>
 
-    
-    <div id="nav-overlay" vid="13">
-        <div class="nav-content" vid="14">
-            <div class="nav-item" vid="15">Experiments</div>
-            <div class="nav-item" vid="16">Writing</div>
-            <div class="nav-item" vid="17">Capabilities</div>
-            <div class="nav-item" vid="18">About</div>
-            <div class="nav-item trigger-nav-close" vid="19">Close</div>
+        
+        <div class="canvas-wrapper" vid="14">
+            
+            
+            <svg class="constellation" style="position: absolute; top:0; left:0; pointer-events: none;" vid="15">
+                <circle cx="35%" cy="30%" r="80" class="orb" vid="16"></circle>
+                <circle cx="65%" cy="70%" r="60" class="orb" style="animation-delay: -5s; fill: var(--ink-subtle); opacity: 0.1;" vid="17"></circle>
+            </svg>
+
+            
+            
+            
+            <svg class="constellation" id="diagram" preserveAspectRatio="none" vid="18">
+                <defs vid="19">
+                    <path id="path12" d="M 300 200 L 650 150" vid="20"></path>
+                    <path id="path23" d="M 650 150 L 750 500" vid="21"></path>
+                    <path id="path34" d="M 750 500 L 600 800" vid="22"></path>
+                    <path id="path45" d="M 600 800 L 250 650" vid="23"></path>
+                    <path id="path51" d="M 250 650 L 300 200" vid="24"></path>
+                    
+                    <path id="path14" d="M 300 200 L 600 800" vid="25"></path>
+                </defs>
+
+                
+                <line x1="30%" y1="20%" x2="65%" y2="15%" class="constellation-line draw-anim" vid="26"></line>
+                <line x1="65%" y1="15%" x2="75%" y2="50%" class="constellation-line draw-anim" style="animation-delay: 0.2s" vid="27"></line>
+                <line x1="75%" y1="50%" x2="60%" y2="80%" class="constellation-line draw-anim" style="animation-delay: 0.4s" vid="28"></line>
+                <line x1="60%" y1="80%" x2="25%" y2="65%" class="constellation-line draw-anim" style="animation-delay: 0.6s" vid="29"></line>
+                <line x1="25%" y1="65%" x2="30%" y2="20%" class="constellation-line draw-anim" style="animation-delay: 0.8s" vid="30"></line>
+                
+                
+                <line x1="30%" y1="20%" x2="60%" y2="80%" class="constellation-line draw-anim" style="stroke-dasharray: 2, 6; opacity: 0.5; animation-delay: 1.2s" vid="31"></line>
+
+                
+                <text x="45%" y="16%" transform="rotate(-5, 500, 200)" class="path-text" vid="32">thoughts collected in transit</text>
+                <text x="72%" y="35%" transform="rotate(75, 750, 300)" class="path-text" vid="33">fragments of speech</text>
+                <text x="65%" y="68%" transform="rotate(140, 650, 650)" class="path-text" vid="34">meaning is context dependent</text>
+                <text x="35%" y="75%" transform="rotate(20, 350, 750)" class="path-text" vid="35">recursive definitions</text>
+                <text x="22%" y="45%" transform="rotate(-85, 250, 450)" class="path-text" vid="36">archived memory streams</text>
+                
+                
+                <circle cx="30%" cy="20%" class="constellation-point" vid="37"></circle>
+                <circle cx="65%" cy="15%" class="constellation-point" vid="38"></circle>
+                <circle cx="75%" cy="50%" class="constellation-point" vid="39"></circle>
+                <circle cx="60%" cy="80%" class="constellation-point" vid="40"></circle>
+                <circle cx="25%" cy="65%" class="constellation-point" vid="41"></circle>
+            </svg>
+
+            
+            <a href="#" class="nav-label nav-1" style="transform: translate(-10%, -150%);" vid="42">
+                <span class="num" vid="43">1</span>Notes
+            </a>
+            <a href="#" class="nav-label nav-2" style="transform: translate(10%, -120%);" vid="44">
+                <span class="num" vid="45">2</span>Snippets
+            </a>
+            <a href="#" class="nav-label nav-3" style="transform: translate(20%, -50%);" vid="46">
+                <span class="num" vid="47">3</span>Quotes
+            </a>
+            <a href="#" class="nav-label nav-4" style="transform: translate(-10%, 60%);" vid="48">
+                <span class="num" vid="49">4</span>Linguistic Treats
+            </a>
+            <a href="#" class="nav-label nav-5" style="transform: translate(-100%, -20%);" vid="50">
+                <span class="num" vid="51">5</span>Concept Dives
+            </a>
         </div>
+
+        
+        <div class="title-block" vid="52">
+            <div class="subtitle" vid="53">Personal Archive / Vol. 1</div>
+            <h1 vid="54">Interlinked<br vid="55">&amp; Intertwined</h1>
+        </div>
+
     </div>
 
-    
-    <main vid="20">
+    <script vid="56">
         
-        <div id="canvas-zone" vid="21">
-            <canvas id="ascii-canvas" vid="22"></canvas>
-            <div class="hero-text" vid="23">
-                <div class="hero-headline scramble-target" vid="24">Interlinked &amp; <br vid="25">Intertwined by teo</div>
-                <div class="hero-subline" vid="26">Exploring the delta between signal and noise.</div>
-            </div>
-        </div>
+        const orb = document.querySelector('.orb');
+        const container = document.querySelector('.canvas-wrapper');
 
-        
-        <div id="panel-zone" vid="27">
-            
-            <div class="panel-col" vid="28">
-                <div vid="29">
-                    <div class="meta-line" vid="30">
-                        <span vid="31">Sandro Kozmanishvili</span>
-                        <span id="timestamp" vid="32">--:--:--</span>
-                    </div>
-                    <p class="bio-text scramble-body" vid="33">
-                        Multidisciplinary designer based in Tbilisi. Focusing on the intersection of generative visuals and functional interfaces.
-                    </p>
-                </div>
-                <div style="font-size: 0.8rem; color: #666; margin-top: auto;" vid="34">
-                    Currently building visual video sound and digital products.
-                </div>
-            </div>
-
-            
-            <div class="panel-col" vid="35">
-                <ul class="link-list" vid="36">
-                    <li vid="37"><a href="#" vid="38">Email</a></li>
-                    <li vid="39"><a href="#" vid="40">Are.na</a></li>
-                    <li vid="41"><a href="#" vid="42">GitHub</a></li>
-                    <li vid="43"><a href="#" vid="44">Instagram</a></li>
-                </ul>
-                <div class="colophon" vid="45">
-                    Built with Nuxt, Prismic, Vercel, Supabase.<br vid="46">
-                    Typeface: Inter &amp; SF Mono.
-                </div>
-            </div>
-
-            
-            <div class="panel-col" style="text-align: right; justify-content: space-between;" vid="47">
-                <div style="font-size: 0.75rem;" vid="48">© 2025</div>
-                <div class="telemetry" vid="49">
-                    RENDER: <span id="render-ms" vid="50">0.0</span>ms<br vid="51">
-                    X: <span id="mouse-x" vid="52">0</span> Y: <span id="mouse-y" vid="53">0</span>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <script vid="54">
-        
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorOutline = document.getElementById('cursor-outline');
-        const mousePos = { x: 0, y: 0 };
-        const cursorLink = { x: 0, y: 0 };
-
-        window.addEventListener('mousemove', (e) => {
-            mousePos.x = e.clientX;
-            mousePos.y = e.clientY;
+        container.addEventListener('mousemove', (e) => {
+            const { width, height, left, top } = container.getBoundingClientRect();
+            const x = ((e.clientX - left) / width) * 100;
+            const y = ((e.clientY - top) / height) * 100;
             
             
-            document.getElementById('mouse-x').textContent = e.clientX;
-            document.getElementById('mouse-y').textContent = e.clientY;
-
-            cursorDot.style.left = `${e.clientX}px`;
-            cursorDot.style.top = `${e.clientY}px`;
+            const moveX = (x - 35) * 0.2; 
+            const moveY = (y - 30) * 0.2; 
+            
+            orb.style.transform = `translate(${moveX}%, ${moveY}%)`;
         });
-
-        const loopCursor = () => {
-            
-            const dx = mousePos.x - cursorLink.x;
-            const dy = mousePos.y - cursorLink.y;
-            cursorLink.x += dx * 0.15;
-            cursorLink.y += dy * 0.15;
-            
-            cursorOutline.style.left = `${cursorLink.x}px`;
-            cursorOutline.style.top = `${cursorLink.y}px`;
-            
-            requestAnimationFrame(loopCursor);
-        };
-        loopCursor();
-
-        
-        const updateTime = () => {
-            const now = new Date();
-            document.getElementById('timestamp').textContent = now.toLocaleTimeString('en-US', { hour12: false }) + " UTC+4";
-        };
-        setInterval(updateTime, 1000);
-        updateTime();
-
-        
-        const navOverlay = document.getElementById('nav-overlay');
-        const triggers = document.querySelectorAll('.trigger-nav');
-        const closers = document.querySelectorAll('.trigger-nav-close');
-
-        triggers.forEach(el => el.addEventListener('click', () => {
-            navOverlay.classList.add('active');
-        }));
-        
-        closers.forEach(el => el.addEventListener('click', () => {
-            navOverlay.classList.remove('active');
-        }));
-        navOverlay.addEventListener('click', (e) => {
-            if(e.target === navOverlay) navOverlay.classList.remove('active');
-        });
-
-        
-        class TextScramble {
-            constructor(el) {
-                this.el = el;
-                this.chars = '!<>-_\\/[]{}—=+*^?#________';
-                this.originalText = el.innerText;
-                this.frameRequest = null;
-                this.frame = 0;
-                this.queue = [];
-                
-                
-                this.el.addEventListener('mouseenter', () => this.setText(this.originalText));
-                this.el.addEventListener('mouseleave', () => {
-                    
-                    setTimeout(() => this.setText(this.originalText), 200);
-                });
-            }
-
-            setText(newText) {
-                const oldText = this.el.innerText;
-                const length = Math.max(oldText.length, newText.length);
-                const promise = new Promise((resolve) => this.resolve = resolve);
-                
-                this.queue = [];
-                for (let i = 0; i < length; i++) {
-                    const from = oldText[i] || '';
-                    const to = newText[i] || '';
-                    const start = Math.floor(Math.random() * 40);
-                    const end = start + Math.floor(Math.random() * 40);
-                    this.queue.push({ from, to, start, end });
-                }
-                
-                cancelAnimationFrame(this.frameRequest);
-                this.frame = 0;
-                this.update();
-                return promise;
-            }
-
-            update() {
-                let output = '';
-                let complete = 0;
-                for (let i = 0, n = this.queue.length; i < n; i++) {
-                    let { from, to, start, end, char } = this.queue[i];
-                    if (this.frame >= end) {
-                        complete++;
-                        output += to;
-                    } else if (this.frame >= start) {
-                        if (!char || Math.random() < 0.28) {
-                            char = this.randomChar();
-                            this.queue[i].char = char;
-                        }
-                        output += `<span style="font-family: monospace; opacity: 0.5;">${char}</span>`;
-                    } else {
-                        output += from;
-                    }
-                }
-                this.el.innerHTML = output;
-                if (complete === this.queue.length) {
-                    this.resolve();
-                } else {
-                    this.frameRequest = requestAnimationFrame(this.update.bind(this));
-                    this.frame++;
-                }
-            }
-            randomChar() {
-                return this.chars[Math.floor(Math.random() * this.chars.length)];
-            }
-        }
-
-        
-        document.querySelectorAll('.scramble-target').forEach(el => new TextScramble(el));
-
-        
-        const bodyText = document.querySelector('.scramble-body');
-        bodyText.addEventListener('mouseenter', () => {
-            bodyText.style.fontFamily = 'var(--font-mono)';
-            bodyText.style.letterSpacing = '-0.5px';
-            bodyText.style.opacity = '0.7';
-        });
-        bodyText.addEventListener('mouseleave', () => {
-            bodyText.style.fontFamily = 'var(--font-main)';
-            bodyText.style.letterSpacing = 'normal';
-            bodyText.style.opacity = '1';
-        });
-
-        
-        const canvas = document.getElementById('ascii-canvas');
-        const ctx = canvas.getContext('2d');
-        const renderMsEl = document.getElementById('render-ms');
-
-        let width, height;
-        let charGrid = [];
-        const charSize = 12; 
-        const cols = () => Math.ceil(width / charSize);
-        const rows = () => Math.ceil(height / charSize);
-
-        
-        const densityChars = " .'`^,:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
-
-        function resize() {
-            width = canvas.parentElement.clientWidth;
-            height = canvas.parentElement.clientHeight;
-            
-            const dpr = window.devicePixelRatio || 1;
-            canvas.width = width * dpr;
-            canvas.height = height * dpr;
-            ctx.scale(dpr, dpr);
-            canvas.style.width = width + 'px';
-            canvas.style.height = height + 'px';
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        
-        function simpleNoise(x, y, t) {
-            
-            return Math.sin(x * 0.05 + t) * Math.cos(y * 0.05 + t) 
-                 + Math.sin(x * 0.01 - t) * Math.cos(y * 0.12) * 0.5;
-        }
-
-        let time = 0;
-        
-        function render() {
-            const start = performance.now();
-            ctx.clearRect(0, 0, width, height);
-            
-            
-            ctx.font = `${charSize}px monospace`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            
-            const colsCount = cols();
-            const rowsCount = rows();
-
-            
-            for (let y = 0; y < rowsCount; y++) {
-                
-                if (y < rowsCount * 0.4) continue; 
-
-                for (let x = 0; x < colsCount; x++) {
-                    const posX = x * charSize;
-                    const posY = y * charSize;
-
-                    
-                    const dx = posX - mousePos.x;
-                    const dy = posY - (mousePos.y - canvas.getBoundingClientRect().top); 
-                    const dist = Math.sqrt(dx*dx + dy*dy);
-                    
-                    
-                    
-                    const normalizedY = (rowsCount - y) / rowsCount; 
-                    
-                    
-                    const noiseVal = simpleNoise(x, y, time * 0.5);
-                    const mountainHeight = 0.3 + (Math.sin(x * 0.05 + time * 0.1) * 0.1) + (Math.cos(x * 0.2) * 0.05);
-
-                    
-                    let char = '';
-                    let alpha = 0;
-
-                    
-                    if (normalizedY < mountainHeight + (noiseVal * 0.1)) {
-                        
-                        const index = Math.floor(Math.abs(noiseVal) * densityChars.length);
-                        char = densityChars[index % densityChars.length];
-                        alpha = 1 - (normalizedY * 2); 
-                    }
-
-                    
-                    if (dist < 150) {
-                        const lensStrength = 1 - (dist / 150);
-                        
-                        if (Math.random() > 0.5) {
-                            char = Math.random() > 0.5 ? '0' : '1';
-                            ctx.fillStyle = `rgba(0, 0, 0, ${lensStrength})`;
-                        } else {
-                            ctx.fillStyle = `rgba(100, 100, 100, ${alpha})`;
-                        }
-                        
-                        
-                        const shiftX = (dx / dist) * 10 * lensStrength;
-                        const shiftY = (dy / dist) * 10 * lensStrength;
-                        
-                        ctx.fillText(char, posX + (charSize/2) - shiftX, posY + (charSize/2) - shiftY);
-                    } else if (char) {
-                        
-                        ctx.fillStyle = `rgba(100, 100, 100, ${alpha})`;
-                        ctx.fillText(char, posX + (charSize/2), posY + (charSize/2));
-                    }
-                }
-            }
-
-            time += 0.01;
-            const duration = performance.now() - start;
-            renderMsEl.textContent = duration.toFixed(1);
-            
-            requestAnimationFrame(render);
-        }
-
-        render();
-
     </script>
 
 </body></html>
-```
-
