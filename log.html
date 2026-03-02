@@ -60,6 +60,26 @@
             justify-content: space-between;
         }
 
+        .back-link {
+            font-family: var(--font-tech);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--ink-subtle);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-matcha);
+        }
+
+        .view-title {
+            margin-top: 4rem;
+        }
+
         .view-title .num {
             font-family: var(--font-tech);
             font-size: 0.8rem;
@@ -184,6 +204,9 @@
     <div class="layout-container" vid="12">
         <aside class="sidebar" vid="13">
             <div vid="14">
+                <a href="index.html" class="back-link" vid="14a">
+                    <span vid="14b">←</span> Main
+                </a>
                 <div class="view-title" vid="15">
                     <span class="num" vid="16">Σ</span>
                     <h2 vid="17">Index</h2>
@@ -201,7 +224,7 @@
                 <div class="stat-item" vid="27"><span vid="28">MEMORY_USAGE</span> <span class="stat-val" vid="29">84%</span></div>
                 <div class="sidebar-footer" style="margin-top: 2rem; font-size: 0.65rem; color: var(--ink-subtle);" vid="30">
                     VOL. ALL / CATALOGUE<br vid="31">
-                    AGUST D / TEO © 2024
+                    hyperlynxt | teo © 2024
                 </div>
             </div>
         </aside>
