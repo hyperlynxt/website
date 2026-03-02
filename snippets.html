@@ -1,0 +1,311 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Snippets — Interlinked &amp; Intertwined</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" vid="7">
+    
+    <style vid="8">
+        :root {
+            --bg-paper: #F2F0E9;
+            --ink-main: #0F1A15;
+            --ink-subtle: #4A5A50;
+            --accent-matcha: #7D9E52;
+            --accent-blur: rgba(125, 158, 82, 0.4);
+            
+            --font-display: 'Cormorant Garamond', serif;
+            --font-tech: 'Space Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--ink-main);
+            font-family: var(--font-tech);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.08;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .layout-container {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            padding: 3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .back-link {
+            font-family: var(--font-tech);
+            font-size: 0.75rem;
+            text-decoration: none;
+            color: var(--ink-subtle);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--ink-main);
+        }
+
+        .author-tag {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .canvas-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .constellation-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .constellation-line {
+            stroke: var(--ink-subtle);
+            stroke-width: 0.5px;
+            stroke-dasharray: 2, 4;
+            opacity: 0.4;
+        }
+
+        .node-center {
+            fill: var(--bg-paper);
+            stroke: var(--accent-matcha);
+            stroke-width: 1.5px;
+        }
+
+        
+        .snippet-card {
+            position: absolute;
+            background: rgba(242, 240, 233, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(15, 26, 21, 0.1);
+            padding: 1.5rem;
+            width: 280px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        .snippet-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--accent-matcha);
+            background: white;
+            z-index: 30;
+        }
+
+        .snippet-card .num {
+            font-family: var(--font-tech);
+            font-size: 0.65rem;
+            color: var(--accent-matcha);
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        .snippet-card p {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            line-height: 1.4;
+            color: var(--ink-main);
+            font-style: italic;
+        }
+
+        .snippet-card .meta {
+            margin-top: 1rem;
+            font-family: var(--font-tech);
+            font-size: 0.6rem;
+            color: var(--ink-subtle);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .float-1 { animation: floatSlow 8s infinite ease-in-out; }
+        .float-2 { animation: floatSlow 11s infinite ease-in-out -2s; }
+        .float-3 { animation: floatSlow 9s infinite ease-in-out -4s; }
+        .float-4 { animation: floatSlow 13s infinite ease-in-out -1s; }
+
+        .title-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: var(--ink-main);
+            font-style: italic;
+        }
+
+        .category-meta {
+            text-align: right;
+        }
+
+        .category-meta .label {
+            font-family: var(--font-tech);
+            font-size: 0.7rem;
+            color: var(--ink-subtle);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-meta .count {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        
+        .card-pos-1 { top: 15%; left: 10%; }
+        .card-pos-2 { top: 5%; left: 45%; }
+        .card-pos-3 { top: 40%; left: 65%; }
+        .card-pos-4 { top: 60%; left: 15%; }
+
+        .orb-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--accent-blur);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: 1;
+            pointer-events: none;
+            top: 10%;
+            left: 60%;
+        }
+
+    </style>
+</head>
+<body vid="9">
+
+    <div class="noise-overlay" vid="10"></div>
+    <div class="orb-glow" vid="11"></div>
+
+    <div class="layout-container" vid="12">
+        <header vid="13">
+            <a href="#" class="back-link" vid="14">
+                <span vid="15">←</span> INDEX / VOL. 1
+            </a>
+            <div class="author-tag" vid="16">Agust D / teo</div>
+        </header>
+
+        <main class="canvas-wrapper" vid="17">
+            <svg class="constellation-svg" vid="18">
+                
+                <circle cx="65%" cy="15%" r="4" class="node-center" vid="19"></circle>
+                
+                
+                <line x1="65%" y1="15%" x2="20%" y2="25%" class="constellation-line" vid="20"></line>
+                <line x1="65%" y1="15%" x2="55%" y2="15%" class="constellation-line" vid="21"></line>
+                <line x1="65%" y1="15%" x2="75%" y2="50%" class="constellation-line" vid="22"></line>
+                <line x1="65%" y1="15%" x2="25%" y2="70%" class="constellation-line" vid="23"></line>
+            </svg>
+
+            
+            <div class="snippet-card card-pos-1 float-1" vid="24">
+                <span class="num" vid="25">02.A</span>
+                <p vid="26">The rhythm of the train tracks provides a meter for thoughts that refuse to settle.</p>
+                <div class="meta" vid="27">Captured: 04:12 AM / Transit</div>
+            </div>
+
+            <div class="snippet-card card-pos-2 float-2" vid="28">
+                <span class="num" vid="29">02.B</span>
+                <p vid="30">Silence is not the absence of sound, but the presence of focus.</p>
+                <div class="meta" vid="31">Note: Tokyo Residency</div>
+            </div>
+
+            <div class="snippet-card card-pos-3 float-3" vid="32">
+                <span class="num" vid="33">02.C</span>
+                <p vid="34">Architecture of memory is built with the bricks of forgotten conversations.</p>
+                <div class="meta" vid="35">Observation #442</div>
+            </div>
+
+            <div class="snippet-card card-pos-4 float-4" vid="36">
+                <span class="num" vid="37">02.D</span>
+                <p vid="38">To be intertwined is to accept the friction of another's existence.</p>
+                <div class="meta" vid="39">Drafting: Interlinked</div>
+            </div>
+        </main>
+
+        <footer class="title-block" vid="40">
+            <div class="title-wrap" vid="41">
+                <div class="category-meta" style="text-align: left;" vid="42">
+                    <div class="label" vid="43">Navigation / Node 2</div>
+                </div>
+                <h1 vid="44">Snippets</h1>
+            </div>
+            <div class="category-meta" vid="45">
+                <div class="label" vid="46">Fragments Collected</div>
+                <div class="count" vid="47">142</div>
+            </div>
+        </footer>
+    </div>
+
+    <script vid="48">
+        
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.snippet-card');
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+
+            cards.forEach((card, index) => {
+                const depth = (index + 1) * 0.5;
+                card.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
+            });
+
+            
+            const glow = document.querySelector('.orb-glow');
+            glow.style.transform = `translate(${x * 2}px, ${y * 2}px)`;
+        });
+    </script>
+
+</body></html>
