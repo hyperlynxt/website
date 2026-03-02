@@ -1,0 +1,310 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Notes Archive — Interlinked &amp; Intertwined</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" vid="7">
+    
+    <style vid="8">
+        :root {
+            --bg-paper: #F2F0E9;
+            --ink-main: #0F1A15;
+            --ink-subtle: #4A5A50;
+            --accent-matcha: #7D9E52;
+            --accent-blur: rgba(125, 158, 82, 0.4);
+            
+            --font-display: 'Cormorant Garamond', serif;
+            --font-tech: 'Space Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--ink-main);
+            font-family: var(--font-tech);
+            height: 100vh;
+            width: 100vw;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.08;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .layout-container {
+            width: 100%;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            position: relative;
+            z-index: 10;
+        }
+
+        
+        aside.sidebar {
+            padding: 3rem;
+            border-right: 1px solid rgba(74, 90, 80, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .back-link {
+            font-family: var(--font-tech);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--ink-subtle);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-matcha);
+        }
+
+        .view-title {
+            margin-top: 4rem;
+        }
+
+        .view-title .num {
+            font-family: var(--font-tech);
+            font-size: 0.8rem;
+            background: var(--ink-main);
+            color: var(--bg-paper);
+            padding: 4px 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .view-title h2 {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 400;
+            font-style: italic;
+            line-height: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .index-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .index-item {
+            font-family: var(--font-tech);
+            font-size: 0.7rem;
+            color: var(--ink-subtle);
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(74, 90, 80, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .index-item:hover {
+            color: var(--ink-main);
+            padding-left: 10px;
+        }
+
+        .sidebar-footer {
+            font-size: 0.65rem;
+            color: var(--ink-subtle);
+            line-height: 1.6;
+        }
+
+        
+        main.content-area {
+            padding: 6rem 8rem;
+            position: relative;
+            max-width: 900px;
+        }
+
+        .note-entry {
+            margin-bottom: 8rem;
+            position: relative;
+        }
+
+        .note-meta {
+            font-family: var(--font-tech);
+            font-size: 0.7rem;
+            color: var(--accent-matcha);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .note-meta::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--accent-matcha);
+            opacity: 0.5;
+        }
+
+        .note-body {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            line-height: 1.4;
+            color: var(--ink-main);
+            font-weight: 300;
+        }
+
+        .note-body strong {
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .note-annotation {
+            margin-top: 2rem;
+            font-family: var(--font-tech);
+            font-size: 0.75rem;
+            color: var(--ink-subtle);
+            max-width: 400px;
+            border-left: 1px solid var(--accent-matcha);
+            padding-left: 1.5rem;
+            line-height: 1.7;
+        }
+
+        
+        .decoration-orb {
+            position: fixed;
+            top: 10%;
+            right: 5%;
+            width: 400px;
+            height: 400px;
+            background: var(--accent-matcha);
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .constellation-graphic {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            width: 150px;
+            height: 150px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .note-entry {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .note-entry:nth-child(2) { animation-delay: 0.3s; }
+        .note-entry:nth-child(3) { animation-delay: 0.6s; }
+
+    </style>
+</head>
+<body vid="9">
+
+    <div class="noise-overlay" vid="10"></div>
+    <div class="decoration-orb" vid="11"></div>
+
+    <svg class="constellation-graphic" viewBox="0 0 100 100" vid="12">
+        <circle cx="30" cy="20" r="2" fill="none" stroke="currentColor" vid="13"></circle>
+        <line x1="30" y1="20" x2="70" y2="30" stroke="currentColor" stroke-dasharray="2 2" vid="14"></line>
+        <line x1="70" y1="30" x2="50" y2="80" stroke="currentColor" stroke-dasharray="2 2" vid="15"></line>
+        <line x1="50" y1="80" x2="30" y2="20" stroke="currentColor" stroke-dasharray="2 2" vid="16"></line>
+    </svg>
+
+    <div class="layout-container" vid="17">
+        
+        <aside class="sidebar" vid="18">
+            <div vid="19">
+                <a href="#" class="back-link" vid="20">
+                    <span vid="21">←</span> Index
+                </a>
+                
+                <div class="view-title" vid="22">
+                    <span class="num" vid="23">1</span>
+                    <h2 vid="24">Notes</h2>
+                    <p class="subtitle" style="font-size: 0.7rem; color: var(--ink-subtle);" vid="25">THOUGHTS COLLECTED IN TRANSIT</p>
+                </div>
+
+                <ul class="index-list" vid="26">
+                    <li class="index-item" vid="27">01. THE PERSISTENCE OF ECHOES</li>
+                    <li class="index-item" vid="28">02. SPATIAL MEMORY AS INFRASTRUCTURE</li>
+                    <li class="index-item" vid="29">03. FRAGMENTED DIALOGUES</li>
+                    <li class="index-item" vid="30">04. TEMPORAL DRIFT</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-footer" vid="31">
+                VOL. 1 / ARCHIVE<br vid="32">
+                AGUST D / TEO © 2024
+            </div>
+        </aside>
+
+        <main class="content-area" vid="33">
+            
+            <article class="note-entry" vid="34">
+                <div class="note-meta" vid="35">ENTRY_01 // 23.08.24</div>
+                <div class="note-body" vid="36">
+                    We inhabit the spaces between our thoughts. The <strong vid="37">interstitial silence</strong> is where the most profound connections are formed—unseen, yet structurally essential to the whole.
+                </div>
+                <div class="note-annotation" vid="38">
+                    Observation: The constellation lines are not just connections; they are the paths of least resistance for intuition.
+                </div>
+            </article>
+
+            <article class="note-entry" vid="39">
+                <div class="note-meta" vid="40">ENTRY_02 // 25.08.24</div>
+                <div class="note-body" vid="41">
+                    Memory acts like a <strong vid="42">non-linear map</strong>. We don't recall events in sequence, but in clusters of relevance. To navigate the archive is to perform a ritual of rediscovery.
+                </div>
+                <div class="note-annotation" vid="43">
+                    Note to self: Re-examine the "recursive definitions" node. The logic seems to loop back to the initial premise of the volume.
+                </div>
+            </article>
+
+            <article class="note-entry" vid="44">
+                <div class="note-meta" vid="45">ENTRY_03 // 02.09.24</div>
+                <div class="note-body" vid="46">
+                    The texture of digital thought should mirror the <strong vid="47">tactility of paper</strong>. There is a weight to a stroke of ink that a pixel must fight to replicate. This struggle is the "noise" in our system.
+                </div>
+            </article>
+
+        </main>
+    </div>
+
+    <script vid="48">
+        
+        window.addEventListener('scroll', () => {
+            const orb = document.querySelector('.decoration-orb');
+            const scrolled = window.pageYOffset;
+            orb.style.transform = `translateY(${scrolled * 0.1}px)`;
+        });
+    </script>
+
+
+</body></html>
