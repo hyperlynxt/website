@@ -1,0 +1,285 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Index Archive — System Overview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" vid="7">
+    
+    <style vid="8">
+        :root {
+            --bg-paper: #F2F0E9;
+            --ink-main: #0F1A15;
+            --ink-subtle: #4A5A50;
+            --accent-matcha: #7D9E52;
+            --accent-blur: rgba(125, 158, 82, 0.4);
+            
+            --font-display: 'Cormorant Garamond', serif;
+            --font-tech: 'Space Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--ink-main);
+            font-family: var(--font-tech);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.08;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .layout-container {
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            position: relative;
+            z-index: 10;
+        }
+
+        aside.sidebar {
+            padding: 3rem;
+            border-right: 1px solid rgba(74, 90, 80, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .view-title .num {
+            font-family: var(--font-tech);
+            font-size: 0.8rem;
+            background: var(--ink-main);
+            color: var(--bg-paper);
+            padding: 4px 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .view-title h2 {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 400;
+            font-style: italic;
+            line-height: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        main.content-area {
+            padding: 4rem;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .index-grid {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-tech);
+            font-size: 0.75rem;
+        }
+
+        .grid-header {
+            text-align: left;
+            color: var(--accent-matcha);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(125, 158, 82, 0.3);
+        }
+
+        .grid-row {
+            transition: background 0.2s ease;
+            cursor: pointer;
+        }
+
+        .grid-row:hover {
+            background: rgba(125, 158, 82, 0.05);
+        }
+
+        .grid-row td {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(74, 90, 80, 0.05);
+            color: var(--ink-subtle);
+        }
+
+        .grid-row td.entry-id {
+            color: var(--ink-main);
+            font-weight: 700;
+        }
+
+        .grid-row td.title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--ink-main);
+            font-weight: 400;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border: 1px solid var(--accent-matcha);
+            color: var(--accent-matcha);
+            font-size: 0.6rem;
+            margin-right: 4px;
+            border-radius: 2px;
+        }
+
+        .vol-divider {
+            padding: 2.5rem 0 1rem 0;
+            font-weight: 700;
+            color: var(--ink-main);
+            letter-spacing: 0.1em;
+        }
+
+        .decoration-orb {
+            position: fixed;
+            bottom: -10%;
+            left: 40%;
+            width: 500px;
+            height: 500px;
+            background: var(--accent-matcha);
+            filter: blur(150px);
+            opacity: 0.12;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .stats-bar {
+            margin-top: auto;
+            border-top: 1px solid rgba(74, 90, 80, 0.1);
+            padding-top: 2rem;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.65rem;
+            color: var(--ink-subtle);
+        }
+
+        .stat-val { color: var(--ink-main); }
+    </style>
+</head>
+<body vid="9">
+
+    <div class="noise-overlay" vid="10"></div>
+    <div class="decoration-orb" vid="11"></div>
+
+    <div class="layout-container" vid="12">
+        <aside class="sidebar" vid="13">
+            <div vid="14">
+                <div class="view-title" vid="15">
+                    <span class="num" vid="16">Σ</span>
+                    <h2 vid="17">Index</h2>
+                    <p class="subtitle" style="font-size: 0.7rem; color: var(--ink-subtle); margin-bottom: 2rem;" vid="18">MAPPING THE ARCHIVE INTERFACE</p>
+                </div>
+                
+                <p style="font-size: 0.75rem; line-height: 1.6; color: var(--ink-subtle);" vid="19">
+                    A comprehensive taxonomy of thoughts collected across active volumes. Use the grid to navigate temporal and thematic clusters.
+                </p>
+            </div>
+
+            <div class="stats-bar" vid="20">
+                <div class="stat-item" vid="21"><span vid="22">TOTAL_ENTRIES</span> <span class="stat-val" vid="23">142</span></div>
+                <div class="stat-item" vid="24"><span vid="25">SYSTEM_UPTIME</span> <span class="stat-val" vid="26">342:12:08</span></div>
+                <div class="stat-item" vid="27"><span vid="28">MEMORY_USAGE</span> <span class="stat-val" vid="29">84%</span></div>
+                <div class="sidebar-footer" style="margin-top: 2rem; font-size: 0.65rem; color: var(--ink-subtle);" vid="30">
+                    VOL. ALL / CATALOGUE<br vid="31">
+                    AGUST D / TEO © 2024
+                </div>
+            </div>
+        </aside>
+
+        <main class="content-area" vid="32">
+            <table class="index-grid" vid="33">
+                <thead vid="34">
+                    <tr vid="35">
+                        <th class="grid-header" style="width: 10%;" vid="36">ID</th>
+                        <th class="grid-header" style="width: 45%;" vid="37">Title / Concept</th>
+                        <th class="grid-header" style="width: 15%;" vid="38">Date</th>
+                        <th class="grid-header" style="width: 10%;" vid="39">Words</th>
+                        <th class="grid-header" style="width: 20%;" vid="40">Tags</th>
+                    </tr>
+                </thead>
+                <tbody vid="41">
+                    <tr vid="42"><td colspan="5" class="vol-divider" vid="43">VOLUME_01 / TRANSIT_ECHOES</td></tr>
+                    <tr class="grid-row" vid="44">
+                        <td class="entry-id" vid="45">E_01</td>
+                        <td class="title" vid="46">The Persistence of Echoes</td>
+                        <td vid="47">23.08.24</td>
+                        <td vid="48">342</td>
+                        <td vid="49"><span class="tag" vid="50">SILENCE</span><span class="tag" vid="51">SPACE</span></td>
+                    </tr>
+                    <tr class="grid-row" vid="52">
+                        <td class="entry-id" vid="53">E_02</td>
+                        <td class="title" vid="54">Spatial Memory as Infrastructure</td>
+                        <td vid="55">25.08.24</td>
+                        <td vid="56">512</td>
+                        <td vid="57"><span class="tag" vid="58">MAPPING</span></td>
+                    </tr>
+                    <tr class="grid-row" vid="59">
+                        <td class="entry-id" vid="60">E_03</td>
+                        <td class="title" vid="61">Fragmented Dialogues</td>
+                        <td vid="62">02.09.24</td>
+                        <td vid="63">188</td>
+                        <td vid="64"><span class="tag" vid="65">COMM</span><span class="tag" vid="66">NOISE</span></td>
+                    </tr>
+                    <tr class="grid-row" vid="67">
+                        <td class="entry-id" vid="68">E_04</td>
+                        <td class="title" vid="69">Temporal Drift Analysis</td>
+                        <td vid="70">05.09.24</td>
+                        <td vid="71">421</td>
+                        <td vid="72"><span class="tag" vid="73">TIME</span></td>
+                    </tr>
+
+                    <tr vid="74"><td colspan="5" class="vol-divider" vid="75">VOLUME_02 / RECURSIVE_LOOPS</td></tr>
+                    <tr class="grid-row" vid="76">
+                        <td class="entry-id" vid="77">E_05</td>
+                        <td class="title" vid="78">The Recursive Self</td>
+                        <td vid="79">12.09.24</td>
+                        <td vid="80">890</td>
+                        <td vid="81"><span class="tag" vid="82">LOGIC</span><span class="tag" vid="83">SELF</span></td>
+                    </tr>
+                    <tr class="grid-row" vid="84">
+                        <td class="entry-id" vid="85">E_06</td>
+                        <td class="title" vid="86">Feedback Loops in Design</td>
+                        <td vid="87">15.09.24</td>
+                        <td vid="88">655</td>
+                        <td vid="89"><span class="tag" vid="90">SYSTEMS</span></td>
+                    </tr>
+                    <tr class="grid-row" vid="91">
+                        <td class="entry-id" vid="92">E_07</td>
+                        <td class="title" vid="93">Inheritance of Ghost Patterns</td>
+                        <td vid="94">18.09.24</td>
+                        <td vid="95">210</td>
+                        <td vid="96"><span class="tag" vid="97">GHOST</span><span class="tag" vid="98">CODE</span></td>
+                    </tr>
+                    <tr class="grid-row" vid="99">
+                        <td class="entry-id" vid="100">E_08</td>
+                        <td class="title" vid="101">Non-Binary States of Being</td>
+                        <td vid="102">22.09.24</td>
+                        <td vid="103">543</td>
+                        <td vid="104"><span class="tag" vid="105">PHIL</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+</body></html>

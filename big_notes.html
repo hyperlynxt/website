@@ -1,0 +1,326 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">01. The Persistence of Echoes — Detail View</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" vid="7">
+    
+    <style vid="8">
+        :root {
+            --bg-paper: #F2F0E9;
+            --ink-main: #0F1A15;
+            --ink-subtle: #4A5A50;
+            --accent-matcha: #7D9E52;
+            --accent-blur: rgba(125, 158, 82, 0.4);
+            
+            --font-display: 'Cormorant Garamond', serif;
+            --font-tech: 'Space Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--ink-main);
+            font-family: var(--font-tech);
+            min-height: 100vh;
+            width: 100vw;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.08;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 200px 1fr 200px;
+            gap: 4rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        
+        nav.top-nav {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 4rem;
+        }
+
+        .back-link {
+            font-family: var(--font-tech);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--ink-subtle);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-matcha);
+        }
+
+        .entry-breadcrumb {
+            font-size: 0.7rem;
+            color: var(--ink-subtle);
+            letter-spacing: 0.05em;
+        }
+
+        
+        .main-prose {
+            grid-column: 2;
+        }
+
+        header.entry-header {
+            margin-bottom: 4rem;
+        }
+
+        .entry-header .meta {
+            font-family: var(--font-tech);
+            font-size: 0.75rem;
+            color: var(--accent-matcha);
+            margin-bottom: 1rem;
+        }
+
+        .entry-header h1 {
+            font-family: var(--font-display);
+            font-size: 4.5rem;
+            font-weight: 300;
+            line-height: 0.95;
+            margin-left: -5px;
+        }
+
+        .prose-body {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            line-height: 1.6;
+            color: var(--ink-main);
+            font-weight: 300;
+        }
+
+        .prose-body p {
+            margin-bottom: 2.5rem;
+        }
+
+        .prose-body strong {
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        
+        .marginalia {
+            font-family: var(--font-tech);
+            font-size: 0.65rem;
+            color: var(--ink-subtle);
+            line-height: 1.8;
+            position: sticky;
+            top: 6rem;
+            height: fit-content;
+        }
+
+        .marginalia-item {
+            margin-bottom: 3rem;
+            position: relative;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(74, 90, 80, 0.1);
+        }
+
+        .marginalia-item span {
+            display: block;
+            color: var(--accent-matcha);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        
+        .related-section {
+            grid-column: 2;
+            margin-top: 8rem;
+            padding-top: 4rem;
+            border-top: 1px solid rgba(74, 90, 80, 0.1);
+        }
+
+        .related-label {
+            font-family: var(--font-tech);
+            font-size: 0.7rem;
+            color: var(--ink-subtle);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .related-card {
+            padding: 1.5rem;
+            border: 1px solid rgba(74, 90, 80, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .related-card:hover {
+            border-color: var(--accent-matcha);
+            background: rgba(125, 158, 82, 0.03);
+        }
+
+        .related-card .card-num {
+            font-family: var(--font-tech);
+            font-size: 0.65rem;
+            color: var(--accent-matcha);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .related-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-card p {
+            font-family: var(--font-tech);
+            font-size: 0.65rem;
+            color: var(--ink-subtle);
+            line-height: 1.4;
+        }
+
+        
+        .decoration-orb {
+            position: fixed;
+            top: 20%;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: var(--accent-matcha);
+            filter: blur(140px);
+            opacity: 0.08;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .main-prose {
+            animation: slideUp 1s ease-out;
+        }
+
+    </style>
+</head>
+<body vid="9">
+
+    <div class="noise-overlay" vid="10"></div>
+    <div class="decoration-orb" vid="11"></div>
+
+    <div class="detail-layout" vid="12">
+        
+        <nav class="top-nav" vid="13">
+            <a href="#" class="back-link" vid="14">
+                <span vid="15">←</span> Back to Archive
+            </a>
+            <div class="entry-breadcrumb" vid="16">
+                VOL. 1 / SECTION_01 / PERSISTENCE
+            </div>
+        </nav>
+
+        
+        <aside class="marginalia" style="grid-column: 1;" vid="17">
+            <div class="marginalia-item" vid="18">
+                <span vid="19">REF: ECHO-04</span>
+                Resonance frequency detected in the lower layers of the architectural stack.
+            </div>
+            <div class="marginalia-item" vid="20">
+                <span vid="21">DATE: 23.08.24</span>
+                Recorded during the transit between Sector 4 and the Central Hub.
+            </div>
+        </aside>
+
+        
+        <main class="main-prose" vid="22">
+            <header class="entry-header" vid="23">
+                <div class="meta" vid="24">CHAPTER_01 // 001-042</div>
+                <h1 vid="25">The Persistence <br vid="26"> of Echoes</h1>
+            </header>
+
+            <div class="prose-body" vid="27">
+                <p vid="28">
+                    To understand the echo is to understand the <strong vid="29">latency of presence</strong>. We often mistake the immediate for the absolute, yet everything we perceive is a reflection—a bounce off the hard surfaces of reality. In the archive, these bounces do not fade; they accumulate.
+                </p>
+
+                <p vid="30">
+                    If we look closely at the <strong vid="31">interstitial silence</strong> between nodes, we find that it is never truly empty. It is saturated with the vibration of what came before. This is the structural foundation of spatial memory: not the walls themselves, but the way sound and thought linger within them.
+                </p>
+
+                <p vid="32">
+                    As we move through the transit corridors, the persistence of these echoes serves as a compass. We are not just moving through space; we are moving through the <strong vid="33">residue of intention</strong>. Every recorded thought leaves a ghost in the system, a faint tracing that guides the next inhabitant through the maze of information.
+                </p>
+            </div>
+
+            <section class="related-section" vid="34">
+                <span class="related-label" vid="35">CONTINUE THE THREAD // RELATED ENTRIES</span>
+                <div class="related-grid" vid="36">
+                    <div class="related-card" vid="37">
+                        <span class="card-num" vid="38">02</span>
+                        <h3 vid="39">Spatial Memory</h3>
+                        <p vid="40">How physical structures dictate the flow of digital recollection.</p>
+                    </div>
+                    <div class="related-card" vid="41">
+                        <span class="card-num" vid="42">04</span>
+                        <h3 vid="43">Temporal Drift</h3>
+                        <p vid="44">The erosion of timestamp accuracy in high-latency zones.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        
+        <aside class="marginalia" style="grid-column: 3;" vid="45">
+            <div class="marginalia-item" vid="46">
+                <span vid="47">OBSERVATION</span>
+                The "ghosting" effect in the UI is a deliberate mirror of the phenomena described.
+            </div>
+            <div class="marginalia-item" vid="48">
+                <span vid="49">METRIC</span>
+                Decay rate: 0.003% per cycle.
+            </div>
+        </aside>
+
+    </div>
+
+    <script vid="50">
+        window.addEventListener('scroll', () => {
+            const orb = document.querySelector('.decoration-orb');
+            const scrolled = window.pageYOffset;
+            orb.style.transform = `translateY(${scrolled * 0.15}px)`;
+        });
+    </script>
+
+</body></html>
