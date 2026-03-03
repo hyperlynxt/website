@@ -1,0 +1,379 @@
+<html lang="ja" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Thoughts &amp; Analysis - Night Mode</title>
+    <style vid="5">
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400&display=swap');
+
+        :root {
+            
+            --bg-paper: #1a1a1a; 
+            --text-ink: #f0ede6; 
+            --text-meta: #888888;
+            --accent-mycelium: #ff9f1a; 
+            --accent-glow: rgba(255, 159, 26, 0.5);
+            --capsule-bg: #252525;
+            --capsule-border: #3a3a3a;
+            --hairline: #333333;
+            
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'DM Sans', sans-serif;
+            
+            --space-unit: 8px;
+            --radius-pill: 999px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-ink);
+            font-family: var(--font-serif);
+            line-height: 2.2; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 240px 680px 1fr; 
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .mycelium-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .question-zone {
+            grid-column: 2;
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 48px;
+        }
+
+        .capsule-container {
+            position: sticky;
+            top: 20vh;
+            height: max-content;
+        }
+
+        .question-capsule {
+            background: var(--capsule-bg);
+            border: 1px solid var(--capsule-border);
+            border-radius: var(--radius-pill);
+            padding: 32px 14px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-ink);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            z-index: 20;
+            user-select: none;
+        }
+
+        .question-capsule:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(255, 159, 26, 0.15);
+            border-color: var(--accent-mycelium);
+        }
+
+        .question-capsule::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--accent-mycelium);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.5s ease;
+        }
+
+        .question-capsule.active::before {
+            opacity: 0.4;
+            transform: scale(1);
+            animation: pulse-border 3s infinite;
+        }
+
+        .manuscript {
+            grid-column: 3;
+            font-size: 1.15rem;
+            color: var(--text-ink);
+        }
+
+        h1 {
+            font-size: 4.2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .meta-data {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--text-meta);
+            margin-bottom: 4rem;
+            display: flex;
+            gap: 24px;
+            border-bottom: 1px solid var(--hairline);
+            padding-bottom: 24px;
+        }
+
+        p {
+            margin-bottom: 2.5rem;
+            text-align: justify;
+        }
+
+        .spore {
+            position: relative;
+            display: inline-block;
+            transition: color 1s ease;
+            cursor: default;
+        }
+        
+        .spore.connected {
+            color: var(--accent-mycelium);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .spore::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--accent-mycelium);
+            box-shadow: 0 0 5px var(--accent-mycelium);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+
+        .spore.connected::after {
+            transform: scaleX(1);
+        }
+
+        @keyframes pulse-border {
+            0% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.05); }
+            100% { opacity: 0.2; transform: scale(1); }
+        }
+
+        @media (max-width: 1024px) {
+            .layout {
+                grid-template-columns: 1fr 60px 1fr 40px;
+                padding-top: 60px;
+            }
+            .question-zone {
+                grid-column: 2;
+                padding-right: 10px;
+            }
+            .manuscript {
+                grid-column: 3;
+            }
+            h1 { font-size: 3rem; }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1.2s ease forwards;
+        }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+    </style>
+</head>
+<body vid="6">
+
+    <svg class="mycelium-layer" id="mycelium-canvas" xmlns="http://www.w3.org/2000/svg" vid="7">
+        <defs vid="8">
+            <filter id="glow" vid="9">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur" vid="10"></feGaussianBlur>
+                <feMerge vid="11">
+                    <feMergeNode in="coloredBlur" vid="12"></feMergeNode>
+                    <feMergeNode in="SourceGraphic" vid="13"></feMergeNode>
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="layout" vid="14">
+        <div class="question-zone fade-in" style="animation-delay: 0.2s;" vid="15">
+            <div class="capsule-container" vid="16">
+                <div class="question-capsule active" id="source-capsule" vid="17">
+                    What does abundance mean to me
+                </div>
+            </div>
+        </div>
+
+        <article class="manuscript fade-in" style="animation-delay: 0.4s;" vid="18">
+            <div class="meta-data" vid="19">
+                <span vid="20">Essay on Thought</span>
+                <span vid="21">October 2023</span>
+                <span vid="22">4 min read</span>
+            </div>
+
+            <h1 vid="23">Fermenting Thought</h1>
+
+            <p vid="24">
+                Thought does not emerge from a vacuum. It resembles <span class="spore" vid="25">soil</span> — countless fragments of memory, emotion, and external stimuli mingling together, slowly transforming over quiet time. We tend to seek immediate answers, yet true understanding, much like microbes breaking down organic matter, only takes shape through a gradual <span class="spore" vid="26">fermentation</span>.
+            </p>
+
+            <p vid="27">
+                The act of "waiting" has become the most luxurious and difficult skill in the modern age. In a world where answers appear within seconds on a screen, holding an unresolved <span class="spore" vid="28">question</span> close is painful. Yet the very blank space of unanswered time is the indispensable margin through which thought's mycelium can grow.
+            </p>
+
+            <p vid="29">
+                In sake brewing, the master brewer reads the mood of the koji mold, adjusting temperature and humidity in minute increments. They do not control the mold — they merely prepare an environment in which it can <span class="spore" vid="30">flourish</span>. Is our creativity not the same? Rather than forcing new ideas, we cultivate the inner conditions and learn to <span class="spore" vid="31">wait</span> for insight to arrive. That is the true nature of fermenting thought.
+            </p>
+
+            <p vid="32">
+                The distinction between decay and fermentation is merely a subjective boundary — whether the result is beneficial to us. Even negative experiences, failure and defeat, can transform into the deep <span class="spore" vid="33">richness</span> that gives life flavor, given the right environment and time. What matters most is not rushing the process. Anxiety is like a contaminant that disrupts the delicate work of the culture.
+            </p>
+
+            <p vid="34">
+                When we sit in silence and listen to the inner voice, thought <span class="spore" vid="35">expands</span> beyond the self. Like the mycelium network spreading beneath a forest floor, we may be connected to others and to the world in ways entirely invisible to us.
+            </p>
+            
+            <p vid="36">
+                That is why we must continue to question. Rather than chasing only visible outcomes and numbers, we should find value in the invisible <span class="spore" vid="37">process</span> itself. Perhaps that is the only act of resistance that keeps our humanity intact in this accelerating world.
+            </p>
+
+        </article>
+    </div>
+
+    <script vid="38">
+        const canvas = document.getElementById('mycelium-canvas');
+        const source = document.getElementById('source-capsule');
+        const spores = document.querySelectorAll('.spore');
+        const maxConnections = 4;
+        let activePaths = [];
+
+        function createPath(targetElement) {
+            const pathId = 'path-' + Math.random().toString(36).substr(2, 9);
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            
+            path.setAttribute("id", pathId);
+            path.setAttribute("fill", "none");
+            path.setAttribute("stroke", "var(--accent-mycelium)");
+            path.setAttribute("stroke-width", "1.2");
+            path.setAttribute("stroke-opacity", "0.8");
+            path.setAttribute("filter", "url(#glow)");
+            
+            canvas.appendChild(path);
+            targetElement.classList.add('connected');
+            
+            return {
+                element: path,
+                target: targetElement,
+                progress: 0,
+                phase: 'growing', 
+                life: 0
+            };
+        }
+
+        function getCoordinates(elem) {
+            const rect = elem.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2,
+                right: rect.right,
+                left: rect.left
+            };
+        }
+
+        function updatePaths() {
+            const srcCoords = getCoordinates(source);
+            const startX = srcCoords.right; 
+            const startY = srcCoords.y;
+
+            activePaths.forEach((obj, index) => {
+                const targetCoords = getCoordinates(obj.target);
+                const endX = targetCoords.left;
+                const endY = targetCoords.y + 4; 
+
+                const cp1x = startX + 80 + (Math.sin(Date.now() / 1500 + index) * 15); 
+                const cp1y = startY + (Math.cos(Date.now() / 2000 + index) * 10);
+                const cp2x = endX - 80 + (Math.cos(Date.now() / 1200 + index) * 15);
+                const cp2y = endY + (Math.sin(Date.now() / 1800 + index) * 10);
+
+                const d = `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
+                obj.element.setAttribute("d", d);
+                
+                const length = obj.element.getTotalLength();
+                obj.element.style.strokeDasharray = length;
+                
+                if (obj.phase === 'growing') {
+                    obj.progress += 0.015;
+                    if (obj.progress >= 1) {
+                        obj.progress = 1;
+                        obj.phase = 'sustained';
+                        obj.life = 150 + Math.random() * 250; 
+                    }
+                    obj.element.style.strokeDashoffset = length * (1 - obj.progress);
+                } else if (obj.phase === 'sustained') {
+                    obj.element.style.strokeDashoffset = 0;
+                    obj.life--;
+                    if (obj.life <= 0) obj.phase = 'dying';
+                } else if (obj.phase === 'dying') {
+                    obj.progress -= 0.015;
+                    obj.element.style.strokeDashoffset = length * (1 - obj.progress);
+                    if (obj.progress <= 0) {
+                        canvas.removeChild(obj.element);
+                        obj.target.classList.remove('connected');
+                        activePaths.splice(index, 1);
+                    }
+                }
+            });
+        }
+
+        function manageLifecycle() {
+            if (activePaths.length < maxConnections && Math.random() > 0.97) {
+                const availableSpores = Array.from(spores).filter(s => !s.classList.contains('connected'));
+                if (availableSpores.length > 0) {
+                    const randomSpore = availableSpores[Math.floor(Math.random() * availableSpores.length)];
+                    const rect = randomSpore.getBoundingClientRect();
+                    if (rect.top > 0 && rect.bottom < window.innerHeight) {
+                        activePaths.push(createPath(randomSpore));
+                    }
+                }
+            }
+            updatePaths();
+            requestAnimationFrame(manageLifecycle);
+        }
+
+        requestAnimationFrame(manageLifecycle);
+
+        window.addEventListener('resize', () => {
+            activePaths.forEach(p => {
+                if(p.element.parentNode) canvas.removeChild(p.element);
+                p.target.classList.remove('connected');
+            });
+            activePaths = [];
+        });
+    </script>
+</body></html>
