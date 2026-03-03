@@ -1,4 +1,6 @@
-<html lang="en" vid="0"><head vid="1">
+<html lang="en" vid="0">
+
+<head vid="1">
     <meta charset="UTF-8" vid="2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
     <title vid="4">Oryzae | Split View</title>
@@ -9,12 +11,12 @@
             --bg-paper: #faf9f7;
             --text-ink: #2b2b2b;
             --text-meta: #666666;
-            --accent-mycelium: #cfa86e; 
+            --accent-mycelium: #cfa86e;
             --accent-glow: rgba(207, 168, 110, 0.4);
             --capsule-bg: #f0efe9;
             --capsule-border: #e0ded5;
             --hairline: #eae8e0;
-            
+
             --font-serif: 'Shippori Mincho', serif;
             --font-sans: 'Zen Kaku Gothic New', sans-serif;
             --font-english: 'Cormorant Garamond', serif;
@@ -42,7 +44,7 @@
             width: 100vw;
         }
 
-        
+
         .display-panel {
             padding: 10% 8%;
             display: flex;
@@ -105,7 +107,7 @@
             background: var(--accent-mycelium);
         }
 
-        
+
         .list-panel {
             padding: 120px 8% 80px 8%;
             overflow-y: auto;
@@ -116,6 +118,7 @@
         .list-panel::-webkit-scrollbar {
             width: 4px;
         }
+
         .list-panel::-webkit-scrollbar-thumb {
             background: var(--hairline);
         }
@@ -163,39 +166,62 @@
         }
 
         @media (max-width: 1024px) {
-            .split-layout { grid-template-columns: 1fr; overflow-y: auto; height: auto; }
-            .display-panel { height: 60vh; border-right: none; border-bottom: 1px solid var(--hairline); }
-            .list-panel { height: auto; overflow: visible; }
-            .large-quote-text { font-size: 2.5rem; }
+            .split-layout {
+                grid-template-columns: 1fr;
+                overflow-y: auto;
+                height: auto;
+            }
+
+            .display-panel {
+                height: 60vh;
+                border-right: none;
+                border-bottom: 1px solid var(--hairline);
+            }
+
+            .list-panel {
+                height: auto;
+                overflow: visible;
+            }
+
+            .large-quote-text {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
+
 <body vid="6">
     <div class="split-layout" vid="7">
-        
+
         <div class="display-panel" vid="8">
             <header class="collection-meta" vid="9">
+                <a href="index.html"
+                    style="font-family: var(--font-sans); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-ink); text-decoration: none; display: inline-block; margin-bottom: 2rem; border-bottom: 1px solid var(--accent-mycelium); padding-bottom: 2px; transition: opacity 0.3s ease;"
+                    onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">Main</a>
                 <h1 vid="10">Echoes of the Soil</h1>
                 <p vid="11">Resonant Fragments</p>
             </header>
-            
+
             <div id="active-quote-container" vid="12">
                 <div class="large-quote-text" id="display-text" vid="13">
-                    “The <span class="spore-highlight" vid="14">mind</span> is not a vessel to be filled, but a <span class="spore-highlight" vid="15">fire</span> to be kindled.”
+                    “The <span class="spore-highlight" vid="14">mind</span> is not a vessel to be filled, but a <span
+                        class="spore-highlight" vid="15">fire</span> to be kindled.”
                 </div>
                 <div class="large-quote-author" id="display-author" vid="16">Plutarch</div>
             </div>
         </div>
 
-        
+
         <div class="list-panel" id="quote-list" vid="17">
             <div class="quote-entry active" onclick="updateActive(0)" vid="18">
-                <div class="entry-text" vid="19">“The mind is not a vessel to be filled, but a fire to be kindled.”</div>
+                <div class="entry-text" vid="19">“The mind is not a vessel to be filled, but a fire to be kindled.”
+                </div>
                 <div class="entry-author" vid="20">Plutarch</div>
             </div>
 
             <div class="quote-entry" onclick="updateActive(1)" vid="21">
-                <div class="entry-text" vid="22">“In the silence of the woods, you can hear the whisper of the earth growing.”</div>
+                <div class="entry-text" vid="22">“In the silence of the woods, you can hear the whisper of the earth
+                    growing.”</div>
                 <div class="entry-author" vid="23">Unknown</div>
             </div>
 
@@ -205,12 +231,14 @@
             </div>
 
             <div class="quote-entry" onclick="updateActive(3)" vid="27">
-                <div class="entry-text" vid="28">“The organic process of thought requires the darkness of the unknown to truly take root.”</div>
+                <div class="entry-text" vid="28">“The organic process of thought requires the darkness of the unknown to
+                    truly take root.”</div>
                 <div class="entry-author" vid="29">Oryzae Reflections</div>
             </div>
 
             <div class="quote-entry" onclick="updateActive(4)" vid="30">
-                <div class="entry-text" vid="31">“To wait is not to be idle. It is to allow the invisible threads of connection to find their path.”</div>
+                <div class="entry-text" vid="31">“To wait is not to be idle. It is to allow the invisible threads of
+                    connection to find their path.”</div>
                 <div class="entry-author" vid="32">A.G. Thornton</div>
             </div>
         </div>
@@ -228,22 +256,24 @@
         function updateActive(index) {
             const container = document.getElementById('active-quote-container');
             const entries = document.querySelectorAll('.quote-entry');
-            
-            
+
+
             container.style.opacity = 0;
             container.style.transform = 'translateY(10px)';
-            
+
             setTimeout(() => {
                 document.getElementById('display-text').innerHTML = quotes[index].text;
                 document.getElementById('display-author').innerText = quotes[index].author;
                 container.style.opacity = 1;
                 container.style.transform = 'translateY(0)';
-                
+
                 entries.forEach((el, i) => {
-                    if(i === index) el.classList.add('active');
+                    if (i === index) el.classList.add('active');
                     else el.classList.remove('active');
                 });
             }, 400);
         }
     </script>
-</body></html>
+</body>
+
+</html>
