@@ -222,6 +222,7 @@
             opacity: 0.8;
             mix-blend-mode: multiply;
             transition: cx 0.1s ease-out, cy 0.1s ease-out;
+            will-change: cx, cy;
         }
 
         @keyframes drawLine {
@@ -257,7 +258,7 @@
 
 
             <svg class="constellation" style="position: absolute; top:0; left:0; pointer-events: none;" vid="15">
-                <circle cx="35%" cy="30%" r="80" class="orb" vid="16"></circle>
+                <circle cx="350" cy="300" r="80" class="orb" vid="16"></circle>
                 <circle cx="65%" cy="70%" r="60" class="orb"
                     style="animation-delay: -5s; fill: var(--ink-subtle); opacity: 0.1;" vid="17"></circle>
             </svg>
@@ -341,6 +342,13 @@
 
         const orb = document.querySelector('.orb');
         const container = document.querySelector('.canvas-wrapper');
+
+        // Set initial coordinates so the orb doesn't fly from 0,0 on first interaction
+        setTimeout(() => {
+            const { left, top, width, height } = container.getBoundingClientRect();
+            orb.setAttribute("cx", width * 0.35); // Initial matching 35% cx position
+            orb.setAttribute("cy", height * 0.30); // Initial matching 30% cy position
+        }, 100);
 
         container.addEventListener('mousemove', (e) => {
             const { left, top } = container.getBoundingClientRect();
