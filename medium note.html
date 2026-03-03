@@ -408,6 +408,7 @@
         const spores = document.querySelectorAll('.spore');
         const maxConnections = 4;
         let activePaths = [];
+        let threadEnabled = true;
 
         function createPath(targetElement) {
             const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -496,7 +497,21 @@
             });
         }
 
+        function clearAllThreads() {
+            activePaths.forEach(p => {
+                if (p.element.parentNode) canvas.removeChild(p.element);
+                p.target.classList.remove('connected');
+            });
+            activePaths = [];
+        }
+
         function manageLifecycle() {
+            if (!threadEnabled) {
+                clearAllThreads();
+                requestAnimationFrame(manageLifecycle);
+                return;
+            }
+
             if (activePaths.length < maxConnections && Math.random() > 0.97) {
                 const availableSpores = Array.from(spores).filter(s => !s.classList.contains('connected'));
                 if (availableSpores.length > 0) {
@@ -515,12 +530,18 @@
         requestAnimationFrame(manageLifecycle);
 
         window.addEventListener('resize', () => {
-            activePaths.forEach(p => {
-                if (p.element.parentNode) canvas.removeChild(p.element);
-                p.target.classList.remove('connected');
-            });
-            activePaths = [];
+            clearAllThreads();
         });
+
+        if (source) {
+            source.addEventListener('click', () => {
+                threadEnabled = !threadEnabled;
+                source.classList.toggle('active', threadEnabled);
+                if (!threadEnabled) {
+                    clearAllThreads();
+                }
+            });
+        }
 
         window.addEventListener('scroll', () => {
             const orb = document.querySelector('.decoration-orb');
