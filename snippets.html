@@ -1,19 +1,23 @@
-<html lang="en" vid="0"><head vid="1">
+<html lang="en" vid="0">
+
+<head vid="1">
     <meta charset="UTF-8" vid="2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
     <title vid="4">Snippets — Interlinked &amp; Intertwined</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" vid="7">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap"
+        rel="stylesheet" vid="7">
+
     <style vid="8">
         :root {
-            --bg-paper: #E8DFC8;
-            --ink-main: #0F1A15;
-            --ink-subtle: #4A5A50;
+            --bg-paper: #121212;
+            --ink-main: #e5e0d8;
+            --ink-subtle: #a19d94;
             --accent-matcha: #7D9E52;
             --accent-blur: rgba(190, 30, 60, 0.55);
-            
+
             --font-display: 'Cormorant Garamond', serif;
             --font-tech: 'Space Mono', monospace;
         }
@@ -100,7 +104,7 @@
             stroke-width: 1.5px;
         }
 
-        
+
         .snippet-card {
             position: absolute;
             background: rgba(232, 223, 200, 0.7);
@@ -108,7 +112,7 @@
             border: 1px solid rgba(15, 26, 21, 0.1);
             padding: 1.5rem;
             width: 280px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             cursor: pointer;
             z-index: 20;
@@ -146,16 +150,34 @@
             letter-spacing: 0.05em;
         }
 
-        
+
         @keyframes floatSlow {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
         }
 
-        .float-1 { animation: floatSlow 8s infinite ease-in-out; }
-        .float-2 { animation: floatSlow 11s infinite ease-in-out -2s; }
-        .float-3 { animation: floatSlow 9s infinite ease-in-out -4s; }
-        .float-4 { animation: floatSlow 13s infinite ease-in-out -1s; }
+        .float-1 {
+            animation: floatSlow 8s infinite ease-in-out;
+        }
+
+        .float-2 {
+            animation: floatSlow 11s infinite ease-in-out -2s;
+        }
+
+        .float-3 {
+            animation: floatSlow 9s infinite ease-in-out -4s;
+        }
+
+        .float-4 {
+            animation: floatSlow 13s infinite ease-in-out -1s;
+        }
 
         .title-block {
             display: flex;
@@ -192,14 +214,41 @@
             line-height: 1;
         }
 
-        
-        .card-pos-1 { top: 9%; left: 6%; }
-        .card-pos-2 { top: 6%; left: 40%; }
-        .card-pos-3 { top: 16%; left: 66%; }
-        .card-pos-4 { top: 46%; left: 12%; }
-        .card-pos-5 { top: 40%; left: 45%; }
-        .card-pos-6 { top: 72%; left: 30%; }
-        .card-pos-7 { top: 64%; left: 78%; }
+
+        .card-pos-1 {
+            top: 9%;
+            left: 6%;
+        }
+
+        .card-pos-2 {
+            top: 6%;
+            left: 40%;
+        }
+
+        .card-pos-3 {
+            top: 16%;
+            left: 66%;
+        }
+
+        .card-pos-4 {
+            top: 46%;
+            left: 12%;
+        }
+
+        .card-pos-5 {
+            top: 40%;
+            left: 45%;
+        }
+
+        .card-pos-6 {
+            top: 72%;
+            left: 30%;
+        }
+
+        .card-pos-7 {
+            top: 64%;
+            left: 78%;
+        }
 
         .orb-glow {
             position: absolute;
@@ -213,9 +262,9 @@
             top: 10%;
             left: 60%;
         }
-
     </style>
 </head>
+
 <body vid="9">
 
     <div class="orb-glow" vid="11"></div>
@@ -230,17 +279,17 @@
 
         <main class="canvas-wrapper" vid="17">
             <svg class="constellation-svg" vid="18">
-                
+
                 <circle cx="65%" cy="15%" r="4" class="node-center" vid="19"></circle>
-                
-                
+
+
                 <line x1="65%" y1="15%" x2="20%" y2="25%" class="constellation-line" vid="20"></line>
                 <line x1="65%" y1="15%" x2="55%" y2="15%" class="constellation-line" vid="21"></line>
                 <line x1="65%" y1="15%" x2="75%" y2="50%" class="constellation-line" vid="22"></line>
                 <line x1="65%" y1="15%" x2="25%" y2="70%" class="constellation-line" vid="23"></line>
             </svg>
 
-            
+
             <div class="snippet-card card-pos-1 float-1" vid="24">
                 <span class="num" vid="25">02.A</span>
                 <p vid="26">The wise person is the person who finds what they lost in childhood and regains it.</p>
@@ -296,7 +345,7 @@
     </div>
 
     <script vid="48">
-        
+
         document.addEventListener('mousemove', (e) => {
             const cards = document.querySelectorAll('.snippet-card');
             const x = (window.innerWidth / 2 - e.pageX) / 50;
@@ -307,10 +356,12 @@
                 card.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
             });
 
-            
+
             const glow = document.querySelector('.orb-glow');
             glow.style.transform = `translate(${x * 2}px, ${y * 2}px)`;
         });
     </script>
 
-</body></html>
+</body>
+
+</html>

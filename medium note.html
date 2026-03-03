@@ -1,21 +1,25 @@
-<html lang="en" vid="0"><head vid="1">
+<html lang="en" vid="0">
+
+<head vid="1">
     <meta charset="UTF-8" vid="2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
     <title vid="4">01. The Persistence of Echoes — Detail View</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" vid="7">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap"
+        rel="stylesheet" vid="7">
+
     <style vid="8">
         :root {
-            --bg-paper: #E8DFC8;
-            --ink-main: #0F1A15;
-            --ink-subtle: #4A5A50;
+            --bg-paper: #121212;
+            --ink-main: #e5e0d8;
+            --ink-subtle: #a19d94;
             --accent-matcha: #7D9E52;
             --accent-blur: rgba(125, 158, 82, 0.4);
             --accent-mycelium: #B37CFF;
             --accent-mycelium-glow: rgba(179, 124, 255, 0.6);
-            
+
             --font-display: 'Cormorant Garamond', serif;
             --font-tech: 'Space Mono', monospace;
         }
@@ -116,9 +120,20 @@
         }
 
         @keyframes pulse-border {
-            0% { opacity: 0.18; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.03); }
-            100% { opacity: 0.18; transform: scale(1); }
+            0% {
+                opacity: 0.18;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.03);
+            }
+
+            100% {
+                opacity: 0.18;
+                transform: scale(1);
+            }
         }
 
         .detail-layout {
@@ -132,7 +147,7 @@
             z-index: 10;
         }
 
-        
+
         nav.top-nav {
             grid-column: 1 / -1;
             display: flex;
@@ -163,7 +178,7 @@
             letter-spacing: 0.05em;
         }
 
-        
+
         .main-prose {
             grid-column: 2;
         }
@@ -204,7 +219,7 @@
             font-style: italic;
         }
 
-        
+
         .marginalia {
             font-family: var(--font-tech);
             font-size: 0.65rem;
@@ -229,7 +244,7 @@
             font-weight: 700;
         }
 
-        
+
         .related-section {
             grid-column: 2;
             margin-top: 8rem;
@@ -285,7 +300,7 @@
             line-height: 1.4;
         }
 
-        
+
         .decoration-orb {
             position: fixed;
             top: 20%;
@@ -300,16 +315,23 @@
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .main-prose {
             animation: slideUp 1s ease-out;
         }
-
     </style>
 </head>
+
 <body vid="9">
 
     <svg class="mycelium-layer" id="mycelium-canvas" xmlns="http://www.w3.org/2000/svg" vid="9a">
@@ -327,7 +349,7 @@
     <div class="decoration-orb" vid="11"></div>
 
     <div class="detail-layout" vid="12">
-        
+
         <nav class="top-nav" vid="13">
             <a href="index.html" class="back-link" vid="14">
                 <span vid="15">←</span> Main
@@ -337,7 +359,7 @@
             </div>
         </nav>
 
-        
+
         <aside class="marginalia" style="grid-column: 1;" vid="17">
             <div class="marginalia-item" vid="18">
                 <span vid="19">REF: ECHO-04</span>
@@ -352,7 +374,7 @@
             </div>
         </aside>
 
-        
+
         <main class="main-prose" vid="22">
             <header class="entry-header" vid="23">
                 <div class="meta" vid="24">CHAPTER_01 // 001-042</div>
@@ -361,30 +383,51 @@
 
             <div class="prose-body" vid="27">
                 <p vid="28">
-                    There is a subtle but crucial <strong class="spore" vid="29">distinction</strong> that often gets lost in conversations about attraction, confidence, and emotional dynamics: the difference between avoidance and self-trust. From the outside, they can look similar. From the inside, they are <strong class="spore" vid="30">opposites</strong>.
+                    There is a subtle but crucial <strong class="spore" vid="29">distinction</strong> that often gets
+                    lost in conversations about attraction, confidence, and emotional dynamics: the difference between
+                    avoidance and self-trust. From the outside, they can look similar. From the inside, they are <strong
+                        class="spore" vid="30">opposites</strong>.
                 </p>
 
                 <p vid="31">
-                    <strong class="spore" vid="32">Avoidance</strong> withdraws because it is afraid of engagement. Confidence does not withdraw at all, it simply does not cling.
+                    <strong class="spore" vid="32">Avoidance</strong> withdraws because it is afraid of engagement.
+                    Confidence does not withdraw at all, it simply does not cling.
                 </p>
 
                 <p vid="33">
-                    The <strong class="spore" vid="34">confident</strong> person is not silent because they are withholding; they are relaxed because nothing is at stake at the level of identity. When they ask something, they are not asking because they need the answer. When they say something, they are not <strong class="spore" vid="35">waiting</strong> to be validated by how it lands. The statement stands on its own.
+                    The <strong class="spore" vid="34">confident</strong> person is not silent because they are
+                    withholding; they are relaxed because nothing is at stake at the level of identity. When they ask
+                    something, they are not asking because they need the answer. When they say something, they are not
+                    <strong class="spore" vid="35">waiting</strong> to be validated by how it lands. The statement
+                    stands on its own.
                 </p>
 
                 <p vid="36">
-                    This difference shows up most clearly in how people <strong class="spore" vid="37">speak</strong>. Someone operating from avoidance monitors every word for its effect. Someone operating from self-trust speaks and then releases, not indifferent to impact, but not dependent on it.
+                    This difference shows up most clearly in how people <strong class="spore" vid="37">speak</strong>.
+                    Someone operating from avoidance monitors every word for its effect. Someone operating from
+                    self-trust speaks and then releases, not indifferent to impact, but not dependent on it.
                 </p>
 
                 <p vid="38">
-                    The deepest form of this is not about <strong class="spore" vid="39">silence</strong> or talking less. It is about what you are trying to accomplish with every act of communication. Are you expressing, or are you seeking? Are you offering something, or are you testing to see if you are still safe?
+                    The deepest form of this is not about <strong class="spore" vid="39">silence</strong> or talking
+                    less. It is about what you are trying to accomplish with every act of communication. Are you
+                    expressing, or are you seeking? Are you offering something, or are you testing to see if you are
+                    still safe?
                 </p>
 
                 <p vid="40">
-                    Self-trust is not the absence of <strong class="spore" vid="41">vulnerability</strong>. It is the presence of a stable internal ground from which you can be fully present, curious, warm, even open to being affected, without needing any particular outcome in return.
+                    Self-trust is not the absence of <strong class="spore" vid="41">vulnerability</strong>. It is the
+                    presence of a stable internal ground from which you can be fully present, curious, warm, even open
+                    to being affected, without needing any particular outcome in return.
                 </p>
                 <p vid="42">
-                    Avoidant people get the <strong class="spore" vid="43">luxury</strong> of being more prone to the external perception of confidence and stoicism. Society cannot differentiate in a superficial and every-day context between someone who is avoiding their emotions and someone who isnt <strong class="spore" vid="44">governed</strong> by them. Anxious people may be equally as <strong class="spore" vid="45">distraught</strong> by their past as avoidants, they just got unlucky the <strong class="spore" vid="46">hegemonic</strong> and more confidence-like behavior is not one natural to them
+                    Avoidant people get the <strong class="spore" vid="43">luxury</strong> of being more prone to the
+                    external perception of confidence and stoicism. Society cannot differentiate in a superficial and
+                    every-day context between someone who is avoiding their emotions and someone who isnt <strong
+                        class="spore" vid="44">governed</strong> by them. Anxious people may be equally as <strong
+                        class="spore" vid="45">distraught</strong> by their past as avoidants, they just got unlucky the
+                    <strong class="spore" vid="46">hegemonic</strong> and more confidence-like behavior is not one
+                    natural to them
                 </p>
             </div>
 
@@ -405,7 +448,7 @@
             </section>
         </main>
 
-        
+
         <aside class="marginalia" style="grid-column: 3;" vid="45">
             <div class="marginalia-item" vid="46">
                 <span vid="47">OBSERVATION</span>
@@ -576,4 +619,6 @@
         });
     </script>
 
-</body></html>
+</body>
+
+</html>
