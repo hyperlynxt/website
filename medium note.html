@@ -13,6 +13,8 @@
             --ink-subtle: #4A5A50;
             --accent-matcha: #7D9E52;
             --accent-blur: rgba(125, 158, 82, 0.4);
+            --accent-mycelium: #ff9f1a;
+            --accent-mycelium-glow: rgba(255, 159, 26, 0.5);
             
             --font-display: 'Cormorant Garamond', serif;
             --font-tech: 'Space Mono', monospace;
@@ -32,6 +34,89 @@
             width: 100vw;
             overflow-x: hidden;
             position: relative;
+        }
+
+        .mycelium-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        .thread-capsule-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 2.5rem;
+        }
+
+        .thread-capsule {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(74, 90, 80, 0.3);
+            border-radius: 999px;
+            padding: 28px 12px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-family: var(--font-tech);
+            font-size: 0.7rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-subtle);
+            backdrop-filter: blur(4px);
+            position: relative;
+            user-select: none;
+        }
+
+        .thread-capsule.active {
+            border-color: var(--accent-mycelium);
+            color: var(--accent-mycelium);
+        }
+
+        .thread-capsule.active::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 999px;
+            border: 1px solid var(--accent-mycelium);
+            opacity: 0.25;
+            animation: pulse-border 3s infinite;
+        }
+
+        .spore {
+            position: relative;
+            display: inline-block;
+            transition: color 0.8s ease, text-shadow 0.8s ease;
+        }
+
+        .spore.connected {
+            color: var(--accent-mycelium);
+            text-shadow: 0 0 10px var(--accent-mycelium-glow);
+        }
+
+        .spore::after {
+            content: '';
+            position: absolute;
+            bottom: 0.05em;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--accent-mycelium);
+            opacity: 0.8;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+
+        .spore.connected::after {
+            transform: scaleX(1);
+        }
+
+        @keyframes pulse-border {
+            0% { opacity: 0.18; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.03); }
+            100% { opacity: 0.18; transform: scale(1); }
         }
 
         .detail-layout {
@@ -225,6 +310,18 @@
 </head>
 <body vid="9">
 
+    <svg class="mycelium-layer" id="mycelium-canvas" xmlns="http://www.w3.org/2000/svg" vid="9a">
+        <defs vid="9b">
+            <filter id="glow" vid="9c">
+                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" vid="9d"></feGaussianBlur>
+                <feMerge vid="9e">
+                    <feMergeNode in="coloredBlur" vid="9f"></feMergeNode>
+                    <feMergeNode in="SourceGraphic" vid="9g"></feMergeNode>
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+
     <div class="decoration-orb" vid="11"></div>
 
     <div class="detail-layout" vid="12">
@@ -240,6 +337,9 @@
 
         
         <aside class="marginalia" style="grid-column: 1;" vid="17">
+            <div class="thread-capsule-container" vid="17a">
+                <div class="thread-capsule active" id="source-capsule" vid="17b">Thread</div>
+            </div>
             <div class="marginalia-item" vid="18">
                 <span vid="19">REF: ECHO-04</span>
                 Resonance frequency detected in the lower layers of the architectural stack.
@@ -259,15 +359,15 @@
 
             <div class="prose-body" vid="27">
                 <p vid="28">
-                    To understand the echo is to understand the <strong vid="29">latency of presence</strong>. We often mistake the immediate for the absolute, yet everything we perceive is a reflection—a bounce off the hard surfaces of reality. In the archive, these bounces do not fade; they accumulate.
+                    To understand the echo is to understand the <strong class="spore" vid="29">latency of presence</strong>. We often mistake the immediate for the absolute, yet everything we perceive is a reflection—a bounce off the hard surfaces of reality. In the archive, these bounces do not fade; they accumulate.
                 </p>
 
                 <p vid="30">
-                    If we look closely at the <strong vid="31">interstitial silence</strong> between nodes, we find that it is never truly empty. It is saturated with the vibration of what came before. This is the structural foundation of spatial memory: not the walls themselves, but the way sound and thought linger within them.
+                    If we look closely at the <strong class="spore" vid="31">interstitial silence</strong> between nodes, we find that it is never truly empty. It is saturated with the vibration of what came before. This is the structural foundation of spatial memory: not the walls themselves, but the way sound and thought linger within them.
                 </p>
 
                 <p vid="32">
-                    As we move through the transit corridors, the persistence of these echoes serves as a compass. We are not just moving through space; we are moving through the <strong vid="33">residue of intention</strong>. Every recorded thought leaves a ghost in the system, a faint tracing that guides the next inhabitant through the maze of information.
+                    As we move through the transit corridors, the persistence of these echoes serves as a compass. We are not just moving through space; we are moving through the <strong class="spore" vid="33">residue of intention</strong>. Every recorded thought leaves a ghost in the system, a faint tracing that guides the next inhabitant through the maze of information.
                 </p>
             </div>
 
@@ -303,6 +403,125 @@
     </div>
 
     <script vid="50">
+        const canvas = document.getElementById('mycelium-canvas');
+        const source = document.getElementById('source-capsule');
+        const spores = document.querySelectorAll('.spore');
+        const maxConnections = 4;
+        let activePaths = [];
+
+        function createPath(targetElement) {
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', 'var(--accent-mycelium)');
+            path.setAttribute('stroke-width', '1.2');
+            path.setAttribute('stroke-opacity', '0.85');
+            path.setAttribute('filter', 'url(#glow)');
+
+            canvas.appendChild(path);
+            targetElement.classList.add('connected');
+
+            return {
+                element: path,
+                target: targetElement,
+                progress: 0,
+                phase: 'growing',
+                life: 0
+            };
+        }
+
+        function getCoordinates(elem) {
+            const rect = elem.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2,
+                right: rect.right,
+                left: rect.left,
+                top: rect.top,
+                bottom: rect.bottom
+            };
+        }
+
+        function inViewport(rect) {
+            return rect.bottom > 0 && rect.top < window.innerHeight;
+        }
+
+        function updatePaths() {
+            if (!source) return;
+
+            const srcCoords = getCoordinates(source);
+            const startX = srcCoords.right;
+            const startY = srcCoords.y;
+
+            activePaths.forEach((obj, index) => {
+                const targetCoords = getCoordinates(obj.target);
+                const endX = targetCoords.left;
+                const endY = targetCoords.y + 2;
+
+                const t = Date.now() / 1000;
+                const wobbleA = Math.sin(t * 0.9 + index) * 10;
+                const wobbleB = Math.cos(t * 0.8 + index) * 10;
+
+                const cp1x = startX + 90 + wobbleA;
+                const cp1y = startY + wobbleB;
+                const cp2x = endX - 90 - wobbleB;
+                const cp2y = endY + wobbleA;
+
+                const d = `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
+                obj.element.setAttribute('d', d);
+
+                const length = obj.element.getTotalLength();
+                obj.element.style.strokeDasharray = length;
+
+                if (obj.phase === 'growing') {
+                    obj.progress += 0.02;
+                    if (obj.progress >= 1) {
+                        obj.progress = 1;
+                        obj.phase = 'sustained';
+                        obj.life = 150 + Math.random() * 250;
+                    }
+                    obj.element.style.strokeDashoffset = length * (1 - obj.progress);
+                } else if (obj.phase === 'sustained') {
+                    obj.element.style.strokeDashoffset = 0;
+                    obj.life -= 1;
+                    if (obj.life <= 0) obj.phase = 'dying';
+                } else if (obj.phase === 'dying') {
+                    obj.progress -= 0.02;
+                    obj.element.style.strokeDashoffset = length * (1 - obj.progress);
+                    if (obj.progress <= 0) {
+                        if (obj.element.parentNode) canvas.removeChild(obj.element);
+                        obj.target.classList.remove('connected');
+                        activePaths = activePaths.filter(p => p !== obj);
+                    }
+                }
+            });
+        }
+
+        function manageLifecycle() {
+            if (activePaths.length < maxConnections && Math.random() > 0.97) {
+                const availableSpores = Array.from(spores).filter(s => !s.classList.contains('connected'));
+                if (availableSpores.length > 0) {
+                    const pick = availableSpores[Math.floor(Math.random() * availableSpores.length)];
+                    const rect = pick.getBoundingClientRect();
+                    if (inViewport(rect)) {
+                        activePaths.push(createPath(pick));
+                    }
+                }
+            }
+
+            updatePaths();
+            requestAnimationFrame(manageLifecycle);
+        }
+
+        requestAnimationFrame(manageLifecycle);
+
+        window.addEventListener('resize', () => {
+            activePaths.forEach(p => {
+                if (p.element.parentNode) canvas.removeChild(p.element);
+                p.target.classList.remove('connected');
+            });
+            activePaths = [];
+        });
+
         window.addEventListener('scroll', () => {
             const orb = document.querySelector('.decoration-orb');
             const scrolled = window.pageYOffset;
