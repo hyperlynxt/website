@@ -490,7 +490,6 @@
                     obj.element.style.strokeDashoffset = length * (1 - obj.progress);
                     if (obj.progress <= 0) {
                         if (obj.element.parentNode) canvas.removeChild(obj.element);
-                        obj.target.classList.remove('connected');
                         activePaths = activePaths.filter(p => p !== obj);
                     }
                 }
