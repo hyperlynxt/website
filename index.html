@@ -184,6 +184,21 @@
             letter-spacing: 0.1em;
         }
 
+        .footer-link {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            color: var(--ink-main);
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--ink-subtle);
+            text-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
+
         
         @keyframes float {
             0%, 100% { transform: translate(0, 0); }
@@ -286,9 +301,9 @@
             <h1 vid="54">Interlinked<br vid="55">&amp; Intertwined</h1>
         </div>
         <div style="position: absolute; bottom: 3rem; left: 3rem; display: flex; gap: 1.5rem;">
-    <a href="archive.html" style="font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--ink-main); text-decoration: none;">Archive</a>
-    <a href="log.html" style="font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--ink-main); text-decoration: none;">Log</a>
-            </div>
+            <a href="archive.html" class="footer-link" vid="60">Archive</a>
+            <a href="log.html" class="footer-link" vid="61">Log</a>
+        </div>
 </div>
 
     </div>

@@ -90,7 +90,8 @@
             transition: color 0.8s ease, text-shadow 0.8s ease;
         }
 
-        .spore.connected {
+        .spore.connected,
+        .spore.spore-active {
             color: var(--accent-mycelium);
             text-shadow: 0 0 10px var(--accent-mycelium-glow);
         }
@@ -109,7 +110,8 @@
             transition: transform 0.6s ease;
         }
 
-        .spore.connected::after {
+        .spore.connected::after,
+        .spore.spore-active::after {
             transform: scaleX(1);
         }
 
@@ -490,6 +492,7 @@
                     obj.element.style.strokeDashoffset = length * (1 - obj.progress);
                     if (obj.progress <= 0) {
                         if (obj.element.parentNode) canvas.removeChild(obj.element);
+                        obj.target.classList.remove('connected');
                         activePaths = activePaths.filter(p => p !== obj);
                     }
                 }
@@ -532,10 +535,19 @@
             clearAllThreads();
         });
 
+        function applyThreadGlow(enabled) {
+            spores.forEach(s => {
+                s.classList.toggle('spore-active', enabled);
+            });
+        }
+
+        applyThreadGlow(threadEnabled);
+
         if (source) {
             source.addEventListener('click', () => {
                 threadEnabled = !threadEnabled;
                 source.classList.toggle('active', threadEnabled);
+                applyThreadGlow(threadEnabled);
                 if (!threadEnabled) {
                     clearAllThreads();
                 }
