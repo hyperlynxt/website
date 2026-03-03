@@ -148,6 +148,7 @@
             margin-bottom: 0.5rem;
             display: -webkit-box;
             -webkit-line-clamp: 2;
+            line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -204,53 +205,66 @@
 
             <div id="active-quote-container" vid="12">
                 <div class="large-quote-text" id="display-text" vid="13">
-                    “The <span class="spore-highlight" vid="14">mind</span> is not a vessel to be filled, but a <span
-                        class="spore-highlight" vid="15">fire</span> to be kindled.”
+                    “The wise person is the person who finds what they lost in <span
+                        class="spore-highlight">childhood</span> and regains it.”
                 </div>
-                <div class="large-quote-author" id="display-author" vid="16">Plutarch</div>
+                <div class="large-quote-author" id="display-author" vid="16">PERSONAL PICKS</div>
             </div>
         </div>
 
 
         <div class="list-panel" id="quote-list" vid="17">
-            <div class="quote-entry active" onclick="updateActive(0)" vid="18">
-                <div class="entry-text" vid="19">“The mind is not a vessel to be filled, but a fire to be kindled.”
+            <div class="quote-entry active" onclick="updateActive(0)">
+                <div class="entry-text">“The wise person is the person who finds what they lost in childhood and regains
+                    it.”</div>
+                <div class="entry-author">PERSONAL PICKS</div>
+            </div>
+
+            <div class="quote-entry" onclick="updateActive(1)">
+                <div class="entry-text">“The truth is always hard to swallow If you’re choking on your pride.”</div>
+                <div class="entry-author">PERSONAL PICKS</div>
+            </div>
+
+            <div class="quote-entry" onclick="updateActive(2)">
+                <div class="entry-text">“Who are you when you are not performing fo the people inside of your mind?”
                 </div>
-                <div class="entry-author" vid="20">Plutarch</div>
+                <div class="entry-author">PERSONAL PICKS</div>
             </div>
 
-            <div class="quote-entry" onclick="updateActive(1)" vid="21">
-                <div class="entry-text" vid="22">“In the silence of the woods, you can hear the whisper of the earth
-                    growing.”</div>
-                <div class="entry-author" vid="23">Unknown</div>
+            <div class="quote-entry" onclick="updateActive(3)">
+                <div class="entry-text">“For them I was a breath of fresh air, and personally I’ve never felt more
+                    suffocated.”</div>
+                <div class="entry-author">PERSONAL PICKS</div>
             </div>
 
-            <div class="quote-entry" onclick="updateActive(2)" vid="24">
-                <div class="entry-text" vid="25">“Nature does not hurry, yet everything is accomplished.”</div>
-                <div class="entry-author" vid="26">Lao Tzu</div>
+            <div class="quote-entry" onclick="updateActive(4)">
+                <div class="entry-text">“How empty of you to be so full of me.”</div>
+                <div class="entry-author">PERSONAL PICKS</div>
             </div>
 
-            <div class="quote-entry" onclick="updateActive(3)" vid="27">
-                <div class="entry-text" vid="28">“The organic process of thought requires the darkness of the unknown to
-                    truly take root.”</div>
-                <div class="entry-author" vid="29">Oryzae Reflections</div>
+            <div class="quote-entry" onclick="updateActive(5)">
+                <div class="entry-text">“How do I take off a mask when it stops being a mask, and is as much part of me
+                    as I am.”</div>
+                <div class="entry-author">PERSONAL PICKS</div>
             </div>
 
-            <div class="quote-entry" onclick="updateActive(4)" vid="30">
-                <div class="entry-text" vid="31">“To wait is not to be idle. It is to allow the invisible threads of
-                    connection to find their path.”</div>
-                <div class="entry-author" vid="32">A.G. Thornton</div>
+            <div class="quote-entry" onclick="updateActive(6)">
+                <div class="entry-text">“When people downplay my emotions, I question their ability to feel theirs.”
+                </div>
+                <div class="entry-author">PERSONAL PICKS</div>
             </div>
         </div>
     </div>
 
     <script vid="33">
         const quotes = [
-            { text: '“The <span class="spore-highlight">mind</span> is not a vessel to be filled, but a <span class="spore-highlight">fire</span> to be kindled.”', author: 'Plutarch' },
-            { text: '“In the <span class="spore-highlight">silence</span> of the woods, you can hear the <span class="spore-highlight">whisper</span> of the earth growing.”', author: 'Unknown' },
-            { text: '“Nature does not <span class="spore-highlight">hurry</span>, yet everything is <span class="spore-highlight">accomplished</span>.”', author: 'Lao Tzu' },
-            { text: '“The <span class="spore-highlight">organic</span> process of thought requires the <span class="spore-highlight">darkness</span> of the unknown to truly take root.”', author: 'Oryzae Reflections' },
-            { text: '“To <span class="spore-highlight">wait</span> is not to be idle. It is to allow the <span class="spore-highlight">invisible</span> threads of connection to find their path.”', author: 'A.G. Thornton' }
+            { text: '“The wise person is the person who finds what they lost in <span class="spore-highlight">childhood</span> and regains it.”', author: 'PERSONAL PICKS' },
+            { text: '“The truth is always hard to <span class="spore-highlight">swallow</span> If you’re choking on your pride.”', author: 'PERSONAL PICKS' },
+            { text: '“Who are you when you are not <span class="spore-highlight">performing</span> fo the people inside of your mind?”', author: 'PERSONAL PICKS' },
+            { text: '“For them I was a breath of fresh air, and personally I’ve never felt more <span class="spore-highlight">suffocated</span>.”', author: 'PERSONAL PICKS' },
+            { text: '“How <span class="spore-highlight">empty</span> of you to be so full of me.”', author: 'PERSONAL PICKS' },
+            { text: '“How do I take off a <span class="spore-highlight">mask</span> when it stops being a mask, and is as much part of me as I am.”', author: 'PERSONAL PICKS' },
+            { text: '“When people downplay my emotions, I question their ability to <span class="spore-highlight">feel</span> theirs.”', author: 'PERSONAL PICKS' }
         ];
 
         function updateActive(index) {
