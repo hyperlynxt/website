@@ -1,4 +1,6 @@
-<html lang="en" vid="0"><head vid="1">
+<html lang="en" vid="0">
+
+<head vid="1">
     <meta charset="UTF-8" vid="2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
     <title vid="4">Oryzae | Resonant Fragments (Night)</title>
@@ -6,10 +8,10 @@
         @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
 
         :root {
-            --bg-paper: #121212; 
-            --text-ink: #e5e0d8; 
-            --text-meta: #a19d94; 
-            --accent-mycelium: #ffb347; 
+            --bg-paper: #121212;
+            --text-ink: #e5e0d8;
+            --text-meta: #a19d94;
+            --accent-mycelium: #ffb347;
             --accent-glow: rgba(255, 179, 71, 0.6);
             --hairline: #2a2a2a;
             --font-serif: 'Shippori Mincho', serif;
@@ -27,7 +29,7 @@
             background-color: var(--bg-paper);
             color: var(--text-ink);
             font-family: var(--font-serif);
-            line-height: 1.8; 
+            line-height: 1.8;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             min-height: 100vh;
@@ -180,10 +182,10 @@
             transition: color 1s ease;
             cursor: default;
         }
-        
+
         .spore.connected {
-            color: var(--accent-mycelium); 
-            text-shadow: 0 0 12px var(--accent-glow);
+            color: var(--accent-mycelium);
+            text-shadow: 0 0 8px var(--accent-glow), 0 0 20px var(--accent-glow);
         }
 
         .spore::after {
@@ -204,18 +206,50 @@
             transform: scaleX(1);
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in { animation: fadeIn 1.2s ease forwards; }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1.2s ease forwards;
+        }
 
         @media (max-width: 900px) {
-            .quote-grid { grid-template-columns: 1fr; gap: 80px; }
-            .quote-card:nth-child(even) { margin-top: 0; margin-left: 0; text-align: left; align-items: flex-start; }
-            .quote-card:nth-child(even) .quote-author { flex-direction: row; }
-            .tab-container { gap: 30px; }
-            .nav-tab { font-size: 0.65rem; }
+            .quote-grid {
+                grid-template-columns: 1fr;
+                gap: 80px;
+            }
+
+            .quote-card:nth-child(even) {
+                margin-top: 0;
+                margin-left: 0;
+                text-align: left;
+                align-items: flex-start;
+            }
+
+            .quote-card:nth-child(even) .quote-author {
+                flex-direction: row;
+            }
+
+            .tab-container {
+                gap: 30px;
+            }
+
+            .nav-tab {
+                font-size: 0.65rem;
+            }
         }
     </style>
 </head>
+
 <body vid="6">
 
     <svg class="mycelium-layer" id="mycelium-canvas" xmlns="http://www.w3.org/2000/svg" vid="7">
@@ -238,35 +272,40 @@
         <div class="quote-grid" vid="17">
             <div class="quote-card fade-in" style="animation-delay: 0.1s;" vid="18">
                 <div class="quote-text" vid="19">
-                    “The <span class="spore" vid="20">mind</span> is not a vessel to be filled, but a <span class="spore" vid="21">fire</span> to be kindled.”
+                    “The <span class="spore" vid="20">mind</span> is not a vessel to be filled, but a <span
+                        class="spore" vid="21">fire</span> to be kindled.”
                 </div>
                 <div class="quote-author" vid="22">Plutarch</div>
             </div>
 
             <div class="quote-card fade-in" style="animation-delay: 0.2s;" vid="23">
                 <div class="quote-text" vid="24">
-                    “In the <span class="spore" vid="25">silence</span> of the woods, you can hear the <span class="spore" vid="26">whisper</span> of the earth growing.”
+                    “In the <span class="spore" vid="25">silence</span> of the woods, you can hear the <span
+                        class="spore" vid="26">whisper</span> of the earth growing.”
                 </div>
                 <div class="quote-author" vid="27">Unknown</div>
             </div>
 
             <div class="quote-card fade-in" style="animation-delay: 0.3s;" vid="28">
                 <div class="quote-text" vid="29">
-                    “Nature does not <span class="spore" vid="30">hurry</span>, yet everything is <span class="spore" vid="31">accomplished</span>.”
+                    “Nature does not <span class="spore" vid="30">hurry</span>, yet everything is <span class="spore"
+                        vid="31">accomplished</span>.”
                 </div>
                 <div class="quote-author" vid="32">Lao Tzu</div>
             </div>
 
             <div class="quote-card fade-in" style="animation-delay: 0.4s;" vid="33">
                 <div class="quote-text" vid="34">
-                    “The <span class="spore" vid="35">organic</span> process of thought requires the <span class="spore" vid="36">darkness</span> of the unknown to truly take root.”
+                    “The <span class="spore" vid="35">organic</span> process of thought requires the <span class="spore"
+                        vid="36">darkness</span> of the unknown to truly take root.”
                 </div>
                 <div class="quote-author" vid="37">Oryzae Reflections</div>
             </div>
 
             <div class="quote-card fade-in" style="animation-delay: 0.5s;" vid="38">
                 <div class="quote-text" vid="39">
-                    “To <span class="spore" vid="40">wait</span> is not to be idle. It is to allow the <span class="spore" vid="41">invisible</span> threads of connection to find their path.”
+                    “To <span class="spore" vid="40">wait</span> is not to be idle. It is to allow the <span
+                        class="spore" vid="41">invisible</span> threads of connection to find their path.”
                 </div>
                 <div class="quote-author" vid="42">A.G. Thornton</div>
             </div>
@@ -285,7 +324,7 @@
         const canvas = document.getElementById('mycelium-canvas');
         const activeTab = document.getElementById('active-category');
         const spores = document.querySelectorAll('.spore');
-        const maxConnections = 6; 
+        const maxConnections = 6;
         let activePaths = [];
 
         function createPath(targetElement) {
@@ -301,7 +340,7 @@
                 element: path,
                 target: targetElement,
                 progress: 0,
-                phase: 'growing', 
+                phase: 'growing',
                 life: 400 + Math.random() * 500
             };
         }
@@ -313,7 +352,7 @@
 
         function updatePaths() {
             const tabCoords = getCoordinates(activeTab);
-            const startX = tabCoords.x; 
+            const startX = tabCoords.x;
             const startY = tabCoords.y - 10;
 
             activePaths.forEach((obj, index) => {
@@ -328,10 +367,10 @@
 
                 const d = `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
                 obj.element.setAttribute("d", d);
-                
+
                 const length = obj.element.getTotalLength() || 1000;
                 obj.element.style.strokeDasharray = length;
-                
+
                 if (obj.phase === 'growing') {
                     obj.progress += 0.006;
                     if (obj.progress >= 1) { obj.progress = 1; obj.phase = 'sustained'; }
@@ -377,4 +416,6 @@
             activePaths = [];
         });
     </script>
-</body></html>
+</body>
+
+</html>

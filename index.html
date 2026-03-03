@@ -15,8 +15,8 @@
             --bg-paper: #121212;
             --ink-main: #e5e0d8;
             --ink-subtle: #a19d94;
-            --accent-matcha: #7B2FBE;
-            --accent-blur: rgba(123, 47, 190, 0.4);
+            --accent-matcha: #4B0082;
+            --accent-blur: rgba(75, 0, 130, 0.6);
 
             --font-display: 'Cormorant Garamond', serif;
             --font-tech: 'Space Mono', monospace;
@@ -145,7 +145,7 @@
         .nav-label:hover {
             color: var(--accent-matcha);
             transform: translate(-50%, -50%) scale(1.1);
-            text-shadow: 0 0 8px var(--accent-blur);
+            text-shadow: 0 0 8px var(--accent-blur), 0 0 20px var(--accent-blur);
         }
 
 
@@ -186,9 +186,9 @@
             font-weight: 400;
             line-height: 0.9;
             letter-spacing: -0.03em;
-            color: var(--ink-main);
+            color: var(--accent-matcha);
             text-transform: uppercase;
-            mix-blend-mode: multiply;
+            text-shadow: 0 0 10px var(--accent-blur), 0 0 20px var(--accent-blur);
         }
 
         .subtitle {
@@ -220,7 +220,7 @@
             fill: var(--accent-matcha);
             filter: blur(40px);
             opacity: 0.8;
-            mix-blend-mode: multiply;
+            mix-blend-mode: screen;
             transition: cx 0.1s ease-out, cy 0.1s ease-out;
             will-change: cx, cy;
         }
