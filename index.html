@@ -1,11 +1,15 @@
-<html lang="en" vid="0"><head vid="1">
+<html lang="en" vid="0">
+
+<head vid="1">
     <meta charset="UTF-8" vid="2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
     <title vid="4">Interlinked &amp; Intertwined by teo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" vid="7">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap"
+        rel="stylesheet" vid="7">
+
     <style vid="8">
         :root {
             --bg-paper: #E8DFC8;
@@ -13,7 +17,7 @@
             --ink-subtle: #4A5A50;
             --accent-matcha: #7B2FBE;
             --accent-blur: rgba(123, 47, 190, 0.4);
-            
+
             --font-display: 'Cormorant Garamond', serif;
             --font-tech: 'Space Mono', monospace;
         }
@@ -34,7 +38,7 @@
             position: relative;
         }
 
-        
+
         .layout-container {
             width: 100%;
             height: 100%;
@@ -45,7 +49,7 @@
             z-index: 10;
         }
 
-        
+
         header {
             display: flex;
             justify-content: flex-end;
@@ -59,7 +63,7 @@
             letter-spacing: -0.02em;
         }
 
-        
+
         .canvas-wrapper {
             position: relative;
             width: 100%;
@@ -75,7 +79,7 @@
             overflow: visible;
         }
 
-        
+
         .constellation-line {
             stroke: var(--ink-subtle);
             stroke-width: 1px;
@@ -109,7 +113,7 @@
             animation: float 10s infinite ease-in-out;
         }
 
-        
+
         .path-text {
             font-family: var(--font-tech);
             font-size: 0.75rem;
@@ -118,17 +122,17 @@
             letter-spacing: 0.05em;
         }
 
-        
-        
+
+
         .nav-label {
             position: absolute;
             font-family: var(--font-display);
             font-style: italic;
-            font-size: 1.1rem;
+            font-size: 2rem;
             cursor: pointer;
             text-decoration: none;
             color: var(--ink-main);
-            transform: translate(-50%, -50%); 
+            transform: translate(-50%, -50%);
             white-space: nowrap;
             transition: all 0.3s ease;
         }
@@ -136,10 +140,10 @@
         .nav-label span.num {
             font-family: var(--font-tech);
             font-style: normal;
-            font-size: 0.7rem;
+            font-size: 1.2rem;
             background: var(--ink-main);
             color: var(--bg-paper);
-            padding: 2px 6px;
+            padding: 4px 10px;
             border-radius: 50%;
             margin-right: 8px;
             vertical-align: middle;
@@ -151,14 +155,33 @@
             text-shadow: 0 0 8px var(--accent-blur);
         }
 
-        
-        .nav-1 { top: 20%; left: 30%; }
-        .nav-2 { top: 15%; left: 65%; }
-        .nav-3 { top: 50%; left: 75%; }
-        .nav-4 { top: 80%; left: 60%; }
-        .nav-5 { top: 65%; left: 25%; }
 
-        
+        .nav-1 {
+            top: 10%;
+            left: 20%;
+        }
+
+        .nav-2 {
+            top: 10%;
+            left: 75%;
+        }
+
+        .nav-3 {
+            top: 50%;
+            left: 85%;
+        }
+
+        .nav-4 {
+            top: 85%;
+            left: 65%;
+        }
+
+        .nav-5 {
+            top: 70%;
+            left: 15%;
+        }
+
+
         .title-block {
             text-align: right;
             position: relative;
@@ -174,7 +197,7 @@
             text-transform: uppercase;
             mix-blend-mode: multiply;
         }
-        
+
         .subtitle {
             font-family: var(--font-tech);
             font-size: 0.8rem;
@@ -196,19 +219,34 @@
 
         .footer-link:hover {
             color: var(--ink-subtle);
-            text-shadow: 0 0 10px rgba(0,0,0,0.15);
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
         }
 
-        
+
         @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            33% { transform: translate(30px, -20px); }
-            66% { transform: translate(-20px, 10px); }
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            33% {
+                transform: translate(30px, -20px);
+            }
+
+            66% {
+                transform: translate(-20px, 10px);
+            }
         }
 
         @keyframes drawLine {
-            from { stroke-dashoffset: 1000; }
-            to { stroke-dashoffset: 0; }
+            from {
+                stroke-dashoffset: 1000;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
         }
 
         .draw-anim {
@@ -216,31 +254,32 @@
             stroke-dashoffset: 1000;
             animation: drawLine 2.5s ease-out forwards;
         }
-
     </style>
 </head>
+
 <body vid="9">
 
 
     <div class="layout-container" vid="11">
-        
-        
+
+
         <header vid="12">
             <div class="author-tag" vid="13">hyperlynxt | teo</div>
         </header>
 
-        
+
         <div class="canvas-wrapper" vid="14">
-            
-            
+
+
             <svg class="constellation" style="position: absolute; top:0; left:0; pointer-events: none;" vid="15">
                 <circle cx="35%" cy="30%" r="80" class="orb" vid="16"></circle>
-                <circle cx="65%" cy="70%" r="60" class="orb" style="animation-delay: -5s; fill: var(--ink-subtle); opacity: 0.1;" vid="17"></circle>
+                <circle cx="65%" cy="70%" r="60" class="orb"
+                    style="animation-delay: -5s; fill: var(--ink-subtle); opacity: 0.1;" vid="17"></circle>
             </svg>
 
-            
-            
-            
+
+
+
             <svg class="constellation" id="diagram" preserveAspectRatio="none" vid="18">
                 <defs vid="19">
                     <path id="path12" d="M 300 200 L 650 150" vid="20"></path>
@@ -248,36 +287,41 @@
                     <path id="path34" d="M 750 500 L 600 800" vid="22"></path>
                     <path id="path45" d="M 600 800 L 250 650" vid="23"></path>
                     <path id="path51" d="M 250 650 L 300 200" vid="24"></path>
-                    
+
                     <path id="path14" d="M 300 200 L 600 800" vid="25"></path>
                 </defs>
 
-                
-                <line x1="30%" y1="20%" x2="65%" y2="15%" class="constellation-line draw-anim" vid="26"></line>
-                <line x1="65%" y1="15%" x2="75%" y2="50%" class="constellation-line draw-anim" style="animation-delay: 0.2s" vid="27"></line>
-                <line x1="75%" y1="50%" x2="60%" y2="80%" class="constellation-line draw-anim" style="animation-delay: 0.4s" vid="28"></line>
-                <line x1="60%" y1="80%" x2="25%" y2="65%" class="constellation-line draw-anim" style="animation-delay: 0.6s" vid="29"></line>
-                <line x1="25%" y1="65%" x2="30%" y2="20%" class="constellation-line draw-anim" style="animation-delay: 0.8s" vid="30"></line>
-                
-                
-                <line x1="30%" y1="20%" x2="60%" y2="80%" class="constellation-line draw-anim" style="stroke-dasharray: 2, 6; opacity: 0.5; animation-delay: 1.2s" vid="31"></line>
 
-                
+                <line x1="20%" y1="10%" x2="75%" y2="10%" class="constellation-line draw-anim"></line>
+                <line x1="75%" y1="10%" x2="85%" y2="50%" class="constellation-line draw-anim"
+                    style="animation-delay: 0.2s"></line>
+                <line x1="85%" y1="50%" x2="65%" y2="85%" class="constellation-line draw-anim"
+                    style="animation-delay: 0.4s"></line>
+                <line x1="65%" y1="85%" x2="15%" y2="70%" class="constellation-line draw-anim"
+                    style="animation-delay: 0.6s"></line>
+                <line x1="15%" y1="70%" x2="20%" y2="10%" class="constellation-line draw-anim"
+                    style="animation-delay: 0.8s"></line>
+
+
+                <line x1="20%" y1="10%" x2="65%" y2="85%" class="constellation-line draw-anim"
+                    style="stroke-dasharray: 2, 6; opacity: 0.5; animation-delay: 1.2s"></line>
+
+
                 <text x="45%" y="16%" transform="rotate(-5, 500, 200)" class="path-text" vid="32"></text>
                 <text x="72%" y="35%" transform="rotate(75, 750, 300)" class="path-text" vid="33"></text>
                 <text x="65%" y="68%" transform="rotate(140, 650, 650)" class="path-text" vid="34"></text>
                 <text x="35%" y="75%" transform="rotate(20, 350, 750)" class="path-text" vid="35"></text>
                 <text x="22%" y="45%" transform="rotate(-85, 250, 450)" class="path-text" vid="36"></text>
-                
-                
-                <circle cx="30%" cy="20%" class="constellation-point" vid="37"></circle>
-                <circle cx="65%" cy="15%" class="constellation-point" vid="38"></circle>
-                <circle cx="75%" cy="50%" class="constellation-point" vid="39"></circle>
-                <circle cx="60%" cy="80%" class="constellation-point" vid="40"></circle>
-                <circle cx="25%" cy="65%" class="constellation-point" vid="41"></circle>
+
+
+                <circle cx="20%" cy="10%" class="constellation-point"></circle>
+                <circle cx="75%" cy="10%" class="constellation-point"></circle>
+                <circle cx="85%" cy="50%" class="constellation-point"></circle>
+                <circle cx="65%" cy="85%" class="constellation-point"></circle>
+                <circle cx="15%" cy="70%" class="constellation-point"></circle>
             </svg>
 
-            
+
             <a href="small note.html" class="nav-label nav-1" style="transform: translate(-10%, -150%);" vid="42">
                 <span class="num" vid="43">1</span>notes
             </a>
@@ -295,7 +339,7 @@
             </a>
         </div>
 
-        
+
         <div class="title-block" vid="52">
             <div class="subtitle" vid="53">Personal Archive / Vol. 1</div>
             <h1 vid="54">Interlinked<br vid="55">&amp; Intertwined</h1>
@@ -304,12 +348,12 @@
             <a href="archive.html" class="footer-link" vid="60">Archive</a>
             <a href="log.html" class="footer-link" vid="61">Log</a>
         </div>
-</div>
+    </div>
 
     </div>
 
     <script vid="56">
-        
+
         const orb = document.querySelector('.orb');
         const container = document.querySelector('.canvas-wrapper');
 
@@ -317,24 +361,15 @@
             const { width, height, left, top } = container.getBoundingClientRect();
             const x = ((e.clientX - left) / width) * 100;
             const y = ((e.clientY - top) / height) * 100;
-            
-            
-            const moveX = (x - 35) * 0.2; 
-            const moveY = (y - 30) * 0.2; 
-            
+
+
+            const moveX = (x - 35) * 0.2;
+            const moveY = (y - 30) * 0.2;
+
             orb.style.transform = `translate(${moveX}%, ${moveY}%)`;
         });
     </script>
 
-</body></html>
+</body>
 
-
-
-
-
-
-
-
-
-
-
+</html>
