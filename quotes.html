@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
     <title vid="4">Oryzae | Split View</title>
     <style vid="5">
-        @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400&family=Reenie+Beanie&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
 
         :root {
             --bg-paper: #121212;
@@ -171,6 +171,22 @@
             transition: color 0.8s ease, text-shadow 0.8s ease;
         }
 
+        .handwritten-note {
+            font-family: 'Reenie Beanie', cursive;
+            font-size: 1.6rem;
+            color: var(--accent-mycelium);
+            text-shadow: 0 0 8px rgba(125, 158, 82, 0.8), 0 0 20px rgba(125, 158, 82, 0.4);
+            position: absolute;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .note-offset {
+            bottom: -35px;
+            left: 20px;
+            transform: rotate(-3deg);
+        }
+
         @media (max-width: 1024px) {
             .split-layout {
                 grid-template-columns: 1fr;
@@ -220,12 +236,13 @@
                 <p vid="11">Resonant Fragments</p>
             </header>
 
-            <div id="active-quote-container" vid="12">
+            <div id="active-quote-container" style="position: relative;" vid="12">
                 <div class="large-quote-text" id="display-text" vid="13">
                     “The wise person is the person who finds what they lost in <span
                         class="spore-highlight">childhood</span> and regains it.”
                 </div>
                 <div class="large-quote-author" id="display-author" vid="16">PERSONAL PICKS</div>
+                <div class="handwritten-note note-offset" id="display-annotation">Temporal loop detected</div>
             </div>
         </div>
 
@@ -275,13 +292,13 @@
 
     <script vid="33">
         const quotes = [
-            { text: '“The wise person is the person who finds what they lost in <span class="spore-highlight">childhood</span> and regains it.”', author: 'PERSONAL PICKS' },
-            { text: '“The truth is always hard to <span class="spore-highlight">swallow</span> If you’re choking on your pride.”', author: 'PERSONAL PICKS' },
-            { text: '“Who are you when you are not <span class="spore-highlight">performing</span> fo the people inside of your mind?”', author: 'PERSONAL PICKS' },
-            { text: '“For them I was a breath of fresh air, and personally I’ve never felt more <span class="spore-highlight">suffocated</span>.”', author: 'PERSONAL PICKS' },
-            { text: '“How <span class="spore-highlight">empty</span> of you to be so full of me.”', author: 'PERSONAL PICKS' },
-            { text: '“How do I take off a <span class="spore-highlight">mask</span> when it stops being a mask, and is as much part of me as I am.”', author: 'PERSONAL PICKS' },
-            { text: '“When people downplay my emotions, I question their ability to <span class="spore-highlight">feel</span> theirs.”', author: 'PERSONAL PICKS' }
+            { text: '“The wise person is the person who finds what they lost in <span class="spore-highlight">childhood</span> and regains it.”', author: 'PERSONAL PICKS', annotation: 'Temporal loop detected' },
+            { text: '“The truth is always hard to <span class="spore-highlight">swallow</span> If you’re choking on your pride.”', author: 'PERSONAL PICKS', annotation: 'Ego preservation system failing' },
+            { text: '“Who are you when you are not <span class="spore-highlight">performing</span> fo the people inside of your mind?”', author: 'PERSONAL PICKS', annotation: 'Audience simulation offline' },
+            { text: '“For them I was a breath of fresh air, and personally I’ve never felt more <span class="spore-highlight">suffocated</span>.”', author: 'PERSONAL PICKS', annotation: 'Atmospheric pressure > capacity' },
+            { text: '“How <span class="spore-highlight">empty</span> of you to be so full of me.”', author: 'PERSONAL PICKS', annotation: 'Vacuum dynamics stabilized' },
+            { text: '“How do I take off a <span class="spore-highlight">mask</span> when it stops being a mask, and is as much part of me as I am.”', author: 'PERSONAL PICKS', annotation: 'Synthetic tissue integration complete' },
+            { text: '“When people downplay my emotions, I question their ability to <span class="spore-highlight">feel</span> theirs.”', author: 'PERSONAL PICKS', annotation: 'Sensory override engaged' }
         ];
 
         function updateActive(index) {
@@ -295,6 +312,8 @@
             setTimeout(() => {
                 document.getElementById('display-text').innerHTML = quotes[index].text;
                 document.getElementById('display-author').innerText = quotes[index].author;
+                document.getElementById('display-annotation').innerText = quotes[index].annotation;
+
                 container.style.opacity = 1;
                 container.style.transform = 'translateY(0)';
 
