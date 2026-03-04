@@ -213,7 +213,7 @@
         <path id="main-path" class="filament-line" vid="9"></path>
         <path id="sub-path-1" class="filament-line" style="animation-delay: 0.5s; opacity: 0.2;" vid="10"></path>
         <path id="sub-path-2" class="filament-line" style="animation-delay: 1s; opacity: 0.1;" vid="11"></path>
-        <path id="branch-paths" class="filament-line" style="animation-delay: 0.3s; opacity: 0.3; stroke-width: 0.6;">
+        <path id="branch-paths" class="filament-line" style="animation-delay: 0.3s; opacity: 0.4; stroke-width: 1.5;">
         </path>
     </svg>
 
@@ -243,7 +243,7 @@
 
             <!-- Mini Branch Node Top -->
             <div class="timeline-node-mini"
-                style="position: absolute; top: -150px; left: 350px; transform: scale(0.5); width: 600px; transform-origin: left center;">
+                style="position: absolute; top: -240px; left: 450px; transform: scale(0.6); width: 600px; transform-origin: left center;">
                 <div class="branch-pulse"
                     style="position: absolute; left: -100px; top: 50%; width: 8px; height: 8px; background: var(--accent-gold); border-radius: 50%; box-shadow: 0 0 15px var(--accent-gold);">
                 </div>
@@ -262,7 +262,7 @@
 
             <!-- Mini Branch Node Bottom -->
             <div class="timeline-node-mini"
-                style="position: absolute; bottom: -150px; left: 350px; transform: scale(0.5); width: 600px; transform-origin: left center;">
+                style="position: absolute; bottom: -240px; left: 450px; transform: scale(0.6); width: 600px; transform-origin: left center;">
                 <div class="branch-pulse"
                     style="position: absolute; left: -100px; top: 50%; width: 8px; height: 8px; background: var(--accent-gold); border-radius: 50%; box-shadow: 0 0 15px var(--accent-gold);">
                 </div>
@@ -422,12 +422,12 @@
                         const tRect = branchNodes[0].getBoundingClientRect();
                         const tx = tRect.left + tRect.width / 2;
                         const ty = tRect.top + tRect.height / 2;
-                        bD += ` M ${x} ${y} Q ${x + 60} ${y - 40} ${tx} ${ty}`;
+                        bD += ` M ${x} ${y} Q ${x + 100} ${y - 80} ${tx} ${ty}`;
 
                         const bRect = branchNodes[1].getBoundingClientRect();
                         const bx = bRect.left + bRect.width / 2;
                         const by = bRect.top + bRect.height / 2;
-                        bD += ` M ${x} ${y} Q ${x + 60} ${y + 40} ${bx} ${by}`;
+                        bD += ` M ${x} ${y} Q ${x + 100} ${y + 80} ${bx} ${by}`;
                     }
 
                 } else {
@@ -461,23 +461,10 @@
             }
         });
 
-
         window.addEventListener('resize', updateThreads);
         timeline.addEventListener('scroll', updateThreads);
 
-
         setTimeout(updateThreads, 100);
-
-
-        timeline.addEventListener('scroll', () => {
-            const cards = document.querySelectorAll('.content-card');
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const centerOffset = (window.innerWidth / 2) - (rect.left + rect.width / 2);
-                const rotation = centerOffset / 50;
-                card.style.transform = `perspective(1000px) rotateY(${rotation}deg) translateY(${Math.abs(centerOffset / 100)}px)`;
-            });
-        });
     </script>
     <script>
         const canvas = document.getElementById('particle-canvas');
