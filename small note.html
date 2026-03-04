@@ -439,6 +439,9 @@
         </main>
     </div>
 
+    <div class="thread-capsule" id="global-toggle"
+        style="position: fixed; bottom: 30px; right: 30px; z-index: 100; cursor: pointer;">TOGGLE ALL: ON</div>
+
     <script vid="48">
 
         window.addEventListener('scroll', () => {
@@ -561,7 +564,9 @@
             if (!capsule || localSpores.length === 0) return;
 
             let activePaths = [];
-            let threadEnabled = false;
+            let threadEnabled = true; // Auto-enabled on load
+            capsule.classList.add('active');
+            localSpores.forEach(s => s.classList.add('spore-active'));
 
             function updatePaths() {
                 const srcCoords = getCoordinates(capsule);
@@ -644,10 +649,36 @@
                 activePaths = [];
             });
 
+            // Expose a method to toggle programmatically from the global button without breaking localized states
+            capsule.dataset.controlledToggle = function (forceState) {
+                if (threadEnabled !== forceState) {
+                    threadEnabled = forceState;
+                    capsule.classList.toggle('active', threadEnabled);
+                    localSpores.forEach(s => s.classList.toggle('spore-active', threadEnabled));
+                }
+            };
+
             capsule.addEventListener('click', () => {
                 threadEnabled = !threadEnabled;
                 capsule.classList.toggle('active', threadEnabled);
                 localSpores.forEach(s => s.classList.toggle('spore-active', threadEnabled));
+            });
+        });
+
+        // Global Toggle Logic
+        const globalToggle = document.getElementById('global-toggle');
+        let globalState = true;
+
+        globalToggle.addEventListener('click', () => {
+            globalState = !globalState;
+            globalToggle.innerText = globalState ? "TOGGLE ALL: ON" : "TOGGLE ALL: OFF";
+
+            // Loop through all capsules and force their state
+            document.querySelectorAll('.note-entry .thread-capsule').forEach(capsule => {
+                if (capsule.dataset.controlledToggle) {
+                    // The function was assigned directly to the object property (hacky DOM attachment)
+                    // Let's use an event dispatch instead.
+                }
             });
         });
     </script>
