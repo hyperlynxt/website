@@ -213,6 +213,8 @@
         <path id="main-path" class="filament-line" vid="9"></path>
         <path id="sub-path-1" class="filament-line" style="animation-delay: 0.5s; opacity: 0.2;" vid="10"></path>
         <path id="sub-path-2" class="filament-line" style="animation-delay: 1s; opacity: 0.1;" vid="11"></path>
+        <path id="branch-paths" class="filament-line" style="animation-delay: 0.3s; opacity: 0.3; stroke-width: 0.6;">
+        </path>
     </svg>
 
     <div class="flow-header" vid="12">
@@ -356,14 +358,15 @@
 
         function updateThreads() {
             const nodes = document.querySelectorAll('.node-pulse');
-            const overlay = document.getElementById('filament-overlay');
+            const mainPath = document.getElementById('main-path');
+            const subPath1 = document.getElementById('sub-path-1');
+            const subPath2 = document.getElementById('sub-path-2');
+            const branchPaths = document.getElementById('branch-paths');
 
             let d = "";
             let s1 = "";
             let s2 = "";
-
-            // Clear old dynamic branches
-            document.querySelectorAll('.dynamic-branch').forEach(el => el.remove());
+            let bD = "";
 
             nodes.forEach((node, i) => {
                 const rect = node.getBoundingClientRect();
@@ -386,26 +389,15 @@
                     s2 += ` C ${cp1x - 30} ${prevY + 60}, ${cp2x + 30} ${y - 60}, ${x} ${y}`;
                 }
 
-                // Add branches for this node
-                const branchPath1 = `M ${x} ${y} Q ${x + 20} ${y - 40} ${x + 40} ${y - 80}`;
-                const branchPath2 = `M ${x} ${y} Q ${x + 40} ${y - 20} ${x + 80} ${y - 50}`;
-
-                const createBranch = (pathD, delay) => {
-                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                    path.setAttribute('class', 'filament-line dynamic-branch');
-                    path.setAttribute('d', pathD);
-                    path.style.strokeWidth = "0.6";
-                    path.style.opacity = "0.25";
-                    path.style.animationDelay = delay;
-                    return path;
-                };
-
-                overlay.append(createBranch(branchPath1, '0.2s'), createBranch(branchPath2, '0.4s'));
+                // Add branches for this node: one top-right, one bottom-right
+                bD += ` M ${x} ${y} Q ${x + 20} ${y - 40} ${x + 60} ${y - 60}`;
+                bD += ` M ${x} ${y} Q ${x + 30} ${y + 30} ${x + 70} ${y + 50}`;
             });
 
             mainPath.setAttribute('d', d);
             subPath1.setAttribute('d', s1);
             subPath2.setAttribute('d', s2);
+            branchPaths.setAttribute('d', bD);
         }
 
 
