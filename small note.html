@@ -181,6 +181,103 @@
             line-height: 1.7;
         }
 
+        .mycelium-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        .thread-capsule-container {
+            position: absolute;
+            right: -80px;
+            top: 0;
+        }
+
+        .thread-capsule {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(74, 90, 80, 0.3);
+            border-radius: 999px;
+            padding: 28px 12px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-family: var(--font-tech);
+            font-size: 0.7rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-subtle);
+            backdrop-filter: blur(4px);
+            position: relative;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .thread-capsule.active {
+            border-color: var(--accent-matcha);
+            color: var(--accent-matcha);
+        }
+
+        .thread-capsule.active::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 999px;
+            border: 1px solid var(--accent-matcha);
+            opacity: 0.25;
+            animation: pulse-border 3s infinite;
+        }
+
+        .spore {
+            position: relative;
+            display: inline-block;
+            transition: color 0.8s ease, text-shadow 0.8s ease;
+        }
+
+        .spore.connected,
+        .spore.spore-active {
+            color: var(--accent-matcha);
+            text-shadow: 0 0 8px var(--accent-blur), 0 0 20px var(--accent-blur);
+        }
+
+        .spore::after {
+            content: '';
+            position: absolute;
+            bottom: 0.05em;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--accent-matcha);
+            opacity: 0.8;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+
+        .spore.connected::after,
+        .spore.spore-active::after {
+            transform: scaleX(1);
+        }
+
+        @keyframes pulse-border {
+            0% {
+                opacity: 0.18;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.03);
+            }
+
+            100% {
+                opacity: 0.18;
+                transform: scale(1);
+            }
+        }
+
 
         .decoration-orb {
             position: fixed;
@@ -243,6 +340,18 @@
 
 <body vid="9">
 
+    <svg class="mycelium-layer" id="mycelium-canvas" xmlns="http://www.w3.org/2000/svg" vid="9a">
+        <defs vid="9b">
+            <filter id="glow" vid="9c">
+                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" vid="9d"></feGaussianBlur>
+                <feMerge vid="9e">
+                    <feMergeNode in="coloredBlur" vid="9f"></feMergeNode>
+                    <feMergeNode in="SourceGraphic" vid="9g"></feMergeNode>
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+
     <canvas id="particle-canvas"></canvas>
     <div class="decoration-orb" vid="11"></div>
 
@@ -287,33 +396,45 @@
             <article class="note-entry" vid="34">
                 <div class="note-meta" vid="35">ENTRY_01 // 23.08.24</div>
                 <div class="note-body" vid="36">
-                    We inhabit the spaces between our thoughts. The <strong vid="37">interstitial silence</strong> is
+                    We inhabit the spaces between our thoughts. The <strong class="spore" vid="37">interstitial
+                        silence</strong> is
                     where the most profound connections are formed—unseen, yet structurally essential to the whole.
                 </div>
                 <div class="note-annotation" vid="38">
                     Observation: The constellation lines are not just connections; they are the paths of least
                     resistance for intuition.
                 </div>
+                <div class="thread-capsule-container">
+                    <div class="thread-capsule" data-entry="1">Thread</div>
+                </div>
             </article>
 
             <article class="note-entry" vid="39">
                 <div class="note-meta" vid="40">ENTRY_02 // 25.08.24</div>
                 <div class="note-body" vid="41">
-                    Memory acts like a <strong vid="42">non-linear map</strong>. We don't recall events in sequence, but
+                    Memory acts like a <strong class="spore" vid="42">non-linear map</strong>. We don't recall events in
+                    sequence, but
                     in clusters of relevance. To navigate the archive is to perform a ritual of rediscovery.
                 </div>
                 <div class="note-annotation" vid="43">
                     Note to self: Re-examine the "recursive definitions" node. The logic seems to loop back to the
                     initial premise of the volume.
                 </div>
+                <div class="thread-capsule-container">
+                    <div class="thread-capsule" data-entry="2">Thread</div>
+                </div>
             </article>
 
             <article class="note-entry" vid="44">
                 <div class="note-meta" vid="45">ENTRY_03 // 02.09.24</div>
                 <div class="note-body" vid="46">
-                    The texture of digital thought should mirror the <strong vid="47">tactility of paper</strong>. There
+                    The texture of digital thought should mirror the <strong class="spore" vid="47">tactility of
+                        paper</strong>. There
                     is a weight to a stroke of ink that a pixel must fight to replicate. This struggle is the "noise" in
                     our system.
+                </div>
+                <div class="thread-capsule-container">
+                    <div class="thread-capsule" data-entry="3">Thread</div>
                 </div>
             </article>
 
@@ -395,7 +516,143 @@
         animate();
         window.addEventListener('resize', init);
     </script>
+    <script>
+        const canvasMycelium = document.getElementById('mycelium-canvas');
+        const entries = document.querySelectorAll('.note-entry');
 
+        function createPath(targetElement) {
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', 'var(--accent-matcha)');
+            path.setAttribute('stroke-width', '1.2');
+            path.setAttribute('stroke-opacity', '0.85');
+            path.setAttribute('filter', 'url(#glow)');
+
+            canvasMycelium.appendChild(path);
+            targetElement.classList.add('connected');
+
+            return {
+                element: path,
+                target: targetElement,
+                progress: 0,
+                phase: 'growing',
+                life: 0
+            };
+        }
+
+        function getCoordinates(elem) {
+            const rect = elem.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2,
+                right: rect.right,
+                left: rect.left,
+                top: rect.top,
+                bottom: rect.bottom
+            };
+        }
+
+        function inViewport(rect) {
+            return rect.bottom > 0 && rect.top < window.innerHeight;
+        }
+
+        entries.forEach(entry => {
+            const capsule = entry.querySelector('.thread-capsule');
+            const localSpores = Array.from(entry.querySelectorAll('.spore'));
+
+            if (!capsule || localSpores.length === 0) return;
+
+            let activePaths = [];
+            let threadEnabled = false;
+
+            function updatePaths() {
+                const srcCoords = getCoordinates(capsule);
+                const startX = srcCoords.left;
+                const startY = srcCoords.y;
+
+                activePaths.forEach((obj, index) => {
+                    const targetCoords = getCoordinates(obj.target);
+                    const endX = targetCoords.right;
+                    const endY = targetCoords.y + 2;
+
+                    const t = Date.now() / 1000;
+                    const wobbleA = Math.sin(t * 0.9 + index) * 10;
+                    const wobbleB = Math.cos(t * 0.8 + index) * 10;
+
+                    const cp1x = startX - 90 - wobbleA;
+                    const cp1y = startY + wobbleB;
+                    const cp2x = endX + 90 + wobbleB;
+                    const cp2y = endY + wobbleA;
+
+                    const d = `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
+                    obj.element.setAttribute('d', d);
+
+                    const length = obj.element.getTotalLength();
+                    obj.element.style.strokeDasharray = length;
+
+                    if (obj.phase === 'growing') {
+                        obj.progress += 0.02;
+                        if (obj.progress >= 1) {
+                            obj.progress = 1;
+                            obj.phase = 'sustained';
+                            obj.life = 150 + Math.random() * 250;
+                        }
+                        obj.element.style.strokeDashoffset = length * (1 - obj.progress);
+                    } else if (obj.phase === 'sustained') {
+                        obj.element.style.strokeDashoffset = 0;
+                        obj.life -= 1;
+                        if (obj.life <= 0) obj.phase = 'dying';
+                    } else if (obj.phase === 'dying') {
+                        obj.progress -= 0.02;
+                        obj.element.style.strokeDashoffset = length * (1 - obj.progress);
+                        if (obj.progress <= 0) {
+                            if (obj.element.parentNode) canvasMycelium.removeChild(obj.element);
+                            obj.target.classList.remove('connected');
+                            activePaths = activePaths.filter(p => p !== obj);
+                        }
+                    }
+                });
+            }
+
+            function manageLifecycle() {
+                if (!threadEnabled) {
+                    activePaths.forEach(p => {
+                        if (p.element.parentNode) canvasMycelium.removeChild(p.element);
+                        p.target.classList.remove('connected');
+                    });
+                    activePaths = [];
+                } else {
+                    if (activePaths.length < 4 && Math.random() > 0.9) {
+                        const available = localSpores.filter(s => !s.classList.contains('connected'));
+                        if (available.length > 0) {
+                            const pick = available[Math.floor(Math.random() * available.length)];
+                            if (inViewport(pick.getBoundingClientRect())) {
+                                activePaths.push(createPath(pick));
+                            }
+                        }
+                    }
+                    updatePaths();
+                }
+                requestAnimationFrame(manageLifecycle);
+            }
+
+            requestAnimationFrame(manageLifecycle);
+
+            window.addEventListener('resize', () => {
+                activePaths.forEach(p => {
+                    if (p.element.parentNode) canvasMycelium.removeChild(p.element);
+                    p.target.classList.remove('connected');
+                });
+                activePaths = [];
+            });
+
+            capsule.addEventListener('click', () => {
+                threadEnabled = !threadEnabled;
+                capsule.classList.toggle('active', threadEnabled);
+                localSpores.forEach(s => s.classList.toggle('spore-active', threadEnabled));
+            });
+        });
+    </script>
 
 </body>
 
