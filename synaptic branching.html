@@ -395,7 +395,8 @@
         const subPath2 = document.getElementById('sub-path-2');
 
         function updateThreads() {
-            const nodes = document.querySelectorAll('.node-pulse');
+            const rootNodes = document.querySelectorAll('.timeline-node > .node-pulse');
+            const branchNodes = document.querySelectorAll('.branch-pulse');
             const mainPath = document.getElementById('main-path');
             const subPath1 = document.getElementById('sub-path-1');
             const subPath2 = document.getElementById('sub-path-2');
@@ -406,7 +407,7 @@
             let s2 = "";
             let bD = "";
 
-            nodes.forEach((node, i) => {
+            rootNodes.forEach((node, i) => {
                 const rect = node.getBoundingClientRect();
                 const x = rect.left + rect.width / 2;
                 const y = rect.top + rect.height / 2;
@@ -415,8 +416,22 @@
                     d += `M ${x} ${y}`;
                     s1 += `M ${x} ${y}`;
                     s2 += `M ${x} ${y}`;
+
+                    // Connect Genesis root node to added mini branches
+                    if (branchNodes.length === 2) {
+                        const tRect = branchNodes[0].getBoundingClientRect();
+                        const tx = tRect.left + tRect.width / 2;
+                        const ty = tRect.top + tRect.height / 2;
+                        bD += ` M ${x} ${y} Q ${x + 60} ${y - 40} ${tx} ${ty}`;
+
+                        const bRect = branchNodes[1].getBoundingClientRect();
+                        const bx = bRect.left + bRect.width / 2;
+                        const by = bRect.top + bRect.height / 2;
+                        bD += ` M ${x} ${y} Q ${x + 60} ${y + 40} ${bx} ${by}`;
+                    }
+
                 } else {
-                    const prevRect = nodes[i - 1].getBoundingClientRect();
+                    const prevRect = rootNodes[i - 1].getBoundingClientRect();
                     const prevX = prevRect.left + prevRect.width / 2;
                     const prevY = prevRect.top + prevRect.height / 2;
                     const cp1x = prevX + (x - prevX) / 2;
@@ -427,7 +442,7 @@
                     s2 += ` C ${cp1x - 30} ${prevY + 60}, ${cp2x + 30} ${y - 60}, ${x} ${y}`;
                 }
 
-                // Add branches for this node: one top-right, one bottom-right
+                // Append purely decorative organic curves off each main node 
                 bD += ` M ${x} ${y} Q ${x + 20} ${y - 40} ${x + 60} ${y - 60}`;
                 bD += ` M ${x} ${y} Q ${x + 30} ${y + 30} ${x + 70} ${y + 50}`;
             });
@@ -437,7 +452,6 @@
             subPath2.setAttribute('d', s2);
             branchPaths.setAttribute('d', bD);
         }
-
 
         timeline.addEventListener('wheel', (e) => {
             if (e.deltaY !== 0) {
