@@ -1,19 +1,23 @@
-<html lang="en" vid="0"><head vid="1">
+<html lang="en" vid="0">
+
+<head vid="1">
     <meta charset="UTF-8" vid="2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
     <title vid="4">Notes Archive — Interlinked &amp; Intertwined</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" vid="7">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap"
+        rel="stylesheet" vid="7">
+
     <style vid="8">
         :root {
-            --bg-paper: #E8DFC8;
-            --ink-main: #0F1A15;
-            --ink-subtle: #4A5A50;
-            --accent-matcha: #7D9E52;
-            --accent-blur: rgba(125, 158, 82, 0.4);
-            
+            --bg-paper: #121212;
+            --ink-main: #e5e0d8;
+            --ink-subtle: #a19d94;
+            --accent-matcha: #4B0082;
+            --accent-blur: rgba(75, 0, 130, 0.4);
+
             --font-display: 'Cormorant Garamond', serif;
             --font-tech: 'Space Mono', monospace;
         }
@@ -43,7 +47,7 @@
             z-index: 10;
         }
 
-        
+
         aside.sidebar {
             padding: 3rem;
             border-right: 1px solid rgba(74, 90, 80, 0.1);
@@ -121,7 +125,7 @@
             line-height: 1.6;
         }
 
-        
+
         main.content-area {
             padding: 6rem 8rem;
             position: relative;
@@ -177,7 +181,7 @@
             line-height: 1.7;
         }
 
-        
+
         .decoration-orb {
             position: fixed;
             top: 10%;
@@ -202,19 +206,31 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .note-entry {
             animation: fadeIn 1s ease-out forwards;
         }
 
-        .note-entry:nth-child(2) { animation-delay: 0.3s; }
-        .note-entry:nth-child(3) { animation-delay: 0.6s; }
+        .note-entry:nth-child(2) {
+            animation-delay: 0.3s;
+        }
 
+        .note-entry:nth-child(3) {
+            animation-delay: 0.6s;
+        }
     </style>
 </head>
+
 <body vid="9">
 
     <div class="decoration-orb" vid="11"></div>
@@ -227,17 +243,18 @@
     </svg>
 
     <div class="layout-container" vid="17">
-        
+
         <aside class="sidebar" vid="18">
             <div vid="19">
                 <a href="index.html" class="back-link" vid="20">
                     <span vid="21">←</span> Main
                 </a>
-                
+
                 <div class="view-title" vid="22">
                     <span class="num" vid="23">1</span>
                     <h2 vid="24">Notes</h2>
-                    <p class="subtitle" style="font-size: 0.7rem; color: var(--ink-subtle);" vid="25">THOUGHTS COLLECTED IN TRANSIT</p>
+                    <p class="subtitle" style="font-size: 0.7rem; color: var(--ink-subtle);" vid="25">THOUGHTS COLLECTED
+                        IN TRANSIT</p>
                 </div>
 
                 <ul class="index-list" vid="26">
@@ -255,31 +272,37 @@
         </aside>
 
         <main class="content-area" vid="33">
-            
+
             <article class="note-entry" vid="34">
                 <div class="note-meta" vid="35">ENTRY_01 // 23.08.24</div>
                 <div class="note-body" vid="36">
-                    We inhabit the spaces between our thoughts. The <strong vid="37">interstitial silence</strong> is where the most profound connections are formed—unseen, yet structurally essential to the whole.
+                    We inhabit the spaces between our thoughts. The <strong vid="37">interstitial silence</strong> is
+                    where the most profound connections are formed—unseen, yet structurally essential to the whole.
                 </div>
                 <div class="note-annotation" vid="38">
-                    Observation: The constellation lines are not just connections; they are the paths of least resistance for intuition.
+                    Observation: The constellation lines are not just connections; they are the paths of least
+                    resistance for intuition.
                 </div>
             </article>
 
             <article class="note-entry" vid="39">
                 <div class="note-meta" vid="40">ENTRY_02 // 25.08.24</div>
                 <div class="note-body" vid="41">
-                    Memory acts like a <strong vid="42">non-linear map</strong>. We don't recall events in sequence, but in clusters of relevance. To navigate the archive is to perform a ritual of rediscovery.
+                    Memory acts like a <strong vid="42">non-linear map</strong>. We don't recall events in sequence, but
+                    in clusters of relevance. To navigate the archive is to perform a ritual of rediscovery.
                 </div>
                 <div class="note-annotation" vid="43">
-                    Note to self: Re-examine the "recursive definitions" node. The logic seems to loop back to the initial premise of the volume.
+                    Note to self: Re-examine the "recursive definitions" node. The logic seems to loop back to the
+                    initial premise of the volume.
                 </div>
             </article>
 
             <article class="note-entry" vid="44">
                 <div class="note-meta" vid="45">ENTRY_03 // 02.09.24</div>
                 <div class="note-body" vid="46">
-                    The texture of digital thought should mirror the <strong vid="47">tactility of paper</strong>. There is a weight to a stroke of ink that a pixel must fight to replicate. This struggle is the "noise" in our system.
+                    The texture of digital thought should mirror the <strong vid="47">tactility of paper</strong>. There
+                    is a weight to a stroke of ink that a pixel must fight to replicate. This struggle is the "noise" in
+                    our system.
                 </div>
             </article>
 
@@ -287,7 +310,7 @@
     </div>
 
     <script vid="48">
-        
+
         window.addEventListener('scroll', () => {
             const orb = document.querySelector('.decoration-orb');
             const scrolled = window.pageYOffset;
@@ -296,4 +319,6 @@
     </script>
 
 
-</body></html>
+</body>
+
+</html>

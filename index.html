@@ -176,7 +176,7 @@
 
 
         .title-block {
-            text-align: right;
+            text-align: left;
             position: relative;
         }
 
@@ -221,8 +221,25 @@
             filter: blur(40px);
             opacity: 0.8;
             mix-blend-mode: screen;
-            transition: cx 0.1s ease-out, cy 0.1s ease-out;
-            will-change: cx, cy;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
         }
 
         @keyframes drawLine {
@@ -258,7 +275,7 @@
 
 
             <svg class="constellation" style="position: absolute; top:0; left:0; pointer-events: none;" vid="15">
-                <circle cx="350" cy="300" r="80" class="orb" vid="16"></circle>
+                <circle cx="20%" cy="20%" r="80" class="orb" vid="16"></circle>
                 <circle cx="65%" cy="70%" r="60" class="orb"
                     style="animation-delay: -5s; fill: var(--ink-subtle); opacity: 0.1;" vid="17"></circle>
             </svg>
@@ -330,37 +347,13 @@
             <div class="subtitle" vid="53">Personal Archive / Vol. 1</div>
             <h1 vid="54">Interlinked<br vid="55">&amp; Intertwined</h1>
         </div>
-        <div style="position: absolute; bottom: 3rem; left: 3rem; display: flex; gap: 1.5rem;">
+        <div style="position: absolute; bottom: 3rem; right: 3rem; display: flex; gap: 1.5rem;">
             <a href="archive.html" class="footer-link" vid="60">Archive</a>
             <a href="log.html" class="footer-link" vid="61">Log</a>
         </div>
     </div>
 
     </div>
-
-    <script vid="56">
-
-        const orb = document.querySelector('.orb');
-        const container = document.querySelector('.canvas-wrapper');
-
-        // Set initial coordinates so the orb doesn't fly from 0,0 on first interaction
-        setTimeout(() => {
-            const { left, top, width, height } = container.getBoundingClientRect();
-            orb.setAttribute("cx", width * 0.35); // Initial matching 35% cx position
-            orb.setAttribute("cy", height * 0.30); // Initial matching 30% cy position
-        }, 100);
-
-        container.addEventListener('mousemove', (e) => {
-            const { left, top } = container.getBoundingClientRect();
-
-            const mouseX = e.clientX - left;
-            const mouseY = e.clientY - top;
-
-            orb.setAttribute("cx", mouseX);
-            orb.setAttribute("cy", mouseY);
-            orb.style.transform = `none`; // reset old transform logic
-        });
-    </script>
 
 </body>
 
