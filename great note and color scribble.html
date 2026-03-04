@@ -1,0 +1,278 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Oryzae | Botanical Field Notes</title>
+    <style vid="5">
+        @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Reenie+Beanie&display=swap');
+
+        :root {
+            --bg-paper: #faf9f7;
+            --text-ink: #2b2b2b;
+            --text-meta: #888580;
+            --accent-mycelium: #cfa86e; 
+            --hairline: #e5e2d9;
+            --margin-width: 280px;
+            
+            --font-serif: 'Shippori Mincho', serif;
+            --font-sans: 'Zen Kaku Gothic New', sans-serif;
+            --font-english: 'Cormorant Garamond', serif;
+            --font-hand: 'Reenie Beanie', cursive;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-ink);
+            font-family: var(--font-serif);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                linear-gradient(var(--hairline) 1px, transparent 1px),
+                linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-attachment: fixed;
+        }
+
+        
+        .journal-container {
+            display: grid;
+            grid-template-columns: var(--margin-width) 1fr;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-left: 1px solid var(--hairline);
+            border-right: 1px solid var(--hairline);
+            background: var(--bg-paper);
+            position: relative;
+        }
+
+        
+        .field-margin {
+            border-right: 2px solid var(--accent-mycelium);
+            padding: 60px 40px;
+            background: rgba(250, 249, 247, 0.8);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .journal-meta {
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-meta);
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .category-list {
+            list-style: none;
+            margin-top: 80px;
+        }
+
+        .nav-tab {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--text-meta);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: color 0.3s;
+        }
+
+        .nav-tab.active {
+            color: var(--text-ink);
+            font-weight: 500;
+        }
+
+        .nav-tab.active::before {
+            content: '●';
+            color: var(--accent-mycelium);
+            font-size: 8px;
+        }
+
+        .margin-annotation {
+            font-family: var(--font-hand);
+            font-size: 1.4rem;
+            color: #8c7040;
+            line-height: 1.2;
+            margin-top: 60px;
+            transform: rotate(-2deg);
+        }
+
+        
+        .main-content {
+            padding: 100px 80px;
+        }
+
+        .collection-header {
+            margin-bottom: 100px;
+            border-bottom: 1px solid var(--hairline);
+            padding-bottom: 40px;
+        }
+
+        .collection-header h1 {
+            font-family: var(--font-english);
+            font-size: 4rem;
+            font-weight: 400;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .collection-header p {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--text-meta);
+        }
+
+        .quote-entry {
+            margin-bottom: 120px;
+            position: relative;
+        }
+
+        .entry-number {
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            color: var(--accent-mycelium);
+            position: absolute;
+            left: -40px;
+            top: 10px;
+        }
+
+        .quote-text {
+            font-family: var(--font-english);
+            font-size: 2.2rem;
+            line-height: 1.4;
+            color: var(--text-ink);
+            max-width: 700px;
+        }
+
+        .quote-author {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-meta);
+            margin-top: 20px;
+            display: block;
+        }
+
+        
+        .spore {
+            position: relative;
+            display: inline-block;
+            color: var(--text-ink);
+        }
+
+        .spore::after {
+            content: '';
+            position: absolute;
+            width: 110%;
+            height: 8px;
+            bottom: -2px;
+            left: -5%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='10' viewBox='0 0 100 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 5 Q 25 2, 50 5 T 100 5' stroke='%23cfa86e' fill='transparent' stroke-width='1.5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            opacity: 0.6;
+        }
+
+        .handwritten-note {
+            font-family: var(--font-hand);
+            color: #8c7040;
+            font-size: 1.2rem;
+            position: absolute;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .note-1 { top: -30px; right: -80px; transform: rotate(5deg); }
+        .note-2 { bottom: -40px; left: 100px; transform: rotate(-3deg); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 1s ease forwards; }
+
+        @media (max-width: 900px) {
+            .journal-container { grid-template-columns: 1fr; }
+            .field-margin { display: none; }
+            .main-content { padding: 60px 30px; }
+        }
+    </style>
+</head>
+<body vid="6">
+
+    <div class="journal-container" vid="7">
+        
+        <aside class="field-margin" vid="8">
+            <span class="journal-meta" vid="9">Ref. No: ORY-2024 / Vol. IV</span>
+            
+            <nav class="category-list" vid="10">
+                <div class="nav-tab active" vid="11">Resonant Fragments</div>
+                <div class="nav-tab" vid="12">Solitude &amp; Space</div>
+                <div class="nav-tab" vid="13">The Art of Waiting</div>
+            </nav>
+
+            <div class="margin-annotation" vid="14">
+                Observations on the slow fermentation of ideas in the subconscious substrate.
+            </div>
+
+            <div class="margin-annotation" style="margin-top: 150px;" vid="15">
+                *Note: The root systems of thought often extend deeper than the canopy of expression.
+            </div>
+        </aside>
+
+        
+        <main class="main-content" vid="16">
+            <header class="collection-header fade-in" vid="17">
+                <h1 vid="18">Echoes of the Soil</h1>
+                <p vid="19">Specimen collection: Curation of thoughts that ferment in silence.</p>
+            </header>
+
+            <div class="quote-entry fade-in" style="animation-delay: 0.2s;" vid="20">
+                <span class="entry-number" vid="21">01</span>
+                <div class="quote-text" vid="22">
+                    “The <span class="spore" vid="23">mind</span> is not a vessel to be filled, but a <span class="spore" vid="24">fire</span> to be kindled.”
+                    <span class="handwritten-note note-1" vid="25">Potential energy &gt; Kinetic</span>
+                </div>
+                <span class="quote-author" vid="26">— Plutarch</span>
+            </div>
+
+            <div class="quote-entry fade-in" style="animation-delay: 0.4s;" vid="27">
+                <span class="entry-number" vid="28">02</span>
+                <div class="quote-text" vid="29">
+                    “In the <span class="spore" vid="30">silence</span> of the woods, you can hear the <span class="spore" vid="31">whisper</span> of the earth growing.”
+                </div>
+                <span class="quote-author" vid="32">— Unknown</span>
+                <span class="handwritten-note note-2" vid="33">Subterranean movement detected</span>
+            </div>
+
+            <div class="quote-entry fade-in" style="animation-delay: 0.6s;" vid="34">
+                <span class="entry-number" vid="35">03</span>
+                <div class="quote-text" vid="36">
+                    “Nature does not <span class="spore" vid="37">hurry</span>, yet everything is <span class="spore" vid="38">accomplished</span>.”
+                </div>
+                <span class="quote-author" vid="39">— Lao Tzu</span>
+            </div>
+
+            <div class="quote-entry fade-in" style="animation-delay: 0.8s;" vid="40">
+                <span class="entry-number" vid="41">04</span>
+                <div class="quote-text" vid="42">
+                    “The <span class="spore" vid="43">organic</span> process of thought requires the <span class="spore" vid="44">darkness</span> of the unknown to truly take root.”
+                </div>
+                <span class="quote-author" vid="45">— Oryzae Reflections</span>
+            </div>
+        </main>
+    </div>
+
+</body></html>
