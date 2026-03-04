@@ -1,0 +1,286 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Oryzae | Focus View</title>
+    <style vid="5">
+        @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,600&display=swap');
+
+        :root {
+            --bg-paper: #121212; 
+            --text-ink: #e5e0d8; 
+            --text-meta: #a19d94; 
+            --accent-mycelium: #ffb347; 
+            --accent-glow: rgba(255, 179, 71, 0.4);
+            --hairline: #2a2a2a;
+            --font-serif: 'Shippori Mincho', serif;
+            --font-sans: 'Zen Kaku Gothic New', sans-serif;
+            --font-english: 'Cormorant Garamond', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-ink);
+            font-family: var(--font-serif);
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            width: 1280px;
+            height: 960px;
+            display: flex;
+            border-radius: 20px;
+        }
+
+        
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100%;
+            background: rgba(18, 18, 18, 0.98);
+            border-right: 1px solid var(--hairline);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 40px;
+        }
+
+        .vertical-title {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-style: italic;
+            color: #ffffff;
+            margin-bottom: auto;
+            align-self: center;
+            letter-spacing: -0.02em;
+            opacity: 0.8;
+        }
+
+        .tab-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .nav-tab {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--text-meta);
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 4px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .back-button {
+            margin-bottom: 40px;
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--accent-mycelium);
+            text-transform: uppercase;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        
+        .focus-container {
+            margin-left: 280px;
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .quote-focus-wrap {
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+        }
+
+        .large-quote-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.2rem;
+            line-height: 1.1;
+            color: var(--text-ink);
+            font-weight: 400;
+            margin-bottom: 3rem;
+            font-style: italic;
+            opacity: 0;
+            animation: focusFadeIn 2s ease forwards;
+        }
+
+        .focus-meta {
+            opacity: 0;
+            animation: focusFadeIn 2s ease 0.8s forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .focus-author {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            color: var(--text-meta);
+            position: relative;
+            padding-top: 20px;
+        }
+
+        .focus-author::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 1px;
+            background: var(--accent-mycelium);
+        }
+
+        .reflect-timestamp {
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: #555;
+            font-style: normal;
+            margin-top: 10px;
+        }
+
+        
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 280px;
+            width: calc(100% - 280px);
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes focusFadeIn {
+            from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        .spore-glow {
+            color: var(--accent-mycelium);
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+
+    </style>
+</head>
+<body vid="6">
+
+    <aside class="sidebar" vid="7">
+        <a href="#" class="back-button" vid="8">← Collection</a>
+        <h1 class="vertical-title" vid="9">Echoes of the Soil</h1>
+        <nav class="tab-container" vid="10">
+            <div class="nav-tab" vid="11">Resonant Fragments</div>
+            <div class="nav-tab" vid="12">Solitude &amp; Space</div>
+            <div class="nav-tab" vid="13">The Art of Waiting</div>
+        </nav>
+    </aside>
+
+    <canvas id="particle-canvas" vid="14"></canvas>
+
+    <main class="focus-container" vid="15">
+        <div class="quote-focus-wrap" vid="16">
+            <div class="large-quote-text" vid="17">
+                “The organic process of <span class="spore-glow" vid="18">thought</span> requires the darkness of the unknown to truly take <span class="spore-glow" vid="19">root</span>.”
+            </div>
+            
+            <div class="focus-meta" vid="20">
+                <div class="focus-author" vid="21">Oryzae Reflections</div>
+                <div class="reflect-timestamp" vid="22">REFLECTED: 14 NOV 2023 · 04:12 AM</div>
+            </div>
+        </div>
+    </main>
+
+    <script vid="23">
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth - 280;
+            height = canvas.height = 960;
+        }
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = height + 10;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speed = Math.random() * 0.4 + 0.1;
+                this.opacity = Math.random() * 0.5;
+                this.drift = (Math.random() - 0.5) * 0.2;
+            }
+
+            update() {
+                this.y -= this.speed;
+                this.x += this.drift;
+                
+                if (this.y < -10) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 179, 71, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            resize();
+            particles = [];
+            for (let i = 0; i < 60; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+        window.addEventListener('resize', init);
+    </script>
+</body></html>
