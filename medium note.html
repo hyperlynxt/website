@@ -329,11 +329,27 @@
         .main-prose {
             animation: slideUp 1s ease-out;
         }
+
+        .spore.connected:hover {
+            transform: scale(2.5);
+            opacity: 1;
+        }
+
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
     </style>
 </head>
 
 <body vid="9">
 
+    <canvas id="particle-canvas"></canvas>
     <svg class="mycelium-layer" id="mycelium-canvas" xmlns="http://www.w3.org/2000/svg" vid="9a">
         <defs vid="9b">
             <filter id="glow" vid="9c">

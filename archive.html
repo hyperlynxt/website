@@ -250,6 +250,16 @@
             border-color: var(--ink-main);
         }
 
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+
         .tag:hover:not(.active) {
             border-color: var(--accent-matcha);
             color: var(--accent-matcha);
@@ -447,7 +457,7 @@
     </div>
 
 
-    <div class="search-modal-overlay" vid="43">
+    <div class="search-modal-overlay" style="display: none;" id="search-modal" vid="43">
         <button class="close-btn" vid="44">Esc to Close</button>
 
         <div class="search-sidebar" vid="45">
@@ -509,6 +519,74 @@
         });
     </script>
 
+    <script>
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = height + 10;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speed = Math.random() * 0.4 + 0.1;
+                this.opacity = Math.random() * 0.5;
+                this.drift = (Math.random() - 0.5) * 0.2;
+            }
+
+            update() {
+                this.y -= this.speed;
+                this.x += this.drift;
+
+                if (this.y < -10) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(224, 204, 255, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            resize();
+            particles = [];
+            for (let i = 0; i < 60; i++) {
+                particles.push(new Particle());
+                particles[i].y = Math.random() * height;
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+        window.addEventListener('resize', init);
+    </script>
 </body>
 
 </html>
+```
