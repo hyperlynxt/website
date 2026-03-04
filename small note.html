@@ -649,14 +649,15 @@
                 activePaths = [];
             });
 
-            // Expose a method to toggle programmatically from the global button without breaking localized states
-            capsule.dataset.controlledToggle = function (forceState) {
+            // Listen for global overrides
+            capsule.addEventListener('forceToggle', (e) => {
+                const forceState = e.detail.state;
                 if (threadEnabled !== forceState) {
                     threadEnabled = forceState;
                     capsule.classList.toggle('active', threadEnabled);
                     localSpores.forEach(s => s.classList.toggle('spore-active', threadEnabled));
                 }
-            };
+            });
 
             capsule.addEventListener('click', () => {
                 threadEnabled = !threadEnabled;
@@ -673,12 +674,9 @@
             globalState = !globalState;
             globalToggle.innerText = globalState ? "TOGGLE ALL: ON" : "TOGGLE ALL: OFF";
 
-            // Loop through all capsules and force their state
+            // Loop through all capsules and dispatch the forced state event
             document.querySelectorAll('.note-entry .thread-capsule').forEach(capsule => {
-                if (capsule.dataset.controlledToggle) {
-                    // The function was assigned directly to the object property (hacky DOM attachment)
-                    // Let's use an event dispatch instead.
-                }
+                capsule.dispatchEvent(new CustomEvent('forceToggle', { detail: { state: globalState } }));
             });
         });
     </script>
