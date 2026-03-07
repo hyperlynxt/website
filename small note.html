@@ -12,7 +12,7 @@
 
     <style vid="8">
         :root {
-            --bg-paper: #121212;
+            --bg-paper: #101010;
             --ink-main: #e5e0d8;
             --ink-subtle: #a19d94;
             --accent-matcha: #87CEFA;
@@ -30,6 +30,10 @@
 
         body {
             background-color: var(--bg-paper);
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E"),
+                repeating-linear-gradient(0deg, transparent, transparent 7px, rgba(255, 255, 255, 0.02) 7px, rgba(255, 255, 255, 0.02) 8px),
+                repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(255, 255, 255, 0.015) 15px, rgba(255, 255, 255, 0.015) 16px);
             color: var(--ink-main);
             font-family: var(--font-tech);
             height: 100vh;
@@ -323,16 +327,6 @@
         .note-entry:nth-child(3) {
             animation-delay: 0.6s;
         }
-
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1;
-            pointer-events: none;
-        }
     </style>
 </head>
 
@@ -350,7 +344,6 @@
         </defs>
     </svg>
 
-    <canvas id="particle-canvas"></canvas>
     <div class="decoration-orb" vid="11"></div>
 
     <svg class="constellation-graphic" viewBox="0 0 100 100" vid="12">
@@ -449,73 +442,6 @@
             const scrolled = window.pageYOffset;
             orb.style.transform = `translateY(${scrolled * 0.1}px)`;
         });
-    </script>
-    <script>
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-
-        let width, height;
-        let particles = [];
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * width;
-                this.y = height + 10;
-                this.size = Math.random() * 1.5 + 0.5;
-                this.speed = Math.random() * 0.4 + 0.1;
-                this.opacity = Math.random() * 0.5;
-                this.drift = (Math.random() - 0.5) * 0.2;
-            }
-
-            update() {
-                this.y -= this.speed;
-                this.x += this.drift;
-
-                if (this.y < -10) {
-                    this.reset();
-                }
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(135, 206, 250, ${this.opacity})`;
-                ctx.fill();
-            }
-        }
-
-        function init() {
-            resize();
-            particles = [];
-            for (let i = 0; i < 60; i++) {
-                particles.push(new Particle());
-                particles[i].y = Math.random() * height;
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        animate();
-        window.addEventListener('resize', init);
     </script>
     <script>
         const canvasMycelium = document.getElementById('mycelium-canvas');
