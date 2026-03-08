@@ -138,13 +138,21 @@
                 <nav class="flex flex-col gap-4 text-base text-[#5A5A55]" vid="24">
                     <a href="#" class="filter-link active" data-filter="all" vid="25">All Collections</a>
                     <a href="#" class="filter-link" data-filter="unknown" vid="26">Unknown</a>
+                    <a href="#" class="filter-link" data-filter="anais nin">Anaïs Nin</a>
+                    <a href="#" class="filter-link" data-filter="epicurus">Epicurus</a>
+                    <a href="#" class="filter-link" data-filter="social media">Social Media</a>
                 </nav>
             </section>
 
             <section vid="31">
                 <h3 class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73] font-bold mb-6" vid="32">Themes</h3>
                 <nav class="flex flex-col gap-4 text-base text-[#5A5A55]" vid="33">
-                    <a href="#" class="filter-link" data-filter="personal" vid="34">Personal</a>
+                    <a href="#" class="filter-link" data-filter="personal">Personal</a>
+                    <a href="#" class="filter-link" data-filter="people">People</a>
+                    <a href="#" class="filter-link" data-filter="inner world">Inner World</a>
+                    <a href="#" class="filter-link" data-filter="humour">Humour</a>
+                    <a href="#" class="filter-link" data-filter="life">Life</a>
+                    <a href="#" class="filter-link" data-filter="friendship">Friendship</a>
                 </nav>
             </section>
         </aside>
@@ -152,7 +160,7 @@
 
         <nav class="w-[32rem] border-r border-[#1A1A18]/10 overflow-y-auto bg-[#F0EDE6]/40" vid="38">
             <div class="px-6 py-4 border-b border-[#1A1A18]/10 flex justify-between bg-white/10 sticky top-0" vid="39">
-                <span id="dive-count" class="text-[9px] tracking-widest uppercase text-[#7A7A73]" vid="40">05
+                <span id="dive-count" class="text-[9px] tracking-widest uppercase text-[#7A7A73]" vid="40">12
                     Entries</span>
                 <span class="text-[9px] italic text-[#7A7A73]" vid="41">Chronology</span>
             </div>
@@ -196,6 +204,62 @@
                     <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="61">"When people downplay
                         my emotions, I question their ability to feel theirs."</p>
                     <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="62">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(5)" data-theme="people"
+                    data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">VI.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"When you judge me without
+                        knowing me, you don't define me, you define yourself."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(6)" data-theme="humour"
+                    data-author="social media">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">VII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Cuando sabe que me gusta la
+                        navidad y me pone los cuernos para vestirse de reno."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Social Media</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(7)" data-theme="inner world"
+                    data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">VIII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"I have a love-hate relationship
+                        with hate itself."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(8)" data-theme="people"
+                    data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">IX.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"How miserable are you willing
+                        to be to impress the people around you?"</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(9)" data-theme="life"
+                    data-author="anais nin">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">X.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Life shrinks or expands in
+                        proportion of one's courage."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Anaïs Nin</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(10)" data-theme="friendship"
+                    data-author="epicurus">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XI.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"We do not so much need the help
+                        of our friends as the confidence of their help in need."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Epicurus</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(11)"
+                    data-theme="inner world" data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"I found myself at war with
+                        myself, and at war with myself I found myself."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
                 </button>
             </div>
         </nav>
@@ -260,7 +324,14 @@
             { numeral: 'II', theme: 'PERSONAL', quote: '"For them I was a breath of fresh air, and personally I\'ve never felt more suffocated."', author: 'Unknown', source: null },
             { numeral: 'III', theme: 'PERSONAL', quote: '"How empty of you to be so full of me."', author: 'Unknown', source: null },
             { numeral: 'IV', theme: 'PERSONAL', quote: '"How do I take off a mask when it stops being a mask, and is as much part of me as I am."', author: 'Unknown', source: null },
-            { numeral: 'V', theme: 'PERSONAL', quote: '"When people downplay my emotions, I question their ability to feel theirs."', author: 'Unknown', source: null }
+            { numeral: 'V', theme: 'PERSONAL', quote: '"When people downplay my emotions, I question their ability to feel theirs."', author: 'Unknown', source: null },
+            { numeral: 'VI', theme: 'PEOPLE', quote: '"When you judge me without knowing me, you don\'t define me, you define yourself."', author: 'Unknown', source: null },
+            { numeral: 'VII', theme: 'HUMOUR', quote: '"Cuando sabe que me gusta la navidad y me pone los cuernos para vestirse de reno."', author: 'Social Media', source: null },
+            { numeral: 'VIII', theme: 'INNER WORLD', quote: '"I have a love-hate relationship with hate itself."', author: 'Unknown', source: null },
+            { numeral: 'IX', theme: 'PEOPLE', quote: '"How miserable are you willing to be to impress the people around you?"', author: 'Unknown', source: null },
+            { numeral: 'X', theme: 'LIFE', quote: '"Life shrinks or expands in proportion of one\'s courage."', author: 'Anaïs Nin', source: 'The Diary of Anaïs Nin Vol. 5' },
+            { numeral: 'XI', theme: 'FRIENDSHIP', quote: '"We do not so much need the help of our friends as the confidence of their help in need."', author: 'Epicurus', source: null },
+            { numeral: 'XII', theme: 'INNER WORLD', quote: '"I found myself at war with myself, and at war with myself I found myself."', author: 'Unknown', source: null }
         ];
 
         let activeQuoteIndex = 0;
