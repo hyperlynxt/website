@@ -166,37 +166,37 @@
             <div class="flex flex-col" vid="42">
                 <button class="list-item active text-left p-8 group relative" onclick="updateQuote(0)" vid="43">
                     <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif" vid="44">I.</span>
-                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="45">"To see a World in a
-                        Grain of Sand."</p>
-                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="46">William Blake</p>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="45">"Who are you when you
+                        are not performing for the people inside of your mind?"</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="46">Unknown</p>
                 </button>
 
                 <button class="list-item text-left p-8 group relative" onclick="updateQuote(1)" vid="47">
                     <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif" vid="48">II.</span>
-                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="49">"The mind is its own
-                        place, and in itself."</p>
-                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="50">John Milton</p>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="49">"For them I was a
+                        breath of fresh air, and personally I've never felt more suffocated."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="50">Unknown</p>
                 </button>
 
                 <button class="list-item text-left p-8 group relative" onclick="updateQuote(2)" vid="51">
                     <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif" vid="52">III.</span>
-                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="53">"Time is the substance
-                        I am made of."</p>
-                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="54">Jorge Luis Borges</p>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="53">"How empty of you to be
+                        so full of me."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="54">Unknown</p>
                 </button>
 
                 <button class="list-item text-left p-8 group relative" onclick="updateQuote(3)" vid="55">
                     <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif" vid="56">IV.</span>
-                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="57">"What is done in love
-                        is done well."</p>
-                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="58">Vincent van Gogh</p>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="57">"How do I take off a
+                        mask when it stops being a mask, and is as much part of me as I am."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="58">Unknown</p>
                 </button>
 
                 <button class="list-item text-left p-8 group relative" onclick="updateQuote(4)" vid="59">
                     <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif" vid="60">V.</span>
-                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="61">"I hold a beast, an
-                        angel, and a madman..."</p>
-                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="62">Dylan Thomas</p>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="61">"When people downplay
+                        my emotions, I question their ability to feel theirs."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="62">Unknown</p>
                 </button>
             </div>
         </nav>
@@ -211,23 +211,23 @@
                 <div class="mb-10" vid="66">
                     <span id="main-theme"
                         class="text-[11px] tracking-[0.4em] uppercase text-[#263524] bg-[#263524]/5 border border-[#263524]/10 px-5 py-2"
-                        vid="67">Theme: Infinity</span>
+                        vid="67">PERSONAL</span>
                 </div>
 
                 <p id="main-quote"
                     class="text-[4.5rem] leading-[1.05] italic text-[#1A1A18] font-light mb-16 tracking-tight px-4"
                     vid="68">
-                    "To see a World in a <br vid="69"> Grain of Sand."
+                    "Who are you when you are not performing <br> for the people inside of your mind?"
                 </p>
 
                 <div class="flex flex-col items-center gap-6" vid="70">
                     <div class="h-px w-32 bg-[#1A1A18]/10" vid="71"></div>
                     <div id="main-author" class="text-2xl tracking-[0.1em] uppercase text-[#1A1A18] font-medium"
                         vid="72">
-                        William Blake
+                        Unknown
                     </div>
-                    <div id="main-source" class="text-sm italic text-[#7A7A73] opacity-80" vid="73">Auguries of
-                        Innocence, c. 1803</div>
+                    <div id="main-source" class="text-sm italic text-[#7A7A73] opacity-80" vid="73"
+                        style="display:none;"></div>
                 </div>
             </div>
 
@@ -257,11 +257,11 @@
 
     <script>
         const quotesData = [
-            { numeral: 'I', theme: 'Theme: Infinity', quote: '"To see a World in a <br> Grain of Sand."', author: 'William Blake', source: 'Auguries of Innocence, c. 1803' },
-            { numeral: 'II', theme: 'Theme: Solitude', quote: '"The mind is its own place, <br> and in itself."', author: 'John Milton', source: 'Paradise Lost, 1667' },
-            { numeral: 'III', theme: 'Theme: Existence', quote: '"Time is the substance <br> I am made of."', author: 'Jorge Luis Borges', source: 'A New Refutation of Time, 1944' },
-            { numeral: 'IV', theme: 'Theme: Purpose', quote: '"What is done in love <br> is done well."', author: 'Vincent van Gogh', source: 'Letter to Theo, 1880' },
-            { numeral: 'V', theme: 'Theme: Identity', quote: '"I hold a beast, an angel, <br> and a madman in me."', author: 'Dylan Thomas', source: 'Letter, 1933' }
+            { numeral: 'I', theme: 'PERSONAL', quote: '"Who are you when you are not performing <br> for the people inside of your mind?"', author: 'Unknown', source: null },
+            { numeral: 'II', theme: 'PERSONAL', quote: '"For them I was a breath of fresh air, <br> and personally I\'ve never felt more suffocated."', author: 'Unknown', source: null },
+            { numeral: 'III', theme: 'PERSONAL', quote: '"How empty of you <br> to be so full of me."', author: 'Unknown', source: null },
+            { numeral: 'IV', theme: 'PERSONAL', quote: '"How do I take off a mask when it stops being a mask, <br> and is as much part of me as I am."', author: 'Unknown', source: null },
+            { numeral: 'V', theme: 'PERSONAL', quote: '"When people downplay my emotions, <br> I question their ability to feel theirs."', author: 'Unknown', source: null }
         ];
 
         let activeQuoteIndex = 0;
