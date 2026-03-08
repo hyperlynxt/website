@@ -1,4 +1,6 @@
-<html lang="en" vid="0"><head vid="1">
+<html lang="en" vid="0">
+
+<head vid="1">
     <meta charset="UTF-8" vid="2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
     <title vid="4">Interlinked &amp; Intertwined - Selection</title>
@@ -19,7 +21,7 @@
             color: var(--text-primary);
             font-family: var(--font-serif);
             margin: 0;
-            overflow: hidden; 
+            overflow: hidden;
             height: 100vh;
             width: 100vw;
             display: flex;
@@ -71,7 +73,7 @@
             transform: translate(-50%, -50%);
             width: 180px;
             height: 180px;
-            background: radial-gradient(circle, rgba(230, 185, 126, 0.1) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, rgba(230, 185, 126, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
             border-radius: 50%;
             z-index: -1;
             animation: breathe 6s ease-in-out infinite;
@@ -136,21 +138,33 @@
         }
 
         @keyframes pulse-gold {
-            0%, 100% { 
-                text-shadow: 0 0 20px var(--accent-glow); 
+
+            0%,
+            100% {
+                text-shadow: 0 0 20px var(--accent-glow);
                 opacity: 0.9;
                 transform: scale(1);
             }
-            50% { 
-                text-shadow: 0 0 40px rgba(230, 185, 126, 0.6), 0 0 10px var(--accent-gold); 
+
+            50% {
+                text-shadow: 0 0 40px rgba(230, 185, 126, 0.6), 0 0 10px var(--accent-gold);
                 opacity: 1;
                 transform: scale(1.05);
             }
         }
 
         @keyframes breathe {
-            0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.3; }
-            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.5; }
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 0.5;
+            }
         }
 
         .fade-in-node {
@@ -174,9 +188,18 @@
             animation: fadeIn 3s ease forwards;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 0.4; } }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 0.4;
+            }
+        }
     </style>
 </head>
+
 <body vid="7">
 
     <svg id="mycelium-layer" xmlns="http://www.w3.org/2000/svg" vid="8">
@@ -197,8 +220,9 @@
             <span id="hub-node" vid="18">&amp;</span>
         </div>
 
-        
-        <a href="#" class="chapter-node fade-in-node" style="top: 15%; left: 50%; transform: translateX(-50%); animation-delay: 0.4s;" vid="19">
+
+        <a href="#" class="chapter-node fade-in-node"
+            style="top: 15%; left: 50%; transform: translateX(-50%); animation-delay: 0.4s;" vid="19">
             <div class="node-circle" vid="20"></div>
             <span class="chapter-label" vid="21">Part I</span>
             <span class="chapter-title" vid="22">The Void</span>
@@ -216,7 +240,8 @@
             <span class="chapter-title" vid="30">Synapse Bridge</span>
         </a>
 
-        <a href="#" class="chapter-node fade-in-node" style="top: 80%; left: 50%; transform: translateX(-50%); animation-delay: 1.0s;" vid="31">
+        <a href="#" class="chapter-node fade-in-node"
+            style="top: 80%; left: 50%; transform: translateX(-50%); animation-delay: 1.0s;" vid="31">
             <div class="node-circle" vid="32"></div>
             <span class="chapter-label" vid="33">Part IV</span>
             <span class="chapter-title" vid="34">Coalescence</span>
@@ -241,7 +266,7 @@
         const svgCanvas = document.getElementById('mycelium-layer');
         const hubNode = document.getElementById('hub-node');
         const chapterNodes = document.querySelectorAll('.node-circle');
-        
+
         const CONFIG = {
             maxPaths: 45,
             color: '#e6b97e',
@@ -266,51 +291,51 @@
         class MyceliumPath {
             constructor() {
                 this.element = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                this.phase = 'growing'; 
+                this.phase = 'growing';
                 this.progress = 0;
                 this.life = random(CONFIG.lifeSpan.min, CONFIG.lifeSpan.max);
                 this.width = random(CONFIG.strokeWidth.min, CONFIG.strokeWidth.max);
                 this.opacity = random(CONFIG.opacity.min, CONFIG.opacity.max);
-                
+
                 this.initPoints();
-                
+
                 this.element.setAttribute("fill", "none");
                 this.element.setAttribute("stroke", CONFIG.color);
                 this.element.setAttribute("stroke-width", this.width);
                 this.element.setAttribute("stroke-opacity", this.opacity);
                 this.element.setAttribute("stroke-linecap", "round");
                 this.element.setAttribute("filter", "url(#glow-filter)");
-                
+
                 svgCanvas.appendChild(this.element);
             }
 
             initPoints() {
                 const targetNodes = Array.from(chapterNodes);
                 const randomNode = targetNodes[Math.floor(Math.random() * targetNodes.length)];
-                
+
                 this.start = getCenter(hubNode);
                 this.end = getCenter(randomNode);
 
-                
+
                 this.start.x += random(-5, 5);
                 this.start.y += random(-5, 5);
                 this.end.x += random(-8, 8);
                 this.end.y += random(-8, 8);
 
                 this.cpOffsets = {
-                    cp1x: random(-80, 80),
-                    cp1y: random(-80, 80),
-                    cp2x: random(-80, 80),
-                    cp2y: random(-80, 80),
+                    cp1x: random(-20, 20),
+                    cp1y: random(-20, 20),
+                    cp2x: random(-20, 20),
+                    cp2y: random(-20, 20),
                     freq: random(0.0005, 0.002),
-                    amp: random(30, 150)
+                    amp: random(10, 50)
                 };
             }
 
             update(time) {
                 const dx = this.end.x - this.start.x;
                 const dy = this.end.y - this.start.y;
-                
+
                 const noise1 = Math.sin(time * this.cpOffsets.freq) * this.cpOffsets.amp;
                 const noise2 = Math.cos(time * this.cpOffsets.freq) * this.cpOffsets.amp;
 
@@ -369,4 +394,6 @@
         });
     </script>
 
-</body></html>
+</body>
+
+</html>
