@@ -88,7 +88,7 @@
         }
 
         .main-content {
-            animation: fadeUp 0.8s ease-out;
+            animation: fadeUp 0.4s ease-out;
         }
 
         @keyframes fadeUp {
@@ -204,11 +204,11 @@
 
 
         <main class="flex-1 relative flex items-center justify-center p-24 overflow-hidden bg-[#F4F1EA]" vid="63">
-            <span class="roman-numeral-center" id="main-numeral" style="transition: opacity 0.4s ease;"
+            <span class="roman-numeral-center" id="main-numeral" style="transition: opacity 0.2s ease;"
                 vid="64">I</span>
 
             <div class="main-content relative z-10 max-w-3xl w-full text-center" id="main-content-container"
-                style="transition: opacity 0.4s ease, transform 0.4s ease;" vid="65">
+                style="transition: opacity 0.2s ease, transform 0.2s ease;" vid="65">
                 <div class="mb-10" vid="66">
                     <span id="main-theme"
                         class="text-[11px] tracking-[0.4em] uppercase text-[#263524] bg-[#263524]/5 border border-[#263524]/10 px-5 py-2"
@@ -301,7 +301,7 @@
                     if (i === index) btn.classList.add('active');
                     else btn.classList.remove('active');
                 });
-            }, 400);
+            }, 200);
         }
 
         function navigateQuote(direction) {
