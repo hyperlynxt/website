@@ -1,0 +1,285 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Interlinked &amp; Intertwined - Echo</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <style vid="6">
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Syncopate:wght@400;700&display=swap');
+
+        :root {
+            --bg-deep: #0a0c0b; 
+            --bg-card: #121413;
+            --text-main: #f8f7f2; 
+            --text-muted: #666666;
+            --accent-glow: #d4efdf; 
+            --accent-shimmer: rgba(212, 239, 223, 0.1);
+            --border-subtle: #1a1d1b;
+            
+            --font-display: 'Cormorant Garamond', serif;
+            --font-tech: 'Syncopate', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+            margin: 0;
+            cursor: crosshair;
+        }
+
+        .mycelium-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            mix-blend-mode: screen;
+        }
+
+        .font-tech { font-family: var(--font-tech); }
+        
+        .source-anchor {
+            display: inline-block;
+            font-style: italic;
+            color: var(--accent-glow);
+            text-shadow: 0 0 20px rgba(212, 239, 223, 0.3);
+            cursor: pointer;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 60;
+        }
+
+        .spore {
+            position: relative;
+            display: inline-block;
+            transition: color 0.4s ease, text-shadow 0.4s ease;
+            white-space: nowrap;
+            z-index: 20;
+            border-bottom: 1px solid transparent;
+        }
+
+        .spore.connected {
+            color: var(--accent-glow);
+            text-shadow: 0 0 8px rgba(212, 239, 223, 0.5);
+            border-bottom: 1px solid var(--accent-glow);
+        }
+
+        .masonry-grid {
+            column-count: 3;
+            column-gap: 3rem;
+        }
+
+        .content-block {
+            break-inside: avoid;
+            margin-bottom: 4rem;
+            padding: 2.5rem;
+            border: 1px solid var(--border-subtle);
+            background: linear-gradient(180deg, rgba(18, 20, 19, 0.8) 0%, rgba(10, 12, 11, 1) 100%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-island {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 12, 11, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            z-index: 100;
+            display: flex;
+            gap: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        .nav-link {
+            font-family: var(--font-tech);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-main);
+        }
+
+        .nav-link.active {
+            color: var(--accent-glow);
+            position: relative;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background: var(--accent-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .grain-overlay {
+            position: fixed;
+            inset: 0;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 200;
+        }
+    </style>
+</head>
+<body vid="7">
+
+    <div class="grain-overlay" vid="8"></div>
+
+    <svg class="mycelium-layer" id="mycelium-canvas" xmlns="http://www.w3.org/2000/svg" vid="9">
+        <defs vid="10">
+            <filter id="glow" vid="11">
+                <feGaussianBlur stdDeviation="1.5" result="blur" vid="12"></feGaussianBlur>
+                <feComposite in="SourceGraphic" in2="blur" operator="over" vid="13"></feComposite>
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="relative w-full max-w-[1600px] mx-auto pt-24 pb-40 px-12" vid="14">
+        <header class="mb-32 text-center relative" vid="15">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-b from-transparent to-[#1a1d1b]" vid="16"></div>
+            <h1 class="text-[8rem] leading-[0.9] font-light tracking-tighter text-[#f8f7f2]" vid="17">
+                <div class="block" vid="18">Interlinked</div>
+                <div class="relative z-50 my-[-1rem]" vid="19">
+                    <span id="source-capsule" class="source-anchor text-[10rem]" vid="20">&amp;</span>
+                </div>
+                <div class="block" vid="21">Intertwined</div>
+            </h1>
+            <div class="mt-12 flex justify-center gap-4" vid="22">
+                <p class="font-tech text-xs tracking-[0.3em] text-[#666] border-t border-[#1a1d1b] pt-4 px-8 uppercase" vid="23">
+                    Phase IV / The Echo Chamber
+                </p>
+            </div>
+        </header>
+
+        <main class="masonry-grid" vid="24">
+            <article class="content-block" vid="25">
+                <span class="font-tech text-[10px] text-[#444] mb-4 block tracking-widest" vid="26">04 / RESONANCE</span>
+                <h3 class="text-3xl italic mb-6 text-white/90" vid="27">The After-Image</h3>
+                <p class="text-lg text-neutral-400 font-light text-justify" vid="28">
+                    In the silence of the void, the <span class="spore" vid="29">echo</span> persists. It is the residue of thought, a <span class="spore" vid="30">frequency</span> that lingers long after the source has faded.
+                </p>
+                <div class="mt-8 h-px w-full bg-gradient-to-r from-[#1a1d1b] to-transparent" vid="31"></div>
+            </article>
+
+            <article class="content-block" vid="32">
+                <span class="font-tech text-[10px] text-[#444] mb-4 block tracking-widest" vid="33">05 / PERSISTENCE</span>
+                <h3 class="text-3xl italic mb-6 text-white/90" vid="34">Ghost Circuits</h3>
+                <p class="text-lg text-neutral-400 font-light text-justify" vid="35">
+                    The <span class="spore" vid="36">shadow</span> of the grid remains. Even in darkness, the paths are etched into the <span class="spore" vid="37">substratum</span> of our collective memory.
+                </p>
+            </article>
+
+            <article class="content-block" vid="38">
+                 <div class="w-full aspect-[4/5] border border-[#1a1d1b] flex items-center justify-center mb-8 relative overflow-hidden" vid="39">
+                    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&amp;w=1000&amp;auto=format&amp;fit=crop')] opacity-20 bg-cover bg-center grayscale brightness-150" vid="40"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0c0b] to-transparent" vid="41"></div>
+                    <span class="font-tech text-xs tracking-widest text-[#444] relative z-10" vid="42">FIG. Ω</span>
+                 </div>
+                 <p class="text-lg text-neutral-400 font-light text-justify" vid="43">
+                    What was once light is now <span class="spore" vid="44">luminescence</span>. We inhabit the <span class="spore" vid="45">negative</span> space between the stars.
+                </p>
+            </article>
+
+            <article class="content-block" vid="46">
+                <span class="font-tech text-[10px] text-[#444] mb-4 block tracking-widest" vid="47">06 / DISSOLUTION</span>
+                <h3 class="text-3xl italic mb-6 text-white/90" vid="48">Final Symmetry</h3>
+                <p class="text-lg text-neutral-400 font-light text-justify" vid="49">
+                    Connection is <span class="spore" vid="50">infinite</span>. The end is merely a <span class="spore" vid="51">reflection</span> of the beginning, inverted and made eternal.
+                </p>
+            </article>
+        </main>
+    </div>
+
+    <nav class="nav-island" vid="52">
+        <a href="#" class="nav-link" vid="53">Origin</a>
+        <a href="#" class="nav-link" vid="54">Grid</a>
+        <a href="#" class="nav-link" vid="55">Flow</a>
+        <a href="#" class="nav-link active" vid="56">Echo</a>
+    </nav>
+
+    <script vid="57">
+        const mainCanvas = document.getElementById('mycelium-canvas');
+        const source = document.getElementById('source-capsule');
+        const spores = document.querySelectorAll('.spore');
+        let activePaths = [];
+
+        function createPath(target) {
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("fill", "none");
+            path.setAttribute("stroke", "#d4efdf");
+            path.setAttribute("stroke-width", "0.6");
+            path.setAttribute("stroke-opacity", "0");
+            path.setAttribute("filter", "url(#glow)");
+            mainCanvas.appendChild(path);
+            target.classList.add('connected');
+            return { element: path, target: target, progress: 0, phase: 'growing' };
+        }
+
+        function updatePaths() {
+            const srcRect = source.getBoundingClientRect();
+            const srcX = srcRect.left + srcRect.width/2;
+            const srcY = srcRect.top + srcRect.height/2;
+
+            activePaths.forEach((obj, idx) => {
+                const trgRect = obj.target.getBoundingClientRect();
+                const trgX = trgRect.left + trgRect.width/2;
+                const trgY = trgRect.top + trgRect.height/2;
+                
+                const d = `M ${srcX} ${srcY} C ${srcX + (trgX-srcX)*0.4} ${srcY - 50}, ${trgX - (trgX-srcX)*0.4} ${trgY + 50}, ${trgX} ${trgY}`;
+                obj.element.setAttribute("d", d);
+                
+                if (obj.phase === 'growing') {
+                    obj.progress += 0.008;
+                    if (obj.progress >= 1) obj.phase = 'dying';
+                } else {
+                    obj.progress -= 0.003;
+                    if (obj.progress <= 0) {
+                        obj.element.remove();
+                        obj.target.classList.remove('connected');
+                        obj.remove = true;
+                    }
+                }
+                obj.element.setAttribute("stroke-opacity", (0.3 * obj.progress).toString());
+                obj.element.setAttribute("stroke-width", (0.5 + obj.progress * 0.5).toString());
+            });
+            activePaths = activePaths.filter(p => !p.remove);
+            
+            if (activePaths.length < 8 && Math.random() > 0.96) {
+                const availableSpores = Array.from(spores).filter(s => !s.classList.contains('connected'));
+                if (availableSpores.length > 0) {
+                    const randomSpore = availableSpores[Math.floor(Math.random() * availableSpores.length)];
+                    activePaths.push(createPath(randomSpore));
+                }
+            }
+            requestAnimationFrame(updatePaths);
+        }
+
+        
+        function resize() {
+            mainCanvas.setAttribute('viewBox', `0 0 ${window.innerWidth} ${window.innerHeight}`);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        updatePaths();
+    </script>
+</body></html>

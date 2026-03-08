@@ -1,0 +1,351 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Interlinked &amp; Intertwined — Spring Edition</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;family=Montserrat:wght@200;300;400;500&amp;display=swap" rel="stylesheet" vid="8">
+    
+    <style vid="9">
+        :root {
+            --bg-void: #0d0e0d;
+            --spring-accent: #a8cfa8;
+            --spring-dim: rgba(168, 207, 168, 0.2);
+            --text-main: #e0e5de;
+            --text-muted: #808a82;
+        }
+
+        body {
+            background-color: var(--bg-void);
+            color: var(--text-main);
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+            margin: 0;
+            cursor: none; 
+        }
+
+        #cursor-dot,
+        #cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-dot {
+            width: 4px;
+            height: 4px;
+            background-color: var(--spring-accent);
+        }
+
+        #cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--spring-accent);
+            opacity: 0.5;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        .font-sans-alt {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .tracking-widest-2 {
+            letter-spacing: 0.25em;
+        }
+
+        .text-spring {
+            color: var(--spring-accent);
+        }
+
+        .glass-card {
+            background: rgba(13, 14, 13, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(168, 207, 168, 0.12);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(168, 207, 168, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+        }
+
+        .glass-card:hover h3 {
+            color: var(--spring-accent);
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 0.9;
+            font-weight: 300;
+            text-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
+
+        .ampersand {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--spring-accent);
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-appear {
+            opacity: 0;
+            animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-700 { animation-delay: 0.7s; }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--spring-accent), transparent);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            transform: translateY(-100%);
+            animation: drop 2.5s infinite;
+        }
+
+        @keyframes drop {
+            0% { transform: translateY(-100%); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(100%); opacity: 0; }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="selection:bg-[#a8cfa8] selection:text-[#0d0e0d]" vid="10">
+
+    <div id="cursor-dot" vid="11"></div>
+    <div id="cursor-outline" vid="12"></div>
+
+    <div id="canvas-container" vid="13">
+        <canvas id="botanical-drift" vid="14"></canvas>
+    </div>
+
+    <nav class="fixed top-0 w-full p-8 z-50 flex justify-between items-center text-xs font-sans-alt tracking-widest-2 uppercase opacity-80 mix-blend-difference" vid="15">
+        <div class="animate-appear" vid="16"><a href="#" class="hover:text-spring transition-colors" vid="17">Archive 002</a></div>
+        <div class="absolute left-1/2 -translate-x-1/2 animate-appear delay-100" vid="18">
+            <span class="text-spring" vid="19">Cycle</span> — Spring
+        </div>
+        <div class="flex gap-8 animate-appear delay-200" vid="20">
+            <a href="#collection" class="hover:text-spring transition-colors" vid="21">Index</a>
+            <a href="#" class="hover:text-spring transition-colors" vid="22">About</a>
+        </div>
+    </nav>
+
+    <header class="min-h-screen flex flex-col items-center justify-center relative px-4 text-center" vid="23">
+        <div class="relative z-10 mb-8" vid="24">
+            <div class="font-sans-alt text-xs tracking-[0.4em] uppercase text-spring mb-6 animate-appear delay-100 opacity-70" vid="25">
+                The Awakening of Form
+            </div>
+            
+            <h1 class="hero-title animate-appear delay-200" vid="26">
+                <span class="block" vid="27">Emergence</span>
+                <span class="block text-4xl md:text-6xl my-2 md:my-4 ampersand" vid="28">&amp;</span>
+                <span class="block" vid="29">Entropy</span>
+            </h1>
+
+            <div class="mt-8 flex items-center justify-center gap-4 text-sm font-sans-alt tracking-widest animate-appear delay-300 text-gray-400" vid="30">
+                <span vid="31">Seed</span>
+                <span class="text-spring opacity-50" vid="32">—</span>
+                <span vid="33">Bloom</span>
+            </div>
+        </div>
+
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 animate-appear delay-700" vid="34">
+            <span class="text-[10px] uppercase tracking-[0.3em] font-sans-alt text-gray-500" vid="35">Resurface</span>
+            <div class="scroll-line" vid="36"></div>
+        </div>
+    </header>
+
+    <main id="collection" class="relative z-10 w-full max-w-[1400px] mx-auto px-6 py-32" vid="37">
+        <div class="text-center mb-32" vid="38">
+            <h2 class="font-sans-alt text-xs tracking-[0.3em] uppercase text-spring mb-4" vid="39">The Vernal Archive</h2>
+            <p class="text-4xl md:text-5xl font-light italic text-white/90" vid="40">Fluorescent Growth</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 relative" vid="41">
+            
+            <article class="glass-card p-8 md:p-12 min-h-[400px] flex flex-col justify-between group mt-0 lg:mt-12" vid="42">
+                <div class="flex justify-between items-start text-[10px] font-sans-alt tracking-widest text-gray-500 uppercase border-b border-white/10 pb-4 mb-8" vid="43">
+                    <span vid="44">Origin: Fertile Soil</span>
+                    <span vid="45">ID: 101</span>
+                </div>
+                <div class="relative z-10" vid="46">
+                    <h3 class="text-3xl font-light mb-4 transition-colors duration-300 group-hover:italic" vid="47">Sapling Pulse</h3>
+                    <p class="text-gray-400 font-light leading-relaxed text-sm md:text-base" vid="48">
+                        The rhythmic surge of minerals rising through new xylem, a biological metronome signaling the end of dormancy and the return of light.
+                    </p>
+                </div>
+                <div class="mt-8 pt-8 border-t border-white/5 flex justify-end" vid="49">
+                    <span class="w-8 h-[1px] bg-spring opacity-50 group-hover:w-16 transition-all duration-500" vid="50"></span>
+                </div>
+            </article>
+
+            <article class="glass-card p-8 md:p-12 min-h-[400px] flex flex-col justify-between group mt-0 lg:-mt-12" vid="51">
+                <div class="flex justify-between items-start text-[10px] font-sans-alt tracking-widest text-gray-500 uppercase border-b border-white/10 pb-4 mb-8" vid="52">
+                    <span vid="53">Origin: Chlorophyll</span>
+                    <span vid="54">ID: 102</span>
+                </div>
+                <div class="relative z-10" vid="55">
+                    <h3 class="text-3xl font-light mb-4 transition-colors duration-300 group-hover:italic" vid="56">Photosynthetic Veil</h3>
+                    <p class="text-gray-400 font-light leading-relaxed text-sm md:text-base" vid="57">
+                        A microscopic tapestry of green capture, converting the sun's silent scream into the sugar-sweet language of planetary life.
+                    </p>
+                </div>
+                <div class="mt-8 pt-8 border-t border-white/5 flex justify-end" vid="58">
+                    <span class="w-8 h-[1px] bg-spring opacity-50 group-hover:w-16 transition-all duration-500" vid="59"></span>
+                </div>
+            </article>
+
+            <article class="glass-card p-8 md:p-12 min-h-[400px] flex flex-col justify-between group mt-0 lg:mt-24" vid="60">
+                <div class="flex justify-between items-start text-[10px] font-sans-alt tracking-widest text-gray-500 uppercase border-b border-white/10 pb-4 mb-8" vid="61">
+                    <span vid="62">Origin: Ephemeral</span>
+                    <span vid="63">ID: 103</span>
+                </div>
+                <div class="relative z-10" vid="64">
+                    <h3 class="text-3xl font-light mb-4 transition-colors duration-300 group-hover:italic" vid="65">Dewdrop Symmetry</h3>
+                    <p class="text-gray-400 font-light leading-relaxed text-sm md:text-base" vid="66">
+                        The fleeting perfection of morning condensation, refracting the universe into a million liquid prisms before the noon warmth claims them.
+                    </p>
+                </div>
+                <div class="mt-8 pt-8 border-t border-white/5 flex justify-end" vid="67">
+                    <span class="w-8 h-[1px] bg-spring opacity-50 group-hover:w-16 transition-all duration-500" vid="68"></span>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="relative z-10 py-24 text-center border-t border-white/5 mt-24" vid="69">
+        <p class="font-sans-alt text-[10px] tracking-[0.3em] uppercase text-gray-600 mb-4" vid="70">Cycle — Spring Edition</p>
+        <p class="font-serif italic text-gray-500" vid="71">© 2024 The Archive</p>
+    </footer>
+
+    <script vid="72">
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 600, fill: "forwards", easing: "cubic-bezier(0.23, 1, 0.32, 1)" });
+        });
+
+        const canvas = document.getElementById('botanical-drift');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        class Bud {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 2 + 1;
+                this.velocity = { x: (Math.random() - 0.5) * 0.4, y: (Math.random() - 0.5) * 0.4 };
+                this.life = Math.random() * 0.5 + 0.5;
+                this.growth = Math.random() * 0.005;
+                this.connections = [];
+            }
+            update() {
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.life -= 0.0005;
+                if (this.life <= 0) this.reset();
+            }
+        }
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            particles = Array.from({ length: 80 }, () => new Bud());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            particles.forEach((p, i) => {
+                p.update();
+                
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dx = p.x - p2.x;
+                    const dy = p.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < 200) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        
+                        const cx = (p.x + p2.x) / 2 + Math.sin(Date.now() * 0.001 + i) * 20;
+                        const cy = (p.y + p2.y) / 2 + Math.cos(Date.now() * 0.001 + j) * 20;
+                        ctx.quadraticCurveTo(cx, cy, p2.x, p2.y);
+                        
+                        const alpha = (1 - dist / 200) * 0.15 * p.life;
+                        ctx.strokeStyle = `rgba(168, 207, 168, ${alpha})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(168, 207, 168, ${p.life * 0.3})`;
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+    </script>
+</body></html>
