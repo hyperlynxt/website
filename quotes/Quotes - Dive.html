@@ -355,7 +355,7 @@
             let visible = 0;
 
             buttons.forEach((btn, i) => {
-                const text = btn.querySelector('p')?.textContent.toLowerCase() || '';
+                const text = btn.textContent.toLowerCase();
                 const matches = !query || text.includes(query);
                 btn.style.display = matches ? '' : 'none';
                 if (matches) {

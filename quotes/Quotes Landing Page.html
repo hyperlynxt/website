@@ -282,9 +282,8 @@
             const query = searchInput.value.trim().toLowerCase();
             let visible = 0;
             cards.forEach(card => {
-                const quoteText = card.querySelector('p')?.textContent.toLowerCase() || '';
-                const authorText = card.querySelector('.text-sm')?.textContent.toLowerCase() || '';
-                const matches = !query || quoteText.includes(query) || authorText.includes(query);
+                const text = card.textContent.toLowerCase();
+                const matches = !query || text.includes(query);
                 card.style.display = matches ? '' : 'none';
                 if (matches) visible++;
             });
