@@ -63,8 +63,10 @@
         }
 
         #hub-node {
-            text-shadow: 0 0 20px var(--accent-glow);
-            animation: pulse-gold 4s ease-in-out infinite;
+            font-family: var(--font-display);
+            font-style: italic;
+            color: #1b3022;
+            font-size: clamp(6rem, 15vw, 12rem);
         }
 
         .aura {
@@ -138,21 +140,7 @@
             text-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
 
-        @keyframes pulse-gold {
 
-            0%,
-            100% {
-                text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-                opacity: 0.9;
-                transform: scale(1);
-            }
-
-            50% {
-                text-shadow: 0 0 30px rgba(0, 0, 0, 0.4), 0 0 10px rgba(230, 185, 126, 0.8);
-                opacity: 1;
-                transform: scale(1.05);
-            }
-        }
 
         @keyframes breathe {
 
@@ -231,7 +219,6 @@
 
     <main class="content-layer" vid="15">
         <div class="ampersand-hub" style="left: 20%; top: -3%;" vid="16">
-            <div class="aura" vid="17"></div>
             <span id="hub-node" vid="18">&amp;</span>
         </div>
 
