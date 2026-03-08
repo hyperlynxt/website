@@ -1,0 +1,179 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Archive | Library &amp; Loom</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet" vid="8">
+    <style vid="9">
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #F0EDE6;
+            color: #1A1A18;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+        
+        .roman-numeral-center {
+            font-family: 'Cormorant Garamond', serif;
+            opacity: 0.03;
+            pointer-events: none;
+            position: absolute;
+            top: 50%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            font-size: 24rem;
+            z-index: 0;
+        }
+
+        .filter-link {
+            transition: all 0.3s ease;
+            display: block;
+            border-left: 1px solid transparent;
+        }
+
+        .filter-link:hover {
+            color: #263524;
+            padding-left: 0.5rem;
+            border-left: 1px solid #263524;
+        }
+
+        .filter-link.active {
+            color: #263524;
+            font-weight: 600;
+            padding-left: 0.5rem;
+            border-left: 1px solid #263524;
+        }
+
+        .search-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #263524;
+            outline: none;
+            font-style: italic;
+        }
+
+        .empty-state-content {
+            animation: fadeUp 1.2s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .suggested-tag {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(26, 26, 24, 0.1);
+        }
+
+        .suggested-tag:hover {
+            background: #263524;
+            color: #F0EDE6;
+            border-color: #263524;
+        }
+    </style>
+</head>
+<body class="selection:bg-[#263524] selection:text-[#F0EDE6] h-screen flex flex-col overflow-hidden" vid="10">
+
+    <header class="w-full h-24 px-8 flex items-center justify-between border-b border-[#1A1A18]/10 bg-[#F0EDE6]/80 backdrop-blur-md z-30" vid="11">
+        <div class="flex items-center gap-12" vid="12">
+            <h1 class="text-3xl tracking-tight font-medium" vid="13">
+                Library <span class="italic text-[#263524]" vid="14">&amp;</span> Loom
+            </h1>
+            <div class="hidden lg:block w-72" vid="15">
+                <input type="text" value="the unwritten silence" class="search-input w-full py-1 text-sm text-[#1A1A18] placeholder:text-[#1A1A18]/30 font-light" vid="16">
+            </div>
+        </div>
+        <div class="flex items-center gap-8" vid="17">
+            <span class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73]" vid="18">Archive V.2.04</span>
+            <a href="#" class="text-[10px] tracking-[0.2em] uppercase text-[#1A1A18] border-b border-black/20 hover:border-black transition-colors pb-0.5" vid="19">Return to Index</a>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden" vid="20">
+        
+        <aside class="w-60 border-r border-[#1A1A18]/10 overflow-y-auto bg-[#F0EDE6] px-8 py-10 z-20" vid="21">
+            <section class="mb-12" vid="22">
+                <h3 class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73] font-bold mb-6" vid="23">Authors</h3>
+                <nav class="flex flex-col gap-4 text-base text-[#5A5A55]" vid="24">
+                    <a href="#" class="filter-link" vid="25">All Collections</a>
+                    <a href="#" class="filter-link" vid="26">Dylan Thomas</a>
+                    <a href="#" class="filter-link" vid="27">John Milton</a>
+                    <a href="#" class="filter-link" vid="28">Jorge Luis Borges</a>
+                    <a href="#" class="filter-link" vid="29">Vincent van Gogh</a>
+                    <a href="#" class="filter-link" vid="30">William Blake</a>
+                </nav>
+            </section>
+
+            <section vid="31">
+                <h3 class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73] font-bold mb-6" vid="32">Themes</h3>
+                <nav class="flex flex-col gap-4 text-base text-[#5A5A55]" vid="33">
+                    <a href="#" class="filter-link" vid="34">Existence</a>
+                    <a href="#" class="filter-link" vid="35">Infinity</a>
+                    <a href="#" class="filter-link" vid="36">Language</a>
+                    <a href="#" class="filter-link" vid="37">Solitude</a>
+                </nav>
+            </section>
+        </aside>
+
+        <nav class="w-80 border-r border-[#1A1A18]/10 overflow-y-auto bg-[#F0EDE6]/40 flex flex-col items-center justify-center p-8 text-center" vid="38">
+            <div class="opacity-20 mb-4" vid="39">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" vid="40">
+                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" vid="41"></path>
+                </svg>
+            </div>
+            <p class="text-sm italic text-[#7A7A73] leading-relaxed" vid="42">The shelves are quiet.<br vid="43">No fragments match your query.</p>
+        </nav>
+
+        <main class="flex-1 relative flex items-center justify-center p-24 overflow-hidden bg-[#F4F1EA]" vid="44">
+            <span class="roman-numeral-center" vid="45">0</span>
+            
+            <div class="empty-state-content relative z-10 max-w-2xl w-full text-center" vid="46">
+                <div class="mb-12" vid="47">
+                    <span class="text-[11px] tracking-[0.4em] uppercase text-[#7A7A73] border border-[#1A1A18]/10 px-6 py-2" vid="48">Void / Absence</span>
+                </div>
+                
+                <h2 class="text-5xl leading-tight italic text-[#1A1A18] font-light mb-8 tracking-tight" vid="49">
+                    "This page is a mirror of the unwritten."
+                </h2>
+                
+                <p class="text-lg text-[#5A5A55] mb-16 max-w-lg mx-auto leading-relaxed" vid="50">
+                    The fragment you seek remains lost in the library's vast architecture. Perhaps the thread lies in a different direction?
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left border-t border-[#1A1A18]/10 pt-12" vid="51">
+                    <div vid="52">
+                        <h4 class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73] mb-6" vid="53">Suggested Paths</h4>
+                        <div class="flex flex-wrap gap-2" vid="54">
+                            <a href="#" class="suggested-tag text-[11px] px-3 py-1.5 uppercase tracking-wider" vid="55">Jorge Luis Borges</a>
+                            <a href="#" class="suggested-tag text-[11px] px-3 py-1.5 uppercase tracking-wider" vid="56">Infinity</a>
+                            <a href="#" class="suggested-tag text-[11px] px-3 py-1.5 uppercase tracking-wider" vid="57">The Labyrinth</a>
+                        </div>
+                    </div>
+                    <div vid="58">
+                        <h4 class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73] mb-6" vid="59">Common Threads</h4>
+                        <div class="flex flex-wrap gap-2" vid="60">
+                            <a href="#" class="suggested-tag text-[11px] px-3 py-1.5 uppercase tracking-wider" vid="61">Existence</a>
+                            <a href="#" class="suggested-tag text-[11px] px-3 py-1.5 uppercase tracking-wider" vid="62">William Blake</a>
+                            <a href="#" class="suggested-tag text-[11px] px-3 py-1.5 uppercase tracking-wider" vid="63">Solitude</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="absolute bottom-12 left-16 right-16 flex justify-center items-center" vid="64">
+                <div class="h-px w-24 bg-black/5" vid="65"></div>
+                <button class="mx-8 text-[10px] uppercase tracking-[0.3em] text-[#263524] font-bold border-b border-[#263524]/30 hover:border-[#263524] transition-all" vid="66">
+                    Clear Search Filter
+                </button>
+                <div class="h-px w-24 bg-black/5" vid="67"></div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="w-full h-12 px-8 flex items-center justify-center border-t border-[#1A1A18]/10 bg-[#F0EDE6] z-30" vid="68">
+        <span class="text-[10px] tracking-[0.3em] uppercase text-[#7A7A73] italic" vid="69">Discovering the thread through the labyrinth</span>
+    </footer>
+
+</body></html>

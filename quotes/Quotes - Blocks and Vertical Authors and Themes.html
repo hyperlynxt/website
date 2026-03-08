@@ -1,0 +1,262 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Quotes &amp; Collected | Browse Archive</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet" vid="8">
+    <style vid="9">
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #F0EDE6;
+            color: #1A1A18;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+        
+        .title-ampersand {
+            color: #263524;
+        }
+
+        .roman-numeral-center {
+            font-family: 'Cormorant Garamond', serif;
+            opacity: 0.08;
+            pointer-events: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8rem;
+            z-index: 0;
+        }
+
+        .masonry-card {
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(26, 26, 24, 0.08);
+            transition: all 0.4s ease;
+            break-inside: avoid;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .masonry-card:hover {
+            transform: translateY(-4px);
+            background-color: rgba(255, 255, 255, 0.5);
+            border-color: rgba(38, 53, 36, 0.2);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+        }
+
+        .sidebar-link {
+            transition: all 0.3s ease;
+            border-left: 1px solid transparent;
+        }
+
+        .sidebar-link:hover {
+            color: #263524;
+            padding-left: 1rem;
+            border-left: 1px solid #263524;
+        }
+
+        .sidebar-link.active {
+            color: #263524;
+            font-weight: 500;
+            padding-left: 1rem;
+            border-left: 1px solid #263524;
+        }
+
+        .search-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(26, 26, 24, 0.2);
+            outline: none;
+            font-style: italic;
+        }
+
+        .search-input:focus {
+            border-bottom: 1px solid #263524;
+        }
+
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F0EDE6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #263524;
+        }
+    </style>
+</head>
+<body class="selection:bg-[#263524] selection:text-[#F0EDE6] min-h-screen flex flex-col" vid="10">
+
+    <header class="w-full pt-12 pb-12 px-8 lg:px-16 border-b border-[#1A1A18]/10" vid="11">
+        <div class="flex justify-between items-baseline mb-8" vid="12">
+            <div class="text-sm tracking-widest text-[#4A4A45] font-light lowercase" vid="13">
+                <a href="#" class="hover:opacity-60 transition-opacity" vid="14">archive</a> | filter
+            </div>
+            <a href="#" class="text-xs tracking-widest uppercase text-[#7A7A73] hover:text-[#1A1A18] transition-colors font-medium" vid="15">Return to Index</a>
+        </div>
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8" vid="16">
+            <div vid="17">
+                <h1 class="text-[4rem] lg:text-[5.5rem] leading-[0.8] tracking-tight text-[#1A1A18] font-medium" vid="18">
+                    Library <span class="title-ampersand italic ml-[-0.1em] opacity-90" vid="19">&amp;</span><br vid="20">
+                    Loom
+                </h1>
+            </div>
+            <div class="max-w-md w-full mb-2" vid="21">
+                <div class="relative" vid="22">
+                    <input type="text" placeholder="Search by theme or fragment..." class="search-input w-full py-2 text-xl lg:text-2xl text-[#1A1A18] placeholder:text-[#1A1A18]/30 font-light" vid="23">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 catalog-container mx-auto w-full px-8 lg:px-16" vid="24">
+        
+        <aside class="w-64 py-20 hidden lg:block border-r border-[#1A1A18]/10 h-full" vid="25">
+            <div class="sticky top-20" vid="26">
+                <section class="mb-12" vid="27">
+                    <h3 class="text-xs tracking-[0.2em] uppercase text-[#7A7A73] font-semibold mb-6" vid="28">Authors</h3>
+                    <nav class="flex flex-col gap-4 text-lg text-[#5A5A55]" vid="29">
+                        <a href="#" class="sidebar-link active" vid="30">All Collections</a>
+                        <a href="#" class="sidebar-link" vid="31">Dylan Thomas</a>
+                        <a href="#" class="sidebar-link" vid="32">John Milton</a>
+                        <a href="#" class="sidebar-link" vid="33">Jorge Luis Borges</a>
+                        <a href="#" class="sidebar-link" vid="34">Ludwig Wittgenstein</a>
+                        <a href="#" class="sidebar-link" vid="35">Vincent van Gogh</a>
+                        <a href="#" class="sidebar-link" vid="36">William Blake</a>
+                    </nav>
+                </section>
+
+                <section vid="37">
+                    <h3 class="text-xs tracking-[0.2em] uppercase text-[#7A7A73] font-semibold mb-6" vid="38">Themes</h3>
+                    <nav class="flex flex-col gap-4 text-lg text-[#5A5A55]" vid="39">
+                        <a href="#" class="sidebar-link" vid="40">Existence</a>
+                        <a href="#" class="sidebar-link" vid="41">Infinity</a>
+                        <a href="#" class="sidebar-link" vid="42">Language</a>
+                        <a href="#" class="sidebar-link" vid="43">Solitude</a>
+                    </nav>
+                </section>
+            </div>
+        </aside>
+
+        
+        <main class="flex-1 lg:pl-20 py-20" vid="44">
+            <div class="flex justify-between items-end mb-12 border-b border-[#1A1A18]/10 pb-4" vid="45">
+                <span class="text-xs tracking-widest uppercase text-[#7A7A73]" vid="46">Showing 06 Results</span>
+                <span class="text-xs italic text-[#7A7A73]" vid="47">Sorted by Chronology</span>
+            </div>
+
+            <div class="masonry-grid" vid="48">
+                
+                <article class="masonry-card p-10 group cursor-pointer" vid="49">
+                    <span class="roman-numeral-center" vid="50">I</span>
+                    <div class="relative z-10 min-h-[140px] flex flex-col justify-center mb-8" vid="51">
+                        <p class="text-2xl lg:text-3xl leading-snug italic text-[#1A1A18] text-center" vid="52">
+                            "To see a World in a Grain of Sand."
+                        </p>
+                    </div>
+                    <div class="relative z-10 flex flex-col gap-3 pt-6 border-t border-[#1A1A18]/5" vid="53">
+                        <div class="text-[10px] self-start tracking-widest uppercase text-[#263524] bg-[#263524]/5 px-2 py-1" vid="54">Infinity</div>
+                        <div class="text-sm tracking-widest uppercase text-[#7A7A73] font-medium" vid="55">
+                            William Blake
+                        </div>
+                    </div>
+                </article>
+
+                <article class="masonry-card p-10 group cursor-pointer" vid="56">
+                    <span class="roman-numeral-center" vid="57">II</span>
+                    <div class="relative z-10 min-h-[180px] flex flex-col justify-center mb-8" vid="58">
+                        <p class="text-2xl lg:text-3xl leading-snug italic text-[#1A1A18] text-center" vid="59">
+                            "The mind is its own place, and in itself."
+                        </p>
+                    </div>
+                    <div class="relative z-10 flex flex-col gap-3 pt-6 border-t border-[#1A1A18]/5" vid="60">
+                        <div class="text-[10px] self-start tracking-widest uppercase text-[#263524] bg-[#263524]/5 px-2 py-1" vid="61">Solitude</div>
+                        <div class="text-sm tracking-widest uppercase text-[#7A7A73] font-medium" vid="62">
+                            John Milton
+                        </div>
+                    </div>
+                </article>
+
+                <article class="masonry-card p-10 group cursor-pointer" vid="63">
+                    <span class="roman-numeral-center" vid="64">III</span>
+                    <div class="relative z-10 min-h-[120px] flex flex-col justify-center mb-8" vid="65">
+                        <p class="text-2xl lg:text-3xl leading-snug italic text-[#1A1A18] text-center" vid="66">
+                            "Time is the substance I am made of."
+                        </p>
+                    </div>
+                    <div class="relative z-10 flex flex-col gap-3 pt-6 border-t border-[#1A1A18]/5" vid="67">
+                        <div class="text-[10px] self-start tracking-widest uppercase text-[#263524] bg-[#263524]/5 px-2 py-1" vid="68">Existence</div>
+                        <div class="text-sm tracking-widest uppercase text-[#7A7A73] font-medium" vid="69">
+                            Jorge Luis Borges
+                        </div>
+                    </div>
+                </article>
+
+                <article class="masonry-card p-10 group cursor-pointer" vid="70">
+                    <span class="roman-numeral-center" vid="71">IV</span>
+                    <div class="relative z-10 min-h-[160px] flex flex-col justify-center mb-8" vid="72">
+                        <p class="text-2xl lg:text-3xl leading-snug italic text-[#1A1A18] text-center" vid="73">
+                            "What is done in love is done well."
+                        </p>
+                    </div>
+                    <div class="relative z-10 flex flex-col gap-3 pt-6 border-t border-[#1A1A18]/5" vid="74">
+                        <div class="text-[10px] self-start tracking-widest uppercase text-[#263524] bg-[#263524]/5 px-2 py-1" vid="75">Purpose</div>
+                        <div class="text-sm tracking-widest uppercase text-[#7A7A73] font-medium" vid="76">
+                            Vincent van Gogh
+                        </div>
+                    </div>
+                </article>
+
+                <article class="masonry-card p-10 group cursor-pointer" vid="77">
+                    <span class="roman-numeral-center" vid="78">V</span>
+                    <div class="relative z-10 min-h-[200px] flex flex-col justify-center mb-8" vid="79">
+                        <p class="text-2xl lg:text-3xl leading-snug italic text-[#1A1A18] text-center" vid="80">
+                            "I hold a beast, an angel, and a madman in me."
+                        </p>
+                    </div>
+                    <div class="relative z-10 flex flex-col gap-3 pt-6 border-t border-[#1A1A18]/5" vid="81">
+                        <div class="text-[10px] self-start tracking-widest uppercase text-[#263524] bg-[#263524]/5 px-2 py-1" vid="82">Identity</div>
+                        <div class="text-sm tracking-widest uppercase text-[#7A7A73] font-medium" vid="83">
+                            Dylan Thomas
+                        </div>
+                    </div>
+                </article>
+
+                <article class="masonry-card p-10 group cursor-pointer" vid="84">
+                    <span class="roman-numeral-center" vid="85">VI</span>
+                    <div class="relative z-10 min-h-[140px] flex flex-col justify-center mb-8" vid="86">
+                        <p class="text-2xl lg:text-3xl leading-snug italic text-[#1A1A18] text-center" vid="87">
+                            "The limits of my language mean the limits of my world."
+                        </p>
+                    </div>
+                    <div class="relative z-10 flex flex-col gap-3 pt-6 border-t border-[#1A1A18]/5" vid="88">
+                        <div class="text-[10px] self-start tracking-widest uppercase text-[#263524] bg-[#263524]/5 px-2 py-1" vid="89">Language</div>
+                        <div class="text-sm tracking-widest uppercase text-[#7A7A73] font-medium" vid="90">
+                            Ludwig Wittgenstein
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+    </div>
+
+    <footer class="w-full py-12 px-8 lg:px-16 text-center text-[#7A7A73] text-xs tracking-widest uppercase border-t border-[#1A1A18]/10" vid="91">
+        Discovering the thread through the labyrinth
+    </footer>
+
+</body></html>

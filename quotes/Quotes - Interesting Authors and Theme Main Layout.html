@@ -1,0 +1,190 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Index | Library &amp; Loom</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet" vid="8">
+    <style vid="9">
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #F0EDE6;
+            color: #1A1A18;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+        
+        .index-grid-item {
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            border-right: 1px solid rgba(26, 26, 24, 0.08);
+            border-bottom: 1px solid rgba(26, 26, 24, 0.08);
+        }
+
+        .index-grid-item:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .index-grid-item:hover .author-name {
+            transform: translateX(8px);
+        }
+
+        .author-name {
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .search-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(26, 26, 24, 0.15);
+            outline: none;
+            font-style: italic;
+        }
+
+        .hero-text {
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #263524;
+        }
+    </style>
+</head>
+<body class="selection:bg-[#263524] selection:text-[#F0EDE6] min-h-screen flex flex-col" vid="10">
+
+    <header class="w-full h-24 px-12 flex items-center justify-between border-b border-[#1A1A18]/10 bg-[#F0EDE6]/80 backdrop-blur-md sticky top-0 z-30" vid="11">
+        <div class="flex items-center gap-16" vid="12">
+            <h1 class="text-3xl tracking-tight font-medium" vid="13">
+                Library <span class="italic text-[#263524]" vid="14">&amp;</span> Loom
+            </h1>
+            <div class="hidden lg:block w-96" vid="15">
+                <input type="text" placeholder="Search the collections..." class="search-input w-full py-1 text-sm text-[#1A1A18] placeholder:text-[#1A1A18]/30 font-light" vid="16">
+            </div>
+        </div>
+        <div class="flex items-center gap-8" vid="17">
+            <span class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73]" vid="18">Archive V.2.04</span>
+            <div class="h-4 w-px bg-[#1A1A18]/10" vid="19"></div>
+            <a href="#" class="text-[10px] tracking-[0.3em] uppercase text-[#263524] font-bold" vid="20">Index</a>
+        </div>
+    </header>
+
+    <main class="flex-1 px-12 py-20" vid="21">
+        <div class="max-w-7xl mx-auto" vid="22">
+            
+            <div class="hero-text mb-24" vid="23">
+                <p class="text-[11px] tracking-[0.4em] uppercase text-[#7A7A73] mb-6" vid="24">Navigation Hub</p>
+                <h2 class="text-7xl font-light italic leading-tight text-[#1A1A18]" vid="25">
+                    Threads of human thought,<br vid="26">
+                    <span class="text-[#263524] not-italic" vid="27">woven by category &amp; hand.</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-12 border-t border-l border-[#1A1A18]/10" vid="28">
+                
+                <div class="col-span-12 lg:col-span-8" vid="29">
+                    <div class="px-8 py-4 bg-[#1A1A18]/5 border-r border-b border-[#1A1A18]/10" vid="30">
+                        <span class="text-[10px] tracking-[0.3em] uppercase text-[#7A7A73] font-bold" vid="31">Authors</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2" vid="32">
+                        <a href="#" class="index-grid-item p-12 flex flex-col justify-between h-64" vid="33">
+                            <span class="text-[10px] italic text-[#7A7A73]" vid="34">01.</span>
+                            <div vid="35">
+                                <h3 class="author-name text-4xl text-[#1A1A18] mb-2" vid="36">William Blake</h3>
+                                <p class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73]" vid="37">12 Fragments</p>
+                            </div>
+                        </a>
+                        <a href="#" class="index-grid-item p-12 flex flex-col justify-between h-64" vid="38">
+                            <span class="text-[10px] italic text-[#7A7A73]" vid="39">02.</span>
+                            <div vid="40">
+                                <h3 class="author-name text-4xl text-[#1A1A18] mb-2" vid="41">John Milton</h3>
+                                <p class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73]" vid="42">08 Fragments</p>
+                            </div>
+                        </a>
+                        <a href="#" class="index-grid-item p-12 flex flex-col justify-between h-64" vid="43">
+                            <span class="text-[10px] italic text-[#7A7A73]" vid="44">03.</span>
+                            <div vid="45">
+                                <h3 class="author-name text-4xl text-[#1A1A18] mb-2" vid="46">Jorge Luis Borges</h3>
+                                <p class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73]" vid="47">15 Fragments</p>
+                            </div>
+                        </a>
+                        <a href="#" class="index-grid-item p-12 flex flex-col justify-between h-64" vid="48">
+                            <span class="text-[10px] italic text-[#7A7A73]" vid="49">04.</span>
+                            <div vid="50">
+                                <h3 class="author-name text-4xl text-[#1A1A18] mb-2" vid="51">Vincent van Gogh</h3>
+                                <p class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73]" vid="52">05 Fragments</p>
+                            </div>
+                        </a>
+                        <a href="#" class="index-grid-item p-12 flex flex-col justify-between h-64" vid="53">
+                            <span class="text-[10px] italic text-[#7A7A73]" vid="54">05.</span>
+                            <div vid="55">
+                                <h3 class="author-name text-4xl text-[#1A1A18] mb-2" vid="56">Dylan Thomas</h3>
+                                <p class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73]" vid="57">09 Fragments</p>
+                            </div>
+                        </a>
+                        <a href="#" class="index-grid-item p-12 flex flex-col justify-between h-64" vid="58">
+                            <span class="text-[10px] italic text-[#7A7A73]" vid="59">06.</span>
+                            <div vid="60">
+                                <h3 class="author-name text-4xl text-[#1A1A18] mb-2" vid="61">Emily Dickinson</h3>
+                                <p class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73]" vid="62">11 Fragments</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                
+                <div class="col-span-12 lg:col-span-4" vid="63">
+                    <div class="px-8 py-4 bg-[#263524]/5 border-r border-b border-[#1A1A18]/10" vid="64">
+                        <span class="text-[10px] tracking-[0.3em] uppercase text-[#263524] font-bold" vid="65">Themes</span>
+                    </div>
+                    <div class="flex flex-col" vid="66">
+                        <a href="#" class="index-grid-item p-8 flex items-center justify-between group" vid="67">
+                            <h4 class="text-2xl italic text-[#1A1A18] group-hover:text-[#263524] transition-colors" vid="68">Existence</h4>
+                            <span class="text-[10px] font-bold text-[#7A7A73]" vid="69">18</span>
+                        </a>
+                        <a href="#" class="index-grid-item p-8 flex items-center justify-between group" vid="70">
+                            <h4 class="text-2xl italic text-[#1A1A18] group-hover:text-[#263524] transition-colors" vid="71">Infinity</h4>
+                            <span class="text-[10px] font-bold text-[#7A7A73]" vid="72">24</span>
+                        </a>
+                        <a href="#" class="index-grid-item p-8 flex items-center justify-between group" vid="73">
+                            <h4 class="text-2xl italic text-[#1A1A18] group-hover:text-[#263524] transition-colors" vid="74">Language</h4>
+                            <span class="text-[10px] font-bold text-[#7A7A73]" vid="75">14</span>
+                        </a>
+                        <a href="#" class="index-grid-item p-8 flex items-center justify-between group" vid="76">
+                            <h4 class="text-2xl italic text-[#1A1A18] group-hover:text-[#263524] transition-colors" vid="77">Solitude</h4>
+                            <span class="text-[10px] font-bold text-[#7A7A73]" vid="78">09</span>
+                        </a>
+                        <a href="#" class="index-grid-item p-8 flex items-center justify-between group" vid="79">
+                            <h4 class="text-2xl italic text-[#1A1A18] group-hover:text-[#263524] transition-colors" vid="80">Melancholy</h4>
+                            <span class="text-[10px] font-bold text-[#7A7A73]" vid="81">12</span>
+                        </a>
+                        <a href="#" class="index-grid-item p-8 flex items-center justify-between group" vid="82">
+                            <h4 class="text-2xl italic text-[#1A1A18] group-hover:text-[#263524] transition-colors" vid="83">The Void</h4>
+                            <span class="text-[10px] font-bold text-[#7A7A73]" vid="84">07</span>
+                        </a>
+                        <div class="index-grid-item p-8 flex-1 bg-[#F0EDE6]" vid="85"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="w-full h-24 px-12 flex items-center justify-between border-t border-[#1A1A18]/10 bg-[#F0EDE6] z-30" vid="86">
+        <span class="text-[10px] tracking-[0.3em] uppercase text-[#7A7A73] italic" vid="87">Discovering the thread through the labyrinth</span>
+        <div class="flex gap-12" vid="88">
+            <a href="#" class="text-[10px] tracking-[0.2em] uppercase text-[#1A1A18] hover:text-[#263524] transition-colors" vid="89">About the Project</a>
+            <a href="#" class="text-[10px] tracking-[0.2em] uppercase text-[#1A1A18] hover:text-[#263524] transition-colors" vid="90">Chronology</a>
+            <a href="#" class="text-[10px] tracking-[0.2em] uppercase text-[#1A1A18] hover:text-[#263524] transition-colors" vid="91">Contribute</a>
+        </div>
+    </footer>
+
+</body></html>
