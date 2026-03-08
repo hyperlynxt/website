@@ -9,8 +9,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&display=swap');
 
         :root {
-            --bg-void: #121212;
-            --text-primary: #d1d1d1;
+            --bg-void: #f8f7f2;
+            --text-primary: #1a1a1a;
             --accent-gold: #e6b97e;
             --accent-glow: rgba(230, 185, 126, 0.4);
             --font-serif: 'Shippori Mincho', serif;
@@ -51,7 +51,7 @@
 
         .ampersand-hub {
             font-size: 6rem;
-            color: var(--accent-gold);
+            color: #1a1a1a;
             position: relative;
             display: flex;
             align-items: center;
@@ -73,7 +73,7 @@
             transform: translate(-50%, -50%);
             width: 180px;
             height: 180px;
-            background: radial-gradient(circle, rgba(230, 185, 126, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            background: radial-gradient(circle, rgba(230, 185, 126, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
             border-radius: 50%;
             z-index: -1;
             animation: breathe 6s ease-in-out infinite;
@@ -97,10 +97,10 @@
         .node-circle {
             width: 12px;
             height: 12px;
-            background: var(--accent-gold);
+            background: #1a1a1a;
             border-radius: 50%;
             margin-bottom: 1rem;
-            box-shadow: 0 0 10px var(--accent-glow);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
             transition: all 0.4s ease;
         }
 
@@ -126,28 +126,28 @@
         }
 
         .chapter-node:hover .node-circle {
-            box-shadow: 0 0 25px var(--accent-gold), 0 0 50px var(--accent-glow);
+            box-shadow: 0 0 25px var(--accent-gold), 0 0 50px rgba(0, 0, 0, 0.2);
             transform: scale(1.5);
         }
 
         .chapter-node:hover .chapter-label,
         .chapter-node:hover .chapter-title {
-            color: var(--accent-gold);
+            color: #1a1a1a;
             opacity: 1;
-            text-shadow: 0 0 15px var(--accent-glow);
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
 
         @keyframes pulse-gold {
 
             0%,
             100% {
-                text-shadow: 0 0 20px var(--accent-glow);
+                text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
                 opacity: 0.9;
                 transform: scale(1);
             }
 
             50% {
-                text-shadow: 0 0 40px rgba(230, 185, 126, 0.6), 0 0 10px var(--accent-gold);
+                text-shadow: 0 0 30px rgba(0, 0, 0, 0.4), 0 0 10px rgba(230, 185, 126, 0.8);
                 opacity: 1;
                 transform: scale(1.05);
             }
@@ -269,9 +269,9 @@
 
         const CONFIG = {
             maxPaths: 45,
-            color: '#e6b97e',
+            color: '#c99a5e',
             strokeWidth: { min: 0.5, max: 1.5 },
-            opacity: { min: 0.2, max: 0.6 },
+            opacity: { min: 0.4, max: 0.8 },
             growthSpeed: 0.006,
             lifeSpan: { min: 300, max: 700 }
         };
@@ -300,7 +300,7 @@
                 this.initPoints();
 
                 this.element.setAttribute("fill", "none");
-                this.element.setAttribute("stroke", CONFIG.color);
+                this.element.setAttribute("stroke", "#2a2a2a");
                 this.element.setAttribute("stroke-width", this.width);
                 this.element.setAttribute("stroke-opacity", this.opacity);
                 this.element.setAttribute("stroke-linecap", "round");
