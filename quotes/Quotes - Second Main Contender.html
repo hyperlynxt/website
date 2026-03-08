@@ -231,13 +231,13 @@
             <div class="absolute bottom-12 left-16 right-16 flex justify-between items-center" vid="74">
                 <button
                     class="group flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] text-[#7A7A73] hover:text-[#1A1A18] transition-colors"
-                    vid="75">
+                    onclick="navigateQuote(-1)" vid="75">
                     <span class="text-lg transition-transform group-hover:-translate-x-1" vid="76">←</span> Prev
                 </button>
                 <div class="h-px flex-1 mx-12 bg-black/5" vid="77"></div>
                 <button
                     class="group flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] text-[#7A7A73] hover:text-[#1A1A18] transition-colors"
-                    vid="78">
+                    onclick="navigateQuote(1)" vid="78">
                     Next <span class="text-lg transition-transform group-hover:translate-x-1" vid="79">→</span>
                 </button>
             </div>
@@ -260,7 +260,10 @@
             { numeral: 'V', theme: 'Theme: Identity', quote: '"I hold a beast, an angel, <br> and a madman in me."', author: 'Dylan Thomas', source: 'Letter, 1933' }
         ];
 
+        let activeQuoteIndex = 0;
+
         function updateQuote(index) {
+            activeQuoteIndex = index;
             const container = document.getElementById('main-content-container');
             const numeral = document.getElementById('main-numeral');
             const buttons = document.querySelectorAll('.list-item');
@@ -294,6 +297,22 @@
                     else btn.classList.remove('active');
                 });
             }, 400);
+        }
+
+        function navigateQuote(direction) {
+            let newIndex = activeQuoteIndex + direction;
+            if (newIndex < 0) {
+                newIndex = quotesData.length - 1;
+            } else if (newIndex >= quotesData.length) {
+                newIndex = 0;
+            }
+            updateQuote(newIndex);
+
+            // Auto scroll to active button on list
+            const buttons = document.querySelectorAll('.list-item');
+            if (buttons[newIndex]) {
+                buttons[newIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
         }
     </script>
 </body>
