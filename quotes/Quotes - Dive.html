@@ -319,19 +319,31 @@
             }
         }
 
-        // Read URL hash on load and jump to that quote
-        window.addEventListener('load', () => {
+        // Read URL hash immediately (script is at bottom of body, DOM is ready)
+        (function init() {
             const hash = window.location.hash;
+            let startIndex = 0;
             if (hash) {
-                const index = parseInt(hash.replace('#', ''), 10);
-                if (!isNaN(index) && index >= 0 && index < quotesData.length) {
-                    updateQuote(index);
-                    return;
+                const parsed = parseInt(hash.replace('#', ''), 10);
+                if (!isNaN(parsed) && parsed >= 0 && parsed < quotesData.length) {
+                    startIndex = parsed;
                 }
             }
-            // Default: show first quote
-            updateQuote(0);
-        });
+            // Set content instantly without animation on first load
+            const data = quotesData[startIndex];
+            document.getElementById('main-theme').innerText = data.theme;
+            document.getElementById('main-quote').innerHTML = data.quote;
+            document.getElementById('main-author').innerText = data.author;
+            const sourceEl = document.getElementById('main-source');
+            if (data.source) { sourceEl.innerText = data.source; sourceEl.style.display = 'block'; }
+            else { sourceEl.style.display = 'none'; }
+            document.getElementById('main-numeral').innerText = data.numeral;
+            activeQuoteIndex = startIndex;
+            document.querySelectorAll('.list-item').forEach((btn, i) => {
+                if (i === startIndex) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+        })();
     </script>
 </body>
 
