@@ -145,13 +145,8 @@
                     <h3 class="text-xs tracking-[0.2em] uppercase text-[#7A7A73] font-semibold mb-6" vid="28">Authors
                     </h3>
                     <nav class="flex flex-col gap-4 text-lg text-[#5A5A55]" vid="29">
-                        <a href="#" class="sidebar-link active" vid="30">All Collections</a>
-                        <a href="#" class="sidebar-link" vid="31">Dylan Thomas</a>
-                        <a href="#" class="sidebar-link" vid="32">John Milton</a>
-                        <a href="#" class="sidebar-link" vid="33">Jorge Luis Borges</a>
-                        <a href="#" class="sidebar-link" vid="34">Ludwig Wittgenstein</a>
-                        <a href="#" class="sidebar-link" vid="35">Vincent van Gogh</a>
-                        <a href="#" class="sidebar-link" vid="36">William Blake</a>
+                        <a href="#" class="sidebar-link active" data-filter="all" vid="30">All Collections</a>
+                        <a href="#" class="sidebar-link" data-filter="unknown" vid="31">Unknown</a>
                     </nav>
                 </section>
 
@@ -159,10 +154,7 @@
                     <h3 class="text-xs tracking-[0.2em] uppercase text-[#7A7A73] font-semibold mb-6" vid="38">Themes
                     </h3>
                     <nav class="flex flex-col gap-4 text-lg text-[#5A5A55]" vid="39">
-                        <a href="#" class="sidebar-link" vid="40">Existence</a>
-                        <a href="#" class="sidebar-link" vid="41">Infinity</a>
-                        <a href="#" class="sidebar-link" vid="42">Language</a>
-                        <a href="#" class="sidebar-link" vid="43">Solitude</a>
+                        <a href="#" class="sidebar-link" data-filter="personal" vid="40">Personal</a>
                     </nav>
                 </section>
             </div>
@@ -277,20 +269,42 @@
         const searchInput = document.getElementById('landing-search');
         const cards = document.querySelectorAll('.masonry-grid > a');
         const resultsCount = document.getElementById('results-count');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
 
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.trim().toLowerCase();
+        function applyFilter(query) {
             let visible = 0;
             cards.forEach(card => {
                 const text = card.textContent.toLowerCase();
-                const matches = !query || text.includes(query);
+                const matches = !query || query === 'all' || text.includes(query);
                 card.style.display = matches ? '' : 'none';
                 if (matches) visible++;
             });
             const total = cards.length;
-            resultsCount.textContent = query
+            resultsCount.textContent = (query && query !== 'all')
                 ? `Showing ${String(visible).padStart(2, '0')} of ${String(total).padStart(2, '0')} Results`
                 : `Showing ${String(total).padStart(2, '0')} Results`;
+        }
+
+        // Sidebar filter clicks
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                searchInput.value = '';
+                applyFilter(link.dataset.filter);
+            });
+        });
+
+        // Search input
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.trim().toLowerCase();
+            if (query) {
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+            } else {
+                sidebarLinks[0].classList.add('active');
+            }
+            applyFilter(query);
         });
     </script>
 </body>

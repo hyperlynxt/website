@@ -136,22 +136,15 @@
             <section class="mb-12" vid="22">
                 <h3 class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73] font-bold mb-6" vid="23">Authors</h3>
                 <nav class="flex flex-col gap-4 text-base text-[#5A5A55]" vid="24">
-                    <a href="#" class="filter-link active" vid="25">All Collections</a>
-                    <a href="#" class="filter-link" vid="26">Dylan Thomas</a>
-                    <a href="#" class="filter-link" vid="27">John Milton</a>
-                    <a href="#" class="filter-link" vid="28">Jorge Luis Borges</a>
-                    <a href="#" class="filter-link" vid="29">Vincent van Gogh</a>
-                    <a href="#" class="filter-link" vid="30">William Blake</a>
+                    <a href="#" class="filter-link active" data-filter="all" vid="25">All Collections</a>
+                    <a href="#" class="filter-link" data-filter="unknown" vid="26">Unknown</a>
                 </nav>
             </section>
 
             <section vid="31">
                 <h3 class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73] font-bold mb-6" vid="32">Themes</h3>
                 <nav class="flex flex-col gap-4 text-base text-[#5A5A55]" vid="33">
-                    <a href="#" class="filter-link" vid="34">Existence</a>
-                    <a href="#" class="filter-link" vid="35">Infinity</a>
-                    <a href="#" class="filter-link" vid="36">Language</a>
-                    <a href="#" class="filter-link" vid="37">Solitude</a>
+                    <a href="#" class="filter-link" data-filter="personal" vid="34">Personal</a>
                 </nav>
             </section>
         </aside>
@@ -373,6 +366,35 @@
             if (firstMatch !== -1 && firstMatch !== activeQuoteIndex) {
                 updateQuote(firstMatch);
             }
+        });
+        // Sidebar filter clicks
+        document.querySelectorAll('.filter-link').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelectorAll('.filter-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                document.getElementById('dive-search').value = '';
+
+                const filter = link.dataset.filter;
+                const buttons = document.querySelectorAll('.list-item');
+                const diveCount = document.getElementById('dive-count');
+                let firstMatch = -1;
+                let visible = 0;
+
+                buttons.forEach((btn, i) => {
+                    const text = btn.textContent.toLowerCase();
+                    const matches = !filter || filter === 'all' || text.includes(filter);
+                    btn.style.display = matches ? '' : 'none';
+                    if (matches) { visible++; if (firstMatch === -1) firstMatch = i; }
+                });
+
+                const total = quotesData.length;
+                diveCount.textContent = (filter && filter !== 'all')
+                    ? `${String(visible).padStart(2, '0')} of ${String(total).padStart(2, '0')} entries`
+                    : `${String(total).padStart(2, '0')} Entries`;
+
+                if (firstMatch !== -1) updateQuote(firstMatch);
+            });
         });
     </script>
 </body>
