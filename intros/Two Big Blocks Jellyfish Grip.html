@@ -1,0 +1,337 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Interlinked &amp; Intertwined | Relationship Map</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <style vid="6">
+        @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&display=swap');
+
+        :root {
+            --bg-void: #121212;
+            --text-primary: #d1d1d1;
+            --accent-gold: #e6b97e;
+            --accent-glow: rgba(230, 185, 126, 0.4);
+            --font-serif: 'Shippori Mincho', serif;
+        }
+
+        body {
+            background-color: var(--bg-void);
+            color: var(--text-primary);
+            font-family: var(--font-serif);
+            margin: 0;
+            overflow: hidden; 
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #mycelium-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .map-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15%;
+            pointer-events: none;
+        }
+
+        .concept-card {
+            width: 320px;
+            height: 480px;
+            background: rgba(18, 18, 18, 0.8);
+            border: 1px solid rgba(230, 185, 126, 0.3);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            pointer-events: auto;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+        }
+
+        .concept-card:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 30px var(--accent-glow);
+            transform: translateY(-5px);
+        }
+
+        .card-inner {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-size: 2.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            line-height: 1.6;
+            letter-spacing: 0.05em;
+        }
+
+        .card-frame {
+            position: absolute;
+            inset: 10px;
+            border: 1px solid rgba(230, 185, 126, 0.1);
+            pointer-events: none;
+        }
+
+        .info-panel {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .info-panel.visible {
+            opacity: 1;
+        }
+
+        .info-panel h3 {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .info-panel p {
+            font-size: 0.85rem;
+            color: rgba(209, 209, 209, 0.8);
+            font-style: italic;
+        }
+
+        .aura {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(230, 185, 126, 0.08) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: breathe 8s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
+        }
+
+        .fade-in {
+            animation: fadeIn 2.5s ease forwards;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    </style>
+</head>
+<body vid="7">
+
+    <svg id="mycelium-layer" xmlns="http://www.w3.org/2000/svg" vid="8">
+        <defs vid="9">
+            <filter id="glow-filter" x="-50%" y="-50%" width="200%" height="200%" vid="10">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur" vid="11"></feGaussianBlur>
+                <feMerge vid="12">
+                    <feMergeNode in="coloredBlur" vid="13"></feMergeNode>
+                    <feMergeNode in="SourceGraphic" vid="14"></feMergeNode>
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="map-container fade-in" vid="15">
+        <div class="concept-card" id="card-left" data-info="Structural alignment through shared neural pathways." vid="16">
+            <div class="aura" vid="17"></div>
+            <div class="card-frame" vid="18"></div>
+            <div class="card-inner" vid="19">
+                <h2 class="card-title" vid="20">Interlinked</h2>
+                <p class="card-desc" vid="21">The foundation of logical sequence and causal connections.</p>
+            </div>
+        </div>
+
+        <div class="concept-card" id="card-right" data-info="The fluid merge of individual essences into a singular weave." vid="22">
+            <div class="aura" vid="23"></div>
+            <div class="card-frame" vid="24"></div>
+            <div class="card-inner" vid="25">
+                <h2 class="card-title" vid="26">Intertwined</h2>
+                <p class="card-desc" vid="27">The complexity of organic growth and emotional resonance.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-panel" id="detail-panel" vid="28">
+        <h3 id="panel-title" vid="29">Connection Detail</h3>
+        <p id="panel-text" vid="30">Hover over the cards to explore the nature of the weave.</p>
+    </div>
+
+    <script vid="31">
+        const svgCanvas = document.getElementById('mycelium-layer');
+        const cardLeft = document.getElementById('card-left');
+        const cardRight = document.getElementById('card-right');
+        const panel = document.getElementById('detail-panel');
+        const panelText = document.getElementById('panel-text');
+        
+        const CONFIG = {
+            maxPaths: 60,
+            color: '#e6b97e',
+            strokeWidth: { min: 0.4, max: 1.8 },
+            opacity: { min: 0.2, max: 0.7 },
+            growthSpeed: 0.006,
+            lifeSpan: { min: 300, max: 800 }
+        };
+
+        let activePaths = [];
+
+        const random = (min, max) => Math.random() * (max - min) + min;
+
+        function getCenter(element) {
+            const rect = element.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2,
+                w: rect.width,
+                h: rect.height
+            };
+        }
+
+        class MyceliumPath {
+            constructor() {
+                this.element = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                this.phase = 'growing';
+                this.progress = 0;
+                this.life = random(CONFIG.lifeSpan.min, CONFIG.lifeSpan.max);
+                this.width = random(CONFIG.strokeWidth.min, CONFIG.strokeWidth.max);
+                this.opacity = random(CONFIG.opacity.min, CONFIG.opacity.max);
+                
+                this.initPoints();
+                
+                this.element.setAttribute("fill", "none");
+                this.element.setAttribute("stroke", CONFIG.color);
+                this.element.setAttribute("stroke-width", this.width);
+                this.element.setAttribute("stroke-opacity", this.opacity);
+                this.element.setAttribute("stroke-linecap", "round");
+                this.element.setAttribute("filter", "url(#glow-filter)");
+                
+                svgCanvas.appendChild(this.element);
+            }
+
+            initPoints() {
+                const p1 = getCenter(cardLeft);
+                const p2 = getCenter(cardRight);
+
+                
+                this.start = {
+                    x: p1.x + (p1.w / 2) + random(-5, 5),
+                    y: p1.y + random(-p1.h/3, p1.h/3)
+                };
+                this.end = {
+                    x: p2.x - (p2.w / 2) + random(-5, 5),
+                    y: p2.y + random(-p2.h/3, p2.h/3)
+                };
+
+                this.cpOffsets = {
+                    cp1x: random(100, 300),
+                    cp1y: random(-200, 200),
+                    cp2x: random(-300, -100),
+                    cp2y: random(-200, 200),
+                    freq: random(0.0005, 0.002),
+                    amp: random(30, 150)
+                };
+            }
+
+            update(time) {
+                const noise1 = Math.sin(time * this.cpOffsets.freq) * this.cpOffsets.amp;
+                const noise2 = Math.cos(time * this.cpOffsets.freq) * this.cpOffsets.amp;
+
+                const cp1x = this.start.x + this.cpOffsets.cp1x + noise1;
+                const cp1y = this.start.y + this.cpOffsets.cp1y + noise2;
+                const cp2x = this.end.x + this.cpOffsets.cp2x - noise1;
+                const cp2y = this.end.y + this.cpOffsets.cp2y - noise2;
+
+                const d = `M ${this.start.x} ${this.start.y} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${this.end.x} ${this.end.y}`;
+                this.element.setAttribute("d", d);
+
+                const length = this.element.getTotalLength();
+                this.element.style.strokeDasharray = length;
+
+                if (this.phase === 'growing') {
+                    this.progress += CONFIG.growthSpeed;
+                    if (this.progress >= 1) { this.progress = 1; this.phase = 'sustained'; }
+                } else if (this.phase === 'sustained') {
+                    this.life--;
+                    if (this.life <= 0) this.phase = 'dying';
+                } else if (this.phase === 'dying') {
+                    this.progress -= CONFIG.growthSpeed * 1.2;
+                    if (this.progress <= 0) { this.progress = 0; this.dead = true; }
+                }
+
+                this.element.style.strokeDashoffset = length * (1 - this.progress);
+            }
+
+            destroy() {
+                if (this.element.parentNode) this.element.parentNode.removeChild(this.element);
+            }
+        }
+
+        function animate() {
+            const time = Date.now();
+            for (let i = activePaths.length - 1; i >= 0; i--) {
+                if (activePaths[i].dead) {
+                    activePaths[i].destroy();
+                    activePaths.splice(i, 1);
+                }
+            }
+            if (activePaths.length < CONFIG.maxPaths && Math.random() < 0.2) {
+                activePaths.push(new MyceliumPath());
+            }
+            activePaths.forEach(path => path.update(time));
+            requestAnimationFrame(animate);
+        }
+
+        [cardLeft, cardRight].forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                panelText.textContent = card.dataset.info;
+                panel.classList.add('visible');
+            });
+            card.addEventListener('mouseleave', () => {
+                panel.classList.remove('visible');
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            activePaths.forEach(p => p.destroy());
+            activePaths = [];
+        });
+
+        setTimeout(animate, 500);
+    </script>
+
+</body></html>

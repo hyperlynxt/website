@@ -1,0 +1,354 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Interlinked &amp; Intertwined - Chronicles</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <style vid="6">
+        @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&display=swap');
+
+        :root {
+            --bg-void: #121212;
+            --text-primary: #d1d1d1;
+            --accent-gold: #e6b97e;
+            --accent-glow: rgba(230, 185, 126, 0.4);
+            --font-serif: 'Shippori Mincho', serif;
+        }
+
+        body {
+            background-color: var(--bg-void);
+            color: var(--text-primary);
+            font-family: var(--font-serif);
+            margin: 0;
+            overflow: hidden; 
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #mycelium-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .node-container {
+            position: relative;
+            width: 80%;
+            height: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .narrative-node {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 20;
+        }
+
+        .node-aura {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        .node-label {
+            position: absolute;
+            top: 25px;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .narrative-node:hover {
+            transform: scale(1.5);
+            background: #fff;
+            box-shadow: 0 0 20px var(--accent-gold);
+        }
+
+        .narrative-node:hover .node-label {
+            opacity: 1;
+            transform: translateY(5px);
+            color: var(--accent-gold);
+        }
+
+        .header {
+            position: absolute;
+            top: 10%;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .header h2 {
+            font-size: 2rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.5;
+            letter-spacing: 0.1em;
+        }
+
+        .navigation-hint {
+            position: absolute;
+            bottom: 5%;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            opacity: 0.4;
+            text-transform: uppercase;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(2.5); opacity: 0.6; }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2.5s ease forwards;
+        }
+
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        
+        #node-1 { top: 20%; left: 15%; }
+        #node-2 { top: 50%; left: 10%; }
+        #node-3 { top: 15%; left: 50%; }
+        #node-4 { top: 80%; left: 45%; }
+        #node-5 { top: 40%; left: 80%; }
+        #node-6 { top: 75%; left: 85%; }
+        #node-7 { top: 45%; left: 45%; } 
+
+    </style>
+</head>
+<body vid="7">
+
+    <svg id="mycelium-layer" xmlns="http://www.w3.org/2000/svg" vid="8">
+        <defs vid="9">
+            <filter id="glow-filter" x="-50%" y="-50%" width="200%" height="200%" vid="10">
+                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" vid="11"></feGaussianBlur>
+                <feMerge vid="12">
+                    <feMergeNode in="coloredBlur" vid="13"></feMergeNode>
+                    <feMergeNode in="SourceGraphic" vid="14"></feMergeNode>
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+
+    <main class="content-layer fade-in" vid="15">
+        <header class="header" vid="16">
+            <h2 vid="17">Chronicles</h2>
+            <p vid="18">The network of shared memory</p>
+        </header>
+
+        <div class="node-container" id="node-network" vid="19">
+            <div class="narrative-node" id="node-1" vid="20">
+                <div class="node-aura" vid="21"></div>
+                <span class="node-label" vid="22">The Awakening</span>
+            </div>
+            <div class="narrative-node" id="node-2" vid="23">
+                <div class="node-aura" vid="24"></div>
+                <span class="node-label" vid="25">Echoes in Void</span>
+            </div>
+            <div class="narrative-node" id="node-3" vid="26">
+                <div class="node-aura" vid="27"></div>
+                <span class="node-label" vid="28">Fragmented Sigils</span>
+            </div>
+            <div class="narrative-node" id="node-4" vid="29">
+                <div class="node-aura" vid="30"></div>
+                <span class="node-label" vid="31">Subterranean Root</span>
+            </div>
+            <div class="narrative-node" id="node-5" vid="32">
+                <div class="node-aura" vid="33"></div>
+                <span class="node-label" vid="34">The Weaving</span>
+            </div>
+            <div class="narrative-node" id="node-6" vid="35">
+                <div class="node-aura" vid="36"></div>
+                <span class="node-label" vid="37">Fading Light</span>
+            </div>
+            <div class="narrative-node" id="node-7" vid="38">
+                <div class="node-aura" style="width: 60px; height: 60px; background: radial-gradient(circle, rgba(230, 185, 126, 0.6) 0%, rgba(0,0,0,0) 70%);" vid="39"></div>
+                <span class="node-label" style="font-weight: 700; opacity: 1; color: var(--accent-gold);" vid="40">Origin Point</span>
+            </div>
+        </div>
+
+        <div class="navigation-hint" vid="41">Select a node to resonate</div>
+    </main>
+
+    <script vid="42">
+        const svgCanvas = document.getElementById('mycelium-layer');
+        const nodes = document.querySelectorAll('.narrative-node');
+        
+        const CONFIG = {
+            maxPaths: 40,
+            color: '#e6b97e',
+            strokeWidth: { min: 0.8, max: 2.5 },
+            opacity: { min: 0.4, max: 0.7 },
+            growthSpeed: 0.005,
+            lifeSpan: { min: 400, max: 1000 }
+        };
+
+        let activePaths = [];
+
+        function getCenter(element) {
+            const rect = element.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2
+            };
+        }
+
+        class ConnectionPath {
+            constructor(startEl, endEl) {
+                this.element = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                this.startEl = startEl;
+                this.endEl = endEl;
+                this.progress = 0;
+                this.phase = 'growing';
+                this.life = Math.random() * (CONFIG.lifeSpan.max - CONFIG.lifeSpan.min) + CONFIG.lifeSpan.min;
+                
+                this.width = Math.random() * (CONFIG.strokeWidth.max - CONFIG.strokeWidth.min) + CONFIG.strokeWidth.min;
+                this.opacity = Math.random() * (CONFIG.opacity.max - CONFIG.opacity.min) + CONFIG.opacity.min;
+                
+                this.element.setAttribute("fill", "none");
+                this.element.setAttribute("stroke", CONFIG.color);
+                this.element.setAttribute("stroke-width", this.width);
+                this.element.setAttribute("stroke-opacity", this.opacity);
+                this.element.setAttribute("stroke-linecap", "round");
+                this.element.setAttribute("filter", "url(#glow-filter)");
+                
+                svgCanvas.appendChild(this.element);
+                
+                this.cpOffsets = {
+                    x1: (Math.random() - 0.5) * 150,
+                    y1: (Math.random() - 0.5) * 150,
+                    x2: (Math.random() - 0.5) * 150,
+                    y2: (Math.random() - 0.5) * 150,
+                    freq: 0.001 + Math.random() * 0.002
+                };
+            }
+
+            update(time) {
+                const start = getCenter(this.startEl);
+                const end = getCenter(this.endEl);
+                
+                const dx = end.x - start.x;
+                const dy = end.y - start.y;
+                
+                const drift = Math.sin(time * this.cpOffsets.freq) * 30;
+                
+                const cp1x = start.x + dx * 0.3 + this.cpOffsets.x1 + drift;
+                const cp1y = start.y + dy * 0.3 + this.cpOffsets.y1 - drift;
+                const cp2x = start.x + dx * 0.7 + this.cpOffsets.x2 - drift;
+                const cp2y = start.y + dy * 0.7 + this.cpOffsets.y2 + drift;
+
+                const d = `M ${start.x} ${start.y} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${end.x} ${end.y}`;
+                this.element.setAttribute("d", d);
+
+                const length = this.element.getTotalLength();
+                this.element.style.strokeDasharray = length;
+
+                if (this.phase === 'growing') {
+                    this.progress += CONFIG.growthSpeed;
+                    if (this.progress >= 1) { this.progress = 1; this.phase = 'living'; }
+                } else if (this.phase === 'living') {
+                    this.life--;
+                    if (this.life <= 0) this.phase = 'fading';
+                } else if (this.phase === 'fading') {
+                    this.progress -= CONFIG.growthSpeed;
+                    if (this.progress <= 0) this.dead = true;
+                }
+
+                this.element.style.strokeDashoffset = length * (1 - this.progress);
+            }
+
+            destroy() {
+                if (this.element.parentNode) this.element.parentNode.removeChild(this.element);
+            }
+        }
+
+        function createRandomConnection() {
+            const idx1 = Math.floor(Math.random() * nodes.length);
+            let idx2 = Math.floor(Math.random() * nodes.length);
+            while (idx1 === idx2) idx2 = Math.floor(Math.random() * nodes.length);
+            
+            
+            if (Math.random() > 0.5) {
+                return new ConnectionPath(nodes[idx1], document.getElementById('node-7'));
+            }
+            return new ConnectionPath(nodes[idx1], nodes[idx2]);
+        }
+
+        function animate() {
+            const time = Date.now();
+            
+            for (let i = activePaths.length - 1; i >= 0; i--) {
+                if (activePaths[i].dead) {
+                    activePaths[i].destroy();
+                    activePaths.splice(i, 1);
+                } else {
+                    activePaths[i].update(time);
+                }
+            }
+
+            if (activePaths.length < CONFIG.maxPaths && Math.random() < 0.1) {
+                activePaths.push(createRandomConnection());
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        
+        setTimeout(() => {
+            for(let i=0; i<10; i++) activePaths.push(createRandomConnection());
+            animate();
+        }, 500);
+
+        window.addEventListener('resize', () => {
+            activePaths.forEach(p => p.destroy());
+            activePaths = [];
+        });
+    </script>
+
+</body></html>

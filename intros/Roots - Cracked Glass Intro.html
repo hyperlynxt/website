@@ -1,0 +1,248 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Interlinked &amp; Intertwined - Origin</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <style vid="6">
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Syncopate:wght@400;700&display=swap');
+
+        :root {
+            --bg-deep: #0a0c0b; 
+            --text-main: #f8f7f2; 
+            --text-muted: #666666;
+            --accent-glow: #d4efdf; 
+            --border-subtle: #1a1d1b;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-tech: 'Syncopate', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-display);
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            cursor: crosshair;
+        }
+
+        .font-tech { font-family: var(--font-tech); }
+
+        .grain-overlay {
+            position: fixed;
+            inset: 0;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 200;
+        }
+
+        .mycelium-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .nav-island {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 12, 11, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            z-index: 100;
+            display: flex;
+            gap: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        .nav-link {
+            font-family: var(--font-tech);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            color: var(--text-main);
+        }
+
+        .nav-link.active {
+            color: var(--accent-glow);
+            position: relative;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background: var(--accent-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .central-nexus {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 2px;
+            height: 2px;
+            background: var(--accent-glow);
+            box-shadow: 0 0 20px 2px var(--accent-glow);
+            border-radius: 50%;
+            z-index: 20;
+        }
+
+        .title-container {
+            position: relative;
+            z-index: 30;
+            text-align: center;
+            mix-blend-mode: exclusion;
+        }
+
+        .origin-meta {
+            position: absolute;
+            top: 4rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 30;
+        }
+
+        @keyframes drift {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: drift 2s ease-out forwards;
+        }
+    </style>
+</head>
+<body vid="7">
+    <div class="grain-overlay" vid="8"></div>
+
+    <svg class="mycelium-canvas" id="canvas" vid="9">
+        <defs vid="10">
+            <filter id="glow" vid="11">
+                <feGaussianBlur stdDeviation="2" result="blur" vid="12"></feGaussianBlur>
+                <feComposite in="SourceGraphic" in2="blur" operator="over" vid="13"></feComposite>
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="origin-meta fade-in" vid="14">
+        <p class="font-tech text-[10px] tracking-[0.5em] text-[#666] uppercase" vid="15">
+            Genesis / The Initial Pulse
+        </p>
+    </div>
+
+    <div class="central-nexus" vid="16"></div>
+
+    <div class="flex items-center justify-center h-full w-full px-12" vid="17">
+        <div class="title-container" vid="18">
+            <h1 class="text-[12rem] leading-[0.85] font-light tracking-tighter text-[#f8f7f2] select-none" vid="19">
+                <span class="block italic opacity-90" vid="20">Origin</span>
+            </h1>
+            <div class="mt-8 flex flex-col items-center gap-6" vid="21">
+                <div class="w-px h-24 bg-gradient-to-b from-[#d4efdf] to-transparent" vid="22"></div>
+                <p class="max-w-md text-neutral-500 italic text-xl font-light leading-relaxed" vid="23">
+                    "Before the network, there was only the intent. A single point of resonance seeking its mirror."
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav-island" vid="24">
+        <a href="#" class="nav-link active" vid="25">Origin</a>
+        <a href="#" class="nav-link" vid="26">Grid</a>
+        <a href="#" class="nav-link" vid="27">Flow</a>
+        <a href="#" class="nav-link" vid="28">Echo</a>
+    </nav>
+
+    <script vid="29">
+        const canvas = document.getElementById('canvas');
+        let width, height;
+        let branches = [];
+
+        function init() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.setAttribute('viewBox', `0 0 ${width} ${height}`);
+        }
+
+        class Branch {
+            constructor(x, y, angle, length, depth) {
+                this.startX = x;
+                this.startY = y;
+                this.angle = angle;
+                this.length = length;
+                this.depth = depth;
+                this.currentLength = 0;
+                this.growthSpeed = Math.random() * 2 + 1;
+                this.opacity = 0;
+                this.element = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                this.element.setAttribute("stroke", "#d4efdf");
+                this.element.setAttribute("fill", "none");
+                this.element.setAttribute("stroke-width", Math.max(0.2, (5 - depth) * 0.3));
+                this.element.setAttribute("filter", "url(#glow)");
+                canvas.appendChild(this.element);
+                this.isDone = false;
+            }
+
+            update() {
+                if (this.currentLength < this.length) {
+                    this.currentLength += this.growthSpeed;
+                    this.opacity = Math.min(0.4, this.currentLength / this.length);
+                } else if (!this.isDone) {
+                    this.isDone = true;
+                    if (this.depth < 4) {
+                        const numChildren = Math.random() > 0.6 ? 2 : 1;
+                        for (let i = 0; i < numChildren; i++) {
+                            const newAngle = this.angle + (Math.random() - 0.5) * 1.5;
+                            const newLength = this.length * (0.6 + Math.random() * 0.4);
+                            branches.push(new Branch(this.endX, this.endY, newAngle, newLength, this.depth + 1));
+                        }
+                    }
+                }
+
+                this.endX = this.startX + Math.cos(this.angle) * this.currentLength;
+                this.endY = this.startY + Math.sin(this.angle) * this.currentLength;
+
+                const d = `M ${this.startX} ${this.startY} L ${this.endX} ${this.endY}`;
+                this.element.setAttribute("d", d);
+                this.element.setAttribute("stroke-opacity", this.opacity);
+            }
+        }
+
+        function animate() {
+            branches.forEach(b => b.update());
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+
+        
+        for (let i = 0; i < 6; i++) {
+            branches.push(new Branch(width/2, height/2, (Math.PI * 2 / 6) * i, 100 + Math.random() * 100, 0));
+        }
+
+        animate();
+    </script>
+</body></html>

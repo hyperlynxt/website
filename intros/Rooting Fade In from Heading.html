@@ -1,0 +1,550 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Interlinked &amp; Intertwined - Cinematic</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <style vid="6">
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Syncopate:wght@400;700&display=swap');
+
+        :root {
+            --bg-deep: #050505;
+            --bg-card: #0a0a0a;
+            --text-main: #e0e0e0;
+            --text-muted: #666666;
+            --accent-gold: #cfb53b;
+            --accent-shimmer: rgba(207, 181, 59, 0.2);
+            --border-subtle: #1f1f1f;
+            
+            --font-display: 'Cormorant Garamond', serif;
+            --font-tech: 'Syncopate', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+            cursor: crosshair;
+            margin: 0;
+        }
+
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-deep);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.5s ease-in-out, visibility 1.5s;
+        }
+
+        .splash-title {
+            font-size: 5rem;
+            color: white;
+            display: flex;
+            gap: 0.2em;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .splash-letter {
+            opacity: 0;
+            display: inline-block;
+            transform: translateY(10px);
+        }
+
+        .splash-canvas {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        #main-wrapper {
+            opacity: 0;
+            transition: opacity 2s ease-in;
+        }
+
+        body.loaded #main-wrapper {
+            opacity: 1;
+        }
+
+        body.loaded #splash-screen {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .mycelium-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 5;
+            mix-blend-mode: screen;
+        }
+
+        .font-tech { font-family: var(--font-tech); }
+        .font-display { font-family: var(--font-display); }
+
+        .source-anchor {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-style: italic;
+            color: var(--accent-gold);
+            cursor: pointer;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 60;
+            padding: 0 0.5rem;
+        }
+
+        .source-anchor::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--accent-shimmer) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .source-anchor:hover::after {
+            opacity: 1;
+            width: 300%;
+            height: 300%;
+        }
+
+        .spore {
+            position: relative;
+            display: inline-block;
+            color: var(--text-main);
+            transition: color 0.4s ease, border-color 0.4s ease;
+            white-space: nowrap;
+            z-index: 20;
+            border-bottom: 1px solid rgba(207, 181, 59, 0.2);
+            cursor: pointer;
+        }
+
+        .spore:hover {
+            color: var(--accent-gold);
+            border-bottom: 1px solid var(--accent-gold);
+        }
+
+        .spore.connected {
+            color: var(--accent-gold);
+            text-shadow: 0 0 10px rgba(207, 181, 59, 0.4);
+            border-bottom: 1px solid var(--accent-gold);
+        }
+
+        
+        .cinematic-section {
+            width: 100%;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 10vh 0;
+            margin-bottom: 20vh;
+        }
+
+        .bg-chapter-num {
+            position: absolute;
+            font-size: 40vw;
+            font-weight: 300;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.03);
+            pointer-events: none;
+            z-index: 0;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .cinematic-content {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .nav-island {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            z-index: 100;
+            display: flex;
+            gap: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .nav-link {
+            font-family: var(--font-tech);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-gold);
+        }
+
+        #connection-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-deep);
+            z-index: 2000;
+            transform: translateY(100%);
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 4rem;
+            overflow-y: auto;
+        }
+
+        #connection-overlay.open {
+            transform: translateY(0);
+        }
+
+        .overlay-close {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            cursor: pointer;
+            z-index: 2100;
+            transition: opacity 0.3s ease;
+        }
+
+        .node-network {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            margin: 4rem 0;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .node-point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--accent-gold);
+        }
+
+        .node-label {
+            position: absolute;
+            font-family: var(--font-tech);
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 20px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="selection:bg-yellow-900 selection:text-white" vid="7">
+
+    <div id="splash-screen" vid="8">
+        <canvas id="splash-canvas" class="splash-canvas" vid="9"></canvas>
+        <div class="splash-title font-display" vid="10">
+            <span class="splash-letter" vid="11">I</span>
+            <span class="splash-letter" vid="12">n</span>
+            <span class="splash-letter" vid="13">t</span>
+            <span class="splash-letter" vid="14">e</span>
+            <span class="splash-letter" vid="15">r</span>
+            <span class="splash-letter" vid="16">l</span>
+            <span class="splash-letter" vid="17">i</span>
+            <span class="splash-letter" vid="18">n</span>
+            <span class="splash-letter" vid="19">k</span>
+            <span class="splash-letter" vid="20">e</span>
+            <span class="splash-letter" vid="21">d</span>
+        </div>
+        <div class="mt-8 font-tech text-[10px] tracking-[0.5em] text-[#444] uppercase" vid="22">Initializing Resonance</div>
+    </div>
+
+    <div id="connection-overlay" vid="23">
+        <div class="overlay-close" onclick="closeOverlay()" vid="24">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" vid="25">
+                <path d="M18 6L6 18M6 6l12 12" vid="26"></path>
+            </svg>
+        </div>
+        <div class="max-w-4xl mx-auto w-full pt-12" vid="27">
+            <div class="flex flex-col md:flex-row justify-between items-baseline mb-12 border-b border-white/10 pb-8" vid="28">
+                <h2 id="overlay-title" class="text-6xl md:text-8xl font-light italic text-white" vid="29">Signal</h2>
+                <div class="text-right" vid="30">
+                    <span class="font-tech text-[10px] text-neutral-500 uppercase tracking-widest block mb-2" vid="31">Etymology / Origin</span>
+                    <p id="overlay-etymology" class="font-display italic text-2xl text-accent-gold" vid="32">Latin: Signalis / Signum</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16" vid="33">
+                <div vid="34">
+                    <span class="font-tech text-[10px] text-neutral-500 uppercase tracking-widest block mb-6" vid="35">Resonant Definition</span>
+                    <p id="overlay-definition" class="text-xl text-neutral-300 leading-relaxed" vid="36"></p>
+                </div>
+                <div class="flex flex-col justify-end" vid="37">
+                    <blockquote id="overlay-quote" class="text-3xl md:text-4xl italic text-white font-display border-l-2 border-accent-gold pl-8 py-2" vid="38"></blockquote>
+                </div>
+            </div>
+            <div class="node-network" vid="39">
+                <svg class="absolute inset-0 w-full h-full opacity-30" vid="40">
+                    <path d="M100 150 Q 300 50 500 150 T 900 150" fill="none" stroke="var(--accent-gold)" stroke-width="0.5" vid="41"></path>
+                </svg>
+                <div class="node-point left-1/4 top-1/3" vid="42"><div class="node-label" vid="43">Frequency</div></div>
+                <div class="node-point left-1/2 top-2/3" vid="44"><div class="node-label" vid="45">Amplitude</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-wrapper" vid="46">
+        <svg class="mycelium-layer" id="mycelium-canvas" xmlns="http://www.w3.org/2000/svg" vid="47">
+            <defs vid="48">
+                <linearGradient id="hyphae-gradient" gradientUnits="userSpaceOnUse" vid="49">
+                    <stop offset="0%" style="stop-color:var(--accent-gold);stop-opacity:0.8" vid="50"></stop>
+                    <stop offset="100%" style="stop-color:var(--accent-gold);stop-opacity:0" vid="51"></stop>
+                </linearGradient>
+                <filter id="glow" vid="52">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur" vid="53"></feGaussianBlur>
+                    <feMerge vid="54">
+                        <feMergeNode in="coloredBlur" vid="55"></feMergeNode>
+                        <feMergeNode in="SourceGraphic" vid="56"></feMergeNode>
+                    </feMerge>
+                </filter>
+            </defs>
+        </svg>
+
+        <header class="min-h-screen flex flex-col justify-center items-center text-center relative px-6" vid="57">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-transparent to-[#333]" vid="58"></div>
+            <h1 class="text-[14vw] md:text-[10rem] leading-[0.85] font-light tracking-tighter text-white/90" vid="59">
+                <div class="block" vid="60">Interlinked</div>
+                <div class="relative z-50 my-[-2vw] md:my-[-1rem]" vid="61">
+                    <span id="source-capsule" class="source-anchor text-[16vw] md:text-[12rem]" vid="62">&amp;</span>
+                </div>
+                <div class="block" vid="63">Intertwined</div>
+            </h1>
+            <div class="mt-16 flex flex-col items-center gap-6" vid="64">
+                <p class="font-tech text-xs tracking-[0.5em] text-[#666] border-t border-[#333] pt-6 px-12 uppercase" vid="65">
+                    The Geometry of the Unseen
+                </p>
+                <div class="animate-bounce mt-12 opacity-30" vid="66">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" vid="67">
+                        <path d="M7 13l5 5 5-5M7 6l5 5 5-5" vid="68"></path>
+                    </svg>
+                </div>
+            </div>
+        </header>
+
+        <main class="w-full" vid="69">
+            <section class="cinematic-section" vid="70">
+                <div class="bg-chapter-num" vid="71">01</div>
+                <div class="cinematic-content" vid="72">
+                    <span class="font-tech text-[11px] text-[#444] mb-8 block tracking-[0.4em]" vid="73">GENESIS</span>
+                    <h3 class="text-5xl md:text-6xl italic mb-10 text-white/90" vid="74">The Digital Root</h3>
+                    <p class="text-xl md:text-2xl text-neutral-400 font-light leading-relaxed" vid="75">
+                        We begin in the dark, where the first <span class="spore" onclick="openOverlay('signal')" vid="76">signal</span> flares. It is not merely a transmission of data, but the birth of a <span class="spore" onclick="openOverlay('nexus')" vid="77">nexus</span>.
+                    </p>
+                </div>
+            </section>
+
+            <section class="cinematic-section" vid="78">
+                <div class="bg-chapter-num" vid="79">02</div>
+                <div class="cinematic-content" vid="80">
+                    <span class="font-tech text-[11px] text-[#444] mb-8 block tracking-[0.4em]" vid="81">STRUCTURE</span>
+                    <h3 class="text-5xl md:text-6xl italic mb-10 text-white/90" vid="82">Invisible Architecture</h3>
+                    <p class="text-xl md:text-2xl text-neutral-400 font-light leading-relaxed" vid="83">
+                        The <span class="spore" onclick="openOverlay('geometry')" vid="84">geometry</span> of connection is recursive. What appears chaotic from a distance reveals itself as an intricate <span class="spore" onclick="openOverlay('lattice')" vid="85">lattice</span>.
+                    </p>
+                </div>
+            </section>
+
+            <section class="cinematic-section" vid="86">
+                <div class="bg-chapter-num" vid="87">03</div>
+                <div class="cinematic-content" vid="88">
+                    <span class="font-tech text-[11px] text-[#444] mb-8 block tracking-[0.4em]" vid="89">ENTROPY</span>
+                    <h3 class="text-5xl md:text-6xl italic mb-10 text-white/90" vid="90">Decay &amp; Bloom</h3>
+                    <p class="text-xl md:text-2xl text-neutral-400 font-light leading-relaxed" vid="91">
+                        Every connection eventually fades. The <span class="spore" onclick="openOverlay('pulse')" vid="92">pulse</span> slows, the light dims. But in decomposition, new <span class="spore" onclick="openOverlay('patterns')" vid="93">patterns</span> emerge.
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <nav class="nav-island" vid="94">
+            <a href="#" class="nav-link active" vid="95">Origin</a>
+            <a href="#" class="nav-link" vid="96">Grid</a>
+            <a href="#" class="nav-link" vid="97">Flow</a>
+            <a href="#" class="nav-link" vid="98">Echo</a>
+        </nav>
+    </div>
+
+    <script vid="99">
+        const overlay = document.getElementById('connection-overlay');
+        const contentData = {
+            'signal': { title: 'Signal', etym: 'Latin: Signalis / Signum', def: 'The transmission of intent through void; a singular pulse that establishes the existence of the "other" within a vacuum of information.', quote: '“The pattern is the message, the medium is the memory.”' },
+            'nexus': { title: 'Nexus', etym: 'Latin: Nectere / Connection', def: 'A central point where disparate threads weave into a singular stability. The heart of the web where the weight is borne.', quote: '“Everything is part of everything else, and we are just the points of intersection.”' },
+            'geometry': { title: 'Geometry', etym: 'Greek: Geometria / Measure', def: 'The inherent law of spatial relation. Not the objects themselves, but the logic of the distance between them.', quote: '“God is the geometer of the soul, drawing lines where we only see void.”' },
+            'lattice': { title: 'Lattice', etym: 'French: Latte / Support', def: 'A framework of regular repetition. The rigid scaffolding that allows the organic to climb toward the light.', quote: '“Structure is the freedom that allows the chaotic to take form.”' },
+            'pulse': { title: 'Pulse', etym: 'Latin: Pulsus / Beating', def: 'The rhythmic vibration of presence. A measurement of time expressed through the expansion and contraction of energy.', quote: '“Life is a series of beats in a silence that never quite ends.”' },
+            'patterns': { title: 'Patterns', etym: 'Latin: Patronus / Model', def: 'The recursive ghost of previous events. A recognition of similarity that transforms a sequence into a story.', quote: '“To see the pattern is to see the truth before it has finished happening.”' }
+        };
+
+        function openOverlay(id) {
+            const data = contentData[id];
+            if (!data) return;
+            document.getElementById('overlay-title').textContent = data.title;
+            document.getElementById('overlay-etymology').textContent = data.etym;
+            document.getElementById('overlay-definition').textContent = data.def;
+            document.getElementById('overlay-quote').textContent = data.quote;
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeOverlay() {
+            overlay.classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+
+        const splashCanvas = document.getElementById('splash-canvas');
+        const ctx = splashCanvas.getContext('2d');
+        const letters = document.querySelectorAll('.splash-letter');
+        
+        function resizeSplash() {
+            splashCanvas.width = window.innerWidth;
+            splashCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeSplash);
+        resizeSplash();
+
+        class Hypha {
+            constructor(x, y, angle, color) {
+                this.x = x; this.y = y; this.angle = angle; this.color = color;
+                this.width = 1.5; this.active = true; this.segments = 0;
+                this.maxSegments = 30 + Math.random() * 50;
+            }
+            update() {
+                if (!this.active) return;
+                const prevX = this.x; const prevY = this.y;
+                this.x += Math.cos(this.angle) * 3; this.y += Math.sin(this.angle) * 3;
+                this.angle += (Math.random() - 0.5) * 0.4;
+                ctx.beginPath(); ctx.strokeStyle = this.color; ctx.lineWidth = this.width;
+                ctx.moveTo(prevX, prevY); ctx.lineTo(this.x, this.y); ctx.stroke();
+                this.segments++;
+                if (this.segments > this.maxSegments) this.active = false;
+                if (Math.random() > 0.96 && hyphae.length < 100) {
+                    hyphae.push(new Hypha(this.x, this.y, this.angle + (Math.random() - 0.5), this.color));
+                }
+            }
+        }
+
+        let hyphae = [];
+        function animateSplash() {
+            if (document.body.classList.contains('loaded')) return;
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.05)';
+            ctx.fillRect(0, 0, splashCanvas.width, splashCanvas.height);
+            hyphae.forEach(h => h.update());
+            requestAnimationFrame(animateSplash);
+        }
+        animateSplash();
+
+        letters.forEach((letter, i) => {
+            setTimeout(() => {
+                letter.style.transition = "all 0.8s ease-out";
+                letter.style.opacity = "1";
+                letter.style.transform = "translateY(0)";
+                const rect = letter.getBoundingClientRect();
+                hyphae.push(new Hypha(rect.left + rect.width/2, rect.top + rect.height/2, Math.random() * Math.PI * 2, '#cfb53b'));
+            }, i * 150);
+        });
+
+        setTimeout(() => { document.body.classList.add('loaded'); }, 3500);
+
+        const canvas = document.getElementById('mycelium-canvas');
+        const source = document.getElementById('source-capsule');
+        const spores = document.querySelectorAll('.spore');
+        let activePaths = [];
+
+        function createPath(targetElement) {
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("fill", "none");
+            path.setAttribute("stroke", "#cfb53b");
+            path.setAttribute("stroke-width", 0.8);
+            path.setAttribute("filter", "url(#glow)");
+            canvas.appendChild(path);
+            targetElement.classList.add('connected');
+            return { element: path, target: targetElement, progress: 0, phase: 'growing', life: 200, seed: Math.random() };
+        }
+
+        function getCoordinates(elem) {
+            const rect = elem.getBoundingClientRect();
+            return { x: rect.left + (rect.width / 2) + window.scrollX, y: rect.top + (rect.height / 2) + window.scrollY };
+        }
+
+        function manageLifecycle() {
+            const srcCoords = getCoordinates(source);
+            activePaths.forEach((obj, index) => {
+                const targetCoords = getCoordinates(obj.target);
+                const d = `M ${srcCoords.x} ${srcCoords.y} C ${srcCoords.x} ${targetCoords.y} ${srcCoords.x} ${targetCoords.y} ${targetCoords.x} ${targetCoords.y}`;
+                obj.element.setAttribute("d", d);
+                
+                if (obj.phase === 'growing') {
+                    obj.progress += 0.01; if (obj.progress >= 1) obj.phase = 'sustained';
+                } else if (obj.phase === 'sustained') {
+                    obj.life--; if (obj.life <= 0) obj.phase = 'dying';
+                } else if (obj.phase === 'dying') {
+                    obj.progress -= 0.01;
+                    if (obj.progress <= 0) {
+                        if (canvas.contains(obj.element)) canvas.removeChild(obj.element);
+                        obj.target.classList.remove('connected');
+                        obj.remove = true;
+                    }
+                }
+                obj.element.style.opacity = obj.progress;
+                obj.element.style.strokeDasharray = "1000";
+                obj.element.style.strokeDashoffset = (1 - obj.progress) * 1000;
+            });
+            activePaths = activePaths.filter(p => !p.remove);
+            if (activePaths.length < 3 && Math.random() > 0.99) {
+                const available = Array.from(spores).filter(s => !s.classList.contains('connected'));
+                if (available.length) activePaths.push(createPath(available[Math.floor(Math.random()*available.length)]));
+            }
+            requestAnimationFrame(manageLifecycle);
+        }
+        
+        setTimeout(() => { requestAnimationFrame(manageLifecycle); }, 4000);
+    </script>
+</body></html>

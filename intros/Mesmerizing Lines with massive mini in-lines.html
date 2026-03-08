@@ -1,0 +1,454 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Interlinked &amp; Intertwined - Ethereal Variation</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <style vid="6">
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Cinzel:wght@400;600&display=swap');
+
+        :root {
+            --bg-deep: #050505;
+            --text-main: #e0e0e0;
+            --gold-primary: #d4af37;
+            --gold-secondary: #aa8c2c;
+            --copper-glow: rgba(184, 115, 51, 0.3);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        
+        #silk-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        
+        .ui-layer {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            padding: 4rem;
+            box-sizing: border-box;
+            pointer-events: none; 
+        }
+
+        
+        .word-container {
+            font-family: 'Cormorant Garamond', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            position: relative;
+            pointer-events: auto;
+            opacity: 0; 
+            transition: opacity 2s ease, transform 2s ease-out;
+            mix-blend-mode: screen;
+        }
+
+        .word-top {
+            grid-column: 1;
+            grid-row: 1;
+            align-self: start;
+            justify-self: start;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 300;
+            color: var(--text-main);
+            transform: translateY(-20px);
+        }
+
+        .word-bottom {
+            grid-column: 2;
+            grid-row: 2;
+            align-self: end;
+            justify-self: end;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 300;
+            text-align: right;
+            color: var(--text-main);
+            transform: translateY(20px);
+        }
+
+        
+        .ampersand-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20vw;
+            height: 20vw;
+            pointer-events: none;
+        }
+
+        .ampersand {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(8rem, 20vw, 25rem);
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(212, 175, 55, 0.15);
+            opacity: 0;
+            animation: fadeInAmp 3s ease forwards 1s, breathe 8s ease-in-out infinite 4s;
+        }
+
+        .ampersand::after {
+            content: '&';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(212, 175, 55, 0.03);
+            filter: blur(8px);
+        }
+
+        
+        .fade-in-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInAmp {
+            to { opacity: 1; }
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.8; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.1)); }
+            50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.3)); }
+        }
+
+        
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.8) 100%);
+            pointer-events: none;
+            z-index: 20;
+        }
+
+    </style>
+</head>
+<body vid="7">
+
+    
+    <canvas id="silk-canvas" vid="8"></canvas>
+
+    
+    <div class="noise-overlay" vid="9"></div>
+
+    
+    <div class="vignette" vid="10"></div>
+
+    
+    <main class="ui-layer" vid="11">
+        <div class="word-container word-top" id="word-1" vid="12">
+            <span class="italic text-yellow-100/50 mr-2" vid="13">I</span>nterlinked
+        </div>
+
+        <div class="ampersand-wrapper" vid="14">
+            <div class="ampersand" id="center-node" vid="15">&amp;</div>
+        </div>
+
+        <div class="word-container word-bottom" id="word-2" vid="16">
+            <span class="italic text-yellow-100/50 mr-2" vid="17">I</span>ntertwined
+        </div>
+    </main>
+
+    <script vid="18">
+        
+
+        const canvas = document.getElementById('silk-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        const word1 = document.getElementById('word-1');
+        const word2 = document.getElementById('word-2');
+        const centerNode = document.getElementById('center-node');
+
+        let width, height;
+        let particles = [];
+        let time = 0;
+
+        
+        const CONFIG = {
+            particleCount: 150, 
+            spawnRate: 2,
+            baseSpeed: 1.5,
+            color: { r: 212, g: 175, b: 55 }, 
+            trailLength: 50,
+            opacityDecay: 0.005,
+            noiseScale: 0.002,
+            noiseStrength: 15
+        };
+
+        
+        function getRect(el) {
+            const rect = el.getBoundingClientRect();
+            
+            return {
+                x: rect.left,
+                y: rect.top,
+                w: rect.width,
+                h: rect.height,
+                cx: rect.left + rect.width / 2,
+                cy: rect.top + rect.height / 2
+            };
+        }
+
+        
+        function noise(x, y, t) {
+            return Math.sin(x * CONFIG.noiseScale + t) * Math.cos(y * CONFIG.noiseScale + t);
+        }
+
+        class Particle {
+            constructor(startRect, endRect, gravityWell) {
+                this.reset(startRect, endRect, gravityWell);
+                
+                this.life = Math.random() * 100; 
+            }
+
+            reset(startRect, endRect, gravityWell) {
+                this.dead = false;
+                
+                
+                this.direction = Math.random() > 0.5 ? 1 : -1; 
+
+                const source = this.direction === 1 ? startRect : endRect;
+                const target = this.direction === 1 ? endRect : startRect;
+
+                
+                this.x = source.x + Math.random() * source.w;
+                this.y = source.y + Math.random() * source.h;
+                
+                
+                this.tx = target.x + Math.random() * target.w;
+                this.ty = target.y + Math.random() * target.h;
+
+                
+                this.gx = gravityWell.cx;
+                this.gy = gravityWell.cy;
+
+                this.vx = 0;
+                this.vy = 0;
+                this.history = [];
+                this.maxHistory = Math.floor(Math.random() * 20 + 20); 
+                
+                this.speed = Math.random() * CONFIG.baseSpeed + 0.5;
+                this.wobbleFreq = Math.random() * 0.05;
+                this.wobbleAmp = Math.random() * 2;
+                this.alpha = 0;
+                this.fadeIn = true;
+            }
+
+            update() {
+                
+                
+                
+                
+                let dx = this.tx - this.x;
+                let dy = this.ty - this.y;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+
+                
+                let gdx = this.gx - this.x;
+                let gdy = this.gy - this.y;
+                let gDist = Math.sqrt(gdx*gdx + gdy*gdy);
+
+                
+                
+                
+                let attraction = 0.5; 
+                
+                
+                if (dist > 0) { dx /= dist; dy /= dist; }
+                if (gDist > 0) { gdx /= gDist; gdy /= gDist; }
+
+                
+                let n = noise(this.x, this.y, time * 0.001) * CONFIG.noiseStrength;
+
+                
+                
+                
+                
+                
+                
+                
+                let swirlX = -gdy; 
+                let swirlY = gdx;
+                let swirlStrength = Math.max(0, (200 - gDist) / 200); 
+
+                
+                let ax = (dx * 0.5 + gdx * 0.5) * this.speed;
+                let ay = (dy * 0.5 + gdy * 0.5) * this.speed;
+
+                
+                this.vx += (ax - this.vx) * 0.05; 
+                this.vy += (ay - this.vy) * 0.05;
+                
+                
+                this.vx += swirlX * swirlStrength * 0.1;
+                this.vy += swirlY * swirlStrength * 0.1;
+
+                
+                this.vx += Math.cos(time * 0.005 + this.wobbleFreq) * 0.02;
+
+                
+                this.x += this.vx;
+                this.y += this.vy;
+
+                
+                this.history.push({x: this.x, y: this.y});
+                if (this.history.length > this.maxHistory) {
+                    this.history.shift();
+                }
+
+                
+                if (this.fadeIn) {
+                    this.alpha += 0.02;
+                    if (this.alpha >= 0.5) this.fadeIn = false;
+                } else {
+                    
+                    if (dist < 50) {
+                        this.alpha -= 0.02;
+                    }
+                }
+
+                
+                if (dist < 10 || this.alpha <= 0) {
+                    this.dead = true;
+                }
+            }
+
+            draw(ctx) {
+                if (this.history.length < 2) return;
+
+                ctx.beginPath();
+                ctx.moveTo(this.history[0].x, this.history[0].y);
+                
+                
+                for (let i = 1; i < this.history.length; i++) {
+                    ctx.lineTo(this.history[i].x, this.history[i].y);
+                }
+
+                
+                
+                ctx.strokeStyle = `rgba(${CONFIG.color.r}, ${CONFIG.color.g}, ${CONFIG.color.b}, ${this.alpha})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+        }
+
+        
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        
+        function animate() {
+            
+            
+            
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.15)'; 
+            ctx.fillRect(0, 0, width, height);
+
+            time++;
+
+            const r1 = getRect(word1);
+            const r2 = getRect(word2);
+            const center = getRect(centerNode);
+
+            
+            if (particles.length < CONFIG.particleCount) {
+                particles.push(new Particle(r1, r2, center));
+            }
+
+            
+            for (let i = particles.length - 1; i >= 0; i--) {
+                let p = particles[i];
+                p.update();
+                p.draw(ctx);
+
+                if (p.dead) {
+                    particles.splice(i, 1);
+                    
+                    particles.push(new Particle(r1, r2, center)); 
+                }
+            }
+
+            
+            
+            if (time % 5 === 0 && Math.random() > 0.8) {
+                drawStaticGlitch(r1, r2, center);
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        function drawStaticGlitch(r1, r2, c) {
+            ctx.strokeStyle = `rgba(212, 175, 55, ${Math.random() * 0.1})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            
+            
+            const startX = r1.x + Math.random() * r1.w;
+            const startY = r1.y + Math.random() * r1.h;
+            const endX = r2.x + Math.random() * r2.w;
+            const endY = r2.y + Math.random() * r2.h;
+            
+            
+            ctx.moveTo(startX, startY);
+            ctx.quadraticCurveTo(c.cx + (Math.random()-0.5)*100, c.cy + (Math.random()-0.5)*100, endX, endY);
+            ctx.stroke();
+        }
+
+        
+        window.addEventListener('resize', resize);
+        
+        
+        resize();
+        requestAnimationFrame(animate);
+
+        
+        setTimeout(() => {
+            word1.classList.add('fade-in-active');
+        }, 500);
+        setTimeout(() => {
+            word2.classList.add('fade-in-active');
+        }, 1200);
+
+    </script>
+
+</body></html>

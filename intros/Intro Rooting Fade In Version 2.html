@@ -1,0 +1,612 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Interlinked &amp; Intertwined - Redux</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <style vid="6">
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Syncopate:wght@400;700&display=swap');
+
+        :root {
+            --bg-deep: #050505;
+            --bg-card: #0a0a0a;
+            --text-main: #e0e0e0;
+            --text-muted: #666666;
+            --accent-gold: #cfb53b;
+            --accent-shimmer: rgba(207, 181, 59, 0.2);
+            --border-subtle: #1f1f1f;
+            
+            --font-display: 'Cormorant Garamond', serif;
+            --font-tech: 'Syncopate', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-display);
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+            cursor: crosshair;
+            margin: 0;
+        }
+
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-deep);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.5s ease-in-out, visibility 1.5s;
+        }
+
+        .splash-title {
+            font-size: 5rem;
+            color: white;
+            display: flex;
+            gap: 0.2em;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .splash-letter {
+            opacity: 0;
+            display: inline-block;
+            transform: translateY(10px);
+        }
+
+        .splash-canvas {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        #main-wrapper {
+            opacity: 0;
+            transition: opacity 2s ease-in;
+        }
+
+        body.loaded #main-wrapper {
+            opacity: 1;
+        }
+
+        body.loaded #splash-screen {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .mycelium-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            mix-blend-mode: screen;
+        }
+
+        .font-tech { font-family: var(--font-tech); }
+        .font-display { font-family: var(--font-display); }
+
+        .source-anchor {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-style: italic;
+            color: var(--accent-gold);
+            cursor: pointer;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 60;
+            padding: 0 0.5rem;
+        }
+
+        .source-anchor::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--accent-shimmer) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .source-anchor:hover::after {
+            opacity: 1;
+            width: 300%;
+            height: 300%;
+        }
+
+        .spore {
+            position: relative;
+            display: inline-block;
+            color: var(--text-main);
+            transition: color 0.4s ease;
+            white-space: nowrap;
+            z-index: 20;
+            border-bottom: 1px solid transparent;
+        }
+
+        .spore.connected {
+            color: var(--accent-gold);
+            text-shadow: 0 0 10px rgba(207, 181, 59, 0.4);
+            border-bottom: 1px solid var(--accent-gold);
+        }
+
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 3rem;
+        }
+        @media (min-width: 768px) {
+            .masonry-grid { column-count: 2; }
+        }
+        @media (min-width: 1280px) {
+            .masonry-grid { column-count: 3; }
+        }
+
+        .content-block {
+            break-inside: avoid;
+            margin-bottom: 4rem;
+            position: relative;
+            padding: 2rem;
+            border: 1px solid var(--border-subtle);
+            background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(20,20,20,0.4) 100%);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .content-block:hover {
+            border-color: #333;
+            transform: translateY(-5px);
+        }
+
+        .nav-island {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            z-index: 100;
+            display: flex;
+            gap: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .nav-link {
+            font-family: var(--font-tech);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-gold);
+        }
+
+        
+        #config-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(5, 5, 5, 0.4);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #config-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .config-card {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid var(--border-subtle);
+            padding: 3rem;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #config-overlay.open .config-card {
+            transform: translateY(0);
+        }
+
+        .close-crosshair {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-crosshair:hover {
+            opacity: 1;
+        }
+
+        .close-crosshair::before, .close-crosshair::after {
+            content: '';
+            position: absolute;
+            background: var(--accent-gold);
+        }
+
+        .close-crosshair::before { width: 100%; height: 1px; top: 50%; left: 0; }
+        .close-crosshair::after { height: 100%; width: 1px; left: 50%; top: 0; }
+
+        .toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #151515;
+        }
+
+        .toggle-switch {
+            width: 40px;
+            height: 12px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            position: relative;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 0;
+            width: 6px;
+            height: 20px;
+            background: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch.on {
+            border-color: var(--accent-gold);
+        }
+
+        .toggle-switch.on::after {
+            left: 34px;
+            background: var(--accent-gold);
+            box-shadow: 0 0 10px var(--accent-gold);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="selection:bg-yellow-900 selection:text-white" vid="7">
+
+    
+    <div id="splash-screen" vid="8">
+        <canvas id="splash-canvas" class="splash-canvas" vid="9"></canvas>
+        <div class="splash-title font-display" vid="10">
+            <span class="splash-letter" vid="11">I</span>
+            <span class="splash-letter" vid="12">n</span>
+            <span class="splash-letter" vid="13">t</span>
+            <span class="splash-letter" vid="14">e</span>
+            <span class="splash-letter" vid="15">r</span>
+            <span class="splash-letter" vid="16">l</span>
+            <span class="splash-letter" vid="17">i</span>
+            <span class="splash-letter" vid="18">n</span>
+            <span class="splash-letter" vid="19">k</span>
+            <span class="splash-letter" vid="20">e</span>
+            <span class="splash-letter" vid="21">d</span>
+        </div>
+        <div class="mt-8 font-tech text-[10px] tracking-[0.5em] text-[#444] uppercase" vid="22">Initializing Resonance</div>
+    </div>
+
+    
+    <div id="main-wrapper" vid="23">
+        <svg class="mycelium-layer" id="mycelium-canvas" xmlns="http://www.w3.org/2000/svg" vid="24">
+            <defs vid="25">
+                <linearGradient id="hyphae-gradient" gradientUnits="userSpaceOnUse" vid="26">
+                    <stop offset="0%" style="stop-color:var(--accent-gold);stop-opacity:0.8" vid="27"></stop>
+                    <stop offset="100%" style="stop-color:var(--accent-gold);stop-opacity:0" vid="28"></stop>
+                </linearGradient>
+                <filter id="glow" vid="29">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur" vid="30"></feGaussianBlur>
+                    <feMerge vid="31">
+                        <feMergeNode in="coloredBlur" vid="32"></feMergeNode>
+                        <feMergeNode in="SourceGraphic" vid="33"></feMergeNode>
+                    </feMerge>
+                </filter>
+            </defs>
+        </svg>
+
+        <div class="relative w-full max-w-[1600px] mx-auto pt-24 pb-40 px-6 md:px-12" vid="34">
+            <header class="mb-32 text-center relative" vid="35">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-b from-transparent to-[#333]" vid="36"></div>
+                <h1 class="text-[12vw] md:text-[8rem] leading-[0.9] font-light tracking-tighter text-white/90" vid="37">
+                    <div class="block" vid="38">Interlinked</div>
+                    <div class="relative z-50 my-[-2vw] md:my-[-1rem]" vid="39">
+                        <span id="source-capsule" class="source-anchor text-[15vw] md:text-[10rem]" vid="40">&amp;</span>
+                    </div>
+                    <div class="block" vid="41">Intertwined</div>
+                </h1>
+                <div class="mt-12 flex justify-center gap-4" vid="42">
+                    <p class="font-tech text-xs tracking-[0.3em] text-[#666] border-t border-[#333] pt-4 px-8 uppercase" vid="43">
+                        The Geometry of the Unseen
+                    </p>
+                </div>
+            </header>
+
+            <main class="masonry-grid" vid="44">
+                <article class="content-block" vid="45">
+                    <span class="font-tech text-[10px] text-[#444] mb-4 block tracking-widest" vid="46">01 / GENESIS</span>
+                    <h3 class="text-3xl italic mb-6 text-white/90" vid="47">The Digital Root</h3>
+                    <p class="text-lg text-neutral-400 font-light text-justify" vid="48">
+                        We begin in the dark, where the first <span class="spore" vid="49">signal</span> flares. It is not merely a transmission of data, but the birth of a <span class="spore" vid="50">nexus</span>.
+                    </p>
+                </article>
+
+                <article class="content-block" vid="51">
+                    <span class="font-tech text-[10px] text-[#444] mb-4 block tracking-widest" vid="52">02 / STRUCTURE</span>
+                    <h3 class="text-3xl italic mb-6 text-white/90" vid="53">Invisible Architecture</h3>
+                    <p class="text-lg text-neutral-400 font-light text-justify" vid="54">
+                        The <span class="spore" vid="55">geometry</span> of connection is recursive. What appears chaotic from a distance reveals itself as an intricate <span class="spore" vid="56">lattice</span>.
+                    </p>
+                </article>
+
+                <article class="content-block" vid="57">
+                    <span class="font-tech text-[10px] text-[#444] mb-4 block tracking-widest" vid="58">03 / ENTROPY</span>
+                    <h3 class="text-3xl italic mb-6 text-white/90" vid="59">Decay &amp; Bloom</h3>
+                    <p class="text-lg text-neutral-400 font-light text-justify" vid="60">
+                        Every connection eventually fades. The <span class="spore" vid="61">pulse</span> slows, the light dims. But in decomposition, new <span class="spore" vid="62">patterns</span> emerge.
+                    </p>
+                </article>
+            </main>
+        </div>
+
+        <nav class="nav-island" vid="63">
+            <a href="#" class="nav-link active" vid="64">Origin</a>
+            <a href="#" class="nav-link" vid="65">Grid</a>
+            <a href="#" class="nav-link" vid="66">Flow</a>
+            <a href="#" id="config-trigger" class="nav-link" vid="67">Echo</a>
+        </nav>
+    </div>
+
+    
+    <div id="config-overlay" vid="68">
+        <div class="config-card" vid="69">
+            <div id="config-close" class="close-crosshair" vid="70"></div>
+            
+            <header class="mb-12" vid="71">
+                <span class="font-tech text-[9px] text-neutral-500 tracking-[0.4em] uppercase block mb-2" vid="72">System Config</span>
+                <h2 class="text-4xl italic text-white/90" vid="73">Resonance Modulation</h2>
+            </header>
+
+            <div class="space-y-4" vid="74">
+                <div class="toggle-row" vid="75">
+                    <div vid="76">
+                        <h4 class="font-tech text-[11px] tracking-widest uppercase text-white/80" vid="77">Resonance Threads</h4>
+                        <p class="text-sm font-display italic text-neutral-500" vid="78">Persistent visual connectivity</p>
+                    </div>
+                    <div class="toggle-switch on" data-config="threads" vid="79"></div>
+                </div>
+
+                <div class="toggle-row" vid="80">
+                    <div vid="81">
+                        <h4 class="font-tech text-[11px] tracking-widest uppercase text-white/80" vid="82">Spore Animations</h4>
+                        <p class="text-sm font-display italic text-neutral-500" vid="83">Active organic data particles</p>
+                    </div>
+                    <div class="toggle-switch on" data-config="spores" vid="84"></div>
+                </div>
+
+                <div class="toggle-row" vid="85">
+                    <div vid="86">
+                        <h4 class="font-tech text-[11px] tracking-widest uppercase text-white/80" vid="87">Echo Depth</h4>
+                        <p class="text-sm font-display italic text-neutral-500" vid="88">Recursive layering of signals</p>
+                    </div>
+                    <div class="toggle-switch" data-config="echo" vid="89"></div>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-[#151515] flex justify-between items-center" vid="90">
+                <span class="font-tech text-[8px] text-neutral-600 tracking-[0.2em]" vid="91">VER 0.8.2 // STABLE</span>
+                <span class="font-tech text-[8px] text-neutral-600 tracking-[0.2em]" vid="92">00:00:12:FF</span>
+            </div>
+        </div>
+    </div>
+
+    <script vid="93">
+        
+        const splashCanvas = document.getElementById('splash-canvas');
+        const ctx = splashCanvas.getContext('2d');
+        const letters = document.querySelectorAll('.splash-letter');
+        
+        function resizeSplash() {
+            splashCanvas.width = window.innerWidth;
+            splashCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeSplash);
+        resizeSplash();
+
+        class Hypha {
+            constructor(x, y, angle, color) {
+                this.x = x;
+                this.y = y;
+                this.angle = angle;
+                this.color = color;
+                this.width = 1.5;
+                this.active = true;
+                this.length = 0;
+                this.maxSegments = 30 + Math.random() * 50;
+                this.segments = 0;
+            }
+            update() {
+                if (!this.active) return;
+                const prevX = this.x;
+                const prevY = this.y;
+                
+                this.x += Math.cos(this.angle) * 3;
+                this.y += Math.sin(this.angle) * 3;
+                this.angle += (Math.random() - 0.5) * 0.4;
+                
+                ctx.beginPath();
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = this.width;
+                ctx.moveTo(prevX, prevY);
+                ctx.lineTo(this.x, this.y);
+                ctx.stroke();
+
+                this.segments++;
+                if (this.segments > this.maxSegments) this.active = false;
+                if (Math.random() > 0.96 && hyphae.length < 100) {
+                    hyphae.push(new Hypha(this.x, this.y, this.angle + (Math.random() - 0.5), this.color));
+                }
+            }
+        }
+
+        let hyphae = [];
+        function animateSplash() {
+            if (document.body.classList.contains('loaded')) return;
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.05)';
+            ctx.fillRect(0, 0, splashCanvas.width, splashCanvas.height);
+            hyphae.forEach(h => h.update());
+            requestAnimationFrame(animateSplash);
+        }
+        animateSplash();
+
+        letters.forEach((letter, i) => {
+            setTimeout(() => {
+                letter.style.transition = "all 0.8s ease-out";
+                letter.style.opacity = "1";
+                letter.style.transform = "translateY(0)";
+                const rect = letter.getBoundingClientRect();
+                for(let j=0; j<2; j++) {
+                    hyphae.push(new Hypha(
+                        rect.left + rect.width/2, 
+                        rect.top + rect.height/2, 
+                        Math.random() * Math.PI * 2,
+                        '#cfb53b'
+                    ));
+                }
+            }, i * 150);
+        });
+
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+        }, letters.length * 150 + 2000);
+
+        
+        const canvas = document.getElementById('mycelium-canvas');
+        const source = document.getElementById('source-capsule');
+        const spores = document.querySelectorAll('.spore');
+        const MAX_CONNECTIONS = 5; 
+        let activePaths = [];
+
+        function createPath(targetElement) {
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("fill", "none");
+            path.setAttribute("stroke", "#cfb53b");
+            path.setAttribute("stroke-width", 0.8);
+            path.setAttribute("stroke-opacity", "0.6");
+            path.setAttribute("filter", "url(#glow)");
+            canvas.appendChild(path);
+            targetElement.classList.add('connected');
+            return { element: path, target: targetElement, progress: 0, phase: 'growing', life: 200, seed: Math.random() };
+        }
+
+        function getCoordinates(elem) {
+            const rect = elem.getBoundingClientRect();
+            return { x: rect.left + (rect.width / 2), y: rect.top + (rect.height / 2) };
+        }
+
+        function manageLifecycle() {
+            const srcCoords = getCoordinates(source);
+            activePaths.forEach((obj, index) => {
+                const targetCoords = getCoordinates(obj.target);
+                const d = `M ${srcCoords.x} ${srcCoords.y} Q ${srcCoords.x} ${targetCoords.y} ${targetCoords.x} ${targetCoords.y}`;
+                obj.element.setAttribute("d", d);
+                
+                if (obj.phase === 'growing') {
+                    obj.progress += 0.02;
+                    if (obj.progress >= 1) { obj.progress = 1; obj.phase = 'sustained'; }
+                } else if (obj.phase === 'sustained') {
+                    obj.life--;
+                    if (obj.life <= 0) obj.phase = 'dying';
+                } else if (obj.phase === 'dying') {
+                    obj.progress -= 0.02;
+                    if (obj.progress <= 0) {
+                        if (canvas.contains(obj.element)) canvas.removeChild(obj.element);
+                        obj.target.classList.remove('connected');
+                        obj.remove = true;
+                    }
+                }
+                obj.element.style.opacity = obj.progress;
+            });
+            activePaths = activePaths.filter(p => !p.remove);
+            if (activePaths.length < MAX_CONNECTIONS && Math.random() > 0.98) {
+                const available = Array.from(spores).filter(s => !s.classList.contains('connected'));
+                if (available.length) activePaths.push(createPath(available[Math.floor(Math.random()*available.length)]));
+            }
+            requestAnimationFrame(manageLifecycle);
+        }
+        
+        setTimeout(() => {
+            requestAnimationFrame(manageLifecycle);
+        }, 4000);
+
+        
+        const configTrigger = document.getElementById('config-trigger');
+        const configOverlay = document.getElementById('config-overlay');
+        const configClose = document.getElementById('config-close');
+        const toggles = document.querySelectorAll('.toggle-switch');
+
+        configTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            configOverlay.classList.add('open');
+        });
+
+        configClose.addEventListener('click', () => {
+            configOverlay.classList.remove('open');
+        });
+
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('on');
+            });
+        });
+
+        
+        configOverlay.addEventListener('click', (e) => {
+            if (e.target === configOverlay) {
+                configOverlay.classList.remove('open');
+            }
+        });
+    </script>
+</body></html>

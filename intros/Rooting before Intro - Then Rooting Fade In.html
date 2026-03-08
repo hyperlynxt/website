@@ -1,0 +1,350 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Interlinked - Entry</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <style vid="6">
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Syncopate:wght@400;700&display=swap');
+
+        :root {
+            --bg-deep: #050505;
+            --text-main: #e0e0e0;
+            --text-muted: #666666;
+            --accent-gold: #cfb53b;
+            --border-subtle: #1f1f1f;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-tech: 'Syncopate', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-display);
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            cursor: none;
+        }
+
+        #gate-screen {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            background: var(--bg-deep);
+            transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .custom-cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--accent-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+            z-index: 3000;
+            mix-blend-mode: difference;
+        }
+
+        .enter-prompt {
+            font-family: var(--font-tech);
+            font-size: 0.75rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.5s ease, letter-spacing 0.5s ease;
+            position: relative;
+            z-index: 2001;
+            padding: 20px;
+        }
+
+        .enter-prompt:hover {
+            color: var(--accent-gold);
+            letter-spacing: 0.7em;
+        }
+
+        #bloom-canvas {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-deep);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.5s ease-in-out, visibility 1.5s;
+        }
+
+        .splash-title {
+            font-size: 5rem;
+            color: white;
+            display: flex;
+            gap: 0.2em;
+            letter-spacing: -0.02em;
+        }
+
+        .splash-letter {
+            opacity: 0;
+            display: inline-block;
+            transform: translateY(10px);
+        }
+
+        .gate-active #gate-screen { opacity: 1; visibility: visible; }
+        .gate-transitioning #gate-screen { opacity: 0; visibility: hidden; pointer-events: none; }
+        .gate-transitioning #splash-screen { opacity: 1; visibility: visible; }
+
+        body.loaded #splash-screen {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #main-wrapper {
+            opacity: 0;
+            transition: opacity 2s ease-in;
+        }
+
+        body.loaded #main-wrapper {
+            opacity: 1;
+        }
+
+        .mycelium-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            mix-blend-mode: screen;
+        }
+
+        .nav-island {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            z-index: 100;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-family: var(--font-tech);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .content-block {
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(20,20,20,0.4) 100%);
+        }
+    </style>
+</head>
+<body class="gate-active" vid="7">
+
+    <div id="cursor" class="custom-cursor" vid="8"></div>
+
+    <div id="gate-screen" vid="9">
+        <canvas id="bloom-canvas" vid="10"></canvas>
+        <button id="enter-lattice" class="enter-prompt" vid="11">
+            Enter the Lattice
+        </button>
+    </div>
+
+    <div id="splash-screen" vid="12">
+        <canvas id="splash-canvas" class="absolute inset-0 pointer-events-none" vid="13"></canvas>
+        <div class="splash-title font-display" vid="14">
+            <span class="splash-letter" vid="15">I</span>
+            <span class="splash-letter" vid="16">n</span>
+            <span class="splash-letter" vid="17">t</span>
+            <span class="splash-letter" vid="18">e</span>
+            <span class="splash-letter" vid="19">r</span>
+            <span class="splash-letter" vid="20">l</span>
+            <span class="splash-letter" vid="21">i</span>
+            <span class="splash-letter" vid="22">n</span>
+            <span class="splash-letter" vid="23">k</span>
+            <span class="splash-letter" vid="24">e</span>
+            <span class="splash-letter" vid="25">d</span>
+        </div>
+        <div class="mt-8 font-tech text-[10px] tracking-[0.5em] text-[#444] uppercase" vid="26">Initializing Resonance</div>
+    </div>
+
+    <div id="main-wrapper" vid="27">
+        <svg class="mycelium-layer" id="mycelium-canvas" xmlns="http://www.w3.org/2000/svg" vid="28">
+            <defs vid="29">
+                <linearGradient id="hyphae-gradient" gradientUnits="userSpaceOnUse" vid="30">
+                    <stop offset="0%" style="stop-color:var(--accent-gold);stop-opacity:0.8" vid="31"></stop>
+                    <stop offset="100%" style="stop-color:var(--accent-gold);stop-opacity:0" vid="32"></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <div class="relative w-full max-w-[1600px] mx-auto pt-24 pb-40 px-6 md:px-12" vid="33">
+            <header class="mb-32 text-center relative" vid="34">
+                <h1 class="text-[12vw] md:text-[8rem] leading-[0.9] font-light tracking-tighter text-white/90" vid="35">
+                    <div class="block" vid="36">Interlinked</div>
+                    <div class="relative z-50 my-[-2vw] md:my-[-1rem]" vid="37">
+                        <span id="source-capsule" class="text-[15vw] md:text-[10rem] italic text-[#cfb53b]" vid="38">&amp;</span>
+                    </div>
+                    <div class="block" vid="39">Intertwined</div>
+                </h1>
+            </header>
+
+            <main class="grid grid-cols-1 md:grid-cols-3 gap-12" vid="40">
+                <article class="content-block" vid="41">
+                    <span class="font-tech text-[10px] text-[#444] mb-4 block tracking-widest" vid="42">01 / GENESIS</span>
+                    <h3 class="text-3xl italic mb-6 text-white/90" vid="43">The Digital Root</h3>
+                    <p class="text-lg text-neutral-400 font-light" vid="44">We begin in the dark, where the first signal flares.</p>
+                </article>
+            </main>
+        </div>
+
+        <nav class="nav-island" vid="45">
+            <a href="#" class="nav-link active" vid="46">Origin</a>
+            <a href="#" class="nav-link" vid="47">Grid</a>
+            <a href="#" class="nav-link" vid="48">Flow</a>
+        </nav>
+    </div>
+
+    <script vid="49">
+        const cursor = document.getElementById('cursor');
+        const bloomCanvas = document.getElementById('bloom-canvas');
+        const btx = bloomCanvas.getContext('2d');
+        const enterBtn = document.getElementById('enter-lattice');
+        
+        let mouseX = 0, mouseY = 0;
+        let bloomHyphae = [];
+
+        function resizeBloom() {
+            bloomCanvas.width = window.innerWidth;
+            bloomCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeBloom);
+        resizeBloom();
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        enterBtn.addEventListener('mouseenter', () => {
+            cursor.style.width = '80px';
+            cursor.style.height = '80px';
+        });
+        enterBtn.addEventListener('mouseleave', () => {
+            cursor.style.width = '40px';
+            cursor.style.height = '40px';
+        });
+
+        class BloomHypha {
+            constructor(x, y, angle) {
+                this.x = x; this.y = y;
+                this.angle = angle;
+                this.segments = 0;
+                this.max = 40 + Math.random() * 60;
+                this.active = true;
+            }
+            update() {
+                if (!this.active) return;
+                const px = this.x, py = this.y;
+                this.x += Math.cos(this.angle) * 2;
+                this.y += Math.sin(this.angle) * 2;
+                this.angle += (Math.random() - 0.5) * 0.2;
+                btx.beginPath();
+                btx.strokeStyle = 'rgba(207, 181, 59, 0.15)';
+                btx.lineWidth = 0.5;
+                btx.moveTo(px, py);
+                btx.lineTo(this.x, this.y);
+                btx.stroke();
+                this.segments++;
+                if (this.segments > this.max) this.active = false;
+                if (Math.random() > 0.98 && bloomHyphae.length < 200) {
+                    bloomHyphae.push(new BloomHypha(this.x, this.y, this.angle + 0.5));
+                }
+            }
+        }
+
+        function animateBloom() {
+            if (Math.random() > 0.95) {
+                bloomHyphae.push(new BloomHypha(Math.random() * bloomCanvas.width, Math.random() * bloomCanvas.height, Math.random() * Math.PI * 2));
+            }
+            bloomHyphae.forEach(h => h.update());
+            requestAnimationFrame(animateBloom);
+        }
+        animateBloom();
+
+        enterBtn.addEventListener('click', () => {
+            document.body.classList.remove('gate-active');
+            document.body.classList.add('gate-transitioning');
+            cursor.style.opacity = '0';
+            startSplashScreen();
+        });
+
+        function startSplashScreen() {
+            const sCanvas = document.getElementById('splash-canvas');
+            const sCtx = sCanvas.getContext('2d');
+            sCanvas.width = window.innerWidth;
+            sCanvas.height = window.innerHeight;
+            
+            let sHyphae = [];
+            const letters = document.querySelectorAll('.splash-letter');
+
+            function runSplashAnim() {
+                sCtx.fillStyle = 'rgba(5, 5, 5, 0.05)';
+                sCtx.fillRect(0, 0, sCanvas.width, sCanvas.height);
+                sHyphae.forEach(h => {
+                    const px = h.x, py = h.y;
+                    h.x += Math.cos(h.angle) * 3;
+                    h.y += Math.sin(h.angle) * 3;
+                    h.angle += (Math.random() - 0.5) * 0.4;
+                    sCtx.beginPath();
+                    sCtx.strokeStyle = '#cfb53b';
+                    sCtx.lineWidth = 1;
+                    sCtx.moveTo(px, py);
+                    sCtx.lineTo(h.x, h.y);
+                    sCtx.stroke();
+                });
+                requestAnimationFrame(runSplashAnim);
+            }
+            runSplashAnim();
+
+            letters.forEach((l, i) => {
+                setTimeout(() => {
+                    l.style.opacity = "1";
+                    l.style.transform = "translateY(0)";
+                    const rect = l.getBoundingClientRect();
+                    for(let j=0; j<3; j++) sHyphae.push({ x: rect.left + rect.width/2, y: rect.top + rect.height/2, angle: Math.random()*Math.PI*2 });
+                }, i * 150 + 500);
+            });
+
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, letters.length * 150 + 2500);
+        }
+    </script>
+</body></html>

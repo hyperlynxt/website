@@ -1,0 +1,572 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Interlinked &amp; Intertwined - Settings</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <style vid="6">
+        @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&display=swap');
+
+        :root {
+            --bg-void: #121212;
+            --text-primary: #d1d1d1;
+            --accent-gold: #e6b97e;
+            --accent-glow: rgba(230, 185, 126, 0.4);
+            --font-serif: 'Shippori Mincho', serif;
+            --panel-bg: rgba(18, 18, 18, 0.95);
+        }
+
+        body {
+            background-color: var(--bg-void);
+            color: var(--text-primary);
+            font-family: var(--font-serif);
+            margin: 0;
+            overflow: hidden; 
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #mycelium-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ampersand-hub {
+            font-size: 6rem;
+            color: var(--accent-gold);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            cursor: default;
+            user-select: none;
+        }
+
+        #hub-node {
+            text-shadow: 0 0 20px var(--accent-glow);
+            animation: pulse-gold 4s ease-in-out infinite;
+        }
+
+        .aura {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(230, 185, 126, 0.1) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: breathe 6s ease-in-out infinite;
+        }
+
+        .chapter-node {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0;
+            transform: scale(0.8);
+            z-index: 25;
+            padding: 1rem;
+        }
+
+        .node-circle {
+            width: 12px;
+            height: 12px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 10px var(--accent-glow);
+            transition: all 0.4s ease;
+        }
+
+        .chapter-label {
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            opacity: 0.6;
+            transition: all 0.4s ease;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-top: 0.25rem;
+            white-space: nowrap;
+            transition: all 0.4s ease;
+        }
+
+        .chapter-node:hover {
+            transform: scale(1.1);
+        }
+
+        .chapter-node:hover .node-circle {
+            box-shadow: 0 0 25px var(--accent-gold), 0 0 50px var(--accent-glow);
+            transform: scale(1.5);
+        }
+
+        .chapter-node:hover .chapter-label,
+        .chapter-node:hover .chapter-title {
+            color: var(--accent-gold);
+            opacity: 1;
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        
+        #settings-overlay {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100vh;
+            background: var(--panel-bg);
+            border-left: 1px solid rgba(230, 185, 126, 0.15);
+            z-index: 100;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+
+        #settings-overlay.open {
+            transform: translateX(-450px);
+        }
+
+        .settings-toggle {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 110;
+            background: transparent;
+            border: 1px solid rgba(230, 185, 126, 0.3);
+            color: var(--accent-gold);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .settings-toggle:hover {
+            background: rgba(230, 185, 126, 0.1);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .settings-header {
+            font-size: 0.8rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        .setting-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .setting-label {
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 2px;
+            background: rgba(230, 185, 126, 0.2);
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .theme-selector {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .theme-swatch {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .theme-swatch.active {
+            border-color: var(--accent-gold);
+            transform: scale(1.1);
+        }
+
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .switch-track {
+            width: 40px;
+            height: 20px;
+            background: rgba(230, 185, 126, 0.1);
+            border: 1px solid rgba(230, 185, 126, 0.3);
+            border-radius: 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .switch-handle {
+            width: 12px;
+            height: 12px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 4px;
+            transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+
+        .on .switch-track { background: rgba(230, 185, 126, 0.3); }
+        .on .switch-handle { left: 22px; }
+
+        @keyframes pulse-gold {
+            0%, 100% { 
+                text-shadow: 0 0 20px var(--accent-glow); 
+                opacity: 0.9;
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 40px rgba(230, 185, 126, 0.6), 0 0 10px var(--accent-gold); 
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.5; }
+        }
+
+        .fade-in-node {
+            animation: nodeEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes nodeEntrance {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .nav-hint {
+            position: absolute;
+            bottom: 40px;
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            opacity: 0.4;
+            animation: fadeIn 3s ease forwards;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 0.4; } }
+    </style>
+</head>
+<body vid="7">
+
+    <svg id="mycelium-layer" xmlns="http://www.w3.org/2000/svg" vid="8">
+        <defs vid="9">
+            <filter id="glow-filter" x="-50%" y="-50%" width="200%" height="200%" vid="10">
+                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" vid="11"></feGaussianBlur>
+                <feMerge vid="12">
+                    <feMergeNode in="coloredBlur" vid="13"></feMergeNode>
+                    <feMergeNode in="SourceGraphic" vid="14"></feMergeNode>
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+
+    <button class="settings-toggle" onclick="toggleSettings()" vid="15">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" vid="16">
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" vid="17"></path>
+            <circle cx="12" cy="12" r="3" vid="18"></circle>
+        </svg>
+    </button>
+
+    <aside id="settings-overlay" vid="19">
+        <h2 class="settings-header" vid="20">Preferences</h2>
+
+        <div class="setting-group" vid="21">
+            <div class="toggle-switch on" onclick="this.classList.toggle('on')" vid="22">
+                <span class="setting-label" style="margin-bottom: 0" vid="23">Ambient Sound</span>
+                <div class="switch-track" vid="24">
+                    <div class="switch-handle" vid="25"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="setting-group" vid="26">
+            <label class="setting-label" vid="27">Animation Intensity</label>
+            <input type="range" min="0" max="100" value="65" vid="28">
+            <div class="flex justify-between mt-2 opacity-40 text-[10px] uppercase tracking-widest" vid="29">
+                <span vid="30">Still</span>
+                <span vid="31">Flowing</span>
+            </div>
+        </div>
+
+        <div class="setting-group" vid="32">
+            <label class="setting-label" vid="33">Reading Font Size</label>
+            <input type="range" min="12" max="24" value="18" vid="34">
+            <div class="flex justify-between mt-2 opacity-40 text-[10px] uppercase tracking-widest" vid="35">
+                <span vid="36">Small</span>
+                <span vid="37">Grand</span>
+            </div>
+        </div>
+
+        <div class="setting-group" vid="38">
+            <label class="setting-label" vid="39">Visual Theme</label>
+            <div class="theme-selector" vid="40">
+                <div class="theme-swatch active" style="background: #121212" title="Void Black" vid="41"></div>
+                <div class="theme-swatch" style="background: #0d1117" title="Deep Indigo" vid="42"></div>
+                <div class="theme-swatch" style="background: #0a110a" title="Forest Dark" vid="43"></div>
+            </div>
+        </div>
+
+        <div class="mt-auto opacity-30 text-[11px] tracking-[0.3em] uppercase" vid="44">
+            v1.0.4 — Echoes of the Void
+        </div>
+    </aside>
+
+    <main class="content-layer" vid="45">
+        <div class="ampersand-hub" vid="46">
+            <div class="aura" vid="47"></div>
+            <span id="hub-node" vid="48">&amp;</span>
+        </div>
+
+        <a href="#" class="chapter-node fade-in-node" style="top: 15%; left: 50%; transform: translateX(-50%); animation-delay: 0.4s;" vid="49">
+            <div class="node-circle" vid="50"></div>
+            <span class="chapter-label" vid="51">Part I</span>
+            <span class="chapter-title" vid="52">The Void</span>
+        </a>
+
+        <a href="#" class="chapter-node fade-in-node" style="top: 35%; left: 75%; animation-delay: 0.6s;" vid="53">
+            <div class="node-circle" vid="54"></div>
+            <span class="chapter-label" vid="55">Part II</span>
+            <span class="chapter-title" vid="56">Neural Roots</span>
+        </a>
+
+        <a href="#" class="chapter-node fade-in-node" style="top: 70%; left: 70%; animation-delay: 0.8s;" vid="57">
+            <div class="node-circle" vid="58"></div>
+            <span class="chapter-label" vid="59">Part III</span>
+            <span class="chapter-title" vid="60">Synapse Bridge</span>
+        </a>
+
+        <a href="#" class="chapter-node fade-in-node" style="top: 80%; left: 50%; transform: translateX(-50%); animation-delay: 1.0s;" vid="61">
+            <div class="node-circle" vid="62"></div>
+            <span class="chapter-label" vid="63">Part IV</span>
+            <span class="chapter-title" vid="64">Coalescence</span>
+        </a>
+
+        <a href="#" class="chapter-node fade-in-node" style="top: 70%; left: 30%; animation-delay: 1.2s;" vid="65">
+            <div class="node-circle" vid="66"></div>
+            <span class="chapter-label" vid="67">Part V</span>
+            <span class="chapter-title" vid="68">Echoes</span>
+        </a>
+
+        <a href="#" class="chapter-node fade-in-node" style="top: 35%; left: 25%; animation-delay: 1.4s;" vid="69">
+            <div class="node-circle" vid="70"></div>
+            <span class="chapter-label" vid="71">Part VI</span>
+            <span class="chapter-title" vid="72">Infinite Bloom</span>
+        </a>
+
+        <div class="nav-hint" vid="73">Select a node to traverse</div>
+    </main>
+
+    <script vid="74">
+        const svgCanvas = document.getElementById('mycelium-layer');
+        const hubNode = document.getElementById('hub-node');
+        const chapterNodes = document.querySelectorAll('.node-circle');
+        const settingsOverlay = document.getElementById('settings-overlay');
+        
+        function toggleSettings() {
+            settingsOverlay.classList.toggle('open');
+        }
+
+        const CONFIG = {
+            maxPaths: 45,
+            color: '#e6b97e',
+            strokeWidth: { min: 0.5, max: 1.5 },
+            opacity: { min: 0.2, max: 0.6 },
+            growthSpeed: 0.006,
+            lifeSpan: { min: 300, max: 700 }
+        };
+
+        let activePaths = [];
+
+        const random = (min, max) => Math.random() * (max - min) + min;
+
+        function getCenter(element) {
+            const rect = element.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2
+            };
+        }
+
+        class MyceliumPath {
+            constructor() {
+                this.element = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                this.phase = 'growing'; 
+                this.progress = 0;
+                this.life = random(CONFIG.lifeSpan.min, CONFIG.lifeSpan.max);
+                this.width = random(CONFIG.strokeWidth.min, CONFIG.strokeWidth.max);
+                this.opacity = random(CONFIG.opacity.min, CONFIG.opacity.max);
+                
+                this.initPoints();
+                
+                this.element.setAttribute("fill", "none");
+                this.element.setAttribute("stroke", CONFIG.color);
+                this.element.setAttribute("stroke-width", this.width);
+                this.element.setAttribute("stroke-opacity", this.opacity);
+                this.element.setAttribute("stroke-linecap", "round");
+                this.element.setAttribute("filter", "url(#glow-filter)");
+                
+                svgCanvas.appendChild(this.element);
+            }
+
+            initPoints() {
+                const targetNodes = Array.from(chapterNodes);
+                const randomNode = targetNodes[Math.floor(Math.random() * targetNodes.length)];
+                
+                this.start = getCenter(hubNode);
+                this.end = getCenter(randomNode);
+
+                this.start.x += random(-5, 5);
+                this.start.y += random(-5, 5);
+                this.end.x += random(-8, 8);
+                this.end.y += random(-8, 8);
+
+                this.cpOffsets = {
+                    cp1x: random(-80, 80),
+                    cp1y: random(-80, 80),
+                    cp2x: random(-80, 80),
+                    cp2y: random(-80, 80),
+                    freq: random(0.0005, 0.002),
+                    amp: random(30, 150)
+                };
+            }
+
+            update(time) {
+                const dx = this.end.x - this.start.x;
+                const dy = this.end.y - this.start.y;
+                
+                const noise1 = Math.sin(time * this.cpOffsets.freq) * this.cpOffsets.amp;
+                const noise2 = Math.cos(time * this.cpOffsets.freq) * this.cpOffsets.amp;
+
+                const cp1x = this.start.x + dx * 0.4 + this.cpOffsets.cp1x + noise1;
+                const cp1y = this.start.y + dy * 0.4 + this.cpOffsets.cp1y + noise2;
+                const cp2x = this.start.x + dx * 0.7 + this.cpOffsets.cp2x - noise1;
+                const cp2y = this.start.y + dy * 0.7 + this.cpOffsets.cp2y - noise2;
+
+                const d = `M ${this.start.x} ${this.start.y} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${this.end.x} ${this.end.y}`;
+                this.element.setAttribute("d", d);
+
+                const length = this.element.getTotalLength();
+                this.element.style.strokeDasharray = length;
+
+                if (this.phase === 'growing') {
+                    this.progress += CONFIG.growthSpeed;
+                    if (this.progress >= 1) { this.progress = 1; this.phase = 'sustained'; }
+                } else if (this.phase === 'sustained') {
+                    this.life--;
+                    if (this.life <= 0) this.phase = 'dying';
+                } else if (this.phase === 'dying') {
+                    this.progress -= CONFIG.growthSpeed * 1.2;
+                    if (this.progress <= 0) { this.progress = 0; this.dead = true; }
+                }
+
+                this.element.style.strokeDashoffset = length * (1 - this.progress);
+            }
+
+            destroy() {
+                if (this.element.parentNode) this.element.parentNode.removeChild(this.element);
+            }
+        }
+
+        function animate() {
+            const time = Date.now();
+            for (let i = activePaths.length - 1; i >= 0; i--) {
+                if (activePaths[i].dead) {
+                    activePaths[i].destroy();
+                    activePaths.splice(i, 1);
+                }
+            }
+            if (activePaths.length < CONFIG.maxPaths && Math.random() < 0.15) {
+                activePaths.push(new MyceliumPath());
+            }
+            activePaths.forEach(path => path.update(time));
+            requestAnimationFrame(animate);
+        }
+
+        setTimeout(() => {
+            animate();
+        }, 1000);
+
+        window.addEventListener('resize', () => {
+            activePaths.forEach(p => p.destroy());
+            activePaths = [];
+        });
+
+        
+        document.querySelectorAll('.theme-swatch').forEach(swatch => {
+            swatch.addEventListener('click', () => {
+                document.querySelectorAll('.theme-swatch').forEach(s => s.classList.remove('active'));
+                swatch.classList.add('active');
+                document.body.style.backgroundColor = swatch.style.background;
+            });
+        });
+    </script>
+
+</body></html>
