@@ -202,17 +202,8 @@
 
 <body vid="7">
 
-    <svg id="mycelium-layer" xmlns="http://www.w3.org/2000/svg" vid="8">
-        <defs vid="9">
-            <filter id="glow-filter" x="-50%" y="-50%" width="200%" height="200%" vid="10">
-                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" vid="11"></feGaussianBlur>
-                <feMerge vid="12">
-                    <feMergeNode in="coloredBlur" vid="13"></feMergeNode>
-                    <feMergeNode in="SourceGraphic" vid="14"></feMergeNode>
-                </feMerge>
-            </filter>
-        </defs>
-    </svg>
+    <canvas id="mycelium-layer"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none;"></canvas>
 
     <main class="content-layer" vid="15">
         <div class="ampersand-hub" vid="16">
@@ -263,13 +254,14 @@
     </main>
 
     <script vid="44">
-        const svgCanvas = document.getElementById('mycelium-layer');
+        const canvas = document.getElementById('mycelium-layer');
+        const ctx = canvas.getContext('2d');
         const hubNode = document.getElementById('hub-node');
         const chapterNodes = document.querySelectorAll('.node-circle');
 
         const CONFIG = {
             maxPaths: 45,
-            color: '#c99a5e',
+            color: 'rgba(42, 42, 42, {opacity})',
             strokeWidth: { min: 0.5, max: 1.5 },
             opacity: { min: 0.4, max: 0.8 },
             growthSpeed: 0.006,
@@ -277,6 +269,14 @@
         };
 
         let activePaths = [];
+        let dpr = window.devicePixelRatio || 1;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth * dpr;
+            canvas.height = window.innerHeight * dpr;
+            ctx.scale(dpr, dpr);
+            activePaths = [];
+        }
 
         const random = (min, max) => Math.random() * (max - min) + min;
 
@@ -288,25 +288,28 @@
             };
         }
 
+        function getBezierPoint(t, p0, p1, p2, p3) {
+            const cX = 3 * (p1.x - p0.x);
+            const bX = 3 * (p2.x - p1.x) - cX;
+            const aX = p3.x - p0.x - cX - bX;
+
+            const cY = 3 * (p1.y - p0.y);
+            const bY = 3 * (p2.y - p1.y) - cY;
+            const aY = p3.y - p0.y - cY - bY;
+
+            const x = (aX * Math.pow(t, 3)) + (bX * Math.pow(t, 2)) + (cX * t) + p0.x;
+            const y = (aY * Math.pow(t, 3)) + (bY * Math.pow(t, 2)) + (cY * t) + p0.y;
+            return { x, y };
+        }
+
         class MyceliumPath {
             constructor() {
-                this.element = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 this.phase = 'growing';
                 this.progress = 0;
                 this.life = random(CONFIG.lifeSpan.min, CONFIG.lifeSpan.max);
                 this.width = random(CONFIG.strokeWidth.min, CONFIG.strokeWidth.max);
                 this.opacity = random(CONFIG.opacity.min, CONFIG.opacity.max);
-
                 this.initPoints();
-
-                this.element.setAttribute("fill", "none");
-                this.element.setAttribute("stroke", "#2a2a2a");
-                this.element.setAttribute("stroke-width", this.width);
-                this.element.setAttribute("stroke-opacity", this.opacity);
-                this.element.setAttribute("stroke-linecap", "round");
-                this.element.setAttribute("filter", "url(#glow-filter)");
-
-                svgCanvas.appendChild(this.element);
             }
 
             initPoints() {
@@ -315,7 +318,6 @@
 
                 this.start = getCenter(hubNode);
                 this.end = getCenter(randomNode);
-
 
                 this.start.x += random(-5, 5);
                 this.start.y += random(-5, 5);
@@ -333,23 +335,6 @@
             }
 
             update(time) {
-                const dx = this.end.x - this.start.x;
-                const dy = this.end.y - this.start.y;
-
-                const noise1 = Math.sin(time * this.cpOffsets.freq) * this.cpOffsets.amp;
-                const noise2 = Math.cos(time * this.cpOffsets.freq) * this.cpOffsets.amp;
-
-                const cp1x = this.start.x + dx * 0.4 + this.cpOffsets.cp1x + noise1;
-                const cp1y = this.start.y + dy * 0.4 + this.cpOffsets.cp1y + noise2;
-                const cp2x = this.start.x + dx * 0.7 + this.cpOffsets.cp2x - noise1;
-                const cp2y = this.start.y + dy * 0.7 + this.cpOffsets.cp2y - noise2;
-
-                const d = `M ${this.start.x} ${this.start.y} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${this.end.x} ${this.end.y}`;
-                this.element.setAttribute("d", d);
-
-                const length = this.element.getTotalLength();
-                this.element.style.strokeDasharray = length;
-
                 if (this.phase === 'growing') {
                     this.progress += CONFIG.growthSpeed;
                     if (this.progress >= 1) { this.progress = 1; this.phase = 'sustained'; }
@@ -361,37 +346,78 @@
                     if (this.progress <= 0) { this.progress = 0; this.dead = true; }
                 }
 
-                this.element.style.strokeDashoffset = length * (1 - this.progress);
+                const dx = this.end.x - this.start.x;
+                const dy = this.end.y - this.start.y;
+
+                const noise1 = Math.sin(time * this.cpOffsets.freq) * this.cpOffsets.amp;
+                const noise2 = Math.cos(time * this.cpOffsets.freq) * this.cpOffsets.amp;
+
+                this.cp1 = {
+                    x: this.start.x + dx * 0.4 + this.cpOffsets.cp1x + noise1,
+                    y: this.start.y + dy * 0.4 + this.cpOffsets.cp1y + noise2
+                };
+
+                this.cp2 = {
+                    x: this.start.x + dx * 0.7 + this.cpOffsets.cp2x - noise1,
+                    y: this.start.y + dy * 0.7 + this.cpOffsets.cp2y - noise2
+                };
             }
 
-            destroy() {
-                if (this.element.parentNode) this.element.parentNode.removeChild(this.element);
+            draw() {
+                if (this.progress <= 0) return;
+
+                ctx.beginPath();
+                ctx.moveTo(this.start.x, this.start.y);
+
+                const segments = 20;
+                for (let i = 1; i <= segments; i++) {
+                    let t = i / segments;
+                    if (t > this.progress) t = this.progress;
+
+                    const p = getBezierPoint(t, this.start, this.cp1, this.cp2, this.end);
+                    ctx.lineTo(p.x, p.y);
+
+                    if (t === this.progress) break;
+                }
+
+                ctx.strokeStyle = CONFIG.color.replace('{opacity}', this.opacity);
+                ctx.lineWidth = this.width;
+                ctx.lineCap = 'round';
+
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.1)';
+                ctx.shadowBlur = 4;
+
+                ctx.stroke();
             }
         }
 
         function animate() {
             const time = Date.now();
+            ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+
             for (let i = activePaths.length - 1; i >= 0; i--) {
                 if (activePaths[i].dead) {
-                    activePaths[i].destroy();
                     activePaths.splice(i, 1);
                 }
             }
             if (activePaths.length < CONFIG.maxPaths && Math.random() < 0.15) {
                 activePaths.push(new MyceliumPath());
             }
-            activePaths.forEach(path => path.update(time));
+
+            activePaths.forEach(path => {
+                path.update(time);
+                path.draw();
+            });
+
             requestAnimationFrame(animate);
         }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
         setTimeout(() => {
             animate();
         }, 1000);
-
-        window.addEventListener('resize', () => {
-            activePaths.forEach(p => p.destroy());
-            activePaths = [];
-        });
     </script>
 
 </body>
