@@ -318,6 +318,20 @@
                 buttons[newIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
         }
+
+        // Read URL hash on load and jump to that quote
+        window.addEventListener('load', () => {
+            const hash = window.location.hash;
+            if (hash) {
+                const index = parseInt(hash.replace('#', ''), 10);
+                if (!isNaN(index) && index >= 0 && index < quotesData.length) {
+                    updateQuote(index);
+                    return;
+                }
+            }
+            // Default: show first quote
+            updateQuote(0);
+        });
     </script>
 </body>
 
