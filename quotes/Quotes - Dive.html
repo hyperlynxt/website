@@ -42,19 +42,19 @@
 
         .filter-link:hover {
             color: #263524;
-            padding-left: 0.5rem;
+            padding-left: 1rem;
             border-left: 1px solid #263524;
         }
 
         .filter-link.active {
             color: #263524;
             font-weight: 600;
-            padding-left: 0.5rem;
+            padding-left: 1rem;
             border-left: 1px solid #263524;
         }
 
         .list-item {
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.3s ease;
             border-bottom: 1px solid rgba(26, 26, 24, 0.08);
         }
 
@@ -117,7 +117,7 @@
             </h1>
             <div class="hidden lg:block w-72" vid="15">
                 <input type="text" placeholder="Search fragment..."
-                    class="search-input w-full py-1 text-[0.96rem] text-[#1A1A18] placeholder:text-[#1A1A18]/30 font-light"
+                    class="search-input w-full py-1 text-[1.06rem] text-[#1A1A18] placeholder:text-[#1A1A18]/30 font-light"
                     vid="16">
             </div>
         </div>
@@ -234,15 +234,15 @@
 
             <div class="absolute bottom-12 left-16 right-16 flex justify-between items-center" vid="74">
                 <button
-                    class="group flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] text-[#7A7A73] hover:text-[#1A1A18] transition-colors"
+                    class="group flex items-center gap-4 text-[11px] uppercase tracking-[0.3em] text-[#7A7A73] hover:text-[#1A1A18] transition-colors"
                     onclick="navigateQuote(-1)" vid="75">
-                    <span class="text-lg transition-transform group-hover:-translate-x-1" vid="76">←</span> Prev
+                    <span class="text-[1.24rem] transition-transform group-hover:-translate-x-1" vid="76">←</span> Prev
                 </button>
                 <div class="h-px flex-1 mx-12 bg-black/5" vid="77"></div>
                 <button
-                    class="group flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] text-[#7A7A73] hover:text-[#1A1A18] transition-colors"
+                    class="group flex items-center gap-4 text-[11px] uppercase tracking-[0.3em] text-[#7A7A73] hover:text-[#1A1A18] transition-colors"
                     onclick="navigateQuote(1)" vid="78">
-                    Next <span class="text-lg transition-transform group-hover:translate-x-1" vid="79">→</span>
+                    Next <span class="text-[1.24rem] transition-transform group-hover:translate-x-1" vid="79">→</span>
                 </button>
             </div>
         </main>
