@@ -158,35 +158,40 @@
             </div>
 
             <div class="flex flex-col" vid="42">
-                <button class="list-item active text-left p-8 group relative" onclick="updateQuote(0)" vid="43">
+                <button class="list-item active text-left p-8 group relative" onclick="updateQuote(0)"
+                    data-theme="personal" data-author="unknown" vid="43">
                     <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif" vid="44">I.</span>
                     <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="45">"Who are you when you
                         are not performing for the people inside of your mind?"</p>
                     <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="46">Unknown</p>
                 </button>
 
-                <button class="list-item text-left p-8 group relative" onclick="updateQuote(1)" vid="47">
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(1)" data-theme="personal"
+                    data-author="unknown" vid="47">
                     <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif" vid="48">II.</span>
                     <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="49">"For them I was a
                         breath of fresh air, and personally I've never felt more suffocated."</p>
                     <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="50">Unknown</p>
                 </button>
 
-                <button class="list-item text-left p-8 group relative" onclick="updateQuote(2)" vid="51">
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(2)" data-theme="personal"
+                    data-author="unknown" vid="51">
                     <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif" vid="52">III.</span>
                     <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="53">"How empty of you to be
                         so full of me."</p>
                     <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="54">Unknown</p>
                 </button>
 
-                <button class="list-item text-left p-8 group relative" onclick="updateQuote(3)" vid="55">
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(3)" data-theme="personal"
+                    data-author="unknown" vid="55">
                     <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif" vid="56">IV.</span>
                     <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="57">"How do I take off a
                         mask when it stops being a mask, and is as much part of me as I am."</p>
                     <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2" vid="58">Unknown</p>
                 </button>
 
-                <button class="list-item text-left p-8 group relative" onclick="updateQuote(4)" vid="59">
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(4)" data-theme="personal"
+                    data-author="unknown" vid="59">
                     <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif" vid="60">V.</span>
                     <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic" vid="61">"When people downplay
                         my emotions, I question their ability to feel theirs."</p>
@@ -382,8 +387,9 @@
                 let visible = 0;
 
                 buttons.forEach((btn, i) => {
-                    const text = btn.textContent.toLowerCase();
-                    const matches = !filter || filter === 'all' || text.includes(filter);
+                    const theme = btn.dataset.theme || '';
+                    const author = btn.dataset.author || '';
+                    const matches = !filter || filter === 'all' || theme.includes(filter) || author.includes(filter);
                     btn.style.display = matches ? '' : 'none';
                     if (matches) { visible++; if (firstMatch === -1) firstMatch = i; }
                 });
