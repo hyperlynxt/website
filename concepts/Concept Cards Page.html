@@ -505,7 +505,7 @@
                     </div>
                     <div class="flex items-center gap-4">
                         <div class="relative">
-                            <input type="text" placeholder="Search the repository..."
+                            <input type="text" id="concept-search" placeholder="Search the repository..."
                                 class="w-80 bg-sidebar/50 border border-borderline rounded-full px-6 py-2.5 font-sans text-sm focus:outline-none focus:border-ink transition-colors">
                             <svg class="absolute right-4 top-3 text-muted" width="16" height="16" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2">
@@ -527,33 +527,33 @@
                     </div>
                 </div>
 
-                <div class="flex items-center gap-2 overflow-x-auto pb-1">
-                    <button
-                        class="px-5 py-2 bg-inverse text-inverse-text rounded-full font-sans text-[10px] uppercase font-bold tracking-widest whitespace-nowrap">All
-                        Concepts (142)</button>
-                    <button
-                        class="px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all">Epistemology</button>
-                    <button
-                        class="px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all">Systems
+                <div id="category-pills" class="flex items-center gap-2 overflow-x-auto pb-1">
+                    <button data-filter="all"
+                        class="pill-btn px-5 py-2 bg-inverse text-inverse-text rounded-full font-sans text-[10px] uppercase font-bold tracking-widest whitespace-nowrap">All
+                        Concepts</button>
+                    <button data-filter="Decision Making"
+                        class="pill-btn px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all">Decision
+                        Making</button>
+                    <button data-filter="Systems Thinking"
+                        class="pill-btn px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all">Systems
                         Thinking</button>
-                    <button
-                        class="px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all">Logic
-                        &amp; Reasoning</button>
-                    <button
-                        class="px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all">Decision
-                        Theory</button>
-                    <button
-                        class="px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all">Psychology</button>
-                    <button
-                        class="px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all">Economics</button>
+                    <button data-filter="Cognitive Bias"
+                        class="pill-btn px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all">Cognitive
+                        Bias</button>
+                    <button data-filter="Economics"
+                        class="pill-btn px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all">Economics</button>
+                    <button data-filter="Physics"
+                        class="pill-btn px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all">Physics</button>
+                    <button data-filter="Math"
+                        class="pill-btn px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all">Math</button>
                 </div>
             </div>
         </div>
 
 
-        <div class="grid-container" vid="47">
+        <div id="cards-grid" class="grid-container" vid="47">
 
-            <a href="#" class="card card-standard" vid="48">
+            <a href="#" class="card card-standard" data-category="Decision Making" vid="48">
                 <div class="card-watermark" vid="49">01</div>
                 <div class="card-tag all-caps sans" vid="50">Decision Making</div>
                 <h2 class="card-title serif" vid="51">Inversion</h2>
@@ -568,7 +568,7 @@
             </a>
 
 
-            <a href="#" class="card card-inverse" vid="60">
+            <a href="#" class="card card-inverse" data-category="Systems Thinking" vid="60">
                 <div class="card-watermark" vid="61">02</div>
                 <div class="card-tag all-caps sans" vid="62">Systems Thinking</div>
                 <h2 class="card-title serif" vid="63">Map is not the Territory</h2>
@@ -582,7 +582,7 @@
                 </div>
             </a>
 
-            <a href="#" class="card card-standard" vid="72">
+            <a href="#" class="card card-standard" data-category="Physics" vid="72">
                 <div class="card-watermark" vid="73">03</div>
                 <div class="card-tag all-caps sans" vid="74">Physics</div>
                 <h2 class="card-title serif" vid="75">First Principles</h2>
@@ -595,7 +595,7 @@
                 </div>
             </a>
 
-            <a href="#" class="card card-standard" vid="84">
+            <a href="#" class="card card-standard" data-category="Cognitive Bias" vid="84">
                 <div class="card-watermark" vid="85">04</div>
                 <div class="card-tag all-caps sans" vid="86">Cognitive Bias</div>
                 <h2 class="card-title serif" vid="87">Confirmation Bias</h2>
@@ -608,7 +608,7 @@
                 </div>
             </a>
 
-            <a href="#" class="card card-standard" vid="96">
+            <a href="#" class="card card-standard" data-category="Economics" vid="96">
                 <div class="card-watermark" vid="97">05</div>
                 <div class="card-tag all-caps sans" vid="98">Economics</div>
                 <h2 class="card-title serif" vid="99">Opportunity Cost</h2>
@@ -622,7 +622,7 @@
                 </div>
             </a>
 
-            <a href="#" class="card card-standard" vid="108">
+            <a href="#" class="card card-standard" data-category="Systems Thinking" vid="108">
                 <div class="card-watermark" vid="109">06</div>
                 <div class="card-tag all-caps sans" vid="110">Systems Thinking</div>
                 <h2 class="card-title serif" vid="111">Second-Order Effects</h2>
@@ -637,7 +637,7 @@
                 </div>
             </a>
 
-            <a href="#" class="card card-standard" vid="120">
+            <a href="#" class="card card-standard" data-category="Math" vid="120">
                 <div class="card-watermark" vid="121">07</div>
                 <div class="card-tag all-caps sans" vid="122">Math</div>
                 <h2 class="card-title serif" vid="123">Compounding</h2>
@@ -652,7 +652,7 @@
                 </div>
             </a>
 
-            <a href="#" class="card card-standard" vid="132">
+            <a href="#" class="card card-standard" data-category="Decision Making" vid="132">
                 <div class="card-watermark" vid="133">08</div>
                 <div class="card-tag all-caps sans" vid="134">Decision Making</div>
                 <h2 class="card-title serif" vid="135">Occam's Razor</h2>
@@ -667,6 +667,8 @@
                 </div>
             </a>
 
+            <p id="no-results" class="font-sans text-sm text-muted col-span-3 text-center py-20" style="display:none;">
+                No concepts match your search.</p>
         </div>
     </main>
 
@@ -705,6 +707,56 @@
         </div>
     </nav>
 
+    <script>
+        const searchInput = document.getElementById('concept-search');
+        const pills = document.querySelectorAll('.pill-btn');
+        const cards = document.querySelectorAll('#cards-grid .card');
+        const noResults = document.getElementById('no-results');
+
+        let activeCategory = 'all';
+        let activeSearch = '';
+
+        function applyFilters() {
+            let visible = 0;
+            cards.forEach(card => {
+                const category = (card.dataset.category || '').toLowerCase();
+                const title = (card.querySelector('.card-title') || {}).textContent || '';
+                const desc = (card.querySelector('.card-desc') || {}).textContent || '';
+                const searchText = (title + ' ' + desc + ' ' + category).toLowerCase();
+
+                const categoryMatch = activeCategory === 'all' || category === activeCategory.toLowerCase();
+                const searchMatch = activeSearch === '' || searchText.includes(activeSearch);
+
+                const show = categoryMatch && searchMatch;
+                card.style.display = show ? '' : 'none';
+                if (show) visible++;
+            });
+            noResults.style.display = visible === 0 ? 'block' : 'none';
+        }
+
+        // Search
+        searchInput.addEventListener('input', () => {
+            activeSearch = searchInput.value.trim().toLowerCase();
+            applyFilters();
+        });
+
+        // Category pills
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                activeCategory = pill.dataset.filter;
+
+                // Update active styles
+                pills.forEach(p => {
+                    p.classList.remove('bg-inverse', 'text-inverse-text');
+                    p.classList.add('text-muted');
+                });
+                pill.classList.add('bg-inverse', 'text-inverse-text');
+                pill.classList.remove('text-muted');
+
+                applyFilters();
+            });
+        });
+    </script>
 </body>
 
 </html>
