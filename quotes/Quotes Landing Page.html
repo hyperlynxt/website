@@ -135,11 +135,51 @@
                     Loom
                 </h1>
             </div>
-            <div class="max-w-md w-full mb-2" vid="21">
-                <div class="relative" vid="22">
-                    <input type="text" placeholder="Search by theme or fragment..." id="landing-search"
-                        class="search-input w-full py-2 text-xl lg:text-2xl text-[#1A1A18] placeholder:text-[#1A1A18]/30 font-light"
-                        vid="23">
+            <div class="flex items-center gap-4">
+                <div class="relative">
+                    <input type="text" id="landing-search" placeholder="Search by theme or fragment..."
+                        class="w-80 bg-sidebar/50 border border-borderline rounded-full px-6 py-2.5 font-sans text-sm focus:outline-none focus:border-ink transition-colors">
+                    <svg class="absolute right-4 top-3 text-muted" width="16" height="16" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
+                <div class="h-10 w-px bg-borderline mx-2"></div>
+                <div class="flex items-center gap-2">
+                    <span class="font-sans text-[9px] uppercase font-bold tracking-widest text-[#4A4A45]">Sort:</span>
+                    <div id="sort-dropdown" class="sort-dropdown relative">
+                        <button id="sort-trigger"
+                            class="sort-trigger flex items-center gap-2 font-sans text-[10px] uppercase font-bold tracking-widest text-ink px-4 py-1.5 rounded-full border border-borderline hover:border-ink transition-all bg-page/80">
+                            <span id="sort-label">Recently Added</span>
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" class="sort-chevron transition-transform duration-200">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div id="sort-menu"
+                            class="sort-menu hidden absolute right-0 top-full mt-2 z-50 bg-page border border-borderline shadow-lg min-w-[180px] py-1">
+                            <button
+                                class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                data-sort="default" vid="sort-opt-doc">Chronological</button>
+                            <button
+                                class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                data-sort="category" vid="sort-opt-cat">By Theme (A-Z)</button>
+                            <button
+                                class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                data-sort="recent" vid="sort-opt-rec">Recently Added</button>
+                        </div>
+                    </div>
+                    <!-- Direction toggle -->
+                    <button id="sort-dir-btn" title="Toggle sort direction"
+                        class="flex items-center justify-center w-7 h-7 rounded-full border border-borderline hover:border-ink text-[#4A4A45] hover:text-ink transition-all bg-page/80">
+                        <svg id="sort-dir-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="transition: transform 0.25s ease;">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="5 12 12 5 19 12"></polyline>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
