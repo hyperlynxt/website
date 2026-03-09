@@ -151,6 +151,10 @@
                     <a href="#" class="filter-link" data-filter="a.a. milne">A.A. Milne</a>
                     <a href="#" class="filter-link" data-filter="carl jung">Carl Jung</a>
                     <a href="#" class="filter-link" data-filter="me">Me</a>
+                    <a href="#" class="filter-link" data-filter="michel de montaigne">Michel de Montaigne</a>
+                    <a href="#" class="filter-link" data-filter="uma thurman">Uma Thurman</a>
+                    <a href="#" class="filter-link" data-filter="rudy francisco">Rudy Francisco</a>
+                    <a href="#" class="filter-link" data-filter="takeshi kovacs">Takeshi Kovacs</a>
                 </nav>
             </section>
 
@@ -171,6 +175,9 @@
                     <a href="#" class="filter-link" data-filter="relationship">Relationship</a>
                     <a href="#" class="filter-link" data-filter="hardship">Hardship</a>
                     <a href="#" class="filter-link" data-filter="unconsciousness">Unconsciousness</a>
+                    <a href="#" class="filter-link" data-filter="fear and rumination">Fear &amp; Rumination</a>
+                    <a href="#" class="filter-link" data-filter="love">Love</a>
+                    <a href="#" class="filter-link" data-filter="undecided">Undecided</a>
                 </nav>
             </section>
         </aside>
@@ -178,7 +185,7 @@
 
         <nav class="w-[32rem] border-r border-[#1A1A18]/10 overflow-y-auto bg-[#F0EDE6]/40" vid="38">
             <div class="px-6 py-4 border-b border-[#1A1A18]/10 flex justify-between bg-white/10 sticky top-0" vid="39">
-                <span id="dive-count" class="text-[9px] tracking-widest uppercase text-[#7A7A73]" vid="40">34
+                <span id="dive-count" class="text-[9px] tracking-widest uppercase text-[#7A7A73]" vid="40">41
                     Entries</span>
                 <span class="text-[9px] italic text-[#7A7A73]" vid="41">Chronology</span>
             </div>
@@ -458,6 +465,63 @@
                     </p>
                     <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
                 </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(34)"
+                    data-theme="fear and rumination" data-author="michel de montaigne">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXXV.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"He who fears he will suffer,
+                        already suffers because he fears."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Michel de Montaigne</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(35)" data-theme="love"
+                    data-author="uma thurman">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXXVI.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"I still love the people I've
+                        loved even if I cross the street to avoid them."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Uma Thurman</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(36)"
+                    data-theme="relationship" data-author="rudy francisco">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXXVII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"In march I was worried I'd
+                        forget you… In August I am begging to."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Rudy Francisco</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(37)"
+                    data-theme="unconsciousness" data-author="takeshi kovacs">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXXVIII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"When you believe a lie for too
+                        long the truth doesn't set you free, it tears you apart."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Takeshi Kovacs</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(38)"
+                    data-theme="relationship" data-author="jorge luis borges">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXXIX.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"After a while you learn the
+                        subtle difference, between holding a hand and chaining a soul."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Jorge Luis Borges</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(39)"
+                    data-theme="social dynamics" data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XL.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"The apology needs to be as loud
+                        as the disrespect."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(40)" data-theme="undecided"
+                    data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XLI.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Entre lo tarde que me acuesto y
+                        lo temprano que me levanto, va a haber un dia que me voy a encontrar a mi mismo andando por el
+                        pasillo."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
             </div>
         </nav>
 
@@ -550,7 +614,14 @@
             { numeral: 'XXXI', theme: 'UNCONSCIOUSNESS', quote: '\"Until you make the unconscious conscious, it will direct your life and you will call it fate.\"', author: 'Carl Jung', source: null },
             { numeral: 'XXXII', theme: 'RELATIONSHIP', quote: '\"You keep sneaking into my dreams, you keep spilling on to everything I am.\"', author: 'Unknown', source: null },
             { numeral: 'XXXIII', theme: 'RELATIONSHIP', quote: '\"Siempre tendré una parte de ella en mi, así como ella se llevo una parte de mi con ella.\"', author: 'Me', source: null },
-            { numeral: 'XXXIV', theme: 'RELATIONSHIP', quote: '\"No amount of love can make two mismatched pieces fit together, not unless you mutilate them into something they never were.\"', author: 'Unknown', source: null }
+            { numeral: 'XXXIV', theme: 'RELATIONSHIP', quote: '\"No amount of love can make two mismatched pieces fit together, not unless you mutilate them into something they never were.\"', author: 'Unknown', source: null },
+            { numeral: 'XXXV', theme: 'FEAR & RUMINATION', quote: '\"He who fears he will suffer, already suffers because he fears.\"', author: 'Michel de Montaigne', source: null },
+            { numeral: 'XXXVI', theme: 'LOVE', quote: '\"I still love the people I\'ve loved even if I cross the street to avoid them.\"', author: 'Uma Thurman', source: null },
+            { numeral: 'XXXVII', theme: 'RELATIONSHIP', quote: '\"In march I was worried I\'d forget you\u2026 In August I am begging to.\"', author: 'Rudy Francisco', source: 'Love Poem Medley' },
+            { numeral: 'XXXVIII', theme: 'UNCONSCIOUSNESS', quote: '\"When you believe a lie for too long the truth doesn\'t set you free, it tears you apart.\"', author: 'Takeshi Kovacs', source: 'Altered Carbon' },
+            { numeral: 'XXXIX', theme: 'RELATIONSHIP', quote: '\"After a while you learn the subtle difference, between holding a hand and chaining a soul.\"', author: 'Jorge Luis Borges', source: 'After a While' },
+            { numeral: 'XL', theme: 'SOCIAL DYNAMICS', quote: '\"The apology needs to be as loud as the disrespect.\"', author: 'Unknown', source: null },
+            { numeral: 'XLI', theme: 'UNDECIDED', quote: '\"Entre lo tarde que me acuesto y lo temprano que me levanto, va a haber un dia que me voy a encontrar a mi mismo andando por el pasillo.\"', author: 'Unknown', source: null }
         ];
 
         let activeQuoteIndex = 0;
