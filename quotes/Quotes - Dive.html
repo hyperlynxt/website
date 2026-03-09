@@ -137,10 +137,16 @@
                 <h3 class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73] font-bold mb-6" vid="23">Authors</h3>
                 <nav class="flex flex-col gap-4 text-base text-[#5A5A55]" vid="24">
                     <a href="#" class="filter-link active" data-filter="all" vid="25">All Collections</a>
-                    <a href="#" class="filter-link" data-filter="unknown" vid="26">Unknown</a>
+                    <a href="#" class="filter-link" data-filter="unknown">Unknown</a>
                     <a href="#" class="filter-link" data-filter="anais nin">Anaïs Nin</a>
                     <a href="#" class="filter-link" data-filter="epicurus">Epicurus</a>
                     <a href="#" class="filter-link" data-filter="social media">Social Media</a>
+                    <a href="#" class="filter-link" data-filter="stanislaw jerzy lec">Stanislaw Jerzy Lec</a>
+                    <a href="#" class="filter-link" data-filter="petitfellas">PetitFellas</a>
+                    <a href="#" class="filter-link" data-filter="franz kafka">Franz Kafka</a>
+                    <a href="#" class="filter-link" data-filter="marcus aurelius">Marcus Aurelius</a>
+                    <a href="#" class="filter-link" data-filter="blackpurist">BlackPurist</a>
+                    <a href="#" class="filter-link" data-filter="alfie">Alfie</a>
                 </nav>
             </section>
 
@@ -153,6 +159,11 @@
                     <a href="#" class="filter-link" data-filter="humour">Humour</a>
                     <a href="#" class="filter-link" data-filter="life">Life</a>
                     <a href="#" class="filter-link" data-filter="friendship">Friendship</a>
+                    <a href="#" class="filter-link" data-filter="society">Society</a>
+                    <a href="#" class="filter-link" data-filter="art">Art</a>
+                    <a href="#" class="filter-link" data-filter="sadness">Sadness</a>
+                    <a href="#" class="filter-link" data-filter="social dynamics">Social Dynamics</a>
+                    <a href="#" class="filter-link" data-filter="behaviour">Behaviour</a>
                 </nav>
             </section>
         </aside>
@@ -160,7 +171,7 @@
 
         <nav class="w-[32rem] border-r border-[#1A1A18]/10 overflow-y-auto bg-[#F0EDE6]/40" vid="38">
             <div class="px-6 py-4 border-b border-[#1A1A18]/10 flex justify-between bg-white/10 sticky top-0" vid="39">
-                <span id="dive-count" class="text-[9px] tracking-widest uppercase text-[#7A7A73]" vid="40">12
+                <span id="dive-count" class="text-[9px] tracking-widest uppercase text-[#7A7A73]" vid="40">24
                     Entries</span>
                 <span class="text-[9px] italic text-[#7A7A73]" vid="41">Chronology</span>
             </div>
@@ -261,6 +272,102 @@
                         myself, and at war with myself I found myself."</p>
                     <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
                 </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(12)" data-theme="society"
+                    data-author="stanislaw jerzy lec">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XIII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"No snowflake in an avalanche
+                        ever feels responsible."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Stanislaw Jerzy Lec</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(13)"
+                    data-theme="inner world" data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XIV.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Deep divers in a world full of
+                        shallow swimmers."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(14)"
+                    data-theme="inner world" data-author="petitfellas">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XV.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"La obscuridad es un hotel para
+                        quien se esconde del resto."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">PetitFellas</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(15)" data-theme="art"
+                    data-author="petitfellas">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XVI.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"La poesia no es un raro
+                        vocabulario, es mas contar con encanto las historias de barrio."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">PetitFellas</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(16)"
+                    data-theme="inner world" data-author="petitfellas">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XVII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Demasiado silencio siempre es
+                        demasiado ruido."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">PetitFellas</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(17)" data-theme="sadness"
+                    data-author="franz kafka">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XVIII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"I could have built the pyramids
+                        with the effort it takes me to cling on to life."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Franz Kafka</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(18)" data-theme="life"
+                    data-author="marcus aurelius">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XIX.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"The happiness of our life
+                        depends on the quality of our thoughts."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Marcus Aurelius</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(19)"
+                    data-theme="inner world" data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XX.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"If you continue to associate
+                        with people who you feel unseen by, you'll start to lose sight of yourself as well."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(20)" data-theme="society"
+                    data-author="blackpurist">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXI.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"You are a coward wearing the
+                        facade of a revolutionary."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">BlackPurist</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(21)"
+                    data-theme="social dynamics" data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Often the least mature person
+                        in the room dictates the tone and the subject of a conversation."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(22)" data-theme="behaviour"
+                    data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXIII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"When a child is punished for
+                        their honesty, they begin to lie."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(23)"
+                    data-theme="inner world" data-author="alfie">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXIV.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"The walls you build to protect
+                        yourself should not feel like a prison."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Alfie</p>
+                </button>
             </div>
         </nav>
 
@@ -330,8 +437,20 @@
             { numeral: 'VIII', theme: 'INNER WORLD', quote: '"I have a love-hate relationship with hate itself."', author: 'Unknown', source: null },
             { numeral: 'IX', theme: 'PEOPLE', quote: '"How miserable are you willing to be to impress the people around you?"', author: 'Unknown', source: null },
             { numeral: 'X', theme: 'LIFE', quote: '"Life shrinks or expands in proportion of one\'s courage."', author: 'Anaïs Nin', source: 'The Diary of Anaïs Nin Vol. 5' },
-            { numeral: 'XI', theme: 'FRIENDSHIP', quote: '"We do not so much need the help of our friends as the confidence of their help in need."', author: 'Epicurus', source: null },
-            { numeral: 'XII', theme: 'INNER WORLD', quote: '"I found myself at war with myself, and at war with myself I found myself."', author: 'Unknown', source: null }
+            { numeral: 'XI', theme: 'FRIENDSHIP', quote: '\"We do not so much need the help of our friends as the confidence of their help in need.\"', author: 'Epicurus', source: null },
+            { numeral: 'XII', theme: 'INNER WORLD', quote: '\"I found myself at war with myself, and at war with myself I found myself.\"', author: 'Unknown', source: null },
+            { numeral: 'XIII', theme: 'SOCIETY', quote: '\"No snowflake in an avalanche ever feels responsible.\"', author: 'Stanislaw Jerzy Lec', source: 'More Unkempt Thoughts (1968)' },
+            { numeral: 'XIV', theme: 'INNER WORLD', quote: '\"Deep divers in a world full of shallow swimmers.\"', author: 'Unknown', source: 'Social Media' },
+            { numeral: 'XV', theme: 'INNER WORLD', quote: '\"La obscuridad es un hotel para quien se esconde del resto.\"', author: 'PetitFellas', source: 'El Diccionario' },
+            { numeral: 'XVI', theme: 'ART', quote: '\"La poesia no es un raro vocabulario, es mas contar con encanto las historias de barrio.\"', author: 'PetitFellas', source: 'El Diccionario' },
+            { numeral: 'XVII', theme: 'INNER WORLD', quote: '\"Demasiado silencio siempre es demasiado ruido.\"', author: 'PetitFellas', source: 'El Diccionario' },
+            { numeral: 'XVIII', theme: 'SADNESS', quote: '\"I could have built the pyramids with the effort it takes me to cling on to life.\"', author: 'Franz Kafka', source: 'Letters to Felice' },
+            { numeral: 'XIX', theme: 'LIFE', quote: '\"The happiness of our life depends on the quality of our thoughts.\"', author: 'Marcus Aurelius', source: 'Meditations' },
+            { numeral: 'XX', theme: 'INNER WORLD', quote: '\"If you continue to associate with people who you feel unseen by, you\'ll start to lose sight of yourself as well.\"', author: 'Unknown', source: 'Social Media' },
+            { numeral: 'XXI', theme: 'SOCIETY', quote: '\"You are a coward wearing the facade of a revolutionary.\"', author: 'BlackPurist', source: 'Social Media' },
+            { numeral: 'XXII', theme: 'SOCIAL DYNAMICS', quote: '\"Often the least mature person in the room dictates the tone and the subject of a conversation.\"', author: 'Unknown', source: null },
+            { numeral: 'XXIII', theme: 'BEHAVIOUR', quote: '\"When a child is punished for their honesty, they begin to lie.\"', author: 'Unknown', source: null },
+            { numeral: 'XXIV', theme: 'INNER WORLD', quote: '\"The walls you build to protect yourself should not feel like a prison.\"', author: 'Alfie', source: 'Peaky Blinders' }
         ];
 
         let activeQuoteIndex = 0;
