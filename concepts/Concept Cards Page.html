@@ -520,7 +520,7 @@
                             <select id="sort-select"
                                 class="bg-transparent font-sans text-[10px] uppercase font-bold tracking-widest text-ink focus:outline-none cursor-pointer">
                                 <option value="default">Alphabetical (A-Z)</option>
-                                <option value="connected">Most Connected</option>
+                                <option value="category">By Category (A-Z)</option>
                                 <option value="recent">Recently Added</option>
                             </select>
                         </div>
@@ -733,6 +733,8 @@
             // Sort
             if (activeSort === 'default') {
                 cards.sort((a, b) => getTitle(a).localeCompare(getTitle(b)));
+            } else if (activeSort === 'category') {
+                cards.sort((a, b) => (a.dataset.category || '').localeCompare(b.dataset.category || ''));
             } else if (activeSort === 'recent') {
                 cards.sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order));
             }
