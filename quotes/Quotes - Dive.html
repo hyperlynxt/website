@@ -147,6 +147,10 @@
                     <a href="#" class="filter-link" data-filter="marcus aurelius">Marcus Aurelius</a>
                     <a href="#" class="filter-link" data-filter="blackpurist">BlackPurist</a>
                     <a href="#" class="filter-link" data-filter="alfie">Alfie</a>
+                    <a href="#" class="filter-link" data-filter="amanda lovelace">Amanda Lovelace</a>
+                    <a href="#" class="filter-link" data-filter="a.a. milne">A.A. Milne</a>
+                    <a href="#" class="filter-link" data-filter="carl jung">Carl Jung</a>
+                    <a href="#" class="filter-link" data-filter="me">Me</a>
                 </nav>
             </section>
 
@@ -164,6 +168,9 @@
                     <a href="#" class="filter-link" data-filter="sadness">Sadness</a>
                     <a href="#" class="filter-link" data-filter="social dynamics">Social Dynamics</a>
                     <a href="#" class="filter-link" data-filter="behaviour">Behaviour</a>
+                    <a href="#" class="filter-link" data-filter="relationship">Relationship</a>
+                    <a href="#" class="filter-link" data-filter="hardship">Hardship</a>
+                    <a href="#" class="filter-link" data-filter="unconsciousness">Unconsciousness</a>
                 </nav>
             </section>
         </aside>
@@ -171,7 +178,7 @@
 
         <nav class="w-[32rem] border-r border-[#1A1A18]/10 overflow-y-auto bg-[#F0EDE6]/40" vid="38">
             <div class="px-6 py-4 border-b border-[#1A1A18]/10 flex justify-between bg-white/10 sticky top-0" vid="39">
-                <span id="dive-count" class="text-[9px] tracking-widest uppercase text-[#7A7A73]" vid="40">24
+                <span id="dive-count" class="text-[9px] tracking-widest uppercase text-[#7A7A73]" vid="40">34
                     Entries</span>
                 <span class="text-[9px] italic text-[#7A7A73]" vid="41">Chronology</span>
             </div>
@@ -368,6 +375,89 @@
                         yourself should not feel like a prison."</p>
                     <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Alfie</p>
                 </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(24)" data-theme="friendship"
+                    data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXV.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"I would rather adjust my life
+                        to your absence, then adjust my boundaries to accommodate your disrespect."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(25)" data-theme="society"
+                    data-author="amanda lovelace">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXVI.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Cages are still cages even when
+                        they're designed to look just like castles."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Amanda Lovelace</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(26)"
+                    data-theme="relationship" data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXVII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"I will leave such an imprint on
+                        your heart that anyone you entertain after me will have to know me in order to understand you."
+                    </p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(27)"
+                    data-theme="relationship" data-author="a.a. milne">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXVIII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"How lucky we are to have things
+                        that make saying goodbye so hard."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">A.A. Milne</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(28)"
+                    data-theme="relationship" data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXIX.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Even though you didn't make it
+                        to the end of my story, I will always have the corner folded down on your page, because it was
+                        one of my favorites."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(29)" data-theme="hardship"
+                    data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXX.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Maybe you cannot love yourself
+                        because you are the remains of two people who did not love each other."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(30)"
+                    data-theme="unconsciousness" data-author="carl jung">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXXI.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Until you make the unconscious
+                        conscious, it will direct your life and you will call it fate."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Carl Jung</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(31)"
+                    data-theme="relationship" data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXXII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"You keep sneaking into my
+                        dreams, you keep spilling on to everything I am."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(32)"
+                    data-theme="relationship" data-author="me">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXXIII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Siempre tendré una parte de
+                        ella en mi, así como ella se llevo una parte de mi con ella."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Me</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(33)"
+                    data-theme="relationship" data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">XXXIV.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"No amount of love can make two
+                        mismatched pieces fit together, not unless you mutilate them into something they never were."
+                    </p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
             </div>
         </nav>
 
@@ -450,7 +540,17 @@
             { numeral: 'XXI', theme: 'SOCIETY', quote: '\"You are a coward wearing the facade of a revolutionary.\"', author: 'BlackPurist', source: 'Social Media' },
             { numeral: 'XXII', theme: 'SOCIAL DYNAMICS', quote: '\"Often the least mature person in the room dictates the tone and the subject of a conversation.\"', author: 'Unknown', source: null },
             { numeral: 'XXIII', theme: 'BEHAVIOUR', quote: '\"When a child is punished for their honesty, they begin to lie.\"', author: 'Unknown', source: null },
-            { numeral: 'XXIV', theme: 'INNER WORLD', quote: '\"The walls you build to protect yourself should not feel like a prison.\"', author: 'Alfie', source: 'Peaky Blinders' }
+            { numeral: 'XXIV', theme: 'INNER WORLD', quote: '\"The walls you build to protect yourself should not feel like a prison.\"', author: 'Alfie', source: 'Peaky Blinders' },
+            { numeral: 'XXV', theme: 'FRIENDSHIP', quote: '\"I would rather adjust my life to your absence, then adjust my boundaries to accommodate your disrespect.\"', author: 'Unknown', source: null },
+            { numeral: 'XXVI', theme: 'SOCIETY', quote: '\"Cages are still cages even when they\'re designed to look just like castles.\"', author: 'Amanda Lovelace', source: 'The Mermaid\'s Voice Returns in This One' },
+            { numeral: 'XXVII', theme: 'RELATIONSHIP', quote: '\"I will leave such an imprint on your heart that anyone you entertain after me will have to know me in order to understand you.\"', author: 'Unknown', source: null },
+            { numeral: 'XXVIII', theme: 'RELATIONSHIP', quote: '\"How lucky we are to have things that make saying goodbye so hard.\"', author: 'A.A. Milne', source: 'Winnie the Pooh' },
+            { numeral: 'XXIX', theme: 'RELATIONSHIP', quote: '\"Even though you didn\'t make it to the end of my story, I will always have the corner folded down on your page, because it was one of my favorites.\"', author: 'Unknown', source: null },
+            { numeral: 'XXX', theme: 'HARDSHIP', quote: '\"Maybe you cannot love yourself because you are the remains of two people who did not love each other.\"', author: 'Unknown', source: null },
+            { numeral: 'XXXI', theme: 'UNCONSCIOUSNESS', quote: '\"Until you make the unconscious conscious, it will direct your life and you will call it fate.\"', author: 'Carl Jung', source: null },
+            { numeral: 'XXXII', theme: 'RELATIONSHIP', quote: '\"You keep sneaking into my dreams, you keep spilling on to everything I am.\"', author: 'Unknown', source: null },
+            { numeral: 'XXXIII', theme: 'RELATIONSHIP', quote: '\"Siempre tendré una parte de ella en mi, así como ella se llevo una parte de mi con ella.\"', author: 'Me', source: null },
+            { numeral: 'XXXIV', theme: 'RELATIONSHIP', quote: '\"No amount of love can make two mismatched pieces fit together, not unless you mutilate them into something they never were.\"', author: 'Unknown', source: null }
         ];
 
         let activeQuoteIndex = 0;
