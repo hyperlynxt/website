@@ -420,7 +420,7 @@
                     </div>
                 </article>
 
-                <div
+                <div id="add-framework-cell"
                     class="relative flex flex-col items-center justify-center p-8 rounded-[1rem] border-[1.5px] border-dashed border-black/15 bg-transparent hover:bg-black/[0.02] hover:border-black/40 transition-all duration-300 min-h-[380px] cursor-pointer group">
                     <div
                         class="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center mb-4 group-hover:bg-black/10 transition-colors group-hover:scale-110 duration-300">
@@ -546,7 +546,9 @@
             if (!sortAsc) cards.reverse();
 
             const innerGrid = grid.querySelector('.grid');
+            const addCell = document.getElementById('add-framework-cell');
             cards.forEach(card => innerGrid.appendChild(card));
+            innerGrid.appendChild(addCell); // always keep Add Framework last
 
             let visible = 0;
             cards.forEach(card => {
