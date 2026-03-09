@@ -186,6 +186,7 @@
                     <a href="#" class="filter-link" data-filter="memories">Memories</a>
                     <a href="#" class="filter-link" data-filter="self">Self</a>
                     <a href="#" class="filter-link" data-filter="poetry">Poetry</a>
+                    <a href="#" class="filter-link" data-filter="family">Family</a>
                 </nav>
             </section>
         </aside>
@@ -193,7 +194,7 @@
 
         <nav class="w-[32rem] border-r border-[#1A1A18]/10 overflow-y-auto bg-[#F0EDE6]/40" vid="38">
             <div class="px-6 py-4 border-b border-[#1A1A18]/10 flex justify-between bg-white/10 sticky top-0" vid="39">
-                <span id="dive-count" class="text-[9px] tracking-widest uppercase text-[#7A7A73]" vid="40">54
+                <span id="dive-count" class="text-[9px] tracking-widest uppercase text-[#7A7A73]" vid="40">62
                     Entries</span>
                 <span class="text-[9px] italic text-[#7A7A73]" vid="41">Chronology</span>
             </div>
@@ -634,6 +635,71 @@
                         seremos."</p>
                     <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Social Media</p>
                 </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(54)" data-theme="humour"
+                    data-author="social media">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LV.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Her new nigga was never new
+                        nigga, you just never knew nigga."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Social Media</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(55)"
+                    data-theme="relationship" data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LVI.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"The thought of you forgetting
+                        me terrifies me."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(56)"
+                    data-theme="relationship" data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LVII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"They say every loss will come
+                        with a gain, but I could gain the world and it wouldn't make me feel how you could."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(57)"
+                    data-theme="relationship" data-author="social media">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LVIII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"You'd even think you're my
+                        religion, if you knew the time I've spent talking to you late at night, all alone, asking for
+                        your grace."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Social Media</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(58)" data-theme="family"
+                    data-author="social media">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LIX.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"The word father rotted in my
+                        mouth."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Social Media</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(59)" data-theme="life"
+                    data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LX.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"It's easier to die for someone
+                        in a heroic act than to live each day for someone."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(60)" data-theme="self"
+                    data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LXI.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"A big part of who I am is who
+                        I'm not."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(61)" data-theme="friendship"
+                    data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LXII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Don't chase people who know
+                        exactly where to find you."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
             </div>
         </nav>
 
@@ -746,7 +812,15 @@
             { numeral: 'LI', theme: 'POETRY', quote: '\"My mercy prevails over my wrath.\"', author: 'Hadith Qudsi', source: null },
             { numeral: 'LII', theme: 'SOCIETY', quote: '\"Violence is never the answer is an individual and interpersonal rule, not a societal one.\"', author: 'Unknown', source: null },
             { numeral: 'LIII', theme: 'HUMOUR', quote: '\"It is what it is, I say as I almost vomit from anxiety.\"', author: 'Social Media', source: null },
-            { numeral: 'LIV', theme: 'RELATIONSHIP', quote: '\"Ya no soy, ya no eres, y ya no seremos.\"', author: 'Social Media', source: null }
+            { numeral: 'LIV', theme: 'RELATIONSHIP', quote: '\"Ya no soy, ya no eres, y ya no seremos.\"', author: 'Social Media', source: null },
+            { numeral: 'LV', theme: 'HUMOUR', quote: '\"Her new nigga was never new nigga, you just never knew nigga.\"', author: 'Social Media', source: null },
+            { numeral: 'LVI', theme: 'RELATIONSHIP', quote: '\"The thought of you forgetting me terrifies me.\"', author: 'Unknown', source: null },
+            { numeral: 'LVII', theme: 'RELATIONSHIP', quote: '\"They say every loss will come with a gain, but I could gain the world and it wouldn\'t make me feel how you could.\"', author: 'Unknown', source: null },
+            { numeral: 'LVIII', theme: 'RELATIONSHIP', quote: '\"You\'d even think you\'re my religion, if you knew the time I\'ve spent talking to you late at night, all alone, asking for your grace.\"', author: 'Social Media', source: null },
+            { numeral: 'LIX', theme: 'FAMILY', quote: '\"The word father rotted in my mouth.\"', author: 'Social Media', source: null },
+            { numeral: 'LX', theme: 'LIFE', quote: '\"It\'s easier to die for someone in a heroic act than to live each day for someone.\"', author: 'Unknown', source: null },
+            { numeral: 'LXI', theme: 'SELF', quote: '\"A big part of who I am is who I\'m not.\"', author: 'Unknown', source: null },
+            { numeral: 'LXII', theme: 'FRIENDSHIP', quote: '\"Don\'t chase people who know exactly where to find you.\"', author: 'Unknown', source: null }
         ];
 
         let activeQuoteIndex = 0;
