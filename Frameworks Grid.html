@@ -1,0 +1,284 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Frameworks Library</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" vid="8">
+    
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        body: '#F5F5F6',
+                        surface: '#FFFFFF',
+                        rail: '#F0F0F2',
+                        primary: '#0A0A0B',
+                        muted: '#6E6E73',
+                        hairline: 'rgba(0, 0, 0, 0.08)',
+                        cardBorder: 'rgba(0, 0, 0, 0.05)'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"EB Garamond"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style vid="10">
+        .card-base {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            border-radius: 1rem;
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.08);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            min-height: 380px;
+            cursor: pointer;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .card-glow::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: linear-gradient(135deg, rgba(0,0,0,0.04), transparent 40%);
+            z-index: 2;
+        }
+
+        .card-accent-orange { --ac: #C4713E; --ac-rgb: 196, 113, 62; }
+        .card-accent-blue   { --ac: #4A7D9A; --ac-rgb: 74, 125, 154; }
+        .card-accent-emerald{ --ac: #4A8F6F; --ac-rgb: 74, 143, 111; }
+        .card-accent-purple { --ac: #8A5E98; --ac-rgb: 138, 94, 152; }
+        .card-accent-rose   { --ac: #B55E6A; --ac-rgb: 181, 94, 106; }
+
+        .card-base:hover {
+            transform: translateY(-8px);
+            border-color: rgba(var(--ac-rgb), 0.4);
+            box-shadow: 0 0 30px -5px rgba(var(--ac-rgb), 0.15), 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .dot-indicator {
+            background-color: var(--ac);
+            box-shadow: 0 0 6px 0 rgba(var(--ac-rgb), 0.25);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.08);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden flex font-sans text-primary antialiased" style="background: radial-gradient(circle at top left, #FFFFFF, #F5F5F6)" vid="11">
+
+    <nav class="w-[64px] h-full flex-shrink-0 bg-rail border-r border-hairline flex flex-col items-center py-6 justify-between z-30 fixed left-0 top-0" vid="12">
+        <div class="flex-shrink-0 mb-8" vid="13">
+            <span class="font-serif italic text-[1.75rem] font-medium text-primary tracking-tighter" vid="14">S.</span>
+        </div>
+
+        <div class="flex flex-col gap-4 flex-1 mt-4" vid="15">
+            <button class="relative w-10 h-10 rounded-xl flex items-center justify-center text-primary bg-white/5 transition-colors" vid="16">
+                <div class="absolute -left-[12px] top-1/2 -translate-y-1/2 w-1 h-5 bg-[#0A0A0B] rounded-r-md" vid="17"></div>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="18">
+                    <rect x="3" y="3" width="7" height="7" vid="19"></rect>
+                    <rect x="14" y="3" width="7" height="7" vid="20"></rect>
+                    <rect x="14" y="14" width="7" height="7" vid="21"></rect>
+                    <rect x="3" y="14" width="7" height="7" vid="22"></rect>
+                </svg>
+            </button>
+            <button class="w-10 h-10 rounded-xl flex items-center justify-center text-muted hover:text-primary hover:bg-black/5 transition-all" vid="23">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="24">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2" vid="25"></polygon>
+                    <polyline points="2 17 12 22 22 17" vid="26"></polyline>
+                    <polyline points="2 12 12 17 22 12" vid="27"></polyline>
+                </svg>
+            </button>
+            <button class="w-10 h-10 rounded-xl flex items-center justify-center text-muted hover:text-primary hover:bg-black/5 transition-all" vid="28">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="29">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" vid="30"></path>
+                    <polyline points="7 10 12 15 17 10" vid="31"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3" vid="32"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div class="flex flex-col gap-5 items-center mt-auto" vid="33">
+            <button class="text-muted hover:text-primary transition-colors" vid="34">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="35">
+                    <circle cx="12" cy="12" r="3" vid="36"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" vid="37"></path>
+                </svg>
+            </button>
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#8A5E98] to-[#4A7D9A] shadow-inner border border-white/10" vid="38"></div>
+        </div>
+    </nav>
+
+    <main class="flex-1 ml-[64px] h-full flex flex-col relative" style="background: transparent" vid="39">
+        <header class="h-[72px] flex-shrink-0 flex items-center justify-between px-10 z-20 w-full" vid="40">
+            <div class="text-[10px] font-semibold tracking-[0.15em] text-muted uppercase" vid="41">
+                Library / System Architecture
+            </div>
+            <button class="bg-[#0A0A0B] text-[#F5F5F6] px-5 py-2.5 rounded-full text-[13px] font-bold transition-all duration-300 hover:-translate-y-[1px] shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_24px_rgba(0,0,0,0.25)]" vid="42">
+                Create New Framework
+            </button>
+        </header>
+
+        <div class="flex-1 overflow-y-auto px-10 pt-6 pb-[120px] w-full max-w-[1400px] mx-auto z-10 relative" vid="43">
+            <div class="flex items-end justify-between mb-12" vid="44">
+                <div vid="45">
+                    <h2 class="text-[11px] font-semibold tracking-[0.15em] text-muted uppercase mb-3" vid="46">Archive Overview</h2>
+                    <h1 class="font-serif italic text-[3.5rem] leading-[1.1] text-primary tracking-tight" vid="47">Frameworks Library</h1>
+                </div>
+                <div class="flex items-center gap-2 mb-2" vid="48">
+                    <span class="text-[13px] text-muted font-medium" vid="49">Sort:</span>
+                    <button class="text-[13px] font-semibold text-primary flex items-center gap-1 hover:text-white transition-colors" vid="50">
+                        Last Edited
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="51">
+                            <polyline points="6 9 12 15 18 9" vid="52"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" vid="53">
+                <article class="card-base card-glow card-accent-orange" vid="54">
+                    <span class="text-[10px] font-bold tracking-[0.15em] uppercase mb-6" style="color: var(--ac)" vid="55">Cognitive Models</span>
+                    <h3 class="font-serif italic text-[2.25rem] leading-[1.15] text-primary mb-4 pr-4" vid="56">Sensemaking Architectures</h3>
+                    <p class="font-serif italic text-muted text-[1.05rem] leading-[1.7] mb-8 flex-1" vid="57">Mapping the structural heuristics of human reasoning into discrete probabilistic networks for dynamic decision systems.</p>
+                    <div class="flex flex-wrap gap-2 mb-6" vid="58">
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(196,113,62,0.25); background: rgba(196,113,62,0.07)" vid="59">Heuristics</span>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(196,113,62,0.25); background: rgba(196,113,62,0.07)" vid="60">Probabilistic</span>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(196,113,62,0.25); background: rgba(196,113,62,0.07)" vid="61">Decision</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto" vid="62">
+                        <span class="text-[11px] font-semibold text-muted uppercase tracking-wider" vid="63">12 Concepts</span>
+                        <div class="flex gap-[6px]" vid="64">
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-100" vid="65"></div>
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-60" vid="66"></div>
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-30" vid="67"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card-base card-glow card-accent-blue" vid="68">
+                    <span class="text-[10px] font-bold tracking-[0.15em] uppercase mb-6" style="color: var(--ac)" vid="69">Interaction Patterns</span>
+                    <h3 class="font-serif italic text-[2.25rem] leading-[1.15] text-primary mb-4 pr-4" vid="70">Fluid Dynamics</h3>
+                    <p class="font-serif italic text-muted text-[1.05rem] leading-[1.7] mb-8 flex-1" vid="71">Physics-based animation curves, state-driven spring physics, and continuous inertia engines for spatial interfaces.</p>
+                    <div class="flex flex-wrap gap-2 mb-6" vid="72">
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(74,125,154,0.25); background: rgba(74,125,154,0.07)" vid="73">Animation</span>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(74,125,154,0.25); background: rgba(74,125,154,0.07)" vid="74">Spring Physics</span>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(74,125,154,0.25); background: rgba(74,125,154,0.07)" vid="75">Inertia</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto" vid="76">
+                        <span class="text-[11px] font-semibold text-muted uppercase tracking-wider" vid="77">8 Concepts</span>
+                        <div class="flex gap-[6px]" vid="78">
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-100" vid="79"></div>
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-60" vid="80"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card-base card-glow card-accent-emerald" vid="81">
+                    <span class="text-[10px] font-bold tracking-[0.15em] uppercase mb-6" style="color: var(--ac)" vid="82">Data Structures</span>
+                    <h3 class="font-serif italic text-[2.25rem] leading-[1.15] text-primary mb-4 pr-4" vid="83">Graph Topologies</h3>
+                    <p class="font-serif italic text-muted text-[1.05rem] leading-[1.7] mb-8 flex-1" vid="84">Node-edge relationship models for high-density information retrieval, rendering optimization, and cyclical dependency resolution.</p>
+                    <div class="flex flex-wrap gap-2 mb-6" vid="85">
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(74,143,111,0.25); background: rgba(74,143,111,0.07)" vid="86">Node-Edge</span>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(74,143,111,0.25); background: rgba(74,143,111,0.07)" vid="87">Retrieval</span>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(74,143,111,0.25); background: rgba(74,143,111,0.07)" vid="88">Cyclic</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto" vid="89">
+                        <span class="text-[11px] font-semibold text-muted uppercase tracking-wider" vid="90">24 Concepts</span>
+                        <div class="flex gap-[6px]" vid="91">
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-100" vid="92"></div>
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-80" vid="93"></div>
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-60" vid="94"></div>
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-40" vid="95"></div>
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-20" vid="96"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card-base card-glow card-accent-purple" vid="97">
+                    <span class="text-[10px] font-bold tracking-[0.15em] uppercase mb-6" style="color: var(--ac)" vid="98">Systems Design</span>
+                    <h3 class="font-serif italic text-[2.25rem] leading-[1.15] text-primary mb-4 pr-4" vid="99">State Machine Logistics</h3>
+                    <p class="font-serif italic text-muted text-[1.05rem] leading-[1.7] mb-8 flex-1" vid="100">Deterministic finite automata implementations for robust offline-first applications and concurrent event orchestration.</p>
+                    <div class="flex flex-wrap gap-2 mb-6" vid="101">
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(138,94,152,0.25); background: rgba(138,94,152,0.07)" vid="102">Automata</span>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(138,94,152,0.25); background: rgba(138,94,152,0.07)" vid="103">Offline-First</span>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(138,94,152,0.25); background: rgba(138,94,152,0.07)" vid="104">Events</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto" vid="105">
+                        <span class="text-[11px] font-semibold text-muted uppercase tracking-wider" vid="106">15 Concepts</span>
+                        <div class="flex gap-[6px]" vid="107">
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-100" vid="108"></div>
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-70" vid="109"></div>
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-40" vid="110"></div>
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-20" vid="111"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card-base card-glow card-accent-rose" vid="112">
+                    <span class="text-[10px] font-bold tracking-[0.15em] uppercase mb-6" style="color: var(--ac)" vid="113">Visual Language</span>
+                    <h3 class="font-serif italic text-[2.25rem] leading-[1.15] text-primary mb-4 pr-4" vid="114">Chromatic Scales</h3>
+                    <p class="font-serif italic text-muted text-[1.05rem] leading-[1.7] mb-8 flex-1" vid="115">Perceptually uniform color spaces (OKLCH) and algorithmic contrast generation techniques for adaptive theme systems.</p>
+                    <div class="flex flex-wrap gap-2 mb-6" vid="116">
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(181,94,106,0.25); background: rgba(181,94,106,0.07)" vid="117">OKLCH</span>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(181,94,106,0.25); background: rgba(181,94,106,0.07)" vid="118">Contrast</span>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border" style="color: var(--ac); border-color: rgba(181,94,106,0.25); background: rgba(181,94,106,0.07)" vid="119">Adaptive</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto" vid="120">
+                        <span class="text-[11px] font-semibold text-muted uppercase tracking-wider" vid="121">9 Concepts</span>
+                        <div class="flex gap-[6px]" vid="122">
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-100" vid="123"></div>
+                            <div class="w-1.5 h-1.5 rounded-full dot-indicator opacity-50" vid="124"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="relative flex flex-col items-center justify-center p-8 rounded-[1rem] border-[1.5px] border-dashed border-black/15 bg-transparent hover:bg-black/[0.02] hover:border-black/40 transition-all duration-300 min-h-[380px] cursor-pointer group z-1" vid="125">
+                    <div class="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center mb-4 group-hover:bg-black/10 transition-colors group-hover:scale-110 duration-300" vid="126">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-muted group-hover:text-primary transition-colors" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="127">
+                            <line x1="12" y1="5" x2="12" y2="19" vid="128"></line>
+                            <line x1="5" y1="12" x2="19" y2="12" vid="129"></line>
+                        </svg>
+                    </div>
+                    <span class="font-serif italic text-[1.5rem] text-muted group-hover:text-primary transition-colors" vid="130">Add Framework</span>
+                </div>
+            </div>
+        </div>
+
+        <footer class="h-[56px] absolute bottom-0 left-0 right-0 backdrop-blur-xl border-t border-hairline flex items-center justify-between px-10 z-30" style="background: rgba(245,245,246,0.85)" vid="131">
+            <div class="flex items-center gap-2" vid="132">
+                <div class="w-2 h-2 rounded-full bg-[#6BC499] shadow-[0_0_8px_#6BC499]" vid="133"></div>
+                <span class="text-[10px] font-medium tracking-[0.1em] text-muted uppercase" vid="134">Status: All systems synchronized.</span>
+            </div>
+            <div class="flex items-center gap-4 text-[10px] font-medium tracking-[0.1em] text-muted uppercase" vid="135">
+                <span vid="136">24 Frameworks Indexing</span>
+                <span class="w-[1px] h-3 bg-black/10" vid="137"></span>
+                <span vid="138">v3.4.1</span>
+            </div>
+        </footer>
+    </main>
+</body></html>
