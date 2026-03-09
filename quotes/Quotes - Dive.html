@@ -160,6 +160,10 @@
                     <a href="#" class="filter-link" data-filter="johann wolfgang von goethe">Johann Wolfgang von
                         Goethe</a>
                     <a href="#" class="filter-link" data-filter="hadith qudsi">Hadith Qudsi</a>
+                    <a href="#" class="filter-link" data-filter="lao tzu">Lao Tzu</a>
+                    <a href="#" class="filter-link" data-filter="sartre">Sartre</a>
+                    <a href="#" class="filter-link" data-filter="lori deschene">Lori Deschene</a>
+                    <a href="#" class="filter-link" data-filter="kait rokowsky">Kait Rokowsky</a>
                 </nav>
             </section>
 
@@ -187,6 +191,7 @@
                     <a href="#" class="filter-link" data-filter="self">Self</a>
                     <a href="#" class="filter-link" data-filter="poetry">Poetry</a>
                     <a href="#" class="filter-link" data-filter="family">Family</a>
+                    <a href="#" class="filter-link" data-filter="routine">Routine</a>
                 </nav>
             </section>
         </aside>
@@ -194,7 +199,7 @@
 
         <nav class="w-[32rem] border-r border-[#1A1A18]/10 overflow-y-auto bg-[#F0EDE6]/40" vid="38">
             <div class="px-6 py-4 border-b border-[#1A1A18]/10 flex justify-between bg-white/10 sticky top-0" vid="39">
-                <span id="dive-count" class="text-[9px] tracking-widest uppercase text-[#7A7A73]" vid="40">62
+                <span id="dive-count" class="text-[9px] tracking-widest uppercase text-[#7A7A73]" vid="40">70
                     Entries</span>
                 <span class="text-[9px] italic text-[#7A7A73]" vid="41">Chronology</span>
             </div>
@@ -700,6 +705,71 @@
                         exactly where to find you."</p>
                     <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
                 </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(62)"
+                    data-theme="social dynamics" data-author="lao tzu">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LXIII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"One who believes in himself has
+                        no need to convince others."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Lao Tzu</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(63)" data-theme="routine"
+                    data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LXIV.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Treats are no longer treats
+                        when they become a routine."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(64)"
+                    data-theme="unconsciousness" data-author="unknown">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LXV.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"The harder you run from
+                        something you're afraid of, the larger it becomes and the faster it chases you."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Unknown</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(65)" data-theme="self"
+                    data-author="sartre">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LXVI.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Somos lo que hacemos con lo que
+                        hicieron de nosotros."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Sartre</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(66)" data-theme="life"
+                    data-author="me">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LXVII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Mi vida no tiene que mejorar,
+                        tengo que mejorar lidiando con la vida."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Me</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(67)"
+                    data-theme="inner world" data-author="lori deschene">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LXVIII.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"You will never be able to hate
+                        yourself into a version that you love."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Lori Deschene</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(68)" data-theme="family"
+                    data-author="social media">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LXIX.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"She knows how to push your
+                        buttons because she sewed them onto you."</p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Social Media</p>
+                </button>
+
+                <button class="list-item text-left p-8 group relative" onclick="updateQuote(69)" data-theme="poetry"
+                    data-author="kait rokowsky">
+                    <span class="text-[10px] absolute left-4 top-8 opacity-30 italic font-serif">LXX.</span>
+                    <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">"Nothing ever ends poetically.
+                        It ends and we turn it into poetry. All that blood was never once beautiful. It was just red."
+                    </p>
+                    <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2">Kait Rokowsky</p>
+                </button>
             </div>
         </nav>
 
@@ -820,7 +890,15 @@
             { numeral: 'LIX', theme: 'FAMILY', quote: '\"The word father rotted in my mouth.\"', author: 'Social Media', source: null },
             { numeral: 'LX', theme: 'LIFE', quote: '\"It\'s easier to die for someone in a heroic act than to live each day for someone.\"', author: 'Unknown', source: null },
             { numeral: 'LXI', theme: 'SELF', quote: '\"A big part of who I am is who I\'m not.\"', author: 'Unknown', source: null },
-            { numeral: 'LXII', theme: 'FRIENDSHIP', quote: '\"Don\'t chase people who know exactly where to find you.\"', author: 'Unknown', source: null }
+            { numeral: 'LXII', theme: 'FRIENDSHIP', quote: '\"Don\'t chase people who know exactly where to find you.\"', author: 'Unknown', source: null },
+            { numeral: 'LXIII', theme: 'SOCIAL DYNAMICS', quote: '\"One who believes in himself has no need to convince others.\"', author: 'Lao Tzu', source: null },
+            { numeral: 'LXIV', theme: 'ROUTINE', quote: '\"Treats are no longer treats when they become a routine.\"', author: 'Unknown', source: null },
+            { numeral: 'LXV', theme: 'UNCONSCIOUSNESS', quote: '\"The harder you run from something you\'re afraid of, the larger it becomes and the faster it chases you.\"', author: 'Unknown', source: null },
+            { numeral: 'LXVI', theme: 'SELF', quote: '\"Somos lo que hacemos con lo que hicieron de nosotros.\"', author: 'Sartre', source: null },
+            { numeral: 'LXVII', theme: 'LIFE', quote: '\"Mi vida no tiene que mejorar, tengo que mejorar lidiando con la vida.\"', author: 'Me', source: null },
+            { numeral: 'LXVIII', theme: 'INNER WORLD', quote: '\"You will never be able to hate yourself into a version that you love.\"', author: 'Lori Deschene', source: null },
+            { numeral: 'LXIX', theme: 'FAMILY', quote: '\"She knows how to push your buttons because she sewed them onto you.\"', author: 'Social Media', source: null },
+            { numeral: 'LXX', theme: 'POETRY', quote: '\"Nothing ever ends poetically. It ends and we turn it into poetry. All that blood was never once beautiful. It was just red.\"', author: 'Kait Rokowsky', source: null }
         ];
 
         let activeQuoteIndex = 0;
