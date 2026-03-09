@@ -1391,14 +1391,24 @@
         const resultsCount = document.getElementById('results-count');
         const sidebarLinks = document.querySelectorAll('.sidebar-link');
 
-        function applyFilter(query) {
+        // mode: 'attribute' = sidebar click (exact data-theme/data-author match)
+        //       'text'      = search box (full text search)
+        function applyFilter(query, mode = 'text') {
             let visible = 0;
             cards.forEach(card => {
-                const theme = card.dataset.theme || '';
-                const author = card.dataset.author || '';
-                const text = card.textContent.toLowerCase();
-                const matches = !query || query === 'all' ||
-                    theme.includes(query) || author.includes(query) || text.includes(query);
+                let matches;
+                if (!query || query === 'all') {
+                    matches = true;
+                } else if (mode === 'attribute') {
+                    const theme = (card.dataset.theme || '').toLowerCase();
+                    const author = (card.dataset.author || '').toLowerCase();
+                    matches = theme === query || author === query;
+                } else {
+                    const theme = (card.dataset.theme || '').toLowerCase();
+                    const author = (card.dataset.author || '').toLowerCase();
+                    const text = card.textContent.toLowerCase();
+                    matches = theme.includes(query) || author.includes(query) || text.includes(query);
+                }
                 card.style.display = matches ? '' : 'none';
                 if (matches) visible++;
             });
@@ -1408,18 +1418,18 @@
                 : `Showing ${String(total).padStart(2, '0')} Results`;
         }
 
-        // Sidebar filter clicks
+        // Sidebar filter clicks — exact attribute match
         sidebarLinks.forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
                 sidebarLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
                 searchInput.value = '';
-                applyFilter(link.dataset.filter);
+                applyFilter(link.dataset.filter, 'attribute');
             });
         });
 
-        // Search input
+        // Search input — full text search
         searchInput.addEventListener('input', () => {
             const query = searchInput.value.trim().toLowerCase();
             if (query) {
@@ -1427,7 +1437,7 @@
             } else {
                 sidebarLinks[0].classList.add('active');
             }
-            applyFilter(query);
+            applyFilter(query, 'text');
         });
     </script>
 </body>
