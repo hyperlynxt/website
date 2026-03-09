@@ -517,12 +517,28 @@
                         <div class="flex items-center gap-2">
                             <span
                                 class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted">Sort:</span>
-                            <select id="sort-select"
-                                class="bg-transparent font-sans text-[10px] uppercase font-bold tracking-widest text-ink focus:outline-none cursor-pointer">
-                                <option value="default">Alphabetical (A-Z)</option>
-                                <option value="category">By Category (A-Z)</option>
-                                <option value="recent">Recently Added</option>
-                            </select>
+                            <div id="sort-dropdown" class="sort-dropdown relative">
+                                <button id="sort-trigger"
+                                    class="sort-trigger flex items-center gap-2 font-sans text-[10px] uppercase font-bold tracking-widest text-ink px-4 py-1.5 rounded-full border border-borderline hover:border-ink transition-all bg-page/80">
+                                    <span id="sort-label">Alphabetical (A-Z)</span>
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5" class="sort-chevron transition-transform duration-200">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                                <div id="sort-menu"
+                                    class="sort-menu hidden absolute right-0 top-full mt-2 z-50 bg-page border border-borderline shadow-lg min-w-[180px] py-1">
+                                    <button
+                                        class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-ink hover:bg-sidebar transition-colors"
+                                        data-sort="default">Alphabetical (A-Z)</button>
+                                    <button
+                                        class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-sidebar hover:text-ink transition-colors"
+                                        data-sort="category">By Category (A-Z)</button>
+                                    <button
+                                        class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-sidebar hover:text-ink transition-colors"
+                                        data-sort="recent">Recently Added</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -709,7 +725,10 @@
 
     <script>
         const searchInput = document.getElementById('concept-search');
-        const sortSelect = document.getElementById('sort-select');
+        const sortTrigger = document.getElementById('sort-trigger');
+        const sortMenu = document.getElementById('sort-menu');
+        const sortLabel = document.getElementById('sort-label');
+        const sortOptions = document.querySelectorAll('.sort-option');
         const pills = document.querySelectorAll('.pill-btn');
         const grid = document.getElementById('cards-grid');
         const noResults = document.getElementById('no-results');
@@ -722,6 +741,32 @@
         let activeSearch = '';
         let activeSort = 'default';
 
+        // Custom dropdown open/close
+        sortTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = !sortMenu.classList.contains('hidden');
+            sortMenu.classList.toggle('hidden');
+            sortTrigger.querySelector('.sort-chevron').style.transform = isOpen ? '' : 'rotate(180deg)';
+        });
+        document.addEventListener('click', () => {
+            sortMenu.classList.add('hidden');
+            sortTrigger.querySelector('.sort-chevron').style.transform = '';
+        });
+
+        // Sort option selection
+        sortOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                activeSort = opt.dataset.sort;
+                sortLabel.textContent = opt.textContent.trim();
+                // Update active styling
+                sortOptions.forEach(o => o.classList.replace('text-ink', 'text-muted') || o.classList.add('text-muted'));
+                opt.classList.remove('text-muted');
+                opt.classList.add('text-ink');
+                sortMenu.classList.add('hidden');
+                sortTrigger.querySelector('.sort-chevron').style.transform = '';
+                applyFilters();
+            });
+        });
         function getTitle(card) {
             return (card.querySelector('.card-title') || {}).textContent.trim() || '';
         }
