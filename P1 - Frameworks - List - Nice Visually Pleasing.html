@@ -1,0 +1,270 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Frameworks Library - List View</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" vid="7">
+    <style vid="8">
+        :root {
+            --bg-body: #F5F4EF; 
+            --bg-surface: #FFFFFF;
+            --bg-parchment-200: #EBE8E0;
+            --bg-parchment-300: #DCD8CC;
+            --text-dark: #120D0A; 
+            --text-muted: #736C65; 
+            --border-hairline: rgba(18, 13, 10, 0.08);
+            --border-strong: #120D0A;
+            --cat-orange: #D4845A;
+            --cat-blue: #6A9BB5;
+            --cat-emerald: #6AAF94;
+            --cat-purple: #A882B0;
+            --cat-rose: #D47E8A;
+            --font-serif: 'EB Garamond', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --radius-pill: 9999px;
+            --radius-sm: 4px;
+            --shadow-soft: 0 1px 3px rgba(18, 13, 10, 0.04);
+            --transition-snappy: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .sidebar {
+            width: 256px;
+            flex-shrink: 0;
+            border-right: 1px solid var(--border-hairline);
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-body);
+            z-index: 20;
+        }
+
+        .sidebar-header { height: 56px; display: flex; align-items: center; padding: 0 24px; }
+        .brand-name { font-family: var(--font-serif); font-style: italic; font-size: 1.25rem; font-weight: 500; }
+
+        .nav-section { padding: 24px 12px; display: flex; flex-direction: column; gap: 4px; }
+        .nav-pill {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 8px 12px; border-radius: var(--radius-pill);
+            font-size: 0.875rem; font-weight: 500; color: var(--text-muted);
+            text-decoration: none; transition: var(--transition-snappy);
+        }
+        .nav-pill.active { background-color: var(--bg-surface); color: var(--text-dark); box-shadow: 0 1px 2px rgba(18, 13, 10, 0.05); }
+
+        .active-session-section { margin-top: auto; padding: 24px; }
+        .active-session-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 12px; font-weight: 600; }
+        .active-session-card { border-left: 2px solid var(--border-strong); padding-left: 12px; }
+        .session-title { font-family: var(--font-serif); font-style: italic; font-size: 1rem; }
+
+        .main-wrapper { flex-grow: 1; display: flex; flex-direction: column; position: relative; }
+
+        .top-header {
+            height: 56px; background-color: var(--bg-surface); border-bottom: 1px solid var(--border-hairline);
+            display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+        }
+
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .breadcrumb { font-size: 0.875rem; color: var(--text-muted); }
+
+        .view-toggle { display: flex; background-color: var(--bg-body); border-radius: var(--radius-pill); padding: 2px; }
+        .view-toggle-btn { width: 28px; height: 24px; border-radius: var(--radius-pill); display: flex; align-items: center; justify-content: center; color: var(--text-muted); border: none; background: transparent; cursor: pointer; }
+        .view-toggle-btn.active { background-color: var(--bg-surface); color: var(--text-dark); box-shadow: 0 1px 2px rgba(18, 13, 10, 0.05); }
+
+        .content-scroll { flex-grow: 1; overflow-y: auto; padding-bottom: 60px; }
+
+        .section-header { padding: 32px 48px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .section-title { font-family: var(--font-serif); font-style: italic; font-size: 2rem; color: var(--text-dark); }
+        .section-subtitle { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); font-weight: 600; }
+
+        
+        .list-container { padding: 0 48px; display: flex; flex-direction: column; gap: 1px; background-color: var(--border-hairline); border: 1px solid var(--border-hairline); border-radius: 8px; overflow: hidden; margin: 0 48px; }
+        
+        .list-item {
+            background-color: var(--bg-surface);
+            display: grid;
+            grid-template-columns: 4px 1.5fr 1fr 1.5fr 80px 100px;
+            align-items: center;
+            padding: 12px 20px 12px 0;
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-snappy);
+        }
+        .list-item:hover { background-color: #fafafa; }
+
+        .accent-rail { height: 100%; background-color: var(--card-color); }
+        
+        .col-title { font-family: var(--font-serif); font-style: italic; font-size: 1.1rem; padding-left: 20px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .col-cat { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--card-color); font-weight: 600; padding: 0 16px; }
+        
+        .col-tags { display: flex; gap: 4px; overflow: hidden; padding: 0 16px; }
+        .tag-micro { font-size: 0.6rem; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; background: var(--bg-body); color: var(--text-muted); white-space: nowrap; }
+
+        .col-count { font-size: 0.7rem; color: var(--text-muted); text-align: right; padding-right: 16px; }
+        
+        .col-progress { display: flex; align-items: center; padding-right: 4px; }
+        .progress-mini-track { width: 100%; height: 4px; background: var(--bg-parchment-200); border-radius: 2px; overflow: hidden; }
+        .progress-mini-fill { height: 100%; background: var(--card-color); }
+
+        .list-header {
+            display: grid;
+            grid-template-columns: 4px 1.5fr 1fr 1.5fr 80px 100px;
+            padding: 8px 20px 8px 0;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 700;
+            background: var(--bg-parchment-200);
+            border-bottom: 1px solid var(--border-hairline);
+        }
+
+        .footer-status {
+            position: absolute; bottom: 0; width: 100%; height: 40px; background: var(--bg-surface);
+            border-top: 1px solid var(--border-hairline); display: flex; align-items: center;
+            justify-content: space-between; padding: 0 24px; font-size: 0.65rem; color: var(--text-muted);
+        }
+    </style>
+</head>
+<body vid="9">
+    <aside class="sidebar" vid="10">
+        <div class="sidebar-header" vid="11"><span class="brand-name" vid="12">Systema</span></div>
+        <div class="nav-section" vid="13">
+            <a href="#" class="nav-pill active" vid="14"><span vid="15">Frameworks</span><span class="count-badge" vid="16">24</span></a>
+            <a href="#" class="nav-pill" vid="17"><span vid="18">Models</span></a>
+            <a href="#" class="nav-pill" vid="19"><span vid="20">Ontologies</span></a>
+            <a href="#" class="nav-pill" vid="21"><span vid="22">Settings</span></a>
+        </div>
+        <div class="active-session-section" vid="23">
+            <div class="active-session-label" vid="24">Active Session</div>
+            <div class="active-session-card" vid="25">
+                <div class="session-title" vid="26">Cognitive Mapping</div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="main-wrapper" vid="27">
+        <header class="top-header" vid="28">
+            <div class="header-left" vid="29">
+                <span class="breadcrumb" vid="30">Workspace / Root</span>
+            </div>
+            <div class="header-right" vid="31" style="display:flex; gap:12px; align-items:center;">
+                <div class="view-toggle" vid="32">
+                    <button class="view-toggle-btn active" vid="33"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" vid="34"><line x1="8" y1="6" x2="21" y2="6" vid="35"></line><line x1="8" y1="12" x2="21" y2="12" vid="36"></line><line x1="8" y1="18" x2="21" y2="18" vid="37"></line><line x1="3" y1="6" x2="3.01" y2="6" vid="38"></line><line x1="3" y1="12" x2="3.01" y2="12" vid="39"></line><line x1="3" y1="18" x2="3.01" y2="18" vid="40"></line></svg></button>
+                    <button class="view-toggle-btn" vid="41"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" vid="42"><rect x="3" y="3" width="7" height="7" vid="43"></rect><rect x="14" y="3" width="7" height="7" vid="44"></rect><rect x="14" y="14" width="7" height="7" vid="45"></rect><rect x="3" y="14" width="7" height="7" vid="46"></rect></svg></button>
+                </div>
+                <button class="btn-primary" style="background:#120D0A; color:#fff; border:none; padding:6px 14px; border-radius:20px; font-size:0.75rem; cursor:pointer;" vid="47">New Framework</button>
+            </div>
+        </header>
+
+        <main class="content-scroll" vid="48">
+            <div class="section-header" vid="49">
+                <div class="section-titles" vid="50">
+                    <h2 class="section-subtitle" vid="51">System Architecture</h2>
+                    <h1 class="section-title" vid="52">Frameworks Library</h1>
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);" vid="53">Sorted by: Recent</div>
+            </div>
+
+            <div class="list-container" vid="54">
+                <div class="list-header" vid="55">
+                    <div vid="56"></div>
+                    <div style="padding-left:20px;" vid="57">Title</div>
+                    <div style="padding-left:16px;" vid="58">Category</div>
+                    <div style="padding-left:16px;" vid="59">Tags</div>
+                    <div style="text-align:right; padding-right:16px;" vid="60">Concepts</div>
+                    <div vid="61">Status</div>
+                </div>
+
+                <a href="#" class="list-item" style="--card-color: var(--cat-orange);" vid="62">
+                    <div class="accent-rail" vid="63"></div>
+                    <div class="col-title" vid="64">Fogg Behavior Model &amp; Activation Triggers</div>
+                    <div class="col-cat" vid="65">Behavioral</div>
+                    <div class="col-tags" vid="66">
+                        <span class="tag-micro" vid="67">Persuasion</span>
+                        <span class="tag-micro" vid="68">Habit</span>
+                    </div>
+                    <div class="col-count" vid="69">12</div>
+                    <div class="col-progress" vid="70">
+                        <div class="progress-mini-track" vid="71"><div class="progress-mini-fill" style="width: 73%;" vid="72"></div></div>
+                    </div>
+                </a>
+
+                <a href="#" class="list-item" style="--card-color: var(--cat-blue);" vid="73">
+                    <div class="accent-rail" vid="74"></div>
+                    <div class="col-title" vid="75">Atomic Design Methodology in Practice</div>
+                    <div class="col-cat" vid="76">Structural</div>
+                    <div class="col-tags" vid="77">
+                        <span class="tag-micro" vid="78">Design Systems</span>
+                    </div>
+                    <div class="col-count" vid="79">8</div>
+                    <div class="col-progress" vid="80">
+                        <div class="progress-mini-track" vid="81"><div class="progress-mini-fill" style="width: 100%;" vid="82"></div></div>
+                    </div>
+                </a>
+
+                <a href="#" class="list-item" style="--card-color: var(--cat-emerald);" vid="83">
+                    <div class="accent-rail" vid="84"></div>
+                    <div class="col-title" vid="85">Wardley Mapping for Product Velocity</div>
+                    <div class="col-cat" vid="86">Strategic</div>
+                    <div class="col-tags" vid="87">
+                        <span class="tag-micro" vid="88">Strategy</span>
+                        <span class="tag-micro" vid="89">Mapping</span>
+                    </div>
+                    <div class="col-count" vid="90">24</div>
+                    <div class="col-progress" vid="91">
+                        <div class="progress-mini-track" vid="92"><div class="progress-mini-fill" style="width: 42%;" vid="93"></div></div>
+                    </div>
+                </a>
+
+                <a href="#" class="list-item" style="--card-color: var(--cat-purple);" vid="94">
+                    <div class="accent-rail" vid="95"></div>
+                    <div class="col-title" vid="96">Cynefin Framework &amp; Sense-Making</div>
+                    <div class="col-cat" vid="97">Analytical</div>
+                    <div class="col-tags" vid="98">
+                        <span class="tag-micro" vid="99">Complexity</span>
+                        <span class="tag-micro" vid="100">Decisions</span>
+                    </div>
+                    <div class="col-count" vid="101">15</div>
+                    <div class="col-progress" vid="102">
+                        <div class="progress-mini-track" vid="103"><div class="progress-mini-fill" style="width: 57%;" vid="104"></div></div>
+                    </div>
+                </a>
+
+                <a href="#" class="list-item" style="--card-color: var(--cat-rose);" vid="105">
+                    <div class="accent-rail" vid="106"></div>
+                    <div class="col-title" vid="107">Jobs to be Done (JTBD) Interview Patterns</div>
+                    <div class="col-cat" vid="108">Generative</div>
+                    <div class="col-tags" vid="109">
+                        <span class="tag-micro" vid="110">Research</span>
+                        <span class="tag-micro" vid="111">Demand</span>
+                    </div>
+                    <div class="col-count" vid="112">3</div>
+                    <div class="col-progress" vid="113">
+                        <div class="progress-mini-track" vid="114"><div class="progress-mini-fill" style="width: 35%;" vid="115"></div></div>
+                    </div>
+                </a>
+                
+                
+            </div>
+        </main>
+
+        <footer class="footer-status" vid="116">
+            <span vid="117">Viewing: Dense List View</span>
+            <div style="display:flex; gap:16px;" vid="118">
+                <span vid="119">24 Total Frameworks</span>
+                <span vid="120">Sync: 2m ago</span>
+            </div>
+        </footer>
+    </div>
+</body></html>

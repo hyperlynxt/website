@@ -1,0 +1,199 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Frameworks Library - List View</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" vid="8">
+    
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        body: '#F5F5F6',
+                        surface: '#FFFFFF',
+                        rail: '#F0F0F2',
+                        primary: '#0A0A0B',
+                        muted: '#6E6E73',
+                        hairline: 'rgba(0, 0, 0, 0.08)',
+                        cardBorder: 'rgba(0, 0, 0, 0.05)'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"EB Garamond"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style vid="10">
+        .list-row {
+            display: grid;
+            grid-template-columns: 160px 240px 1fr 120px;
+            align-items: center;
+            padding: 1.25rem 2rem;
+            background-color: #FFFFFF;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            gap: 2rem;
+        }
+
+        .list-row:hover {
+            background-color: rgba(0,0,0,0.01);
+            transform: translateX(4px);
+            z-index: 10;
+            box-shadow: inset 4px 0 0 0 var(--ac);
+        }
+
+        .card-accent-orange { --ac: #C4713E; --ac-rgb: 196, 113, 62; }
+        .card-accent-blue   { --ac: #4A7D9A; --ac-rgb: 74, 125, 154; }
+        .card-accent-emerald{ --ac: #4A8F6F; --ac-rgb: 74, 143, 111; }
+        .card-accent-purple { --ac: #8A5E98; --ac-rgb: 138, 94, 152; }
+        .card-accent-rose   { --ac: #B55E6A; --ac-rgb: 181, 94, 106; }
+
+        .dot-indicator {
+            background-color: var(--ac);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 4px; }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden flex font-sans text-primary bg-body antialiased" vid="11">
+
+    <nav class="w-[64px] h-full flex-shrink-0 bg-rail border-r border-hairline flex flex-col items-center py-6 justify-between z-30 absolute left-0 top-0" vid="12">
+        <div class="flex-shrink-0 mb-8" vid="13">
+            <span class="font-serif italic text-[1.75rem] font-medium text-primary tracking-tighter" vid="14">S.</span>
+        </div>
+        <div class="flex flex-col gap-4 flex-1 mt-4" vid="15">
+            <button class="relative w-10 h-10 rounded-xl flex items-center justify-center text-primary bg-black/5 transition-colors" vid="16">
+                <div class="absolute -left-[12px] top-1/2 -translate-y-1/2 w-1 h-5 bg-primary rounded-r-md" vid="17"></div>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="18">
+                    <rect x="3" y="3" width="7" height="7" vid="19"></rect>
+                    <rect x="14" y="3" width="7" height="7" vid="20"></rect>
+                    <rect x="14" y="14" width="7" height="7" vid="21"></rect>
+                    <rect x="3" y="14" width="7" height="7" vid="22"></rect>
+                </svg>
+            </button>
+            <button class="w-10 h-10 rounded-xl flex items-center justify-center text-muted hover:text-primary hover:bg-black/5" vid="23">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="24">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2" vid="25"></polygon>
+                    <polyline points="2 17 12 22 22 17" vid="26"></polyline>
+                </svg>
+            </button>
+            <button class="w-10 h-10 rounded-xl flex items-center justify-center text-muted hover:text-primary hover:bg-black/5" vid="27">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="28">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" vid="29"></path>
+                    <polyline points="7 10 12 15 17 10" vid="30"></polyline>
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col gap-5 items-center mt-auto" vid="31">
+            <button class="text-muted hover:text-primary transition-colors" vid="32">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="33"><circle cx="12" cy="12" r="3" vid="34"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" vid="35"></path></svg>
+            </button>
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#8A5E98] to-[#4A7D9A] border border-black/10" vid="36"></div>
+        </div>
+    </nav>
+
+    <main class="flex-1 ml-[64px] h-full flex flex-col relative bg-white" vid="37">
+        <header class="h-[72px] flex-shrink-0 flex items-center justify-between px-10 border-b border-hairline bg-surface" vid="38">
+            <div class="text-[10px] font-semibold tracking-[0.15em] text-muted uppercase" vid="39">Library / System Architecture</div>
+            <button class="bg-primary text-surface px-5 py-2.5 rounded-full text-[13px] font-medium shadow-sm" vid="40">Create New Framework</button>
+        </header>
+
+        <div class="flex-1 overflow-y-auto px-10 pt-10 pb-[80px]" vid="41">
+            <div class="flex items-end justify-between mb-10 max-w-[1200px] mx-auto" vid="42">
+                <div vid="43">
+                    <h2 class="text-[11px] font-semibold tracking-[0.15em] text-muted uppercase mb-2" vid="44">Archive Overview</h2>
+                    <h1 class="font-serif italic text-[3rem] leading-none text-primary" vid="45">Frameworks Library</h1>
+                </div>
+                <div class="flex items-center gap-2 mb-1" vid="46">
+                    <span class="text-[13px] text-muted font-medium" vid="47">Sort:</span>
+                    <button class="text-[13px] font-semibold text-primary flex items-center gap-1" vid="48">Last Edited</button>
+                </div>
+            </div>
+
+            <div class="max-w-[1200px] mx-auto rounded-xl border border-hairline overflow-hidden shadow-sm bg-white" vid="49">
+                <div class="grid grid-cols-[160px_240px_1fr_120px] px-8 py-3 bg-body/50 border-b border-hairline text-[10px] font-bold tracking-[0.1em] text-muted uppercase" vid="50">
+                    <div vid="51">Category</div>
+                    <div vid="52">Framework Title</div>
+                    <div vid="53">Description</div>
+                    <div class="text-right" vid="54">Concepts</div>
+                </div>
+
+                <div class="list-row card-accent-orange" vid="55">
+                    <span class="text-[10px] font-bold tracking-widest uppercase" style="color: var(--ac)" vid="56">Cognitive Models</span>
+                    <h3 class="font-serif italic text-xl text-primary" vid="57">Sensemaking Architectures</h3>
+                    <p class="font-serif italic text-muted text-sm truncate" vid="58">Mapping the structural heuristics of human reasoning into discrete probabilistic networks.</p>
+                    <div class="flex items-center justify-end gap-3" vid="59">
+                        <span class="text-[11px] font-semibold text-muted" vid="60">12</span>
+                        <div class="flex gap-1" vid="61"><div class="w-1 h-1 rounded-full dot-indicator" vid="62"></div></div>
+                    </div>
+                </div>
+
+                <div class="list-row card-accent-blue" vid="63">
+                    <span class="text-[10px] font-bold tracking-widest uppercase" style="color: var(--ac)" vid="64">Interaction Patterns</span>
+                    <h3 class="font-serif italic text-xl text-primary" vid="65">Fluid Dynamics</h3>
+                    <p class="font-serif italic text-muted text-sm truncate" vid="66">Physics-based animation curves and state-driven spring physics for spatial interfaces.</p>
+                    <div class="flex items-center justify-end gap-3" vid="67">
+                        <span class="text-[11px] font-semibold text-muted" vid="68">8</span>
+                        <div class="flex gap-1" vid="69"><div class="w-1 h-1 rounded-full dot-indicator" vid="70"></div></div>
+                    </div>
+                </div>
+
+                <div class="list-row card-accent-emerald" vid="71">
+                    <span class="text-[10px] font-bold tracking-widest uppercase" style="color: var(--ac)" vid="72">Data Structures</span>
+                    <h3 class="font-serif italic text-xl text-primary" vid="73">Graph Topologies</h3>
+                    <p class="font-serif italic text-muted text-sm truncate" vid="74">Node-edge relationship models for high-density information retrieval and optimization.</p>
+                    <div class="flex items-center justify-end gap-3" vid="75">
+                        <span class="text-[11px] font-semibold text-muted" vid="76">24</span>
+                        <div class="flex gap-1" vid="77"><div class="w-1 h-1 rounded-full dot-indicator" vid="78"></div></div>
+                    </div>
+                </div>
+
+                <div class="list-row card-accent-purple" vid="79">
+                    <span class="text-[10px] font-bold tracking-widest uppercase" style="color: var(--ac)" vid="80">Systems Design</span>
+                    <h3 class="font-serif italic text-xl text-primary" vid="81">State Machine Logistics</h3>
+                    <p class="font-serif italic text-muted text-sm truncate" vid="82">Deterministic finite automata implementations for robust offline-first applications.</p>
+                    <div class="flex items-center justify-end gap-3" vid="83">
+                        <span class="text-[11px] font-semibold text-muted" vid="84">15</span>
+                        <div class="flex gap-1" vid="85"><div class="w-1 h-1 rounded-full dot-indicator" vid="86"></div></div>
+                    </div>
+                </div>
+
+                <div class="list-row card-accent-rose" vid="87">
+                    <span class="text-[10px] font-bold tracking-widest uppercase" style="color: var(--ac)" vid="88">Visual Language</span>
+                    <h3 class="font-serif italic text-xl text-primary" vid="89">Chromatic Scales</h3>
+                    <p class="font-serif italic text-muted text-sm truncate" vid="90">Perceptually uniform color spaces and algorithmic contrast generation techniques.</p>
+                    <div class="flex items-center justify-end gap-3" vid="91">
+                        <span class="text-[11px] font-semibold text-muted" vid="92">9</span>
+                        <div class="flex gap-1" vid="93"><div class="w-1 h-1 rounded-full dot-indicator" vid="94"></div></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-center py-6 bg-body/20 border-t border-hairline hover:bg-body/40 transition-colors cursor-pointer group" vid="95">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-muted mr-2" stroke-width="2" vid="96"><line x1="12" y1="5" x2="12" y2="19" vid="97"></line><line x1="5" y1="12" x2="19" y2="12" vid="98"></line></svg>
+                    <span class="font-serif italic text-muted group-hover:text-primary" vid="99">Add New Framework Row</span>
+                </div>
+            </div>
+        </div>
+
+        <footer class="h-[56px] absolute bottom-0 left-0 right-0 bg-[#f5f5f6]/85 backdrop-blur-xl border-t border-hairline flex items-center justify-between px-10 z-30" vid="100">
+            <div class="flex items-center gap-2" vid="101">
+                <div class="w-2 h-2 rounded-full bg-[#4A8F6F]" vid="102"></div>
+                <span class="text-[10px] font-medium tracking-[0.1em] text-muted uppercase" vid="103">Status: All systems synchronized.</span>
+            </div>
+            <div class="flex items-center gap-4 text-[10px] font-medium tracking-[0.1em] text-muted uppercase" vid="104">
+                <span vid="105">24 Frameworks Indexing</span>
+                <span class="w-[1px] h-3 bg-black/10" vid="106"></span>
+                <span vid="107">v3.4.1</span>
+            </div>
+        </footer>
+    </main>
+</body></html>
