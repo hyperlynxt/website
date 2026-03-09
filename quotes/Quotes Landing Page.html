@@ -1431,35 +1431,112 @@
 
     <script>
         const searchInput = document.getElementById('landing-search');
-        const cards = document.querySelectorAll('.masonry-grid > a');
-        const resultsCount = document.getElementById('results-count');
+        const grid = document.querySelector('.masonry-grid');
+        const cards = Array.from(document.querySelectorAll('.masonry-grid > a'));
         const sidebarLinks = document.querySelectorAll('.sidebar-link');
 
-        // mode: 'attribute' = sidebar click (exact data-theme/data-author match)
-        //       'text'      = search box (full text search)
-        function applyFilter(query, mode = 'text') {
+        const sortTrigger = document.getElementById('sort-trigger');
+        const sortMenu = document.getElementById('sort-menu');
+        const sortLabel = document.getElementById('sort-label');
+        const sortOptions = document.querySelectorAll('.sort-option');
+
+        let activeSort = 'recent';
+        let sortAsc = true;
+        let activeQuery = '';
+        let activeMode = 'text';
+
+        // Tag each card with its original DOM order for sorting
+        cards.forEach((card, i) => card.dataset.order = i);
+
+        // Direction toggle
+        const sortDirBtn = document.getElementById('sort-dir-btn');
+        const sortDirIcon = document.getElementById('sort-dir-icon');
+        sortDirBtn.addEventListener('click', () => {
+            sortAsc = !sortAsc;
+            sortDirIcon.style.transform = sortAsc ? '' : 'rotate(180deg)';
+            applyFilter();
+        });
+
+        // Custom dropdown open/close
+        sortTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = !sortMenu.classList.contains('hidden');
+            sortMenu.classList.toggle('hidden');
+            sortTrigger.querySelector('.sort-chevron').style.transform = isOpen ? '' : 'rotate(180deg)';
+        });
+        document.addEventListener('click', () => {
+            sortMenu.classList.add('hidden');
+            sortTrigger.querySelector('.sort-chevron').style.transform = '';
+        });
+
+        // Sort option selection
+        sortOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                activeSort = opt.dataset.sort;
+                sortLabel.textContent = opt.textContent.trim();
+
+                // Update active styling
+                sortOptions.forEach(o => {
+                    o.classList.remove('text-ink');
+                    o.classList.add('text-muted');
+                });
+                opt.classList.remove('text-muted');
+                opt.classList.add('text-ink');
+
+                sortMenu.classList.add('hidden');
+                sortTrigger.querySelector('.sort-chevron').style.transform = '';
+                applyFilter();
+            });
+        });
+
+        function getTitle(card) {
+            // Helper to get text for alphabetical sorting if we needed it (not strictly needed since we use theme/chronological)
+            return card.textContent.trim();
+        }
+
+        // Apply filters & sorts
+        function applyFilter(newQuery = null, newMode = null) {
+            if (newQuery !== null) activeQuery = newQuery;
+            if (newMode !== null) activeMode = newMode;
+
             let visible = 0;
+
+            // 1. Sort Domain
+            if (activeSort === 'default') {
+                // Chronological (Original order)
+                cards.sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order));
+            } else if (activeSort === 'category') {
+                // By Theme (A-Z)
+                cards.sort((a, b) => (a.dataset.theme || '').localeCompare(b.dataset.theme || ''));
+            } else if (activeSort === 'recent') {
+                // Recently Added (Reverse chronological)
+                cards.sort((a, b) => Number(b.dataset.order) - Number(a.dataset.order));
+            }
+
+            // Directional Flip
+            if (!sortAsc) cards.reverse();
+
+            // Re-append to DOM to visually sort
+            cards.forEach(card => grid.appendChild(card));
+
+            // 2. Filter Domain
             cards.forEach(card => {
                 let matches;
-                if (!query || query === 'all') {
+                if (!activeQuery || activeQuery === 'all') {
                     matches = true;
-                } else if (mode === 'attribute') {
+                } else if (activeMode === 'attribute') {
                     const theme = (card.dataset.theme || '').toLowerCase();
                     const author = (card.dataset.author || '').toLowerCase();
-                    matches = theme === query || author === query;
+                    matches = theme === activeQuery || author === activeQuery;
                 } else {
                     const theme = (card.dataset.theme || '').toLowerCase();
                     const author = (card.dataset.author || '').toLowerCase();
                     const text = card.textContent.toLowerCase();
-                    matches = theme.includes(query) || author.includes(query) || text.includes(query);
+                    matches = theme.includes(activeQuery) || author.includes(activeQuery) || text.includes(activeQuery);
                 }
                 card.style.display = matches ? '' : 'none';
                 if (matches) visible++;
             });
-            const total = cards.length;
-            resultsCount.textContent = (query && query !== 'all')
-                ? `Showing ${String(visible).padStart(2, '0')} of ${String(total).padStart(2, '0')} Results`
-                : `Showing ${String(total).padStart(2, '0')} Results`;
         }
 
         // Sidebar filter clicks — exact attribute match
@@ -1468,7 +1545,7 @@
                 e.preventDefault();
                 sidebarLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
-                searchInput.value = '';
+                searchInput.value = ''; // clear global search
                 applyFilter(link.dataset.filter, 'attribute');
             });
         });
@@ -1483,6 +1560,9 @@
             }
             applyFilter(query, 'text');
         });
+
+        // Initial sorting boot
+        applyFilter();
     </script>
 </body>
 
