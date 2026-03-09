@@ -1,0 +1,340 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Mental Models Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;display=swap" rel="stylesheet" vid="7">
+    
+    <style vid="8">
+        :root {
+            --bg: #f6f5f0;
+            --card-bg: #ffffff;
+            --ink: #2a2826;
+            --muted: #5a5752;
+            --border-faint: #e6e3d8;
+            --border-dark: #2a2826;
+            --featured-bg: #f2f0e9; 
+            --bg-type-color: rgba(224, 196, 168, 0.2); 
+            --sidebar-width: 320px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--ink);
+            font-family: 'EB Garamond', serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        
+        .bg-typography-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-type {
+            font-size: 40vw; 
+            font-weight: 500;
+            color: var(--bg-type-color);
+            line-height: 0.7;
+            letter-spacing: -0.05em;
+            white-space: nowrap;
+            position: absolute;
+        }
+        .bg-type.left { top: 10%; left: -5%; }
+
+        
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            border-right: 1px solid var(--border-faint);
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg);
+            z-index: 10;
+            overflow-y: auto;
+        }
+
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 3rem 5vw;
+            max-width: 1000px;
+        }
+
+        .brand-logo { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 0.2rem; 
+            margin-bottom: 3rem;
+        }
+        .brand-title { font-size: 1.8rem; font-style: italic; font-weight: 500; line-height: 1; letter-spacing: -0.02em; }
+        .brand-subtitle { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-weight: 600; }
+
+        .nav-links { 
+            display: flex; 
+            flex-direction: column;
+            gap: 0.75rem; 
+            list-style: none; 
+            margin-bottom: 4rem;
+        }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--ink); 
+            font-size: 1.1rem; 
+            transition: color 0.2s ease; 
+        }
+        .nav-links a:hover { font-style: italic; }
+
+        .filter-section-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .filter-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-tab {
+            text-align: left;
+            padding: 0.4rem 0;
+            border: none;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--muted);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-tab:hover, .filter-tab.active {
+            color: var(--ink);
+            padding-left: 0.5rem;
+            border-left: 1px solid var(--ink);
+        }
+        .filter-tab.active { font-weight: 600; }
+
+        
+        .page-header {
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 { 
+            font-size: 3.5rem; 
+            font-style: italic; 
+            font-weight: 400; 
+            line-height: 1; 
+            letter-spacing: -0.02em; 
+            margin-bottom: 2rem;
+        }
+
+        .search-wrapper { position: relative; width: 100%; max-width: 500px; }
+        .search-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--muted);
+            padding: 0.5rem 0;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--ink);
+            outline: none;
+            border-radius: 0;
+        }
+        .search-input::placeholder { color: var(--muted); font-style: italic; }
+
+        
+        .entries-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .entry-item {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border-faint);
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 3rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .entry-item:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+
+        .entry-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .entry-badge {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+        }
+
+        .entry-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+        }
+
+        .entry-desc {
+            font-size: 1.1rem;
+            color: var(--muted);
+            line-height: 1.6;
+            max-width: 650px;
+        }
+
+        .entry-item.featured {
+            background-color: var(--featured-bg);
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            margin-left: -1.5rem;
+            margin-right: -1.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            :root { --sidebar-width: 260px; }
+            .entry-item { grid-template-columns: 1fr; gap: 1rem; }
+        }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { position: relative; width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-faint); }
+            .main-content { margin-left: 0; padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body vid="9">
+
+    <div class="bg-typography-layer" aria-hidden="true" vid="10">
+        <div class="bg-type left" vid="11">in Lo</div>
+    </div>
+
+    <aside class="sidebar" vid="12">
+        <div class="brand-logo" vid="13">
+            <span class="brand-title" vid="14">Index Mentis</span>
+            <span class="brand-subtitle" vid="15">Archive of Conceptual Frameworks</span>
+        </div>
+
+        <ul class="nav-links" vid="16">
+            <li vid="17"><a href="#" vid="18">Index</a></li>
+            <li vid="19"><a href="#" vid="20">Taxonomies</a></li>
+            <li vid="21"><a href="#" vid="22">About</a></li>
+        </ul>
+
+        <span class="filter-section-label" vid="23">Browse by Domain</span>
+        <nav class="filter-list" vid="24">
+            <button class="filter-tab active" vid="25">All Concepts</button>
+            <button class="filter-tab" vid="26">Epistemology</button>
+            <button class="filter-tab" vid="27">Strategy</button>
+            <button class="filter-tab" vid="28">Systems</button>
+            <button class="filter-tab" vid="29">Logic</button>
+            <button class="filter-tab" vid="30">Behavioral</button>
+            <button class="filter-tab" vid="31">Risk Analysis</button>
+            <button class="filter-tab" vid="32">Cognitive</button>
+        </nav>
+    </aside>
+
+    <main class="main-content" vid="33">
+        <header class="page-header" vid="34">
+            <h1 vid="35">Browse Collection</h1>
+            <div class="search-wrapper" vid="36">
+                <input type="text" class="search-input" placeholder="Search entries, domains, authors..." aria-label="Search" vid="37">
+            </div>
+        </header>
+
+        <section class="entries-list" vid="38">
+            <article class="entry-item featured" vid="39">
+                <div class="entry-meta" vid="40">
+                    <span class="entry-badge" vid="41">Epistemology</span>
+                    <h2 class="entry-title" vid="42">Map is not the Territory</h2>
+                </div>
+                <p class="entry-desc" vid="43">The abstract representation of a thing is not the thing itself. Models fall short of reality because they must reduce complexity to be useful. Recognizing the boundaries where a map fails is as critical as knowing how to read it.</p>
+            </article>
+
+            <article class="entry-item" vid="44">
+                <div class="entry-meta" vid="45">
+                    <span class="entry-badge" vid="46">Strategy</span>
+                    <h2 class="entry-title" vid="47">Inversion</h2>
+                </div>
+                <p class="entry-desc" vid="48">Instead of asking how to achieve a desired outcome, ask how to guarantee the opposite. By aggressively identifying and avoiding paths of failure, success often becomes the only remaining trajectory.</p>
+            </article>
+
+            <article class="entry-item" vid="49">
+                <div class="entry-meta" vid="50">
+                    <span class="entry-badge" vid="51">Systems</span>
+                    <h2 class="entry-title" vid="52">Second-Order Effects</h2>
+                </div>
+                <p class="entry-desc" vid="53">Every action has a consequence, and every consequence has a consequence. Failing to consider the chain reaction of decisions leads to solving one problem while generating a more complex, structural failure elsewhere. The initial solution may prove catastrophic over longer temporal horizons.</p>
+            </article>
+
+            <article class="entry-item" vid="54">
+                <div class="entry-meta" vid="55">
+                    <span class="entry-badge" vid="56">Logic</span>
+                    <h2 class="entry-title" vid="57">Occam’s Razor</h2>
+                </div>
+                <p class="entry-desc" vid="58">When presented with competing hypotheses that make the same predictions, one should select the solution with the fewest assumptions. Simplicity implies a lower probability of structural error.</p>
+            </article>
+
+            <article class="entry-item" vid="59">
+                <div class="entry-meta" vid="60">
+                    <span class="entry-badge" vid="61">Behavioral</span>
+                    <h2 class="entry-title" vid="62">Hanlon’s Razor</h2>
+                </div>
+                <p class="entry-desc" vid="63">Never attribute to malice that which is adequately explained by stupidity. A crucial framework for preserving cognitive bandwidth and avoiding destructive paranoia in complex social ecosystems. It shifts the perspective from intent to error.</p>
+            </article>
+
+            <article class="entry-item" vid="64">
+                <div class="entry-meta" vid="65">
+                    <span class="entry-badge" vid="66">Risk Analysis</span>
+                    <h2 class="entry-title" vid="67">Margin of Safety</h2>
+                </div>
+                <p class="entry-desc" vid="68">Building systems capable of handling loads significantly heavier than anticipated. It acknowledges the inherent limits of human foresight and the inevitability of structural stress.</p>
+            </article>
+
+            <article class="entry-item" vid="69">
+                <div class="entry-meta" vid="70">
+                    <span class="entry-badge" vid="71">Cognitive</span>
+                    <h2 class="entry-title" vid="72">First Principles</h2>
+                </div>
+                <p class="entry-desc" vid="73">Boiling a process down to the fundamental, undeniable truths and reasoning up from there, rather than reasoning by analogy. The core mechanism for architectural disruption. It requires stripping away existing biases and assumptions to see the raw materials of a problem.</p>
+            </article>
+        </section>
+    </main>
+
+
+</body></html>

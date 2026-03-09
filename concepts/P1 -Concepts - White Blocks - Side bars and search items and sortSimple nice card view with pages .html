@@ -1,0 +1,259 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Syntopicon - Concepts Library</title>
+    <script src="https://cdn.tailwindcss.com" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" vid="8">
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: {
+                            50: '#FFFFFF',
+                            100: '#F8F7F4', 
+                            200: '#EFEBE4', 
+                            300: '#E5DFD3', 
+                            400: '#C9C2B5',
+                            500: '#A19A8D',
+                            600: '#7A756C', 
+                            800: '#2A2724', 
+                            900: '#1A1918', 
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"EB Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style vid="10">
+        body {
+            font-family: 'EB Garamond', serif;
+            color: #1A1918;
+            background-color: #F8F7F4;
+            -webkit-font-smoothing: antialiased;
+        }
+        .ui-text { font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E5DFD3; border-radius: 10px; }
+        .panel-scroll { height: 100vh; overflow-y: auto; scrollbar-gutter: stable; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden selection:bg-parchment-900 selection:text-parchment-100" vid="11">
+
+    <aside class="w-64 bg-parchment-200 border-r border-parchment-300 flex flex-col flex-shrink-0 panel-scroll" vid="12">
+        <div class="h-14 px-5 flex items-center justify-between border-b border-parchment-300/50 sticky top-0 bg-parchment-200 z-10" vid="13">
+            <span class="text-lg italic font-medium tracking-wide" vid="14">Syntopicon</span>
+            <button class="text-parchment-600 p-1" vid="15"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="16"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" vid="17"></rect><path d="M9 3v18" vid="18"></path></svg></button>
+        </div>
+        <div class="p-6 space-y-8" vid="19">
+            <nav class="space-y-1" vid="20">
+                <a href="#" class="ui-text text-[11px] font-semibold tracking-wider uppercase flex items-center justify-between px-3 py-2 rounded-full text-parchment-600 hover:bg-parchment-300/30" vid="21">
+                    <span vid="22">Inbox</span>
+                    <span class="bg-parchment-300/50 text-parchment-900 px-2 py-0.5 rounded-full text-[10px]" vid="23">12</span>
+                </a>
+                <a href="#" class="ui-text text-[11px] font-semibold tracking-wider uppercase flex items-center justify-between px-3 py-2 rounded-full bg-parchment-900 text-parchment-100 shadow-sm" vid="24">
+                    <span vid="25">Concepts</span>
+                    <span class="bg-parchment-100/20 px-2 py-0.5 rounded-full text-[10px]" vid="26">142</span>
+                </a>
+                <a href="#" class="ui-text text-[11px] font-semibold tracking-wider uppercase flex items-center justify-between px-3 py-2 rounded-full text-parchment-600 hover:bg-parchment-300/30" vid="27">
+                    <span vid="28">Frameworks</span>
+                    <span class="bg-parchment-300/50 text-parchment-900 px-2 py-0.5 rounded-full text-[10px]" vid="29">8</span>
+                </a>
+            </nav>
+            <div class="space-y-4" vid="30">
+                <h3 class="ui-text text-[10px] font-semibold tracking-widest text-parchment-500 uppercase px-3" vid="31">History</h3>
+                <div class="space-y-4" vid="32">
+                    <div class="flex items-start gap-3 px-3 border-l-2 border-transparent hover:border-parchment-400 transition-colors" vid="33">
+                        <div vid="34">
+                            <p class="italic text-[15px] leading-tight font-medium" vid="35">Inversion Principle</p>
+                            <span class="ui-text text-[10px] text-parchment-500" vid="36">Mental Model</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 px-3 border-l-2 border-transparent" vid="37">
+                        <div vid="38">
+                            <p class="italic text-[15px] leading-tight text-parchment-600" vid="39">Map is not the Territory</p>
+                            <span class="ui-text text-[10px] text-parchment-400" vid="40">Epistemology</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-auto p-6" vid="41">
+            <p class="ui-text text-[10px] text-parchment-500 text-center uppercase tracking-widest" vid="42">© 2024 Archive</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 bg-parchment-50 flex flex-col overflow-hidden" vid="43">
+        <header class="h-14 px-8 flex items-center justify-between flex-shrink-0 bg-parchment-50 border-b border-parchment-200 z-20" vid="44">
+            <div class="flex items-center gap-6" vid="45">
+                <div class="ui-text text-[10px] font-medium tracking-widest text-parchment-500 uppercase flex gap-2" vid="46">
+                    <span vid="47">Archive</span><span vid="48">/</span><span class="text-parchment-900" vid="49">All Concepts</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 w-1/3" vid="50">
+                <div class="relative w-full" vid="51">
+                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-parchment-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="52"><circle cx="11" cy="11" r="8" vid="53"></circle><path d="m21 21-4.3-4.3" vid="54"></path></svg>
+                    <input type="text" placeholder="Search concepts..." class="w-full bg-parchment-100 border border-parchment-200 rounded-full py-1.5 pl-9 pr-4 ui-text text-xs focus:outline-none focus:border-parchment-400 transition-colors" vid="55">
+                </div>
+            </div>
+            <div class="flex gap-2" vid="56">
+                <button class="ui-text text-[10px] font-semibold px-4 py-1.5 rounded-full border border-parchment-300 flex items-center gap-2" vid="57">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="58"><path d="M3 6h18M6 12h12M10 18h4" vid="59"></path></svg>
+                    Sort
+                </button>
+                <button class="ui-text text-[10px] font-semibold px-4 py-1.5 rounded-full bg-parchment-900 text-parchment-100" vid="60">New Concept</button>
+            </div>
+        </header>
+
+        <div class="panel-scroll flex-1" vid="61">
+            <div class="sticky top-0 bg-parchment-50/95 backdrop-blur-md z-10 px-8 py-4 border-b border-parchment-200" vid="62">
+                <div class="flex gap-2 overflow-x-auto no-scrollbar" vid="63">
+                    <button class="ui-text text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full bg-parchment-900 text-parchment-100" vid="64">All (142)</button>
+                    <button class="ui-text text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full text-parchment-500 hover:text-parchment-900 hover:bg-parchment-200 transition-all" vid="65">Mental Models</button>
+                    <button class="ui-text text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full text-parchment-500 hover:text-parchment-900 hover:bg-parchment-200 transition-all" vid="66">Systems Thinking</button>
+                    <button class="ui-text text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full text-parchment-500 hover:text-parchment-900 hover:bg-parchment-200 transition-all" vid="67">Strategy</button>
+                    <button class="ui-text text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full text-parchment-500 hover:text-parchment-900 hover:bg-parchment-200 transition-all" vid="68">Epistemology</button>
+                    <button class="ui-text text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-full text-parchment-500 hover:text-parchment-900 hover:bg-parchment-200 transition-all" vid="69">Psychology</button>
+                </div>
+            </div>
+
+            <div class="px-8 py-10" vid="70">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" vid="71">
+                    
+                    <a href="#" class="group bg-white border border-parchment-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-parchment-400 transition-all flex flex-col h-full" vid="72">
+                        <div class="flex justify-between items-start mb-4" vid="73">
+                            <span class="ui-text text-[9px] font-bold tracking-widest uppercase text-parchment-400" vid="74">Mental Model</span>
+                            <span class="text-parchment-300 group-hover:text-parchment-900 transition-colors" vid="75">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="76"><path d="M5 12h14M12 5l7 7-7 7" vid="77"></path></svg>
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-medium leading-tight mb-3 italic" vid="78">The Inversion Principle</h3>
+                        <p class="text-parchment-600 text-sm line-clamp-3 mb-6 font-serif leading-relaxed" vid="79">Focusing on avoiding failure instead of seeking success. A subtractive approach to complex problem solving.</p>
+                        <div class="mt-auto pt-4 border-t border-parchment-100 flex gap-1 flex-wrap" vid="80">
+                            <span class="ui-text text-[8px] font-bold uppercase bg-parchment-100 px-2 py-0.5 rounded text-parchment-500" vid="81">Strategy</span>
+                            <span class="ui-text text-[8px] font-bold uppercase bg-parchment-100 px-2 py-0.5 rounded text-parchment-500" vid="82">Logic</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="group bg-white border border-parchment-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-parchment-400 transition-all flex flex-col h-full" vid="83">
+                        <div class="flex justify-between items-start mb-4" vid="84">
+                            <span class="ui-text text-[9px] font-bold tracking-widest uppercase text-parchment-400" vid="85">Epistemology</span>
+                            <span class="text-parchment-300 group-hover:text-parchment-900 transition-colors" vid="86">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="87"><path d="M5 12h14M12 5l7 7-7 7" vid="88"></path></svg>
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-medium leading-tight mb-3 italic" vid="89">Map is not Territory</h3>
+                        <p class="text-parchment-600 text-sm line-clamp-3 mb-6 font-serif leading-relaxed" vid="90">The description of the thing is not the thing itself. Models are abstractions that necessarily leave out detail.</p>
+                        <div class="mt-auto pt-4 border-t border-parchment-100 flex gap-1 flex-wrap" vid="91">
+                            <span class="ui-text text-[8px] font-bold uppercase bg-parchment-100 px-2 py-0.5 rounded text-parchment-500" vid="92">Modeling</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="group bg-white border border-parchment-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-parchment-400 transition-all flex flex-col h-full" vid="93">
+                        <div class="flex justify-between items-start mb-4" vid="94">
+                            <span class="ui-text text-[9px] font-bold tracking-widest uppercase text-parchment-400" vid="95">Systems Thinking</span>
+                            <span class="text-parchment-300 group-hover:text-parchment-900 transition-colors" vid="96">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="97"><path d="M5 12h14M12 5l7 7-7 7" vid="98"></path></svg>
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-medium leading-tight mb-3 italic" vid="99">Chesterton's Fence</h3>
+                        <p class="text-parchment-600 text-sm line-clamp-3 mb-6 font-serif leading-relaxed" vid="100">Do not remove a fence until you understand why it was built in the first place. Respect for institutional knowledge.</p>
+                        <div class="mt-auto pt-4 border-t border-parchment-100 flex gap-1 flex-wrap" vid="101">
+                            <span class="ui-text text-[8px] font-bold uppercase bg-parchment-100 px-2 py-0.5 rounded text-parchment-500" vid="102">Reform</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="group bg-white border border-parchment-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-parchment-400 transition-all flex flex-col h-full" vid="103">
+                        <div class="flex justify-between items-start mb-4" vid="104">
+                            <span class="ui-text text-[9px] font-bold tracking-widest uppercase text-parchment-400" vid="105">Psychology</span>
+                            <span class="text-parchment-300 group-hover:text-parchment-900 transition-colors" vid="106">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="107"><path d="M5 12h14M12 5l7 7-7 7" vid="108"></path></svg>
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-medium leading-tight mb-3 italic" vid="109">Confirmation Bias</h3>
+                        <p class="text-parchment-600 text-sm line-clamp-3 mb-6 font-serif leading-relaxed" vid="110">The tendency to interpret new evidence as confirmation of one's existing beliefs or theories.</p>
+                        <div class="mt-auto pt-4 border-t border-parchment-100 flex gap-1 flex-wrap" vid="111">
+                            <span class="ui-text text-[8px] font-bold uppercase bg-parchment-100 px-2 py-0.5 rounded text-parchment-500" vid="112">Cognition</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="group bg-white border border-parchment-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-parchment-400 transition-all flex flex-col h-full" vid="113">
+                        <div class="flex justify-between items-start mb-4" vid="114">
+                            <span class="ui-text text-[9px] font-bold tracking-widest uppercase text-parchment-400" vid="115">Systems Thinking</span>
+                            <span class="text-parchment-300 group-hover:text-parchment-900 transition-colors" vid="116">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="117"><path d="M5 12h14M12 5l7 7-7 7" vid="118"></path></svg>
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-medium leading-tight mb-3 italic" vid="119">Ockham's Razor</h3>
+                        <p class="text-parchment-600 text-sm line-clamp-3 mb-6 font-serif leading-relaxed" vid="120">Entities should not be multiplied beyond necessity. The simplest explanation is usually the correct one.</p>
+                        <div class="mt-auto pt-4 border-t border-parchment-100 flex gap-1 flex-wrap" vid="121">
+                            <span class="ui-text text-[8px] font-bold uppercase bg-parchment-100 px-2 py-0.5 rounded text-parchment-500" vid="122">Philosophy</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="group bg-white border border-parchment-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-parchment-400 transition-all flex flex-col h-full" vid="123">
+                        <div class="flex justify-between items-start mb-4" vid="124">
+                            <span class="ui-text text-[9px] font-bold tracking-widest uppercase text-parchment-400" vid="125">Logic</span>
+                            <span class="text-parchment-300 group-hover:text-parchment-900 transition-colors" vid="126">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="127"><path d="M5 12h14M12 5l7 7-7 7" vid="128"></path></svg>
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-medium leading-tight mb-3 italic" vid="129">First Principles</h3>
+                        <p class="text-parchment-600 text-sm line-clamp-3 mb-6 font-serif leading-relaxed" vid="130">Breaking down problems into basic elements and reassembling from the ground up.</p>
+                        <div class="mt-auto pt-4 border-t border-parchment-100 flex gap-1 flex-wrap" vid="131">
+                            <span class="ui-text text-[8px] font-bold uppercase bg-parchment-100 px-2 py-0.5 rounded text-parchment-500" vid="132">Reasoning</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="group bg-white border border-parchment-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-parchment-400 transition-all flex flex-col h-full" vid="133">
+                        <div class="flex justify-between items-start mb-4" vid="134">
+                            <span class="ui-text text-[9px] font-bold tracking-widest uppercase text-parchment-400" vid="135">Strategy</span>
+                            <span class="text-parchment-300 group-hover:text-parchment-900 transition-colors" vid="136">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="137"><path d="M5 12h14M12 5l7 7-7 7" vid="138"></path></svg>
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-medium leading-tight mb-3 italic" vid="139">Margin of Safety</h3>
+                        <p class="text-parchment-600 text-sm line-clamp-3 mb-6 font-serif leading-relaxed" vid="140">Designing for error. The difference between the actual performance and the failure point.</p>
+                        <div class="mt-auto pt-4 border-t border-parchment-100 flex gap-1 flex-wrap" vid="141">
+                            <span class="ui-text text-[8px] font-bold uppercase bg-parchment-100 px-2 py-0.5 rounded text-parchment-500" vid="142">Risk</span>
+                        </div>
+                    </a>
+
+                    <div class="bg-parchment-100/50 border border-parchment-200 border-dashed rounded-2xl p-6 flex flex-col items-center justify-center text-center opacity-70" vid="143">
+                        <div class="w-10 h-10 rounded-full bg-parchment-200 flex items-center justify-center mb-4" vid="144">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-parchment-400" vid="145"><path d="M12 5v14M5 12h14" vid="146"></path></svg>
+                        </div>
+                        <p class="ui-text text-xs font-semibold uppercase tracking-widest text-parchment-400" vid="147">Add Entry</p>
+                    </div>
+
+                </div>
+            </div>
+            
+            <footer class="px-8 pb-12 pt-6 flex justify-center" vid="148">
+                <nav class="flex items-center gap-1" vid="149">
+                    <button class="w-8 h-8 rounded-full border border-parchment-300 flex items-center justify-center text-parchment-400" disabled="" vid="150">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="151"><path d="m15 18-6-6 6-6" vid="152"></path></svg>
+                    </button>
+                    <button class="w-8 h-8 rounded-full bg-parchment-900 text-parchment-100 ui-text text-xs font-bold" vid="153">1</button>
+                    <button class="w-8 h-8 rounded-full hover:bg-parchment-200 ui-text text-xs text-parchment-600" vid="154">2</button>
+                    <button class="w-8 h-8 rounded-full hover:bg-parchment-200 ui-text text-xs text-parchment-600" vid="155">3</button>
+                    <span class="px-2 text-parchment-400" vid="156">...</span>
+                    <button class="w-8 h-8 rounded-full hover:bg-parchment-200 ui-text text-xs text-parchment-600" vid="157">18</button>
+                    <button class="w-8 h-8 rounded-full border border-parchment-300 flex items-center justify-center text-parchment-600" vid="158">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="159"><path d="m9 18 6-6-6-6" vid="160"></path></svg>
+                    </button>
+                </nav>
+            </footer>
+        </div>
+    </main>
+
+</body></html>

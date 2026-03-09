@@ -1,0 +1,180 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Syntopicon - Full Width Layout</title>
+    <script src="https://cdn.tailwindcss.com" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" vid="8">
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: {
+                            50: '#FFFFFF',
+                            100: '#F8F7F4', 
+                            200: '#EFEBE4', 
+                            300: '#E5DFD3', 
+                            400: '#C9C2B5',
+                            500: '#A19A8D',
+                            600: '#7A756C', 
+                            800: '#2A2724', 
+                            900: '#1A1918', 
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"EB Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style vid="10">
+        body {
+            font-family: 'EB Garamond', serif;
+            color: #1A1918;
+            background-color: #F8F7F4;
+            -webkit-font-smoothing: antialiased;
+        }
+        .ui-text { font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E5DFD3; border-radius: 10px; }
+        .panel-scroll { height: 100vh; overflow-y: auto; scrollbar-gutter: stable; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden selection:bg-parchment-900 selection:text-parchment-100" vid="11">
+
+    <aside class="w-64 bg-parchment-200 border-r border-parchment-300 flex flex-col flex-shrink-0 panel-scroll" vid="12">
+        <div class="h-14 px-5 flex items-center justify-between border-b border-parchment-300/50 sticky top-0 bg-parchment-200 z-10" vid="13">
+            <span class="text-lg italic font-medium tracking-wide" vid="14">Syntopicon</span>
+            <button class="text-parchment-600 p-1" vid="15"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="16"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" vid="17"></rect><path d="M9 3v18" vid="18"></path></svg></button>
+        </div>
+        <div class="p-6 space-y-8" vid="19">
+            <nav class="space-y-1" vid="20">
+                <a href="#" class="ui-text text-[11px] font-semibold tracking-wider uppercase flex items-center justify-between px-3 py-2 rounded-full text-parchment-600 hover:bg-parchment-300/30" vid="21">
+                    <span vid="22">Inbox</span>
+                    <span class="bg-parchment-300/50 text-parchment-900 px-2 py-0.5 rounded-full text-[10px]" vid="23">12</span>
+                </a>
+                <a href="#" class="ui-text text-[11px] font-semibold tracking-wider uppercase flex items-center justify-between px-3 py-2 rounded-full bg-parchment-900 text-parchment-100 shadow-sm" vid="24">
+                    <span vid="25">Concepts</span>
+                    <span class="bg-parchment-100/20 px-2 py-0.5 rounded-full text-[10px]" vid="26">142</span>
+                </a>
+                <a href="#" class="ui-text text-[11px] font-semibold tracking-wider uppercase flex items-center justify-between px-3 py-2 rounded-full text-parchment-600 hover:bg-parchment-300/30" vid="27">
+                    <span vid="28">Frameworks</span>
+                    <span class="bg-parchment-300/50 text-parchment-900 px-2 py-0.5 rounded-full text-[10px]" vid="29">8</span>
+                </a>
+            </nav>
+            <div class="space-y-4" vid="30">
+                <h3 class="ui-text text-[10px] font-semibold tracking-widest text-parchment-500 uppercase px-3" vid="31">History</h3>
+                <div class="space-y-4" vid="32">
+                    <div class="flex items-start gap-3 px-3 border-l-2 border-parchment-900" vid="33">
+                        <div vid="34">
+                            <p class="italic text-[15px] leading-tight font-medium" vid="35">Inversion Principle</p>
+                            <span class="ui-text text-[10px] text-parchment-500" vid="36">Mental Model</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 px-3 border-l-2 border-transparent" vid="37">
+                        <div vid="38">
+                            <p class="italic text-[15px] leading-tight text-parchment-600" vid="39">Map is not the Territory</p>
+                            <span class="ui-text text-[10px] text-parchment-400" vid="40">Epistemology</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 px-3 border-l-2 border-transparent" vid="41">
+                        <div vid="42">
+                            <p class="italic text-[15px] leading-tight text-parchment-600" vid="43">Chesterton's Fence</p>
+                            <span class="ui-text text-[10px] text-parchment-400" vid="44">Systems Thinking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-auto p-6" vid="45">
+            <p class="ui-text text-[10px] text-parchment-500 text-center uppercase tracking-widest" vid="46">© 2024 Archive</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 bg-parchment-50 flex flex-col overflow-hidden" vid="47">
+        <header class="h-14 px-8 flex items-center justify-between flex-shrink-0 bg-parchment-50 border-b border-parchment-200 z-20" vid="48">
+            <div class="flex items-center gap-4" vid="49">
+                <button class="w-8 h-8 rounded-full border border-parchment-300 flex items-center justify-center text-parchment-600" vid="50"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="51"><path d="m15 18-6-6 6-6" vid="52"></path></svg></button>
+                <div class="ui-text text-[10px] font-medium tracking-widest text-parchment-500 uppercase flex gap-2" vid="53">
+                    <span vid="54">Strategy</span><span vid="55">/</span><span class="text-parchment-900" vid="56">Concept 02</span>
+                </div>
+            </div>
+            <div class="flex gap-2" vid="57">
+                <button class="ui-text text-[10px] font-semibold px-3 py-1 rounded-full border border-parchment-300" vid="58">Share</button>
+                <button class="ui-text text-[10px] font-semibold px-3 py-1 rounded-full bg-parchment-900 text-parchment-100" vid="59">Archive</button>
+            </div>
+        </header>
+
+        <div class="panel-scroll flex-1" vid="60">
+            <div class="border-b border-parchment-200 bg-parchment-100/50 px-8 py-4 space-y-4" vid="61">
+                <div class="flex items-center gap-4 overflow-hidden" vid="62">
+                    <span class="ui-text text-[9px] font-bold tracking-widest uppercase text-parchment-400 whitespace-nowrap" vid="63">Key Principles:</span>
+                    <div class="flex gap-2 overflow-x-auto no-scrollbar" vid="64">
+                        <span class="ui-text text-[10px] font-medium bg-white border border-parchment-300 px-3 py-1 rounded-full whitespace-nowrap text-parchment-800" vid="65">Via Negativa</span>
+                        <span class="ui-text text-[10px] font-medium bg-white border border-parchment-300 px-3 py-1 rounded-full whitespace-nowrap text-parchment-800" vid="66">Margin of Safety</span>
+                        <span class="ui-text text-[10px] font-medium bg-white border border-parchment-300 px-3 py-1 rounded-full whitespace-nowrap text-parchment-800" vid="67">Second-Order Effects</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 overflow-hidden" vid="68">
+                    <span class="ui-text text-[9px] font-bold tracking-widest uppercase text-parchment-400 whitespace-nowrap" vid="69">Related:</span>
+                    <div class="flex gap-3 overflow-x-auto no-scrollbar py-1" vid="70">
+                        <div class="bg-white border border-parchment-200 px-3 py-2 rounded-lg flex items-center gap-3 shadow-sm min-w-[180px]" vid="71">
+                            <span class="ui-text text-[8px] font-bold uppercase bg-parchment-200 px-1.5 py-0.5 rounded text-parchment-600" vid="72">Psych</span>
+                            <h5 class="font-medium text-sm" vid="73">Confirmation Bias</h5>
+                        </div>
+                        <div class="bg-white border border-parchment-200 px-3 py-2 rounded-lg flex items-center gap-3 shadow-sm min-w-[180px]" vid="74">
+                            <span class="ui-text text-[8px] font-bold uppercase bg-parchment-200 px-1.5 py-0.5 rounded text-parchment-600" vid="75">Systems</span>
+                            <h5 class="font-medium text-sm" vid="76">Ockham's Razor</h5>
+                        </div>
+                        <div class="bg-parchment-200/50 border border-parchment-300 px-3 py-2 rounded-lg flex items-center gap-2 max-w-xs" vid="77">
+                            <span class="ui-text text-[8px] font-bold uppercase text-parchment-500" vid="78">Note:</span>
+                            <p class="text-[11px] italic text-parchment-700 truncate" vid="79">Highly recommend Charlie Munger's "Almanack"...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <article class="max-w-3xl mx-auto py-16 px-12" vid="80">
+                <span class="ui-text text-[11px] font-bold tracking-[0.2em] text-parchment-500 uppercase block mb-6" vid="81">Mental Model</span>
+                <h1 class="text-6xl font-medium tracking-tight text-parchment-900 mb-8 leading-tight" vid="82">The Inversion Principle</h1>
+                <blockquote class="pl-6 border-l-2 border-parchment-900 py-2 mb-12" vid="83">
+                    <p class="text-2xl italic text-parchment-600 leading-snug" vid="84">"Avoid stupidity is easier than seeking brilliance. Instead of asking how to achieve a goal, ask how you could guarantee failure—and then don't do that."</p>
+                </blockquote>
+                <div class="space-y-12" vid="85">
+                    <section vid="86">
+                        <h2 class="ui-text text-[11px] font-bold tracking-widest uppercase text-parchment-900 border-b border-parchment-300 pb-2 mb-6" vid="87">Core Definition</h2>
+                        <p class="text-xl leading-relaxed mb-6" vid="88">Inversion is a problem-solving framework that requires looking at a situation from the opposite end. Rooted in mathematics, it forces you to uncover hidden assumptions and avoid catastrophic errors.</p>
+                        <p class="text-xl leading-relaxed" vid="89">Most people approach complex systems additively. Inversion forces a subtractive view: "What behavior guarantees failure?"</p>
+                    </section>
+                    <section class="grid grid-cols-2 gap-6" vid="90">
+                        <div class="bg-parchment-200 rounded-2xl p-8 border border-parchment-300/50" vid="91">
+                            <h3 class="font-medium text-xl mb-3" vid="92">Forward Thinking</h3>
+                            <p class="text-parchment-600 text-base" vid="93">Focuses on steps required for success. Often blindsided by unseen risks.</p>
+                        </div>
+                        <div class="bg-parchment-800 text-parchment-100 rounded-2xl p-8 shadow-xl" vid="94">
+                            <h3 class="font-medium text-xl mb-3 text-white" vid="95">Inverted Thinking</h3>
+                            <p class="text-parchment-400 text-base" vid="96">Focuses on identifying causes of failure. Structurally sound and risk-averse.</p>
+                        </div>
+                    </section>
+                    <section class="pb-24" vid="97">
+                        <h2 class="ui-text text-[11px] font-bold tracking-widest uppercase text-parchment-900 border-b border-parchment-300 pb-2 mb-6" vid="98">Application</h2>
+                        <ul class="space-y-6 text-xl" vid="99">
+                            <li class="flex gap-6" vid="100"><span class="text-parchment-300 ui-text font-bold" vid="101">01</span><span vid="102">Define the clear goal.</span></li>
+                            <li class="flex gap-6" vid="103"><span class="text-parchment-300 ui-text font-bold" vid="104">02</span><span vid="105">Invert the goal to imagine failure.</span></li>
+                            <li class="flex gap-6" vid="106"><span class="text-parchment-300 ui-text font-bold" vid="107">03</span><span vid="108">Identify the causes of that failure.</span></li>
+                            <li class="flex gap-6" vid="109"><span class="text-parchment-300 ui-text font-bold" vid="110">04</span><span vid="111">Build systems to avoid those causes.</span></li>
+                        </ul>
+                    </section>
+                </div>
+            </article>
+        </div>
+    </main>
+
+</body></html>
