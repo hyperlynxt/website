@@ -325,6 +325,16 @@
             z-index: 10;
         }
 
+        .card-glow::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.04), transparent 40%);
+            z-index: 2;
+        }
+
 
         .card-standard {
             background-color: var(--white);
@@ -594,7 +604,7 @@
 
         <div id="cards-grid" class="grid-container" vid="47">
 
-            <a href="#" class="card card-standard" data-category="Decision Making" vid="48">
+            <a href="#" class="card card-standard card-glow" data-category="Decision Making" vid="48">
                 <div class="card-watermark" vid="49">01</div>
                 <div class="card-tag all-caps sans" vid="50">Decision Making</div>
                 <h2 class="card-title serif" vid="51">Inversion</h2>
@@ -610,7 +620,7 @@
             </a>
 
 
-            <a href="#" class="card card-standard" data-category="Systems Thinking" vid="60">
+            <a href="#" class="card card-standard card-glow" data-category="Systems Thinking" vid="60">
                 <div class="card-watermark" vid="61">02</div>
                 <div class="card-tag all-caps sans" vid="62">Systems Thinking</div>
                 <h2 class="card-title serif" vid="63">Map is not the Territory</h2>
@@ -624,7 +634,7 @@
                 </div>
             </a>
 
-            <a href="#" class="card card-standard" data-category="Physics" vid="72">
+            <a href="#" class="card card-standard card-glow" data-category="Physics" vid="72">
                 <div class="card-watermark" vid="73">03</div>
                 <div class="card-tag all-caps sans" vid="74">Physics</div>
                 <h2 class="card-title serif" vid="75">First Principles</h2>
@@ -637,7 +647,7 @@
                 </div>
             </a>
 
-            <a href="#" class="card card-standard" data-category="Cognitive Bias" vid="84">
+            <a href="#" class="card card-standard card-glow" data-category="Cognitive Bias" vid="84">
                 <div class="card-watermark" vid="85">04</div>
                 <div class="card-tag all-caps sans" vid="86">Cognitive Bias</div>
                 <h2 class="card-title serif" vid="87">Confirmation Bias</h2>
@@ -650,7 +660,7 @@
                 </div>
             </a>
 
-            <a href="#" class="card card-standard" data-category="Economics" vid="96">
+            <a href="#" class="card card-standard card-glow" data-category="Economics" vid="96">
                 <div class="card-watermark" vid="97">05</div>
                 <div class="card-tag all-caps sans" vid="98">Economics</div>
                 <h2 class="card-title serif" vid="99">Opportunity Cost</h2>
@@ -664,7 +674,7 @@
                 </div>
             </a>
 
-            <a href="#" class="card card-standard" data-category="Systems Thinking" vid="108">
+            <a href="#" class="card card-standard card-glow" data-category="Systems Thinking" vid="108">
                 <div class="card-watermark" vid="109">06</div>
                 <div class="card-tag all-caps sans" vid="110">Systems Thinking</div>
                 <h2 class="card-title serif" vid="111">Second-Order Effects</h2>
@@ -679,7 +689,7 @@
                 </div>
             </a>
 
-            <a href="#" class="card card-standard" data-category="Math" vid="120">
+            <a href="#" class="card card-standard card-glow" data-category="Math" vid="120">
                 <div class="card-watermark" vid="121">07</div>
                 <div class="card-tag all-caps sans" vid="122">Math</div>
                 <h2 class="card-title serif" vid="123">Compounding</h2>
@@ -694,7 +704,7 @@
                 </div>
             </a>
 
-            <a href="#" class="card card-standard" data-category="Decision Making" vid="132">
+            <a href="#" class="card card-standard card-glow" data-category="Decision Making" vid="132">
                 <div class="card-watermark" vid="133">08</div>
                 <div class="card-tag all-caps sans" vid="134">Decision Making</div>
                 <h2 class="card-title serif" vid="135">Occam's Razor</h2>
