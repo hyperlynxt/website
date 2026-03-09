@@ -1,0 +1,177 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Index Mentis - Add to Collection</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" vid="8">
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        page: '#F8F7F4',
+                        sidebar: '#EFEBE4',
+                        inverse: '#2A2724',
+                        ink: '#1A1918',
+                        muted: '#6B675F',
+                        borderline: '#DEDBD3',
+                        accent: '#DCD8CE',
+                        'inverse-text': '#F5F3ED',
+                    },
+                    fontFamily: {
+                        serif: ['"EB Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style vid="10">
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #DEDBD3;
+            border-radius: 3px;
+        }
+        ::selection {
+            background-color: #2A2724;
+            color: #F5F3ED;
+        }
+    </style>
+</head>
+<body class="bg-page text-ink font-serif h-screen w-full flex flex-col overflow-hidden antialiased" vid="11">
+
+    
+    <div class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-ink/10 backdrop-blur-sm" vid="12">
+        <div class="bg-page w-full max-w-[540px] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.15)] border border-borderline flex flex-col" vid="13">
+            
+            <header class="h-16 border-b border-borderline flex items-center justify-between px-8 bg-white/50" vid="14">
+                <div class="flex items-center gap-3" vid="15">
+                    <span class="font-sans text-[10px] uppercase font-bold tracking-[0.2em] text-muted" vid="16">Action</span>
+                    <div class="h-3 w-px bg-borderline" vid="17"></div>
+                    <span class="font-serif italic text-lg" vid="18">Add to Collection</span>
+                </div>
+                <button class="text-muted hover:text-ink transition-colors" vid="19">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" vid="20">
+                        <line x1="18" y1="6" x2="6" y2="18" vid="21"></line>
+                        <line x1="6" y1="6" x2="18" y2="18" vid="22"></line>
+                    </svg>
+                </button>
+            </header>
+
+            
+            <div class="p-8 pb-4" vid="23">
+                <div class="flex items-start gap-4 mb-8 p-4 bg-sidebar/30 border border-borderline/50" vid="24">
+                    <div class="font-serif italic text-2xl text-accent pt-1" vid="25">042</div>
+                    <div vid="26">
+                        <span class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted block mb-1" vid="27">Archiving Entry</span>
+                        <h4 class="font-serif text-xl text-ink leading-tight" vid="28">The Map is Not the Territory</h4>
+                    </div>
+                </div>
+
+                <div class="space-y-6" vid="29">
+                    <div vid="30">
+                        <label class="font-sans text-[10px] uppercase font-bold tracking-[0.15em] text-muted block mb-4" vid="31">Select Destination</label>
+                        <div class="grid grid-cols-1 gap-2 max-h-[280px] overflow-y-auto custom-scrollbar pr-2" vid="32">
+                            
+                            <button class="flex items-center justify-between p-4 bg-white border border-borderline hover:border-ink transition-all group text-left" vid="33">
+                                <div vid="34">
+                                    <span class="font-serif text-lg text-ink block" vid="35">Epistemology &amp; Logic</span>
+                                    <span class="font-sans text-[9px] uppercase tracking-widest text-muted" vid="36">12 Items</span>
+                                </div>
+                                <div class="w-5 h-5 rounded-full border border-borderline group-hover:border-ink flex items-center justify-center transition-colors" vid="37">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-ink opacity-0 group-focus:opacity-100" vid="38"></div>
+                                </div>
+                            </button>
+
+                            <button class="flex items-center justify-between p-4 bg-white border border-ink shadow-sm text-left" vid="39">
+                                <div vid="40">
+                                    <span class="font-serif text-lg text-ink block" vid="41">Mental Models Library</span>
+                                    <span class="font-sans text-[9px] uppercase tracking-widest text-muted" vid="42">34 Items</span>
+                                </div>
+                                <div class="w-5 h-5 rounded-full border border-ink flex items-center justify-center transition-colors" vid="43">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-ink" vid="44"></div>
+                                </div>
+                            </button>
+
+                            <button class="flex items-center justify-between p-4 bg-white border border-borderline hover:border-ink transition-all group text-left" vid="45">
+                                <div vid="46">
+                                    <span class="font-serif text-lg text-ink block" vid="47">Decision Making</span>
+                                    <span class="font-sans text-[9px] uppercase tracking-widest text-muted" vid="48">8 Items</span>
+                                </div>
+                                <div class="w-5 h-5 rounded-full border border-borderline group-hover:border-ink flex items-center justify-center transition-colors" vid="49"></div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-borderline/50" vid="50">
+                        <button class="w-full flex items-center justify-center gap-3 p-4 border border-dashed border-borderline hover:border-muted hover:bg-sidebar/20 transition-all group" vid="51">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted group-hover:text-ink transition-colors" vid="52">
+                                <line x1="12" y1="5" x2="12" y2="19" vid="53"></line>
+                                <line x1="5" y1="12" x2="19" y2="12" vid="54"></line>
+                            </svg>
+                            <span class="font-sans text-[10px] uppercase font-bold tracking-widest text-muted group-hover:text-ink transition-colors" vid="55">Create New Collection</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="p-8 pt-4 flex items-center gap-3" vid="56">
+                <button class="flex-1 font-sans text-[10px] uppercase font-bold tracking-widest text-ink border border-borderline py-4 hover:bg-sidebar/50 transition-all" vid="57">
+                    Cancel
+                </button>
+                <button class="flex-1 font-sans text-[10px] uppercase font-bold tracking-widest text-inverse-text bg-inverse py-4 hover:opacity-90 transition-opacity shadow-lg" vid="58">
+                    Confirm Archive
+                </button>
+            </footer>
+        </div>
+    </div>
+
+    
+    <header class="h-14 border-b border-borderline bg-page/85 flex items-center justify-between px-8 flex-shrink-0 opacity-40 grayscale-[0.5]" vid="59">
+        <div class="flex items-center gap-6" vid="60">
+            <span class="font-serif italic text-lg text-ink font-medium tracking-wide" vid="61">Index Mentis</span>
+            <div class="h-4 w-px bg-borderline" vid="62"></div>
+            <span class="font-sans text-[10px] uppercase font-bold tracking-widest text-muted" vid="63">Archival Repository</span>
+        </div>
+        <div class="flex items-center gap-3" vid="64">
+            <div class="h-8 w-20 bg-borderline/30 rounded-full" vid="65"></div>
+            <div class="h-8 w-32 bg-inverse/30 rounded-full" vid="66"></div>
+        </div>
+    </header>
+
+    <div class="h-24 border-b border-borderline flex items-center px-12 bg-white/50 flex-shrink-0 opacity-40" vid="67">
+        <div class="w-full max-w-[1240px] mx-auto flex items-center justify-between" vid="68">
+            <div class="w-24 bg-borderline/20 h-10 rounded" vid="69"></div>
+            <div class="h-10 w-96 bg-borderline/20 rounded" vid="70"></div>
+            <div class="w-24 bg-borderline/20 h-10 rounded" vid="71"></div>
+        </div>
+    </div>
+
+    <main class="flex-1 overflow-hidden px-12 py-16 opacity-30 pointer-events-none" vid="72">
+        <div class="max-w-[1240px] mx-auto w-full flex flex-col lg:flex-row gap-20" vid="73">
+            <div class="flex-1 space-y-8" vid="74">
+                <div class="h-4 bg-borderline/30 w-full" vid="75"></div>
+                <div class="h-4 bg-borderline/30 w-[95%]" vid="76"></div>
+                <div class="h-4 bg-borderline/30 w-[98%]" vid="77"></div>
+                <div class="h-32 bg-sidebar border-l-4 border-accent" vid="78"></div>
+                <div class="h-4 bg-borderline/30 w-[90%]" vid="79"></div>
+            </div>
+            <div class="w-[280px] space-y-8" vid="80">
+                <div class="h-40 bg-borderline/20" vid="81"></div>
+                <div class="h-24 bg-sidebar border border-borderline" vid="82"></div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="h-20 bg-sidebar border-t border-borderline flex items-center justify-center px-8 flex-shrink-0 opacity-40" vid="83">
+        <div class="max-w-4xl w-full h-12 bg-borderline/20 rounded-full" vid="84"></div>
+    </nav>
+
+</body></html>
