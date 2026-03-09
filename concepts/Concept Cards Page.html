@@ -517,11 +517,11 @@
                         <div class="flex items-center gap-2">
                             <span
                                 class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted">Sort:</span>
-                            <select
+                            <select id="sort-select"
                                 class="bg-transparent font-sans text-[10px] uppercase font-bold tracking-widest text-ink focus:outline-none cursor-pointer">
-                                <option>Alphabetical (A-Z)</option>
-                                <option>Most Connected</option>
-                                <option>Recently Added</option>
+                                <option value="default">Alphabetical (A-Z)</option>
+                                <option value="connected">Most Connected</option>
+                                <option value="recent">Recently Added</option>
                             </select>
                         </div>
                     </div>
@@ -709,18 +709,42 @@
 
     <script>
         const searchInput = document.getElementById('concept-search');
+        const sortSelect = document.getElementById('sort-select');
         const pills = document.querySelectorAll('.pill-btn');
-        const cards = document.querySelectorAll('#cards-grid .card');
+        const grid = document.getElementById('cards-grid');
         const noResults = document.getElementById('no-results');
+
+        // Tag each card with its original DOM order
+        const allCards = Array.from(grid.querySelectorAll('.card'));
+        allCards.forEach((card, i) => card.dataset.order = i);
 
         let activeCategory = 'all';
         let activeSearch = '';
+        let activeSort = 'default';
+
+        function getTitle(card) {
+            return (card.querySelector('.card-title') || {}).textContent.trim() || '';
+        }
 
         function applyFilters() {
+            // Get current cards from DOM
+            let cards = Array.from(grid.querySelectorAll('.card'));
+
+            // Sort
+            if (activeSort === 'default') {
+                cards.sort((a, b) => getTitle(a).localeCompare(getTitle(b)));
+            } else if (activeSort === 'recent') {
+                cards.sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order));
+            }
+
+            // Re-append in sorted order (moves nodes, doesn't duplicate)
+            cards.forEach(card => grid.appendChild(card));
+
+            // Show/hide based on filters
             let visible = 0;
             cards.forEach(card => {
                 const category = (card.dataset.category || '').toLowerCase();
-                const title = (card.querySelector('.card-title') || {}).textContent || '';
+                const title = getTitle(card);
                 const desc = (card.querySelector('.card-desc') || {}).textContent || '';
                 const searchText = (title + ' ' + desc + ' ' + category).toLowerCase();
 
@@ -731,6 +755,7 @@
                 card.style.display = show ? '' : 'none';
                 if (show) visible++;
             });
+
             noResults.style.display = visible === 0 ? 'block' : 'none';
         }
 
@@ -740,12 +765,17 @@
             applyFilters();
         });
 
+        // Sort dropdown
+        sortSelect.addEventListener('change', () => {
+            activeSort = sortSelect.value;
+            applyFilters();
+        });
+
         // Category pills
         pills.forEach(pill => {
             pill.addEventListener('click', () => {
                 activeCategory = pill.dataset.filter;
 
-                // Update active styles
                 pills.forEach(p => {
                     p.classList.remove('bg-inverse', 'text-inverse-text');
                     p.classList.add('text-muted');
@@ -756,6 +786,9 @@
                 applyFilters();
             });
         });
+
+        // Apply default sort on load
+        applyFilters();
     </script>
 </body>
 
