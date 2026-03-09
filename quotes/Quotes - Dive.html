@@ -108,24 +108,32 @@
 <body class="selection:bg-[#263524] selection:text-[#F0EDE6] h-screen flex flex-col overflow-hidden" vid="10">
 
 
+    <!-- Top Banner -->
     <header
-        class="w-full h-[7.5rem] px-10 flex items-center justify-between border-b border-[#1A1A18]/10 bg-[#F0EDE6]/80 backdrop-blur-md z-30"
+        class="h-14 sticky top-0 z-50 border-b border-[#1A1A18]/10 bg-[#F0EDE6]/80 backdrop-blur-md flex items-center justify-between px-8 flex-shrink-0"
         vid="11">
-        <div class="flex items-center gap-12" vid="12">
-            <h1 class="text-[2.06rem] tracking-tight font-medium" vid="13">
-                Library <span class="italic text-[#263524]" vid="14">&amp;</span> Loom
-            </h1>
-            <div class="hidden lg:block w-72" vid="15">
-                <input type="text" placeholder="Search fragment..." id="dive-search"
-                    class="search-input w-full py-1 text-[1.06rem] text-[#1A1A18] placeholder:text-[#1A1A18]/30 font-light"
-                    vid="16">
-            </div>
+        <div class="flex items-center gap-6" vid="12">
+            <span class="text-lg text-[#1A1A18] font-medium tracking-wide"
+                style="font-family: 'Cormorant Garamond', serif;">Interlinked &amp;
+                Intertwined</span>
+            <div class="h-4 w-px bg-[#1A1A18]/20"></div>
+            <span class="font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45]">Quotes</span>
         </div>
-        <div class="flex items-center gap-8" vid="17">
-            <span class="text-[11px] tracking-[0.2em] uppercase text-[#7A7A73]" vid="18">Archive V.2.04</span>
+        <div class="flex items-center gap-5">
+            <div class="relative hidden lg:block mr-4">
+                <input type="text" id="dive-search" placeholder="Search fragment..."
+                    class="w-64 bg-transparent border border-[#1A1A18]/20 rounded-full px-5 py-1.5 font-sans text-[13px] text-[#1A1A18] placeholder:text-[#1A1A18]/40 focus:outline-none focus:border-[#1A1A18] transition-colors">
+                <svg class="absolute right-3 top-2 text-[#1A1A18]/40" width="14" height="14" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
             <a href="Quotes Landing Page.html"
-                class="text-[11px] tracking-[0.2em] uppercase text-[#1A1A18] border-b border-black/20 hover:border-black transition-colors pb-0.5"
+                class="hidden md:block text-[10px] tracking-widest uppercase text-[#4A4A45] hover:text-[#1A1A18] transition-colors"
                 vid="19">Return to Index</a>
+            <div class="hidden md:block h-4 w-px bg-[#1A1A18]/20"></div>
+            <span class="font-serif text-base text-ink tracking-wide">hyperlynxt | teo</span>
         </div>
     </header>
 
