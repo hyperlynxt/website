@@ -1,0 +1,408 @@
+<html lang="en" vid="0"><head vid="1">
+  <meta charset="UTF-8" vid="2">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+  <title vid="4">Index Mentis - Ockham's Razor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet" vid="7">
+  <style vid="8">
+    :root {
+      
+      --bg-page: #1A1918;
+      --bg-sidebar: #121110;
+      --dark-inverse: #F8F7F4;
+      --ink: #F5F3ED;
+      --muted: #948F85;
+      --border: #2A2724;
+      --accent: #3D3935;
+      --dark-text: #1A1918;
+      --card-white: #22211F;
+      --card-tint: #1F1E1C;
+
+      --font-serif: 'EB Garamond', serif;
+      --font-sans: 'Inter', sans-serif;
+
+      --sidebar-width: 256px;
+      --sidebar-collapsed: 64px;
+      --header-height: 60px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    ::selection {
+      background: var(--dark-inverse);
+      color: var(--bg-page);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 0px;
+    }
+
+    body {
+      font-family: var(--font-serif);
+      color: var(--ink);
+      background: var(--bg-page);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .sans { font-family: var(--font-sans); }
+    .serif { font-family: var(--font-serif); }
+    .italic { font-style: italic; }
+    
+    .ui-label {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+    }
+
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      transition: width 0.3s ease;
+      position: relative;
+      z-index: 50;
+    }
+
+    .sidebar.collapsed { width: var(--sidebar-collapsed); }
+
+    .sidebar-header {
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.25rem;
+    }
+
+    .brand-name {
+      font-size: 1.125rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: opacity 0.2s ease;
+      color: var(--ink);
+    }
+
+    .sidebar.collapsed .brand-name { opacity: 0; pointer-events: none; }
+
+    .toggle-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+      border-radius: 4px;
+      transition: color 0.2s ease, transform 0.3s ease;
+    }
+
+    .toggle-btn:hover { color: var(--ink); }
+    .sidebar.collapsed .toggle-btn { transform: rotate(180deg); }
+
+    .sidebar-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .nav-list { display: flex; flex-direction: column; gap: 0.25rem; }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.625rem 0.875rem;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--muted);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-item:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.05); 
+      color: var(--ink);
+    }
+
+    .nav-item.active {
+      background: var(--ink);
+      color: var(--dark-text);
+    }
+
+    .nav-badge { font-weight: 500; opacity: 0.6; }
+
+    .sidebar.collapsed .nav-item { padding: 0.625rem; justify-content: center; }
+    .sidebar.collapsed .nav-label, .sidebar.collapsed .nav-badge { display: none; }
+
+    .history-section { display: flex; flex-direction: column; gap: 1rem; transition: opacity 0.2s ease; white-space: nowrap; }
+    .sidebar.collapsed .history-section { opacity: 0; pointer-events: none; }
+    .history-label { color: var(--muted); padding-left: 0.875rem; margin-bottom: 0.5rem; }
+
+    .history-item {
+      text-decoration: none;
+      font-size: 0.9375rem;
+      padding: 0.25rem 0 0.25rem 0.75rem;
+      margin-left: 0.875rem;
+      transition: all 0.2s ease;
+    }
+
+    .history-item.past { color: var(--muted); border-left: 2px solid var(--border); }
+    .history-item.past:hover { color: var(--ink); border-left-color: var(--muted); }
+    .history-item.current { color: var(--ink); border-left: 2px solid var(--ink); }
+
+    .sidebar-footer { padding: 1.5rem; color: var(--muted); text-align: center; transition: opacity 0.2s ease; white-space: nowrap; }
+    .sidebar.collapsed .sidebar-footer { opacity: 0; pointer-events: none; }
+
+    .app-main { flex: 1; display: flex; flex-direction: column; position: relative; overflow-y: auto; overflow-x: hidden; }
+
+    .top-header {
+      position: sticky;
+      top: 0;
+      height: var(--header-height);
+      background: rgba(26, 25, 24, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 40;
+    }
+
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: var(--ink); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: opacity 0.2s ease; }
+    .back-btn:hover { opacity: 0.6; }
+    .breadcrumb { color: var(--muted); }
+
+    .header-right { display: flex; align-items: center; gap: 0.75rem; }
+
+    .btn { padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; transition: all 0.2s ease; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+    .btn-outline { border: 1px solid var(--border); background: transparent; color: var(--ink); }
+    .btn-outline:hover { border-color: var(--muted); background: var(--card-white); }
+    .btn-solid { background: var(--dark-inverse); color: var(--dark-text); border: 1px solid var(--dark-inverse); }
+    .btn-solid:hover { opacity: 0.9; }
+
+    .content-container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 8rem 2rem; display: flex; gap: 4rem; width: 100%; }
+    .reading-column { flex: 1; max-width: 800px; }
+    .right-aside { width: 320px; flex-shrink: 0; display: flex; flex-direction: column; gap: 3rem; }
+
+    .article-category { color: var(--muted); margin-bottom: 1.5rem; display: block; }
+    .article-title { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.05; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 3rem; color: var(--ink); }
+    .article-body { font-size: 1.1875rem; line-height: 1.6; color: var(--ink); }
+    .article-body p { margin-bottom: 1.5rem; }
+
+    .article-quote { font-size: 1.625rem; line-height: 1.4; color: var(--muted); border-left: 4px solid var(--accent); padding-left: 1.75rem; margin: 3rem 0; }
+    .section-break { color: var(--muted); margin: 4rem 0 1.5rem 0; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+
+    .comparison-block { display: flex; gap: 1.5rem; margin: 3rem 0; }
+    .comp-card { flex: 1; padding: 2rem; border-radius: 4px; }
+    .comp-card h4 { margin-bottom: 1rem; color: inherit; }
+    .comp-card p { font-size: 1rem; margin-bottom: 0; opacity: 0.9; }
+    .comp-light { background: var(--card-tint); border: 1px solid var(--border); }
+    .comp-dark { background: var(--dark-inverse); color: var(--dark-text); }
+
+    .custom-list { list-style: none; margin: 2rem 0; }
+    .custom-list li { position: relative; padding-left: 1.5rem; margin-bottom: 1rem; }
+    .custom-list li::before { content: '/'; position: absolute; left: 0; top: -0.1rem; color: var(--muted); font-family: var(--font-sans); font-weight: 700; font-size: 1.1rem; }
+
+    .aside-section-title { color: var(--muted); margin-bottom: 1.25rem; }
+    .principles-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .principle-item dt { color: var(--ink); margin-bottom: 0.25rem; }
+    .principle-item dd { font-family: var(--font-sans); font-size: 0.8125rem; color: var(--muted); line-height: 1.5; }
+
+    .related-cards { display: flex; flex-direction: column; gap: 0.75rem; }
+    .related-card { background: var(--card-white); border: 1px solid var(--border); padding: 1.25rem; border-radius: 4px; text-decoration: none; transition: border-color 0.2s ease; display: block; }
+    .related-card:hover { border-color: var(--muted); }
+    .related-card .cat { color: var(--muted); margin-bottom: 0.5rem; display: block; }
+    .related-card .name { color: var(--ink); font-size: 1.125rem; }
+
+    .curator-note { background: var(--card-tint); border: 1px solid var(--border); padding: 1.5rem; border-radius: 4px; }
+    .curator-note p { color: var(--ink); font-size: 0.875rem; line-height: 1.6; margin-top: 0.75rem; }
+
+    @media (max-width: 1024px) {
+      .content-container { flex-direction: column; padding-top: 3rem; }
+      .right-aside { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+      .comparison-block { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body vid="9">
+
+  <aside class="sidebar" id="sidebar" vid="10">
+    <div class="sidebar-header" vid="11">
+      <span class="brand-name italic" vid="12">Index Mentis</span>
+      <button class="toggle-btn" id="sidebar-toggle" aria-label="Toggle Sidebar" vid="13">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" vid="14"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" vid="15"></rect><line x1="9" y1="3" x2="9" y2="21" vid="16"></line><path d="M15 9l-3 3 3 3" vid="17"></path></svg>
+      </button>
+    </div>
+
+    <div class="sidebar-content" vid="18">
+      <nav class="nav-list ui-label" vid="19">
+        <a href="#" class="nav-item" vid="20">
+          <span class="nav-label" vid="21">Library</span>
+          <span class="nav-badge" vid="22">142</span>
+        </a>
+        <a href="#" class="nav-item active" vid="23">
+          <span class="nav-label" vid="24">Concepts</span>
+          <span class="nav-badge" vid="25">08</span>
+        </a>
+        <a href="#" class="nav-item" vid="26">
+          <span class="nav-label" vid="27">Frameworks</span>
+          <span class="nav-badge" vid="28">12</span>
+        </a>
+        <a href="#" class="nav-item" vid="29">
+          <span class="nav-label" vid="30">Drafts</span>
+          <span class="nav-badge" vid="31">03</span>
+        </a>
+      </nav>
+
+      <div class="history-section" vid="32">
+        <div class="history-label ui-label" vid="33">History</div>
+        <a href="#" class="history-item past italic" vid="34">Confirmation Bias</a>
+        <a href="#" class="history-item past italic" vid="35">First Principles</a>
+        <a href="#" class="history-item current italic" vid="36">Ockham's Razor</a>
+        <a href="#" class="history-item past italic" vid="37">Map and Territory</a>
+      </div>
+    </div>
+
+    <div class="sidebar-footer ui-label" vid="38">
+      © 2024
+    </div>
+  </aside>
+
+  <main class="app-main" vid="39">
+    <header class="top-header" vid="40">
+      <div class="header-left" vid="41">
+        <a href="#" class="back-btn" aria-label="Go Back" vid="42">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" vid="43"><line x1="19" y1="12" x2="5" y2="12" vid="44"></line><polyline points="12 19 5 12 12 5" vid="45"></polyline></svg>
+        </a>
+        <span class="breadcrumb ui-label" vid="46">Logic / Concept 03</span>
+      </div>
+      <div class="header-right" vid="47">
+        <button class="btn btn-outline ui-label" vid="48">Share</button>
+        <button class="btn btn-solid ui-label" vid="49">Archive Entry</button>
+      </div>
+    </header>
+
+    <div class="content-container" vid="50">
+      <article class="reading-column" vid="51">
+        <span class="article-category ui-label" vid="52">Heuristics &amp; Logic</span>
+        <h1 class="article-title" vid="53">Ockham's Razor</h1>
+        
+        <div class="article-body" vid="54">
+          <blockquote class="article-quote italic" vid="55">
+            "Plurality should not be posited without necessity."
+          </blockquote>
+
+          <p vid="56">Ockham's Razor is a problem-solving principle that suggests when presented with competing hypotheses about the same prediction, one should select the solution with the fewest assumptions. It is not a proof of truth, but a preference for simplicity.</p>
+          
+          <p vid="57">In analytical work, the 'razor' serves to shave off unnecessary complexity that often obscures the most likely path forward. The more variables you add to a model, the more points of failure you introduce.</p>
+
+          <h2 class="section-break ui-label" vid="58">Complexity vs. Utility</h2>
+
+          <div class="comparison-block" vid="59">
+            <div class="comp-card comp-light" vid="60">
+              <h4 class="ui-label" vid="61">Overfitting</h4>
+              <p class="serif" vid="62">Creating elaborate explanations to fit every data point perfectly. High internal validity, but poor predictive power in real-world scenarios.</p>
+            </div>
+            <div class="comp-card comp-dark" vid="63">
+              <h4 class="ui-label" vid="64">Parsimony</h4>
+              <p class="serif" vid="65">The quality of being frugal with assumptions. Robust, adaptable models that focus on the signal rather than the noise.</p>
+            </div>
+          </div>
+
+          <p vid="66">While often misinterpreted as "the simplest answer is usually right," the principle is more precisely about the economy of thought. We should only add complexity when the evidence demands it.</p>
+
+          <ul class="custom-list" vid="67">
+            <li vid="68">List all assumptions required for each competing explanation.</li>
+            <li vid="69">Prioritize the explanation that relies on the fewest unproven links.</li>
+            <li vid="70">Maintain the simpler model until evidence necessitates a more complex one.</li>
+          </ul>
+
+          <p vid="71">By adhering to parsimony, we build systems that are easier to maintain, explain, and evolve over time.</p>
+        </div>
+      </article>
+
+      <aside class="right-aside" vid="72">
+        <div class="aside-section" vid="73">
+          <h3 class="aside-section-title ui-label" vid="74">Key Principles</h3>
+          <dl class="principles-list" vid="75">
+            <div class="principle-item" vid="76">
+              <dt class="ui-label" vid="77">Parsimony</dt>
+              <dd class="sans" vid="78">The scientific principle that things are usually connected or behave in the simplest way.</dd>
+            </div>
+            <div class="principle-item" vid="79">
+              <dt class="ui-label" vid="80">Eliminative Induction</dt>
+              <dd class="sans" vid="81">Systematically removing improbable explanations to narrow the field of inquiry.</dd>
+            </div>
+            <div class="principle-item" vid="82">
+              <dt class="ui-label" vid="83">Falsifiability</dt>
+              <dd class="sans" vid="84">Ensuring that a hypothesis can be proven wrong by observation or experiment.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="aside-section" vid="85">
+          <h3 class="aside-section-title ui-label" vid="86">Related Concepts</h3>
+          <div class="related-cards" vid="87">
+            <a href="#" class="related-card" vid="88">
+              <span class="cat ui-label" vid="89">Strategy</span>
+              <span class="name serif" vid="90">First Principles</span>
+            </a>
+            <a href="#" class="related-card" vid="91">
+              <span class="cat ui-label" vid="92">Cognition</span>
+              <span class="name serif" vid="93">Hanlon's Razor</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="aside-section" vid="94">
+          <div class="curator-note" vid="95">
+            <span class="ui-label" vid="96">Curator's Note</span>
+            <p class="sans italic" vid="97">The razor is a tool for navigation, not a destination. It helps us find the most efficient starting point, but we must never ignore data simply because it makes our model more complex.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script vid="98">
+    document.addEventListener('DOMContentLoaded', () => {
+      const sidebar = document.getElementById('sidebar');
+      const toggleBtn = document.getElementById('sidebar-toggle');
+      toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+      });
+    });
+  </script>
+
+</body></html>
