@@ -267,12 +267,18 @@
 
 
         .grid-container {
-            padding: 32px;
+            padding: 24px;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             grid-auto-rows: 8px;
-            column-gap: 24px;
+            column-gap: 20px;
             align-items: start;
+        }
+
+        @media (max-width: 1600px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         @media (max-width: 1200px) {
@@ -298,7 +304,7 @@
 
         .card {
             border-radius: 12px;
-            padding: 28px;
+            padding: 20px 24px;
             position: relative;
             cursor: pointer;
             text-decoration: none;
@@ -860,7 +866,7 @@
         // Masonry: measure each card and set its grid-row span
         function masonryLayout() {
             const ROW_H = 8;  // must match grid-auto-rows
-            const GAP = 24; // row gap in px
+            const GAP = 20; // row gap in px
             document.querySelectorAll('#cards-grid .card:not([style*="display: none"])').forEach(card => {
                 card.style.gridRowEnd = '';
                 const h = card.getBoundingClientRect().height;
