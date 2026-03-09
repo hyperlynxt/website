@@ -1,0 +1,220 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Mental Models Archive | Comparison View</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" vid="7">
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="8"></script>
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        main: '#F8F7F4',
+                        side: '#EFEBE4',
+                        ink: '#1A1918',
+                        muted: '#6B675F',
+                        border: '#DEDBD3',
+                        accent: '#DCD8CE',
+                        darkbg: '#2A2724',
+                        darktext: '#F5F3ED',
+                    },
+                    fontFamily: {
+                        serif: ['"EB Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style vid="10">
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #DEDBD3; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6B675F; }
+        ::selection { background: #2A2724; color: #F8F7F4; }
+        
+        #sidebar-toggle:checked ~ aside {
+            width: 64px;
+        }
+        #sidebar-toggle:checked ~ aside .sidebar-label,
+        #sidebar-toggle:checked ~ aside .sidebar-badge,
+        #sidebar-toggle:checked ~ aside .sidebar-header-text {
+            display: none;
+        }
+        #sidebar-toggle:checked ~ aside .sidebar-link {
+            justify-content: center;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+</head>
+<body class="bg-main text-ink font-serif min-h-screen overflow-x-hidden selection:bg-ink selection:text-main flex" vid="11">
+
+    <input type="checkbox" id="sidebar-toggle" class="hidden" vid="12">
+    
+    <aside class="sticky top-0 h-screen w-64 bg-side border-r border-border flex flex-col transition-all duration-300 ease-in-out shrink-0" vid="13">
+        <div class="p-6 border-b border-border flex items-center justify-between" vid="14">
+            <h2 class="sidebar-header-text text-xl italic font-medium tracking-tight text-ink" vid="15">
+                Index <span class="text-muted text-lg" vid="16">Mentis</span>
+            </h2>
+            <label for="sidebar-toggle" class="cursor-pointer p-1 hover:bg-border rounded transition-colors" vid="17">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted" vid="18"><rect width="18" height="18" x="3" y="3" rx="2" vid="19"></rect><path d="M9 3v18" vid="20"></path></svg>
+            </label>
+        </div>
+
+        <nav class="flex-1 py-6 overflow-y-auto no-scrollbar" vid="21">
+            <div class="px-3 space-y-1" vid="22">
+                <a href="#" class="sidebar-link flex items-center justify-between px-3 py-2 rounded-lg text-muted hover:bg-border/50 hover:text-ink font-sans text-xs font-bold uppercase tracking-wider transition-all" vid="23">
+                    <span class="sidebar-label" vid="24">All Concepts</span>
+                    <span class="sidebar-badge text-[10px] opacity-60" vid="25">24</span>
+                </a>
+                <a href="#" class="sidebar-link flex items-center justify-between px-3 py-2 rounded-lg bg-ink text-main font-sans text-xs font-bold uppercase tracking-wider transition-all" vid="26">
+                    <span class="sidebar-label" vid="27">Comparison</span>
+                    <span class="sidebar-badge text-[10px] text-muted/50" vid="28">Active</span>
+                </a>
+                <div class="pt-4 pb-2 px-3" vid="29">
+                    <p class="sidebar-label font-sans text-[0.6rem] font-bold tracking-[0.15em] uppercase text-ink/40" vid="30">Categories</p>
+                </div>
+                <a href="#" class="sidebar-link flex items-center justify-between px-3 py-2 rounded-lg text-muted hover:bg-border/50 hover:text-ink font-sans text-xs font-bold uppercase tracking-wider transition-all" vid="31">
+                    <span class="sidebar-label" vid="32">Epistemology</span>
+                    <span class="sidebar-badge text-[10px] text-muted/50" vid="33">4</span>
+                </a>
+                <a href="#" class="sidebar-link flex items-center justify-between px-3 py-2 rounded-lg text-muted hover:bg-border/50 hover:text-ink font-sans text-xs font-bold uppercase tracking-wider transition-all" vid="34">
+                    <span class="sidebar-label" vid="35">Systems</span>
+                    <span class="sidebar-badge text-[10px] text-muted/50" vid="36">5</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="p-6 border-t border-border" vid="37">
+            <p class="sidebar-label font-sans text-[0.6rem] font-bold tracking-[0.15em] uppercase text-ink/40" vid="38">© 2024</p>
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col min-w-0" vid="39">
+        <header class="sticky top-0 z-50 bg-main/95 backdrop-blur-md border-b border-border" vid="40">
+            <div class="max-w-[1400px] mx-auto px-8 py-6 flex items-center justify-between gap-8" vid="41">
+                <div class="flex items-center gap-6" vid="42">
+                    <a href="#" class="text-muted hover:text-ink transition-colors" vid="43">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="44"><path d="m15 18-6-6 6-6" vid="45"></path></svg>
+                    </a>
+                    <p class="font-sans text-[0.6rem] font-bold tracking-[0.15em] uppercase text-ink/60" vid="46">Conceptual Comparison</p>
+                </div>
+
+                <div class="flex items-center gap-4" vid="47">
+                    <button class="bg-white border border-border rounded-lg py-2 px-4 font-sans text-xs font-bold uppercase tracking-wider text-muted hover:border-muted hover:text-ink transition-all" vid="48">
+                        Share View
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 flex overflow-hidden" vid="49">
+            
+            <section class="flex-1 border-r border-border p-12 overflow-y-auto no-scrollbar" vid="50">
+                <div class="max-w-xl ml-auto" vid="51">
+                    <div class="flex flex-col gap-6" vid="52">
+                        <div class="flex items-center justify-between" vid="53">
+                            <span class="font-sans text-[0.6rem] font-bold tracking-[0.2em] uppercase text-muted border border-border px-2 py-0.5 rounded-sm" vid="54">Logic</span>
+                            <span class="text-4xl italic font-medium text-accent opacity-30 leading-none" vid="55">04</span>
+                        </div>
+                        <h2 class="text-5xl font-medium tracking-tight" vid="56">Occam’s Razor</h2>
+                        <p class="text-xl text-muted leading-relaxed" vid="57">The principle that entities should not be multiplied beyond necessity. When presented with competing hypotheses, the simplest explanation is usually the correct one.</p>
+                        
+                        <div class="mt-12 space-y-8" vid="58">
+                            <div vid="59">
+                                <h4 class="font-sans text-[0.6rem] font-bold tracking-[0.2em] uppercase text-ink mb-4" vid="60">Core Heuristic</h4>
+                                <div class="bg-side/30 p-6 rounded-lg border border-border/50" vid="61">
+                                    <p class="italic text-lg text-ink/80" vid="62">"Select the solution with the fewest assumptions."</p>
+                                </div>
+                            </div>
+                            
+                            <div vid="63">
+                                <h4 class="font-sans text-[0.6rem] font-bold tracking-[0.2em] uppercase text-ink mb-4" vid="64">Application Context</h4>
+                                <ul class="space-y-3 text-muted" vid="65">
+                                    <li class="flex gap-3" vid="66"><span class="text-accent" vid="67">•</span> Scientific modeling</li>
+                                    <li class="flex gap-3" vid="68"><span class="text-accent" vid="69">•</span> Medical diagnostics (Zebra vs. Horse)</li>
+                                    <li class="flex gap-3" vid="70"><span class="text-accent" vid="71">•</span> Code refactoring &amp; simplification</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <section class="flex-1 bg-white/40 p-12 overflow-y-auto no-scrollbar" vid="72">
+                <div class="max-w-xl" vid="73">
+                    <div class="flex flex-col gap-6" vid="74">
+                        <div class="flex items-center justify-between" vid="75">
+                            <span class="font-sans text-[0.6rem] font-bold tracking-[0.2em] uppercase text-muted border border-border px-2 py-0.5 rounded-sm" vid="76">Behavioral</span>
+                            <span class="text-4xl italic font-medium text-accent opacity-30 leading-none" vid="77">05</span>
+                        </div>
+                        <h2 class="text-5xl font-medium tracking-tight" vid="78">Hanlon’s Razor</h2>
+                        <p class="text-xl text-muted leading-relaxed" vid="79">The suggestion that we should never attribute to malice that which is adequately explained by stupidity or negligence.</p>
+                        
+                        <div class="mt-12 space-y-8" vid="80">
+                            <div vid="81">
+                                <h4 class="font-sans text-[0.6rem] font-bold tracking-[0.2em] uppercase text-ink mb-4" vid="82">Core Heuristic</h4>
+                                <div class="bg-side/30 p-6 rounded-lg border border-border/50" vid="83">
+                                    <p class="italic text-lg text-ink/80" vid="84">"Presume incompetence over conspiracy."</p>
+                                </div>
+                            </div>
+
+                            <div vid="85">
+                                <h4 class="font-sans text-[0.6rem] font-bold tracking-[0.2em] uppercase text-ink mb-4" vid="86">Application Context</h4>
+                                <ul class="space-y-3 text-muted" vid="87">
+                                    <li class="flex gap-3" vid="88"><span class="text-accent" vid="89">•</span> Conflict resolution</li>
+                                    <li class="flex gap-3" vid="90"><span class="text-accent" vid="91">•</span> Organizational communication</li>
+                                    <li class="flex gap-3" vid="92"><span class="text-accent" vid="93">•</span> Interpersonal relationships</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 z-20" vid="94">
+                <div class="bg-darkbg text-darktext p-6 rounded-xl shadow-2xl border border-white/10" vid="95">
+                    <h3 class="font-sans text-[0.7rem] font-bold tracking-[0.2em] uppercase text-darktext/50 mb-6 text-center" vid="96">Relationship</h3>
+                    
+                    <div class="space-y-6" vid="97">
+                        <div vid="98">
+                            <p class="text-xs uppercase tracking-widest font-bold text-darktext/40 mb-2" vid="99">Similarities</p>
+                            <p class="text-sm font-light leading-relaxed" vid="100">Both function as "razors"—philosophical tools used to "shave off" unlikely explanations or complex assumptions.</p>
+                        </div>
+                        
+                        <div vid="101">
+                            <p class="text-xs uppercase tracking-widest font-bold text-darktext/40 mb-2" vid="102">Differences</p>
+                            <p class="text-sm font-light leading-relaxed" vid="103">Occam focuses on <span class="text-darktext font-medium" vid="104">logic &amp; nature</span>, while Hanlon focus on <span class="text-darktext font-medium" vid="105">intent &amp; agency</span> within human systems.</p>
+                        </div>
+
+                        <div vid="106">
+                            <p class="text-xs uppercase tracking-widest font-bold text-darktext/40 mb-2" vid="107">Synthesis</p>
+                            <p class="text-sm font-light leading-relaxed italic" vid="108">"The simplest explanation for an error (Occam) is usually a mistake, not a plot (Hanlon)."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="bg-side/50 border-t border-border py-4 px-8 flex justify-between items-center" vid="109">
+            <div class="flex gap-4" vid="110">
+                <button class="text-muted hover:text-ink transition-colors font-sans text-[0.6rem] font-bold uppercase tracking-widest" vid="111">Previous Comparison</button>
+            </div>
+            <div class="flex gap-6 items-center" vid="112">
+                <div class="h-1.5 w-32 bg-border rounded-full overflow-hidden" vid="113">
+                    <div class="h-full bg-ink w-1/3" vid="114"></div>
+                </div>
+                <span class="font-sans text-[0.6rem] font-bold uppercase tracking-widest text-muted" vid="115">Analysis 1 of 3</span>
+            </div>
+            <div class="flex gap-4" vid="116">
+                <button class="text-muted hover:text-ink transition-colors font-sans text-[0.6rem] font-bold uppercase tracking-widest" vid="117">Next Comparison</button>
+            </div>
+        </footer>
+    </div>
+
+</body></html>

@@ -1,0 +1,277 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Syntopicon - Frameworks Library</title>
+    <script src="https://cdn.tailwindcss.com" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" vid="8">
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: {
+                            50: '#FFFFFF',
+                            100: '#F8F7F4', 
+                            200: '#EFEBE4', 
+                            300: '#E5DFD3', 
+                            400: '#C9C2B5',
+                            500: '#A19A8D',
+                            600: '#7A756C', 
+                            800: '#2A2724', 
+                            900: '#1A1918', 
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"EB Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style vid="10">
+        body {
+            font-family: 'EB Garamond', serif;
+            color: #1A1918;
+            background-color: #F8F7F4;
+            -webkit-font-smoothing: antialiased;
+        }
+        .ui-text { font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E5DFD3; border-radius: 10px; }
+        .panel-scroll { height: 100vh; overflow-y: auto; scrollbar-gutter: stable; }
+        
+        .framework-card {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .framework-card:hover {
+            transform: translateY(-2px);
+            border-color: #A19A8D;
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden selection:bg-parchment-900 selection:text-parchment-100" vid="11">
+
+    <aside class="w-64 bg-parchment-200 border-r border-parchment-300 flex flex-col flex-shrink-0 panel-scroll" vid="12">
+        <div class="h-14 px-5 flex items-center justify-between border-b border-parchment-300/50 sticky top-0 bg-parchment-200 z-10" vid="13">
+            <span class="text-lg italic font-medium tracking-wide" vid="14">Syntopicon</span>
+            <button class="text-parchment-600 p-1" vid="15"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="16"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" vid="17"></rect><path d="M9 3v18" vid="18"></path></svg></button>
+        </div>
+        <div class="p-6 space-y-8" vid="19">
+            <nav class="space-y-1" vid="20">
+                <a href="#" class="ui-text text-[11px] font-semibold tracking-wider uppercase flex items-center justify-between px-3 py-2 rounded-full text-parchment-600 hover:bg-parchment-300/30" vid="21">
+                    <span vid="22">Inbox</span>
+                    <span class="bg-parchment-300/50 text-parchment-900 px-2 py-0.5 rounded-full text-[10px]" vid="23">12</span>
+                </a>
+                <a href="#" class="ui-text text-[11px] font-semibold tracking-wider uppercase flex items-center justify-between px-3 py-2 rounded-full text-parchment-600 hover:bg-parchment-300/30" vid="24">
+                    <span vid="25">Concepts</span>
+                    <span class="bg-parchment-300/50 text-parchment-900 px-2 py-0.5 rounded-full text-[10px]" vid="26">142</span>
+                </a>
+                <a href="#" class="ui-text text-[11px] font-semibold tracking-wider uppercase flex items-center justify-between px-3 py-2 rounded-full bg-parchment-900 text-parchment-100 shadow-sm" vid="27">
+                    <span vid="28">Frameworks</span>
+                    <span class="bg-parchment-100/20 px-2 py-0.5 rounded-full text-[10px]" vid="29">8</span>
+                </a>
+            </nav>
+            <div class="space-y-4" vid="30">
+                <h3 class="ui-text text-[10px] font-semibold tracking-widest text-parchment-500 uppercase px-3" vid="31">Active Session</h3>
+                <div class="space-y-4" vid="32">
+                    <div class="flex items-start gap-3 px-3 border-l-2 border-parchment-900" vid="33">
+                        <div vid="34">
+                            <p class="italic text-[15px] leading-tight font-medium" vid="35">Strategic Decision-Making</p>
+                            <span class="ui-text text-[10px] text-parchment-500" vid="36">List View Overview</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-auto p-6" vid="37">
+            <p class="ui-text text-[10px] text-parchment-500 text-center uppercase tracking-widest" vid="38">© 2024 Archive</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 bg-parchment-100 flex flex-col overflow-hidden relative" vid="39">
+        <header class="h-14 px-8 flex items-center justify-between flex-shrink-0 bg-parchment-50 border-b border-parchment-200 z-20" vid="40">
+            <div class="flex items-center gap-4" vid="41">
+                <button class="w-8 h-8 rounded-full border border-parchment-300 flex items-center justify-center text-parchment-600" vid="42"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="43"><path d="m15 18-6-6 6-6" vid="44"></path></svg></button>
+                <div class="ui-text text-[10px] font-medium tracking-widest text-parchment-500 uppercase flex gap-2" vid="45">
+                    <span vid="46">Library</span><span vid="47">/</span><span class="text-parchment-900" vid="48">Frameworks Index</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-6" vid="49">
+                <div class="flex bg-parchment-200/50 p-1 rounded-full border border-parchment-300" vid="50">
+                    <button class="w-8 h-8 flex items-center justify-center rounded-full text-parchment-500 hover:text-parchment-900 transition-colors" vid="51">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="52"><circle cx="12" cy="12" r="3" vid="53"></circle><path d="M3 12h3m12 0h3M12 3v3m0 12v3" vid="54"></path></svg>
+                    </button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded-full bg-white shadow-sm text-parchment-900" vid="55">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="56"><rect width="7" height="7" x="3" y="3" rx="1" vid="57"></rect><rect width="7" height="7" x="14" y="3" rx="1" vid="58"></rect><rect width="7" height="7" x="14" y="14" rx="1" vid="59"></rect><rect width="7" height="7" x="3" y="14" rx="1" vid="60"></rect></svg>
+                    </button>
+                </div>
+                <button class="ui-text text-[10px] font-semibold px-4 py-1.5 rounded-full bg-parchment-900 text-parchment-100" vid="61">New Framework</button>
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-12" vid="62">
+            <div class="max-w-6xl mx-auto" vid="63">
+                <div class="flex items-baseline justify-between mb-10 border-b border-parchment-300 pb-6" vid="64">
+                    <div vid="65">
+                        <h2 class="text-3xl font-medium italic mb-1" vid="66">Frameworks Library</h2>
+                        <p class="ui-text text-[11px] text-parchment-500 uppercase tracking-widest" vid="67">Syntopic organization of active mental models</p>
+                    </div>
+                    <div class="flex items-center gap-4" vid="68">
+                        <span class="ui-text text-[10px] text-parchment-500 uppercase tracking-widest" vid="69">Sorted by: Recent</span>
+                        <button class="ui-text text-[10px] font-bold text-parchment-900 uppercase flex items-center gap-1" vid="70">Filter <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" vid="71"><path d="m6 9 6 6 6-6" vid="72"></path></svg></button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" vid="73">
+                    
+                    <div class="framework-card bg-white border border-parchment-300 rounded-xl p-6 flex flex-col h-64 shadow-sm" vid="74">
+                        <div class="flex justify-between items-start mb-4" vid="75">
+                            <span class="ui-text text-[9px] font-bold text-parchment-900 bg-parchment-200 px-2 py-0.5 rounded uppercase" vid="76">Strategy</span>
+                            <span class="ui-text text-[10px] text-parchment-400" vid="77">Oct 24, 2024</span>
+                        </div>
+                        <h3 class="text-2xl italic font-medium mb-3 group-hover:underline cursor-pointer" vid="78">Strategic Decision-Making</h3>
+                        <p class="text-sm text-parchment-600 line-clamp-2 mb-auto" vid="79">Evaluating high-stakes choices through the lens of game theory and Bayesian probability.</p>
+                        <div class="pt-6 border-t border-parchment-100 flex items-center justify-between mt-4" vid="80">
+                            <div class="flex items-center gap-2" vid="81">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500" vid="82"></span>
+                                <span class="ui-text text-[10px] font-medium text-parchment-500 uppercase tracking-wider" vid="83">8 Concepts</span>
+                            </div>
+                            <div class="flex -space-x-1" vid="84">
+                                <div class="w-5 h-5 rounded-full bg-parchment-200 border border-white" vid="85"></div>
+                                <div class="w-5 h-5 rounded-full bg-parchment-300 border border-white" vid="86"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="framework-card bg-white border border-parchment-300 rounded-xl p-6 flex flex-col h-64 shadow-sm" vid="87">
+                        <div class="flex justify-between items-start mb-4" vid="88">
+                            <span class="ui-text text-[9px] font-bold text-parchment-400 border border-parchment-200 px-2 py-0.5 rounded uppercase" vid="89">Logic</span>
+                            <span class="ui-text text-[10px] text-parchment-400" vid="90">Oct 21, 2024</span>
+                        </div>
+                        <h3 class="text-2xl italic font-medium mb-3" vid="91">First Principles Arch</h3>
+                        <p class="text-sm text-parchment-600 line-clamp-2 mb-auto" vid="92">Breaking down complex problems into basic truths and reassembling from the ground up.</p>
+                        <div class="pt-6 border-t border-parchment-100 flex items-center justify-between mt-4" vid="93">
+                            <div class="flex items-center gap-2" vid="94">
+                                <span class="w-1.5 h-1.5 rounded-full bg-parchment-300" vid="95"></span>
+                                <span class="ui-text text-[10px] font-medium text-parchment-500 uppercase tracking-wider" vid="96">3 Concepts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="framework-card bg-white border border-parchment-300 rounded-xl p-6 flex flex-col h-64 shadow-sm" vid="97">
+                        <div class="flex justify-between items-start mb-4" vid="98">
+                            <span class="ui-text text-[9px] font-bold text-parchment-400 border border-parchment-200 px-2 py-0.5 rounded uppercase" vid="99">Clarity</span>
+                            <span class="ui-text text-[10px] text-parchment-400" vid="100">Oct 18, 2024</span>
+                        </div>
+                        <h3 class="text-2xl italic font-medium mb-3" vid="101">The Resilient Mind</h3>
+                        <p class="text-sm text-parchment-600 line-clamp-2 mb-auto" vid="102">Cognitive strategies for maintaining objective clarity under extreme pressure.</p>
+                        <div class="pt-6 border-t border-parchment-100 flex items-center justify-between mt-4" vid="103">
+                            <div class="flex items-center gap-2" vid="104">
+                                <span class="w-1.5 h-1.5 rounded-full bg-parchment-300" vid="105"></span>
+                                <span class="ui-text text-[10px] font-medium text-parchment-500 uppercase tracking-wider" vid="106">4 Concepts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="framework-card bg-white border border-parchment-300 rounded-xl p-6 flex flex-col h-64 shadow-sm" vid="107">
+                        <div class="flex justify-between items-start mb-4" vid="108">
+                            <span class="ui-text text-[9px] font-bold text-parchment-400 border border-parchment-200 px-2 py-0.5 rounded uppercase" vid="109">Systems</span>
+                            <span class="ui-text text-[10px] text-parchment-400" vid="110">Oct 12, 2024</span>
+                        </div>
+                        <h3 class="text-2xl italic font-medium mb-3" vid="111">Systems Optimization</h3>
+                        <p class="text-sm text-parchment-600 line-clamp-2 mb-auto" vid="112">Mapping feedback loops and identifying leverage points in complex organizational structures.</p>
+                        <div class="pt-6 border-t border-parchment-100 flex items-center justify-between mt-4" vid="113">
+                            <div class="flex items-center gap-2" vid="114">
+                                <span class="w-1.5 h-1.5 rounded-full bg-parchment-300" vid="115"></span>
+                                <span class="ui-text text-[10px] font-medium text-parchment-500 uppercase tracking-wider" vid="116">6 Concepts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="framework-card bg-white border border-parchment-300 rounded-xl p-6 flex flex-col h-64 shadow-sm" vid="117">
+                        <div class="flex justify-between items-start mb-4" vid="118">
+                            <span class="ui-text text-[9px] font-bold text-parchment-400 border border-parchment-200 px-2 py-0.5 rounded uppercase" vid="119">Economics</span>
+                            <span class="ui-text text-[10px] text-parchment-400" vid="120">Sep 29, 2024</span>
+                        </div>
+                        <h3 class="text-2xl italic font-medium mb-3" vid="121">The Capital Web</h3>
+                        <p class="text-sm text-parchment-600 line-clamp-2 mb-auto" vid="122">Understanding value flow and the compounding effects of intellectual capital.</p>
+                        <div class="pt-6 border-t border-parchment-100 flex items-center justify-between mt-4" vid="123">
+                            <div class="flex items-center gap-2" vid="124">
+                                <span class="w-1.5 h-1.5 rounded-full bg-parchment-300" vid="125"></span>
+                                <span class="ui-text text-[10px] font-medium text-parchment-500 uppercase tracking-wider" vid="126">12 Concepts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="framework-card bg-white border border-parchment-300 rounded-xl p-6 flex flex-col h-64 shadow-sm" vid="127">
+                        <div class="flex justify-between items-start mb-4" vid="128">
+                            <span class="ui-text text-[9px] font-bold text-parchment-400 border border-parchment-200 px-2 py-0.5 rounded uppercase" vid="129">Heuristics</span>
+                            <span class="ui-text text-[10px] text-parchment-400" vid="130">Sep 22, 2024</span>
+                        </div>
+                        <h3 class="text-2xl italic font-medium mb-3" vid="131">Cognitive Shortcuts</h3>
+                        <p class="text-sm text-parchment-600 line-clamp-2 mb-auto" vid="132">A catalog of mental models for rapid, approximate problem-solving.</p>
+                        <div class="pt-6 border-t border-parchment-100 flex items-center justify-between mt-4" vid="133">
+                            <div class="flex items-center gap-2" vid="134">
+                                <span class="w-1.5 h-1.5 rounded-full bg-parchment-300" vid="135"></span>
+                                <span class="ui-text text-[10px] font-medium text-parchment-500 uppercase tracking-wider" vid="136">5 Concepts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="framework-card bg-white border border-parchment-300 rounded-xl p-6 flex flex-col h-64 shadow-sm" vid="137">
+                        <div class="flex justify-between items-start mb-4" vid="138">
+                            <span class="ui-text text-[9px] font-bold text-parchment-400 border border-parchment-200 px-2 py-0.5 rounded uppercase" vid="139">History</span>
+                            <span class="ui-text text-[10px] text-parchment-400" vid="140">Sep 15, 2024</span>
+                        </div>
+                        <h3 class="text-2xl italic font-medium mb-3" vid="141">Temporal Patterns</h3>
+                        <p class="text-sm text-parchment-600 line-clamp-2 mb-auto" vid="142">Analyzing historical cycles to predict future systemic shifts.</p>
+                        <div class="pt-6 border-t border-parchment-100 flex items-center justify-between mt-4" vid="143">
+                            <div class="flex items-center gap-2" vid="144">
+                                <span class="w-1.5 h-1.5 rounded-full bg-parchment-300" vid="145"></span>
+                                <span class="ui-text text-[10px] font-medium text-parchment-500 uppercase tracking-wider" vid="146">7 Concepts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="framework-card bg-white border border-parchment-300 rounded-xl p-6 flex flex-col h-64 shadow-sm" vid="147">
+                        <div class="flex justify-between items-start mb-4" vid="148">
+                            <span class="ui-text text-[9px] font-bold text-parchment-400 border border-parchment-200 px-2 py-0.5 rounded uppercase" vid="149">Philosophy</span>
+                            <span class="ui-text text-[10px] text-parchment-400" vid="150">Sep 08, 2024</span>
+                        </div>
+                        <h3 class="text-2xl italic font-medium mb-3" vid="151">Stoic Fundamentals</h3>
+                        <p class="text-sm text-parchment-600 line-clamp-2 mb-auto" vid="152">Practical application of stoic logic to modern executive leadership.</p>
+                        <div class="pt-6 border-t border-parchment-100 flex items-center justify-between mt-4" vid="153">
+                            <div class="flex items-center gap-2" vid="154">
+                                <span class="w-1.5 h-1.5 rounded-full bg-parchment-300" vid="155"></span>
+                                <span class="ui-text text-[10px] font-medium text-parchment-500 uppercase tracking-wider" vid="156">9 Concepts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="h-12 bg-white border-t border-parchment-300 flex items-center px-8 justify-between z-30" vid="157">
+            <div class="flex items-center gap-2" vid="158">
+                <span class="ui-text text-[10px] font-bold uppercase tracking-widest text-parchment-400" vid="159">Viewing:</span>
+                <span class="ui-text text-[10px] font-bold uppercase tracking-widest text-parchment-900" vid="160">Grid Library View</span>
+            </div>
+            <div class="flex gap-6" vid="161">
+                <span class="ui-text text-[9px] text-parchment-400 uppercase tracking-widest" vid="162">8 Frameworks Listed</span>
+                <span class="ui-text text-[9px] text-parchment-400 uppercase tracking-widest" vid="163">Last Sync: 2m ago</span>
+            </div>
+        </div>
+    </main>
+
+</body></html>

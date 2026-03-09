@@ -1,0 +1,217 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Inversion — Mental Models Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" vid="7">
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="8"></script>
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        main: '#F8F7F4',
+                        side: '#EFEBE4',
+                        ink: '#1A1918',
+                        muted: '#6B675F',
+                        border: '#DEDBD3',
+                        accent: '#DCD8CE',
+                        darkbg: '#2A2724',
+                        darktext: '#F5F3ED',
+                    },
+                    fontFamily: {
+                        serif: ['"EB Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style vid="10">
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #DEDBD3; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6B675F; }
+        ::selection { background: #2A2724; color: #F8F7F4; }
+        
+        .content-container {
+            max-width: 800px;
+        }
+
+        #sidebar-toggle:checked ~ aside {
+            width: 64px;
+        }
+        #sidebar-toggle:checked ~ aside .sidebar-label,
+        #sidebar-toggle:checked ~ aside .sidebar-badge,
+        #sidebar-toggle:checked ~ aside .sidebar-header-text {
+            display: none;
+        }
+        #sidebar-toggle:checked ~ aside .sidebar-link {
+            justify-content: center;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+</head>
+<body class="bg-main text-ink font-serif min-h-screen overflow-x-hidden selection:bg-ink selection:text-main flex" vid="11">
+
+    <input type="checkbox" id="sidebar-toggle" class="hidden" vid="12">
+    
+    <aside class="sticky top-0 h-screen w-64 bg-side border-r border-border flex flex-col transition-all duration-300 ease-in-out shrink-0" vid="13">
+        <div class="p-6 border-b border-border flex items-center justify-between" vid="14">
+            <h2 class="sidebar-header-text text-xl italic font-medium tracking-tight text-ink" vid="15">
+                Index <span class="text-muted text-lg" vid="16">Mentis</span>
+            </h2>
+            <label for="sidebar-toggle" class="cursor-pointer p-1 hover:bg-border rounded transition-colors" vid="17">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted" vid="18"><rect width="18" height="18" x="3" y="3" rx="2" vid="19"></rect><path d="M9 3v18" vid="20"></path></svg>
+            </label>
+        </div>
+
+        <nav class="flex-1 py-6 overflow-y-auto no-scrollbar" vid="21">
+            <div class="px-3 space-y-1" vid="22">
+                <a href="#" class="sidebar-link flex items-center justify-between px-3 py-2 rounded-lg text-muted hover:bg-border/50 hover:text-ink font-sans text-xs font-bold uppercase tracking-wider transition-all" vid="23">
+                    <span class="sidebar-label" vid="24">All Concepts</span>
+                    <span class="sidebar-badge text-[10px] opacity-60" vid="25">24</span>
+                </a>
+                <a href="#" class="sidebar-link flex items-center justify-between px-3 py-2 rounded-lg text-muted hover:bg-border/50 hover:text-ink font-sans text-xs font-bold uppercase tracking-wider transition-all" vid="26">
+                    <span class="sidebar-label" vid="27">Epistemology</span>
+                    <span class="sidebar-badge text-[10px] text-muted/50" vid="28">4</span>
+                </a>
+                <a href="#" class="sidebar-link flex items-center justify-between px-3 py-2 rounded-lg bg-ink text-main font-sans text-xs font-bold uppercase tracking-wider transition-all" vid="29">
+                    <span class="sidebar-label" vid="30">Strategy</span>
+                    <span class="sidebar-badge text-[10px] text-muted/50" vid="31">3</span>
+                </a>
+                <a href="#" class="sidebar-link flex items-center justify-between px-3 py-2 rounded-lg text-muted hover:bg-border/50 hover:text-ink font-sans text-xs font-bold uppercase tracking-wider transition-all" vid="32">
+                    <span class="sidebar-label" vid="33">Systems</span>
+                    <span class="sidebar-badge text-[10px] text-muted/50" vid="34">5</span>
+                </a>
+                <div class="pt-6 pb-2 px-3" vid="35">
+                    <p class="sidebar-label font-sans text-[0.6rem] font-bold tracking-[0.15em] uppercase text-ink/40" vid="36">History</p>
+                </div>
+                <div class="px-3 space-y-3 mt-2" vid="37">
+                    <div class="sidebar-label text-sm italic text-muted border-l-2 border-border pl-3" vid="38">Occam's Razor</div>
+                    <div class="sidebar-label text-sm italic text-ink border-l-2 border-ink pl-3" vid="39">Inversion</div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="p-6 border-t border-border" vid="40">
+            <p class="sidebar-label font-sans text-[0.6rem] font-bold tracking-[0.15em] uppercase text-ink/40" vid="41">© 2024</p>
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col min-w-0" vid="42">
+        <header class="sticky top-0 z-50 bg-main/95 backdrop-blur-md border-b border-border" vid="43">
+            <div class="max-w-[1400px] mx-auto px-8 py-4 flex items-center justify-between" vid="44">
+                <div class="flex items-center gap-4" vid="45">
+                    <a href="#" class="p-2 hover:bg-border rounded transition-colors" vid="46">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted" vid="47"><path d="m15 18-6-6 6-6" vid="48"></path></svg>
+                    </a>
+                    <p class="font-sans text-[0.6rem] font-bold tracking-[0.15em] uppercase text-ink/60" vid="49">Strategy / Concept 02</p>
+                </div>
+                <div class="flex items-center gap-4" vid="50">
+                    <button class="font-sans text-[0.6rem] font-bold tracking-[0.15em] uppercase border border-border px-4 py-2 rounded-lg hover:bg-white transition-colors" vid="51">Share</button>
+                    <button class="font-sans text-[0.6rem] font-bold tracking-[0.15em] uppercase bg-ink text-main px-4 py-2 rounded-lg" vid="52">Archive Entry</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto" vid="53">
+            <div class="max-w-[1400px] mx-auto px-8 py-12 flex gap-16" vid="54">
+                
+                <div class="flex-1 content-container" vid="55">
+                    <span class="inline-block font-sans text-[0.7rem] font-bold tracking-[0.2em] uppercase text-muted mb-4" vid="56">Conceptual Framework</span>
+                    <h1 class="text-6xl font-medium tracking-tight mb-8" vid="57">Inversion</h1>
+                    
+                    <div class="prose prose-lg font-serif text-xl leading-relaxed text-ink/90 space-y-8" vid="58">
+                        <p class="italic text-2xl text-muted font-light leading-snug border-l-4 border-accent pl-8 my-10" vid="59">
+                            "Invert, always invert: Turn a situation or problem upside down. Look at it backward." — Carl Jacobi
+                        </p>
+
+                        <h3 class="font-sans text-xs font-bold tracking-widest uppercase text-ink mt-12 mb-4" vid="60">The Core Thesis</h3>
+                        <p vid="61">
+                            Inversion is one of the most powerful mental models because it forces you to approach problems from the opposite end of the natural starting point. While most people focus on what they want to happen (the positive outcome), inversion focuses on what you want to avoid (the negative outcome).
+                        </p>
+                        <p vid="62">
+                            By thinking about what would cause a project to fail, or what would make you unhappy, you can create a "pre-mortem" that identifies risks before they manifest. It is often easier to identify obstacles to success than it is to identify the precise path to achievement.
+                        </p>
+
+                        <h3 class="font-sans text-xs font-bold tracking-widest uppercase text-ink mt-12 mb-4" vid="63">How to Apply</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 not-prose" vid="64">
+                            <div class="bg-side/50 p-6 rounded-xl border border-border" vid="65">
+                                <h4 class="font-sans text-[0.65rem] font-bold tracking-widest uppercase mb-3 text-ink" vid="66">Forward Thinking</h4>
+                                <p class="text-sm font-sans text-muted" vid="67">"How can I make this product a massive success and gain 1 million users?"</p>
+                            </div>
+                            <div class="bg-darkbg p-6 rounded-xl border border-darktext/10" vid="68">
+                                <h4 class="font-sans text-[0.65rem] font-bold tracking-widest uppercase mb-3 text-darktext/60" vid="69">Inverse Thinking</h4>
+                                <p class="text-sm font-sans text-darktext" vid="70">"What would definitely make users hate this product and delete it within minutes?"</p>
+                            </div>
+                        </div>
+
+                        <h3 class="font-sans text-xs font-bold tracking-widest uppercase text-ink mt-12 mb-4" vid="71">Practical Examples</h3>
+                        <ul class="space-y-4 list-none p-0" vid="72">
+                            <li class="flex gap-4 items-start" vid="73">
+                                <span class="text-accent text-2xl leading-none" vid="74">/</span>
+                                <span vid="75"><strong vid="76">Investing:</strong> Instead of looking for the "next big winner," Charlie Munger suggested looking for ways to lose money and then avoiding them.</span>
+                            </li>
+                            <li class="flex gap-4 items-start" vid="77">
+                                <span class="text-accent text-2xl leading-none" vid="78">/</span>
+                                <span vid="79"><strong vid="80">Productivity:</strong> Instead of "How can I be more productive?" ask "What are the three things that destroy my focus most?" and eliminate them.</span>
+                            </li>
+                            <li class="flex gap-4 items-start" vid="81">
+                                <span class="text-accent text-2xl leading-none" vid="82">/</span>
+                                <span vid="83"><strong vid="84">Relationships:</strong> Ask "What behaviors would destroy my connection with my partner?" then make it a rule never to engage in them.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <aside class="w-80 flex flex-col gap-12 shrink-0" vid="85">
+                    <section vid="86">
+                        <h4 class="font-sans text-[0.65rem] font-bold tracking-[0.2em] uppercase text-muted mb-6 pb-2 border-b border-border" vid="87">Key Principles</h4>
+                        <ul class="space-y-6" vid="88">
+                            <li vid="89">
+                                <div class="text-xs font-bold font-sans uppercase mb-1" vid="90">Avoidance Over Optimization</div>
+                                <div class="text-sm text-muted font-sans leading-relaxed" vid="91">It's often more effective to remove the "stupid" than to seek the "brilliant."</div>
+                            </li>
+                            <li vid="92">
+                                <div class="text-xs font-bold font-sans uppercase mb-1" vid="93">The Pre-Mortem</div>
+                                <div class="text-sm text-muted font-sans leading-relaxed" vid="94">Imagine the project has failed six months from now. Write down why.</div>
+                            </li>
+                            <li vid="95">
+                                <div class="text-xs font-bold font-sans uppercase mb-1" vid="96">Subtract, Don't Add</div>
+                                <div class="text-sm text-muted font-sans leading-relaxed" vid="97">Inversion naturally leads to a via negativa approach to problem solving.</div>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section vid="98">
+                        <h4 class="font-sans text-[0.65rem] font-bold tracking-[0.2em] uppercase text-muted mb-6 pb-2 border-b border-border" vid="99">Related Concepts</h4>
+                        <div class="space-y-4" vid="100">
+                            <a href="#" class="group block p-4 rounded-lg bg-white border border-border hover:border-muted transition-colors" vid="101">
+                                <span class="text-[0.6rem] font-bold font-sans uppercase text-accent mb-1 block" vid="102">Risk Analysis</span>
+                                <div class="text-sm font-medium transition-colors group-hover:text-ink" vid="103">Margin of Safety</div>
+                            </a>
+                            <a href="#" class="group block p-4 rounded-lg bg-white border border-border hover:border-muted transition-colors" vid="104">
+                                <span class="text-[0.6rem] font-bold font-sans uppercase text-accent mb-1 block" vid="105">Logic</span>
+                                <div class="text-sm font-medium transition-colors group-hover:text-ink" vid="106">Occam's Razor</div>
+                            </a>
+                            <a href="#" class="group block p-4 rounded-lg bg-white border border-border hover:border-muted transition-colors" vid="107">
+                                <span class="text-[0.6rem] font-bold font-sans uppercase text-accent mb-1 block" vid="108">Epistemology</span>
+                                <div class="text-sm font-medium transition-colors group-hover:text-ink" vid="109">First Principles</div>
+                            </a>
+                        </div>
+                    </section>
+
+                    <div class="mt-auto p-6 bg-accent/20 rounded-xl border border-accent/30" vid="110">
+                        <h5 class="text-xs font-bold font-sans uppercase mb-2" vid="111">Curator's Note</h5>
+                        <p class="text-xs font-sans text-muted leading-relaxed" vid="112">Inversion is the bedrock of strategic defensive play. Use it when stakes are high and the path forward is cluttered with noise.</p>
+                    </div>
+                </aside>
+
+            </div>
+        </main>
+    </div>
+
+</body></html>
