@@ -50,23 +50,96 @@
             transform: translate(-50%, -50%);
             font-size: 8rem;
             z-index: 0;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .masonry-card {
             background-color: #FFFFFF;
             border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.4s ease;
-            break-inside: avoid;
-            margin-bottom: 2rem;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
+            border-radius: 12px;
+            z-index: 1;
+        }
+
+        .card-glow::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.04), transparent 40%);
+            z-index: 2;
+        }
+
+        /* Outline Animation equivalent from Concepts (Grey Color) */
+        .masonry-card::after {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: 14px;
+            background: linear-gradient(45deg, transparent, rgba(122, 122, 115, 0.5), transparent);
+            z-index: -1;
+            animation: borderRotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes borderRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .masonry-card:hover {
-            transform: translateY(-4px);
-            background-color: #FFFFFF;
-            border-color: rgba(38, 53, 36, 0.2);
-            box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.08);
+            transform: translateY(-8px);
+            border-color: rgba(var(--ac-rgb, 122, 122, 115), 0.4);
+            box-shadow: 0 0 30px -5px rgba(var(--ac-rgb, 122, 122, 115), 0.15), 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .masonry-card:hover::after {
+            opacity: 1;
+        }
+
+        .masonry-card:hover .roman-numeral-center {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        /* Accents */
+        .card-accent-orange {
+            --ac: #C4713E;
+            --ac-rgb: 196, 113, 62;
+        }
+
+        .card-accent-blue {
+            --ac: #4A7D9A;
+            --ac-rgb: 74, 125, 154;
+        }
+
+        .card-accent-emerald {
+            --ac: #4A8F6F;
+            --ac-rgb: 74, 143, 111;
+        }
+
+        .card-accent-purple {
+            --ac: #8A5E98;
+            --ac-rgb: 138, 94, 152;
+        }
+
+        .card-accent-rose {
+            --ac: #B55E6A;
+            --ac-rgb: 181, 94, 106;
+        }
+
+        .card-accent-grey {
+            --ac: #7A7A73;
+            --ac-rgb: 122, 122, 115;
         }
 
         .sidebar-link {
@@ -100,14 +173,35 @@
         }
 
         .masonry-grid {
-            column-count: 1;
-            column-gap: 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 8px;
+            /* For JS masonry */
+            column-gap: 24px;
+            align-items: start;
+            width: 100%;
         }
 
-        @media (min-width: 768px) {
+        @media (max-width: 1280px) {
             .masonry-grid {
-                column-count: 2;
+                grid-template-columns: repeat(3, 1fr);
             }
+        }
+
+        @media (max-width: 1024px) {
+            .masonry-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .masonry-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .masonry-grid>a {
+            display: block;
         }
 
         ::-webkit-scrollbar {
@@ -1535,7 +1629,7 @@
             // Re-append to DOM to visually sort
             cards.forEach(card => grid.appendChild(card));
 
-            // 2. Filter Domain
+            // Show/hide based on filters
             cards.forEach(card => {
                 let matches;
                 if (!activeQuery || activeQuery === 'all') {
@@ -1551,9 +1645,29 @@
                     matches = theme.includes(activeQuery) || author.includes(activeQuery) || text.includes(activeQuery);
                 }
                 card.style.display = matches ? '' : 'none';
+                if (!matches) card.style.gridRowEnd = ''; // free space
                 if (matches) visible++;
             });
+
+            // Re-run JS masonry layout to pack cards tightly row-to-row
+            requestAnimationFrame(masonryLayout);
         }
+
+        // JS Masonry Layout Engine (Row-to-Row packing using CSS Grid auto-rows)
+        function masonryLayout() {
+            const ROW_H = 8;
+            const GAP = 24;
+            document.querySelectorAll('.masonry-grid > a:not([style*="display: none"])').forEach(rowWrapper => {
+                rowWrapper.style.gridRowEnd = '';
+                const card = rowWrapper.querySelector('article');
+                if (card) {
+                    const h = card.getBoundingClientRect().height;
+                    rowWrapper.style.gridRowEnd = 'span ' + Math.ceil((h + GAP) / ROW_H);
+                }
+            });
+        }
+
+        window.addEventListener('resize', masonryLayout);
 
         // Sidebar filter clicks — exact attribute match
         sidebarLinks.forEach(link => {
@@ -1579,6 +1693,8 @@
 
         // Initial sorting boot
         applyFilter();
+        // Delay to allow images/fonts to render before measuring masonry heights
+        requestAnimationFrame(() => requestAnimationFrame(masonryLayout));
     </script>
 </body>
 
