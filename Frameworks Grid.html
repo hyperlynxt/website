@@ -197,6 +197,43 @@
                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                             </svg>
                         </div>
+                        <div class="h-10 w-px bg-borderline mx-2"></div>
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted">Sort:</span>
+                            <div id="sort-dropdown" class="relative">
+                                <button id="sort-trigger"
+                                    class="flex items-center gap-2 font-sans text-[10px] uppercase font-bold tracking-widest text-ink px-4 py-1.5 rounded-full border border-borderline hover:border-ink transition-all bg-page/80">
+                                    <span id="sort-label">Alphabetical (A-Z)</span>
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5" class="sort-chevron"
+                                        style="transition: transform 0.2s ease;">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                                <div id="sort-menu"
+                                    class="hidden absolute right-0 top-full mt-2 z-50 bg-page border border-borderline shadow-lg min-w-[180px] py-1">
+                                    <button
+                                        class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-ink hover:bg-sidebar transition-colors"
+                                        data-sort="default">Alphabetical (A-Z)</button>
+                                    <button
+                                        class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-sidebar hover:text-ink transition-colors"
+                                        data-sort="category">By Category (A-Z)</button>
+                                    <button
+                                        class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-sidebar hover:text-ink transition-colors"
+                                        data-sort="recent">Recently Added</button>
+                                </div>
+                            </div>
+                            <button id="sort-dir-btn" title="Toggle sort direction"
+                                class="flex items-center justify-center w-7 h-7 rounded-full border border-borderline hover:border-ink text-muted hover:text-ink transition-all bg-page/80">
+                                <svg id="sort-dir-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" style="transition: transform 0.25s ease;">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <polyline points="5 12 12 5 19 12"></polyline>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -424,14 +461,74 @@
 
     <script>
         const searchInput = document.getElementById('fw-search');
+        const sortTrigger = document.getElementById('sort-trigger');
+        const sortMenu = document.getElementById('sort-menu');
+        const sortLabel = document.getElementById('sort-label');
+        const sortOptions = document.querySelectorAll('.sort-option');
+        const sortDirBtn = document.getElementById('sort-dir-btn');
+        const sortDirIcon = document.getElementById('sort-dir-icon');
         const pills = document.querySelectorAll('.pill-btn');
-        const cards = document.querySelectorAll('#fw-grid .card-base');
+        const grid = document.getElementById('fw-grid');
         const noResults = document.getElementById('no-results');
+
+        const allCards = Array.from(grid.querySelectorAll('.card-base'));
+        allCards.forEach((card, i) => card.dataset.order = i);
 
         let activeCategory = 'all';
         let activeSearch = '';
+        let activeSort = 'default';
+        let sortAsc = true;
+
+        // Sort dropdown open/close
+        sortTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = !sortMenu.classList.contains('hidden');
+            sortMenu.classList.toggle('hidden');
+            sortTrigger.querySelector('.sort-chevron').style.transform = isOpen ? '' : 'rotate(180deg)';
+        });
+        document.addEventListener('click', () => {
+            sortMenu.classList.add('hidden');
+            sortTrigger.querySelector('.sort-chevron').style.transform = '';
+        });
+
+        sortOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                activeSort = opt.dataset.sort;
+                sortLabel.textContent = opt.textContent.trim();
+                sortOptions.forEach(o => { o.classList.remove('text-ink'); o.classList.add('text-muted'); });
+                opt.classList.remove('text-muted'); opt.classList.add('text-ink');
+                sortMenu.classList.add('hidden');
+                sortTrigger.querySelector('.sort-chevron').style.transform = '';
+                applyFilters();
+            });
+        });
+
+        // Direction toggle
+        sortDirBtn.addEventListener('click', () => {
+            sortAsc = !sortAsc;
+            sortDirIcon.style.transform = sortAsc ? '' : 'rotate(180deg)';
+            applyFilters();
+        });
+
+        function getTitle(card) {
+            return (card.dataset.title || '').toLowerCase();
+        }
 
         function applyFilters() {
+            let cards = Array.from(grid.querySelectorAll('.card-base'));
+
+            if (activeSort === 'default') {
+                cards.sort((a, b) => getTitle(a).localeCompare(getTitle(b)));
+            } else if (activeSort === 'category') {
+                cards.sort((a, b) => (a.dataset.category || '').localeCompare(b.dataset.category || ''));
+            } else if (activeSort === 'recent') {
+                cards.sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order));
+            }
+            if (!sortAsc) cards.reverse();
+
+            const innerGrid = grid.querySelector('.grid');
+            cards.forEach(card => innerGrid.appendChild(card));
+
             let visible = 0;
             cards.forEach(card => {
                 const category = (card.dataset.category || '').toLowerCase();
@@ -457,15 +554,13 @@
         pills.forEach(pill => {
             pill.addEventListener('click', () => {
                 activeCategory = pill.dataset.filter;
-                pills.forEach(p => {
-                    p.classList.remove('bg-inverse', 'text-inverse-text');
-                    p.classList.add('text-muted');
-                });
-                pill.classList.add('bg-inverse', 'text-inverse-text');
-                pill.classList.remove('text-muted');
+                pills.forEach(p => { p.classList.remove('bg-inverse', 'text-inverse-text'); p.classList.add('text-muted'); });
+                pill.classList.add('bg-inverse', 'text-inverse-text'); pill.classList.remove('text-muted');
                 applyFilters();
             });
         });
+
+        applyFilters();
     </script>
 </body>
 
