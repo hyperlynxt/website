@@ -1581,13 +1581,13 @@
             // 1. Sort Domain
             if (activeSort === 'default') {
                 // Chronological (Original order)
-                cards.sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order));
+                cards.sort((a, b) => Number(b.dataset.order) - Number(a.dataset.order));
             } else if (activeSort === 'category') {
                 // By Theme (A-Z)
                 cards.sort((a, b) => (a.dataset.theme || '').localeCompare(b.dataset.theme || ''));
             } else if (activeSort === 'recent') {
-                // Recently Added (Reverse chronological)
-                cards.sort((a, b) => Number(b.dataset.order) - Number(a.dataset.order));
+                // Recently Added (1 to up, ascending chronological)
+                cards.sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order));
             }
 
             // Directional Flip
