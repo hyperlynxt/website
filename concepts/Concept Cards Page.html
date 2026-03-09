@@ -453,11 +453,13 @@
         }
 
         .meta-pill-dot {
-            width: 5px;
-            height: 5px;
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
-            background-color: var(--accent);
-            flex-shrink: 0;
+            background-color: var(--border);
+            margin-right: 6px;
+            transition: background-color 0.2s ease;
+            display: none;
         }
 
         .card-inverse .meta-pill-dot {
@@ -599,7 +601,8 @@
                 <div class="card-meta" vid="53">
                     <span class="meta-pill" vid="54"><span class="meta-pill-dot" vid="55"></span>Core Model</span>
                     <span class="meta-pill" vid="56"><span class="meta-pill-dot" vid="57"></span>5 min read</span>
-                    <span class="meta-pill" vid="58"><span class="meta-pill-dot" vid="59"></span>Charlie Munger</span>
+                    <span class="meta-pill" vid="58"><span class="meta-pill-dot" vid="59"></span>Charlie
+                        Munger</span>
                 </div>
             </a>
 
