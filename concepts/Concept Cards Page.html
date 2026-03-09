@@ -270,7 +270,8 @@
             padding: 32px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            grid-auto-rows: 8px;
+            column-gap: 24px;
             align-items: start;
         }
 
@@ -827,10 +828,13 @@
 
                 const show = categoryMatch && searchMatch;
                 card.style.display = show ? '' : 'none';
+                if (!show) card.style.gridRowEnd = ''; // free the grid rows
                 if (show) visible++;
             });
 
             noResults.style.display = visible === 0 ? 'block' : 'none';
+            // Re-run masonry after DOM visibility changes
+            requestAnimationFrame(masonryLayout);
         }
 
         // Search
@@ -857,8 +861,22 @@
             });
         });
 
+        // Masonry: measure each card and set its grid-row span
+        function masonryLayout() {
+            const ROW_H = 8;  // must match grid-auto-rows
+            const GAP = 24; // row gap in px
+            document.querySelectorAll('#cards-grid .card:not([style*="display: none"])').forEach(card => {
+                card.style.gridRowEnd = '';
+                const h = card.getBoundingClientRect().height;
+                card.style.gridRowEnd = 'span ' + Math.ceil((h + GAP) / ROW_H);
+            });
+        }
+
         // Apply default sort on load
         applyFilters();
+        // Small delay so layout is painted before measuring
+        requestAnimationFrame(() => requestAnimationFrame(masonryLayout));
+        window.addEventListener('resize', masonryLayout);
     </script>
 </body>
 
