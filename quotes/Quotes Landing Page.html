@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
     <title vid="4">Quotes &amp; Collected | Browse Archive</title>
     <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        page: '#F8F7F4',
+                        sidebar: '#EFEBE4',
+                        inverse: '#2A2724',
+                        ink: '#1A1918',
+                        muted: '#6B675F',
+                        borderline: '#DEDBD3',
+                        accent: '#DCD8CE',
+                        'inverse-text': '#F5F3ED',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
     <link
@@ -13,7 +31,7 @@
     <style vid="9">
         body {
             font-family: 'Cormorant Garamond', serif;
-            background-color: #F0EDE6;
+            background-color: #F8F7F4;
             color: #1A1A18;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
         }
@@ -35,8 +53,8 @@
         }
 
         .masonry-card {
-            background-color: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(26, 26, 24, 0.08);
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.4s ease;
             break-inside: avoid;
             margin-bottom: 2rem;
@@ -46,9 +64,9 @@
 
         .masonry-card:hover {
             transform: translateY(-4px);
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: #FFFFFF;
             border-color: rgba(38, 53, 36, 0.2);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.08);
         }
 
         .sidebar-link {
@@ -124,7 +142,7 @@
         </div>
     </header>
 
-    <header class="w-full pt-12 pb-12 px-8 lg:px-16 border-b border-[#1A1A18]/10" vid="11">
+    <header class="w-full pt-12 pb-12 px-8 lg:px-16 border-b border-borderline bg-white/30" vid="11">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-8" vid="16">
             <div vid="17">
                 <h1 class="text-[4rem] lg:text-[5.5rem] leading-[0.8] tracking-tight text-[#1A1A18] font-medium"
