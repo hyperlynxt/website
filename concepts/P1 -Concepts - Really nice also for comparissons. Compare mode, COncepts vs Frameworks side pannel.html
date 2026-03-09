@@ -1,0 +1,206 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Syntopicon - Comparison Mode</title>
+    <script src="https://cdn.tailwindcss.com" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" vid="8">
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: {
+                            50: '#FFFFFF',
+                            100: '#F8F7F4', 
+                            200: '#EFEBE4', 
+                            300: '#E5DFD3', 
+                            400: '#C9C2B5',
+                            500: '#A19A8D',
+                            600: '#7A756C', 
+                            800: '#2A2724', 
+                            900: '#1A1918', 
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"EB Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style vid="10">
+        body {
+            font-family: 'EB Garamond', serif;
+            color: #1A1918;
+            background-color: #F8F7F4;
+            -webkit-font-smoothing: antialiased;
+        }
+        .ui-text { font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E5DFD3; border-radius: 10px; }
+        .panel-scroll { height: calc(100vh - 56px); overflow-y: auto; scrollbar-gutter: stable; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden selection:bg-parchment-900 selection:text-parchment-100" vid="11">
+
+    <aside class="w-64 bg-parchment-200 border-r border-parchment-300 flex flex-col flex-shrink-0" vid="12">
+        <div class="h-14 px-5 flex items-center justify-between border-b border-parchment-300/50 bg-parchment-200" vid="13">
+            <span class="text-lg italic font-medium tracking-wide" vid="14">Syntopicon</span>
+            <button class="text-parchment-600 p-1" vid="15"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="16"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" vid="17"></rect><path d="M9 3v18" vid="18"></path></svg></button>
+        </div>
+        <div class="p-6 space-y-8 overflow-y-auto flex-1" vid="19">
+            <nav class="space-y-1" vid="20">
+                <a href="#" class="ui-text text-[11px] font-semibold tracking-wider uppercase flex items-center justify-between px-3 py-2 rounded-full text-parchment-600 hover:bg-parchment-300/30" vid="21">
+                    <span vid="22">Inbox</span>
+                    <span class="bg-parchment-300/50 text-parchment-900 px-2 py-0.5 rounded-full text-[10px]" vid="23">12</span>
+                </a>
+                <a href="#" class="ui-text text-[11px] font-semibold tracking-wider uppercase flex items-center justify-between px-3 py-2 rounded-full bg-parchment-900 text-parchment-100 shadow-sm" vid="24">
+                    <span vid="25">Concepts</span>
+                    <span class="bg-parchment-100/20 px-2 py-0.5 rounded-full text-[10px]" vid="26">142</span>
+                </a>
+                <a href="#" class="ui-text text-[11px] font-semibold tracking-wider uppercase flex items-center justify-between px-3 py-2 rounded-full text-parchment-600 hover:bg-parchment-300/30" vid="27">
+                    <span vid="28">Frameworks</span>
+                    <span class="bg-parchment-300/50 text-parchment-900 px-2 py-0.5 rounded-full text-[10px]" vid="29">8</span>
+                </a>
+            </nav>
+            <div class="space-y-4" vid="30">
+                <h3 class="ui-text text-[10px] font-semibold tracking-widest text-parchment-500 uppercase px-3" vid="31">History</h3>
+                <div class="space-y-4" vid="32">
+                    <div class="flex items-start gap-3 px-3 border-l-2 border-parchment-900" vid="33">
+                        <div vid="34">
+                            <p class="italic text-[15px] leading-tight font-medium" vid="35">Compare Mode</p>
+                            <span class="ui-text text-[10px] text-parchment-500" vid="36">Syntopic View</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 px-3 border-l-2 border-transparent" vid="37">
+                        <div vid="38">
+                            <p class="italic text-[15px] leading-tight text-parchment-600" vid="39">Inversion Principle</p>
+                            <span class="ui-text text-[10px] text-parchment-400" vid="40">Mental Model</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-6 border-t border-parchment-300/50" vid="41">
+            <p class="ui-text text-[10px] text-parchment-500 text-center uppercase tracking-widest" vid="42">© 2024 Archive</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 bg-parchment-50 flex flex-col overflow-hidden" vid="43">
+        <header class="h-14 px-8 flex items-center justify-between flex-shrink-0 bg-parchment-50 border-b border-parchment-200 z-20" vid="44">
+            <div class="flex items-center gap-4" vid="45">
+                <button class="w-8 h-8 rounded-full border border-parchment-300 flex items-center justify-center text-parchment-600" vid="46"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="47"><path d="m15 18-6-6 6-6" vid="48"></path></svg></button>
+                <div class="ui-text text-[10px] font-medium tracking-widest text-parchment-500 uppercase flex items-center gap-2" vid="49">
+                    <span vid="50">Concepts</span><span vid="51">/</span><span class="text-parchment-900 bg-parchment-200 px-2 py-0.5 rounded" vid="52">Compare Mode</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4" vid="53">
+                <div class="flex items-center gap-2 px-3 py-1 bg-parchment-100 border border-parchment-200 rounded-full" vid="54">
+                   <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.4)]" vid="55"></div>
+                   <span class="ui-text text-[10px] font-semibold text-parchment-600 uppercase tracking-tighter" vid="56">Syntopic Synthesis Active</span>
+                </div>
+                <div class="h-4 w-[1px] bg-parchment-300" vid="57"></div>
+                <button class="ui-text text-[10px] font-semibold px-3 py-1 rounded-full border border-parchment-300" vid="58">Exit View</button>
+                <button class="ui-text text-[10px] font-semibold px-3 py-1 rounded-full bg-parchment-900 text-parchment-100" vid="59">Save Synthesis</button>
+            </div>
+        </header>
+
+        <div class="flex-1 flex divide-x divide-parchment-200 overflow-hidden" vid="60">
+            
+            <div class="flex-1 panel-scroll bg-parchment-50/50" vid="61">
+                <div class="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-parchment-200 px-8 py-3 flex items-center justify-between" vid="62">
+                    <span class="ui-text text-[9px] font-bold tracking-[0.2em] text-parchment-400 uppercase" vid="63">Concept A</span>
+                    <span class="ui-text text-[10px] font-medium bg-parchment-100 px-2 py-0.5 rounded border border-parchment-200" vid="64">Mental Model</span>
+                </div>
+                <article class="p-12 space-y-10" vid="65">
+                    <div vid="66">
+                        <h2 class="text-4xl font-medium tracking-tight text-parchment-900 mb-6 leading-tight" vid="67">The Inversion Principle</h2>
+                        <blockquote class="pl-4 border-l-2 border-parchment-900 py-1 mb-8" vid="68">
+                            <p class="text-lg italic text-parchment-600 leading-snug" vid="69">"Avoid stupidity is easier than seeking brilliance."</p>
+                        </blockquote>
+                    </div>
+
+                    <section vid="70">
+                        <h3 class="ui-text text-[10px] font-bold tracking-widest uppercase text-parchment-400 border-b border-parchment-200 pb-2 mb-4" vid="71">Definition</h3>
+                        <p class="text-lg leading-relaxed text-parchment-800" vid="72">A framework that requires looking at situations from the opposite end to uncover hidden assumptions and avoid catastrophic errors.</p>
+                    </section>
+
+                    <section vid="73">
+                        <h3 class="ui-text text-[10px] font-bold tracking-widest uppercase text-parchment-400 border-b border-parchment-200 pb-2 mb-4" vid="74">Methodology</h3>
+                        <div class="bg-parchment-100 rounded-xl p-6 border border-parchment-200 space-y-3" vid="75">
+                           <p class="text-sm italic text-parchment-600" vid="76">Subtractive View:</p>
+                           <p class="font-serif text-lg" vid="77">Instead of "How do I win?", ask "How do I ensure I don't lose?"</p>
+                        </div>
+                    </section>
+                </article>
+            </div>
+
+            
+            <div class="w-16 bg-parchment-100 flex flex-col items-center py-12 gap-12 z-10" vid="78">
+                <div class="w-10 h-10 rounded-full bg-parchment-900 text-parchment-100 flex items-center justify-center shadow-lg cursor-pointer hover:scale-105 transition-transform" vid="79">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="80"><path d="M7 7l10 10M17 7L7 17" vid="81"></path></svg>
+                </div>
+                <div class="flex-1 w-[1px] bg-gradient-to-b from-parchment-300 via-parchment-400 to-parchment-300" vid="82"></div>
+                <div class="group relative" vid="83">
+                    <div class="w-8 h-8 rounded-full border-2 border-parchment-300 flex items-center justify-center text-parchment-400 bg-white group-hover:border-parchment-900 group-hover:text-parchment-900 transition-colors" vid="84">
+                        <span class="ui-text text-[10px] font-bold" vid="85">VS</span>
+                    </div>
+                </div>
+                <div class="flex-1 w-[1px] bg-gradient-to-b from-parchment-300 via-parchment-400 to-parchment-300" vid="86"></div>
+            </div>
+
+            
+            <div class="flex-1 panel-scroll bg-parchment-100/30" vid="87">
+                <div class="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-parchment-200 px-8 py-3 flex items-center justify-between" vid="88">
+                    <span class="ui-text text-[9px] font-bold tracking-[0.2em] text-parchment-400 uppercase" vid="89">Concept B</span>
+                    <span class="ui-text text-[10px] font-medium bg-parchment-100 px-2 py-0.5 rounded border border-parchment-200" vid="90">Cognitive Psychology</span>
+                </div>
+                <article class="p-12 space-y-10" vid="91">
+                    <div vid="92">
+                        <h2 class="text-4xl font-medium tracking-tight text-parchment-900 mb-6 leading-tight" vid="93">Confirmation Bias</h2>
+                        <blockquote class="pl-4 border-l-2 border-parchment-400 py-1 mb-8" vid="94">
+                            <p class="text-lg italic text-parchment-500 leading-snug" vid="95">"What the human being is best at doing is interpreting all new information so that their prior conclusions remain intact."</p>
+                        </blockquote>
+                    </div>
+
+                    <section vid="96">
+                        <h3 class="ui-text text-[10px] font-bold tracking-widest uppercase text-parchment-400 border-b border-parchment-200 pb-2 mb-4" vid="97">Definition</h3>
+                        <p class="text-lg leading-relaxed text-parchment-800" vid="98">The tendency to search for, interpret, favor, and recall information in a way that confirms or supports one's prior beliefs or values.</p>
+                    </section>
+
+                    <section vid="99">
+                        <h3 class="ui-text text-[10px] font-bold tracking-widest uppercase text-parchment-400 border-b border-parchment-200 pb-2 mb-4" vid="100">Mechanism</h3>
+                        <div class="bg-white rounded-xl p-6 border border-parchment-200 space-y-3 shadow-sm" vid="101">
+                           <p class="text-sm italic text-parchment-600" vid="102">Additive Error:</p>
+                           <p class="font-serif text-lg" vid="103">The brain actively collects "proof" for existing models while filtering out contradictory data.</p>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+
+        
+        <footer class="h-24 bg-parchment-900 text-parchment-100 px-12 flex items-center gap-12 border-t border-black relative overflow-hidden" vid="104">
+            <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 20% 50%, #fff 0%, transparent 50%);" vid="105"></div>
+            <div class="flex-shrink-0" vid="106">
+                <span class="ui-text text-[10px] font-bold tracking-widest text-parchment-400 uppercase block mb-1" vid="107">Synthesis Insight</span>
+                <p class="italic text-xl" vid="108">The Antidote Loop</p>
+            </div>
+            <div class="flex-1 border-l border-parchment-800 pl-12" vid="109">
+                <p class="text-parchment-300 text-base leading-relaxed max-w-2xl" vid="110">
+                    <strong class="text-white" vid="111">Inversion</strong> acts as a structural circuit-breaker for <strong class="text-white" vid="112">Confirmation Bias</strong>. By forcing the mind to actively seek failure modes, it creates a "forced disconfirmation" that bypasses the brain's natural tendency to only seek supporting evidence.
+                </p>
+            </div>
+            <div class="flex gap-4" vid="113">
+                <button class="ui-text text-[11px] font-bold uppercase tracking-widest bg-white/10 hover:bg-white/20 px-6 py-2 rounded-full transition-colors" vid="114">Map Connection</button>
+            </div>
+        </footer>
+    </main>
+
+</body></html>
