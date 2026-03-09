@@ -108,33 +108,36 @@
 
 <body class="selection:bg-[#263524] selection:text-[#F0EDE6] min-h-screen flex flex-col" vid="10">
 
-    <header class="w-full pt-12 pb-12 px-8 lg:px-16 border-b border-[#1A1A18]/10" vid="11">
-        <div class="flex justify-between items-baseline mb-8" vid="12">
-            <div class="text-sm tracking-widest text-[#4A4A45] font-light lowercase" vid="13">
-                <a href="#" class="hover:opacity-60 transition-opacity" vid="14">archive</a> | filter
-            </div>
-            <a href="../intros/Sectors JellyFish V2.html"
-                class="text-xs tracking-[0.2em] uppercase text-[#1A1A18] border-b border-black/20 hover:border-black transition-colors pb-0.5 font-medium"
-                vid="15">RETURN TO MAIN</a>
+    <!-- Top Banner -->
+    <header
+        class="h-14 sticky top-0 z-50 border-b border-borderline bg-page/85 backdrop-blur-md flex items-center justify-between px-8 flex-shrink-0"
+        vid="11">
+        <div class="flex items-center gap-6" vid="12">
+            <span class="font-serif italic text-lg text-ink font-medium tracking-wide">Interlinked &amp;
+                Intertwined</span>
+            <div class="h-4 w-px bg-borderline"></div>
+            <span class="font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45]">Quotes</span>
         </div>
+        <div class="flex items-center gap-3">
+            <span class="font-serif text-base text-ink tracking-wide">hyperlynxt | teo</span>
+        </div>
+    </header>
 
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8" vid="16">
-            <div vid="17">
-                <h1 class="text-[4rem] lg:text-[5.5rem] leading-[0.8] tracking-tight text-[#1A1A18] font-medium"
-                    vid="18">
-                    Library <span class="title-ampersand italic ml-[-0.1em] opacity-90" vid="19">&amp;</span><br
-                        vid="20">
-                    Loom
-                </h1>
-            </div>
-            <div class="max-w-md w-full mb-2" vid="21">
-                <div class="relative" vid="22">
-                    <input type="text" placeholder="Search by theme or fragment..." id="landing-search"
-                        class="search-input w-full py-2 text-xl lg:text-2xl text-[#1A1A18] placeholder:text-[#1A1A18]/30 font-light"
-                        vid="23">
-                </div>
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8" vid="16">
+        <div vid="17">
+            <h1 class="text-[4rem] lg:text-[5.5rem] leading-[0.8] tracking-tight text-[#1A1A18] font-medium" vid="18">
+                Library <span class="title-ampersand italic ml-[-0.1em] opacity-90" vid="19">&amp;</span><br vid="20">
+                Loom
+            </h1>
+        </div>
+        <div class="max-w-md w-full mb-2" vid="21">
+            <div class="relative" vid="22">
+                <input type="text" placeholder="Search by theme or fragment..." id="landing-search"
+                    class="search-input w-full py-2 text-xl lg:text-2xl text-[#1A1A18] placeholder:text-[#1A1A18]/30 font-light"
+                    vid="23">
             </div>
         </div>
+    </div>
     </header>
 
     <div class="flex flex-1 catalog-container mx-auto w-full px-8 lg:px-16" vid="24">
