@@ -1,0 +1,250 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Index Mentis - Related Concepts List</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" vid="8">
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        page: '#F8F7F4',
+                        sidebar: '#EFEBE4',
+                        inverse: '#2A2724',
+                        ink: '#1A1918',
+                        muted: '#6B675F',
+                        borderline: '#DEDBD3',
+                        accent: '#DCD8CE',
+                        'inverse-text': '#F5F3ED',
+                    },
+                    fontFamily: {
+                        serif: ['"EB Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style vid="10">
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #DEDBD3;
+            border-radius: 3px;
+        }
+        ::selection {
+            background-color: #2A2724;
+            color: #F5F3ED;
+        }
+        .table-row-hover:hover {
+            background-color: rgba(239, 235, 228, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-page text-ink font-serif h-screen w-full flex flex-col overflow-hidden antialiased" vid="11">
+
+    <header class="h-14 sticky top-0 z-50 border-b border-borderline bg-page/85 backdrop-blur-md flex items-center justify-between px-8 flex-shrink-0" vid="12">
+        <div class="flex items-center gap-6" vid="13">
+            <span class="font-serif italic text-lg text-ink font-medium tracking-wide" vid="14">Index Mentis</span>
+            <div class="h-4 w-px bg-borderline" vid="15"></div>
+            <span class="font-sans text-[10px] uppercase font-bold tracking-widest text-muted" vid="16">
+                Archival Repository
+            </span>
+        </div>
+        <div class="flex items-center gap-3" vid="17">
+            <button class="font-sans text-[10px] uppercase font-bold tracking-widest text-ink border border-borderline px-5 py-1.5 rounded-full hover:border-muted hover:bg-sidebar/50 transition-all" vid="18">
+                Share
+            </button>
+            <button class="font-sans text-[10px] uppercase font-bold tracking-widest text-inverse-text bg-inverse border border-inverse px-5 py-1.5 rounded-full hover:opacity-90 transition-opacity shadow-sm" vid="19">
+                Archive Entry
+            </button>
+        </div>
+    </header>
+
+    <div class="h-20 border-b border-borderline flex items-center px-12 bg-white/30 flex-shrink-0" vid="20">
+        <div class="w-full max-w-[1240px] mx-auto flex items-center justify-between" vid="21">
+            <div class="flex items-center gap-4" vid="22">
+                <a href="#" class="text-muted hover:text-ink transition-colors" vid="23">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" vid="24"><path d="m15 18-6-6 6-6" vid="25"></path></svg>
+                </a>
+                <div vid="26">
+                    <span class="font-sans text-[9px] uppercase font-bold tracking-[0.2em] text-muted block mb-0.5" vid="27">Viewing Connections For</span>
+                    <h1 class="font-serif text-2xl font-medium text-ink" vid="28">The Map is Not the Territory</h1>
+                </div>
+            </div>
+            <div class="flex gap-2" vid="29">
+                <button class="px-4 py-2 border border-transparent rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink transition-colors" vid="30">Graph View</button>
+                <button class="px-4 py-2 bg-sidebar border border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-ink" vid="31">List View</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-1 flex overflow-hidden" vid="32">
+        
+        <div class="flex-1 overflow-y-auto custom-scrollbar bg-white/20 p-12" vid="33">
+            <div class="max-w-[1100px] mx-auto" vid="34">
+                <table class="w-full border-collapse" vid="35">
+                    <thead vid="36">
+                        <tr class="border-b border-borderline" vid="37">
+                            <th class="text-left font-sans text-[10px] uppercase font-bold tracking-widest text-muted pb-4 px-4 w-40" vid="38">Category</th>
+                            <th class="text-left font-sans text-[10px] uppercase font-bold tracking-widest text-muted pb-4 px-4 w-64" vid="39">Concept Name</th>
+                            <th class="text-left font-sans text-[10px] uppercase font-bold tracking-widest text-muted pb-4 px-4 w-40" vid="40">Connection</th>
+                            <th class="text-left font-sans text-[10px] uppercase font-bold tracking-widest text-muted pb-4 px-4" vid="41">Conceptual Rationale</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-borderline/40" vid="42">
+                        <tr class="table-row-hover transition-colors group" vid="43">
+                            <td class="py-6 px-4 font-sans text-[9px] uppercase font-bold tracking-wider text-muted" vid="44">Epistemology</td>
+                            <td class="py-6 px-4 font-serif text-lg text-ink font-medium" vid="45">Chesterton's Fence</td>
+                            <td class="py-6 px-4" vid="46">
+                                <span class="inline-flex items-center gap-2 px-3 py-1 bg-accent/40 rounded-full font-sans text-[9px] uppercase font-bold tracking-widest text-ink" vid="47">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-ink" vid="48"></span>
+                                    Primary
+                                </span>
+                            </td>
+                            <td class="py-6 px-4 font-serif text-base text-muted leading-relaxed" vid="49">
+                                Shares the core premise that the "map" (current arrangement) was created for a specific reason that must be understood before alteration.
+                            </td>
+                        </tr>
+                        <tr class="table-row-hover transition-colors group" vid="50">
+                            <td class="py-6 px-4 font-sans text-[9px] uppercase font-bold tracking-wider text-muted" vid="51">Systems Thinking</td>
+                            <td class="py-6 px-4 font-serif text-lg text-ink font-medium" vid="52">Goodhart's Law</td>
+                            <td class="py-6 px-4" vid="53">
+                                <span class="inline-flex items-center gap-2 px-3 py-1 border border-borderline rounded-full font-sans text-[9px] uppercase font-bold tracking-widest text-muted" vid="54">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-muted" vid="55"></span>
+                                    Secondary
+                                </span>
+                            </td>
+                            <td class="py-6 px-4 font-serif text-base text-muted leading-relaxed" vid="56">
+                                Illustrates the systemic failure occurring when a metric (a map) is mistaken for the actual objective (the territory).
+                            </td>
+                        </tr>
+                        <tr class="table-row-hover transition-colors group" vid="57">
+                            <td class="py-6 px-4 font-sans text-[9px] uppercase font-bold tracking-wider text-muted" vid="58">Logic</td>
+                            <td class="py-6 px-4 font-serif text-lg text-ink font-medium" vid="59">Occam's Razor</td>
+                            <td class="py-6 px-4" vid="60">
+                                <span class="inline-flex items-center gap-2 px-3 py-1 border border-borderline rounded-full font-sans text-[9px] uppercase font-bold tracking-widest text-muted" vid="61">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-muted/50" vid="62"></span>
+                                    Secondary
+                                </span>
+                            </td>
+                            <td class="py-6 px-4 font-serif text-base text-muted leading-relaxed" vid="63">
+                                Suggests that the most direct "map" (simplest explanation) is usually the most accurate representation of reality.
+                            </td>
+                        </tr>
+                        <tr class="table-row-hover transition-colors group" vid="64">
+                            <td class="py-6 px-4 font-sans text-[9px] uppercase font-bold tracking-wider text-muted" vid="65">Mental Model</td>
+                            <td class="py-6 px-4 font-serif text-lg text-ink font-medium" vid="66">Second-Order Thinking</td>
+                            <td class="py-6 px-4" vid="67">
+                                <span class="inline-flex items-center gap-2 px-3 py-1 border border-borderline/50 rounded-full font-sans text-[9px] uppercase font-bold tracking-widest text-muted/60" vid="68">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-muted/30" vid="69"></span>
+                                    Tertiary
+                                </span>
+                            </td>
+                            <td class="py-6 px-4 font-serif text-base text-muted/70 leading-relaxed" vid="70">
+                                Requires looking beyond the immediate "map" surface to understand ripple effects and downstream consequences.
+                            </td>
+                        </tr>
+                        <tr class="table-row-hover transition-colors group" vid="71">
+                            <td class="py-6 px-4 font-sans text-[9px] uppercase font-bold tracking-wider text-muted" vid="72">Cognitive Science</td>
+                            <td class="py-6 px-4 font-serif text-lg text-ink font-medium" vid="73">Availability Heuristic</td>
+                            <td class="py-6 px-4" vid="74">
+                                <span class="inline-flex items-center gap-2 px-3 py-1 border border-borderline/50 rounded-full font-sans text-[9px] uppercase font-bold tracking-widest text-muted/60" vid="75">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-muted/30" vid="76"></span>
+                                    Tertiary
+                                </span>
+                            </td>
+                            <td class="py-6 px-4 font-serif text-base text-muted/70 leading-relaxed" vid="77">
+                                A mental shortcut where the ease of recalling an instance (the internal map) dictates the perceived probability of an event.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        
+        <aside class="w-[360px] border-l border-borderline bg-sidebar/30 backdrop-blur-sm p-10 overflow-y-auto custom-scrollbar flex-shrink-0" vid="78">
+            <h2 class="font-sans text-[11px] uppercase font-bold tracking-[0.2em] text-muted mb-8" vid="79">Connection Insights</h2>
+            
+            <div class="space-y-8" vid="80">
+                <div class="p-6 bg-white border border-borderline shadow-sm" vid="81">
+                    <h5 class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted mb-4" vid="82">Network Statistics</h5>
+                    <div class="space-y-4" vid="83">
+                        <div class="flex justify-between items-end border-b border-borderline/50 pb-2" vid="84">
+                            <span class="font-sans text-[10px] uppercase tracking-widest text-muted" vid="85">Primary</span>
+                            <span class="font-serif text-2xl leading-none" vid="86">01</span>
+                        </div>
+                        <div class="flex justify-between items-end border-b border-borderline/50 pb-2" vid="87">
+                            <span class="font-sans text-[10px] uppercase tracking-widest text-muted" vid="88">Secondary</span>
+                            <span class="font-serif text-2xl leading-none" vid="89">03</span>
+                        </div>
+                        <div class="flex justify-between items-end pb-2" vid="90">
+                            <span class="font-sans text-[10px] uppercase tracking-widest text-muted" vid="91">Tertiary</span>
+                            <span class="font-serif text-2xl leading-none" vid="92">08</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4" vid="93">
+                    <h5 class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted mb-4" vid="94">Top Categories</h5>
+                    <ul class="space-y-3" vid="95">
+                        <li class="flex items-center justify-between" vid="96">
+                            <span class="font-serif text-base italic" vid="97">Systems Thinking</span>
+                            <span class="font-sans text-[10px] font-bold text-muted" vid="98">4 Items</span>
+                        </li>
+                        <li class="flex items-center justify-between" vid="99">
+                            <span class="font-serif text-base italic" vid="100">Epistemology</span>
+                            <span class="font-sans text-[10px] font-bold text-muted" vid="101">3 Items</span>
+                        </li>
+                        <li class="flex items-center justify-between" vid="102">
+                            <span class="font-serif text-base italic" vid="103">Logic</span>
+                            <span class="font-sans text-[10px] font-bold text-muted" vid="104">2 Items</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-8 p-5 border border-dashed border-borderline rounded" vid="105">
+                    <p class="font-serif italic text-sm text-muted leading-relaxed" vid="106">
+                        "The list view provides a structured taxonomic overview of semantic relationships, prioritizing archival clarity over spatial proximity."
+                    </p>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <nav class="h-20 bg-sidebar border-t border-borderline flex items-center justify-center px-8 relative z-50 flex-shrink-0" vid="107">
+        <div class="flex items-center gap-2 max-w-4xl w-full" vid="108">
+            <a href="#" class="flex-1 font-sans text-[10px] uppercase font-bold tracking-widest py-3 rounded-full flex flex-col items-center justify-center transition-colors text-muted hover:bg-borderline/30" vid="109">
+                <span vid="110">Collections</span>
+                <span class="font-normal opacity-60 text-[8px] mt-1" vid="111">24 Items</span>
+            </a>
+            <a href="#" class="flex-1 font-sans text-[10px] uppercase font-bold tracking-widest py-3 rounded-full flex flex-col items-center justify-center transition-colors bg-ink text-inverse-text shadow-lg" vid="112">
+                <span vid="113">Concepts</span>
+                <span class="font-normal opacity-80 text-[8px] mt-1" vid="114">142 Items</span>
+            </a>
+            <a href="#" class="flex-1 font-sans text-[10px] uppercase font-bold tracking-widest py-3 rounded-full flex flex-col items-center justify-center transition-colors text-muted hover:bg-borderline/30" vid="115">
+                <span vid="116">Frameworks</span>
+                <span class="font-normal opacity-60 text-[8px] mt-1" vid="117">18 Items</span>
+            </a>
+            <a href="#" class="flex-1 font-sans text-[10px] uppercase font-bold tracking-widest py-3 rounded-full flex flex-col items-center justify-center transition-colors text-muted hover:bg-borderline/30" vid="118">
+                <span vid="119">Biases</span>
+                <span class="font-normal opacity-60 text-[8px] mt-1" vid="120">56 Items</span>
+            </a>
+            <div class="h-8 w-px bg-borderline mx-4" vid="121"></div>
+            <button class="p-3 text-muted hover:text-ink transition-colors" vid="122">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="123">
+                    <circle cx="11" cy="11" r="8" vid="124"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" vid="125"></line>
+                </svg>
+            </button>
+        </div>
+    </nav>
+</body></html>

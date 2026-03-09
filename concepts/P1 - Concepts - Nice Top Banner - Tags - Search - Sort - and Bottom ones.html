@@ -1,0 +1,254 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Index Mentis - Concepts Index</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" vid="8">
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        page: '#F8F7F4',
+                        sidebar: '#EFEBE4',
+                        inverse: '#2A2724',
+                        ink: '#1A1918',
+                        muted: '#6B675F',
+                        borderline: '#DEDBD3',
+                        accent: '#DCD8CE',
+                        'inverse-text': '#F5F3ED',
+                    },
+                    fontFamily: {
+                        serif: ['"EB Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style vid="10">
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #DEDBD3;
+            border-radius: 3px;
+        }
+        .card-catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+            border-color: #1A1918;
+        }
+    </style>
+</head>
+<body class="bg-page text-ink font-serif h-screen w-full flex flex-col overflow-hidden antialiased" vid="11">
+
+    <header class="h-14 sticky top-0 z-50 border-b border-borderline bg-page/85 backdrop-blur-md flex items-center justify-between px-8 flex-shrink-0" vid="12">
+        <div class="flex items-center gap-6" vid="13">
+            <span class="font-serif italic text-lg text-ink font-medium tracking-wide" vid="14">Index Mentis</span>
+            <div class="h-4 w-px bg-borderline" vid="15"></div>
+            <span class="font-sans text-[10px] uppercase font-bold tracking-widest text-muted" vid="16">
+                Archival Repository
+            </span>
+        </div>
+        <div class="flex items-center gap-3" vid="17">
+            <button class="font-sans text-[10px] uppercase font-bold tracking-widest text-ink border border-borderline px-5 py-1.5 rounded-full hover:border-muted hover:bg-sidebar/50 transition-all" vid="18">
+                Share
+            </button>
+            <button class="font-sans text-[10px] uppercase font-bold tracking-widest text-inverse-text bg-inverse border border-inverse px-5 py-1.5 rounded-full hover:opacity-90 transition-opacity shadow-sm" vid="19">
+                Archive Entry
+            </button>
+        </div>
+    </header>
+
+    <div class="border-b border-borderline bg-white/30 flex-shrink-0" vid="20">
+        <div class="max-w-[1440px] mx-auto px-12 py-8" vid="21">
+            <div class="flex items-end justify-between mb-10" vid="22">
+                <div vid="23">
+                    <span class="font-sans text-[10px] uppercase font-bold tracking-[0.3em] text-muted block mb-2" vid="24">Catalogue Index</span>
+                    <h1 class="font-serif text-4xl font-medium text-ink" vid="25">Mental Models &amp; Concepts</h1>
+                </div>
+                <div class="flex items-center gap-4" vid="26">
+                    <div class="relative" vid="27">
+                        <input type="text" placeholder="Search the repository..." class="w-80 bg-sidebar/50 border border-borderline rounded-full px-6 py-2.5 font-sans text-sm focus:outline-none focus:border-ink transition-colors" vid="28">
+                        <svg class="absolute right-4 top-3 text-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" vid="29"><circle cx="11" cy="11" r="8" vid="30"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" vid="31"></line></svg>
+                    </div>
+                    <div class="h-10 w-px bg-borderline mx-2" vid="32"></div>
+                    <div class="flex items-center gap-2" vid="33">
+                        <span class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted" vid="34">Sort:</span>
+                        <select class="bg-transparent font-sans text-[10px] uppercase font-bold tracking-widest text-ink focus:outline-none cursor-pointer" vid="35">
+                            <option vid="36">Alphabetical (A-Z)</option>
+                            <option vid="37">Most Connected</option>
+                            <option vid="38">Recently Added</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1" vid="39">
+                <button class="px-5 py-2 bg-inverse text-inverse-text rounded-full font-sans text-[10px] uppercase font-bold tracking-widest whitespace-nowrap" vid="40">All Concepts (142)</button>
+                <button class="px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all" vid="41">Epistemology</button>
+                <button class="px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all" vid="42">Systems Thinking</button>
+                <button class="px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all" vid="43">Logic &amp; Reasoning</button>
+                <button class="px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all" vid="44">Decision Theory</button>
+                <button class="px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all" vid="45">Psychology</button>
+                <button class="px-5 py-2 hover:bg-sidebar border border-transparent hover:border-borderline rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:text-ink whitespace-nowrap transition-all" vid="46">Economics</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-1 overflow-y-auto custom-scrollbar bg-[radial-gradient(#DEDBD3_1px,transparent_1px)] [background-size:48px_48px]" vid="47">
+        <div class="max-w-[1440px] mx-auto px-12 py-12" vid="48">
+            <div class="card-catalog-grid" vid="49">
+                
+                <div class="bg-white border border-borderline p-6 rounded-sm shadow-[2px_2px_0px_rgba(222,219,211,0.5)] card-hover transition-all flex flex-col h-64 group cursor-pointer" vid="50">
+                    <div class="flex justify-between items-start mb-4" vid="51">
+                        <span class="font-sans text-[8px] uppercase font-bold tracking-[0.2em] text-muted" vid="52">C-001 / EPIS</span>
+                        <div class="w-1.5 h-1.5 rounded-full bg-accent" vid="53"></div>
+                    </div>
+                    <h3 class="font-serif text-xl text-ink mb-3 group-hover:italic transition-all" vid="54">Chesterton's Fence</h3>
+                    <p class="font-sans text-xs leading-relaxed text-muted mb-6 flex-1 line-clamp-4" vid="55">The principle that reforms should not be made until the reasoning behind the existing state of affairs is understood.</p>
+                    <div class="pt-4 border-t border-borderline/50 flex items-center justify-between" vid="56">
+                        <span class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted" vid="57">4 Connections</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="opacity-0 group-hover:opacity-100 transition-opacity" vid="58"><path d="M5 12h14m-7-7 7 7-7 7" vid="59"></path></svg>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-borderline p-6 rounded-sm shadow-[2px_2px_0px_rgba(222,219,211,0.5)] card-hover transition-all flex flex-col h-64 group cursor-pointer" vid="60">
+                    <div class="flex justify-between items-start mb-4" vid="61">
+                        <span class="font-sans text-[8px] uppercase font-bold tracking-[0.2em] text-muted" vid="62">C-012 / SYST</span>
+                        <div class="w-1.5 h-1.5 rounded-full bg-accent" vid="63"></div>
+                    </div>
+                    <h3 class="font-serif text-xl text-ink mb-3 group-hover:italic transition-all" vid="64">Goodhart's Law</h3>
+                    <p class="font-sans text-xs leading-relaxed text-muted mb-6 flex-1 line-clamp-4" vid="65">When a measure becomes a target, it ceases to be a good measure. Particularly relevant in complex systems and policy.</p>
+                    <div class="pt-4 border-t border-borderline/50 flex items-center justify-between" vid="66">
+                        <span class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted" vid="67">7 Connections</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="opacity-0 group-hover:opacity-100 transition-opacity" vid="68"><path d="M5 12h14m-7-7 7 7-7 7" vid="69"></path></svg>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-borderline p-6 rounded-sm shadow-[2px_2px_0px_rgba(222,219,211,0.5)] card-hover transition-all flex flex-col h-64 group cursor-pointer" vid="70">
+                    <div class="flex justify-between items-start mb-4" vid="71">
+                        <span class="font-sans text-[8px] uppercase font-bold tracking-[0.2em] text-muted" vid="72">C-084 / LOGI</span>
+                        <div class="w-1.5 h-1.5 rounded-full bg-accent" vid="73"></div>
+                    </div>
+                    <h3 class="font-serif text-xl text-ink mb-3 group-hover:italic transition-all" vid="74">Occam's Razor</h3>
+                    <p class="font-sans text-xs leading-relaxed text-muted mb-6 flex-1 line-clamp-4" vid="75">The problem-solving principle that "entities should not be multiplied beyond necessity," or simpler explanations are generally better.</p>
+                    <div class="pt-4 border-t border-borderline/50 flex items-center justify-between" vid="76">
+                        <span class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted" vid="77">12 Connections</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="opacity-0 group-hover:opacity-100 transition-opacity" vid="78"><path d="M5 12h14m-7-7 7 7-7 7" vid="79"></path></svg>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-borderline p-6 rounded-sm shadow-[2px_2px_0px_rgba(222,219,211,0.5)] card-hover transition-all flex flex-col h-64 group cursor-pointer" vid="80">
+                    <div class="flex justify-between items-start mb-4" vid="81">
+                        <span class="font-sans text-[8px] uppercase font-bold tracking-[0.2em] text-muted" vid="82">C-029 / DECI</span>
+                        <div class="w-1.5 h-1.5 rounded-full bg-accent" vid="83"></div>
+                    </div>
+                    <h3 class="font-serif text-xl text-ink mb-3 group-hover:italic transition-all" vid="84">Second-Order Thinking</h3>
+                    <p class="font-sans text-xs leading-relaxed text-muted mb-6 flex-1 line-clamp-4" vid="85">The process of considering the intended consequences of an action, as well as the unintended consequences of those consequences.</p>
+                    <div class="pt-4 border-t border-borderline/50 flex items-center justify-between" vid="86">
+                        <span class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted" vid="87">3 Connections</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="opacity-0 group-hover:opacity-100 transition-opacity" vid="88"><path d="M5 12h14m-7-7 7 7-7 7" vid="89"></path></svg>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-borderline p-6 rounded-sm shadow-[2px_2px_0px_rgba(222,219,211,0.5)] card-hover transition-all flex flex-col h-64 group cursor-pointer" vid="90">
+                    <div class="flex justify-between items-start mb-4" vid="91">
+                        <span class="font-sans text-[8px] uppercase font-bold tracking-[0.2em] text-muted" vid="92">C-114 / EPIS</span>
+                        <div class="w-1.5 h-1.5 rounded-full bg-accent" vid="93"></div>
+                    </div>
+                    <h3 class="font-serif text-xl text-ink mb-3 group-hover:italic transition-all" vid="94">The Map is Not the Territory</h3>
+                    <p class="font-sans text-xs leading-relaxed text-muted mb-6 flex-1 line-clamp-4" vid="95">An abstraction derived from something, or a reaction to it, is not the thing itself.</p>
+                    <div class="pt-4 border-t border-borderline/50 flex items-center justify-between" vid="96">
+                        <span class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted" vid="97">16 Connections</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="opacity-0 group-hover:opacity-100 transition-opacity" vid="98"><path d="M5 12h14m-7-7 7 7-7 7" vid="99"></path></svg>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-borderline p-6 rounded-sm shadow-[2px_2px_0px_rgba(222,219,211,0.5)] card-hover transition-all flex flex-col h-64 group cursor-pointer" vid="100">
+                    <div class="flex justify-between items-start mb-4" vid="101">
+                        <span class="font-sans text-[8px] uppercase font-bold tracking-[0.2em] text-muted" vid="102">C-042 / PSY</span>
+                        <div class="w-1.5 h-1.5 rounded-full bg-accent" vid="103"></div>
+                    </div>
+                    <h3 class="font-serif text-xl text-ink mb-3 group-hover:italic transition-all" vid="104">Hedonic Treadmill</h3>
+                    <p class="font-sans text-xs leading-relaxed text-muted mb-6 flex-1 line-clamp-4" vid="105">The observed tendency of humans to quickly return to a relatively stable level of happiness despite major positive or negative events.</p>
+                    <div class="pt-4 border-t border-borderline/50 flex items-center justify-between" vid="106">
+                        <span class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted" vid="107">5 Connections</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="opacity-0 group-hover:opacity-100 transition-opacity" vid="108"><path d="M5 12h14m-7-7 7 7-7 7" vid="109"></path></svg>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-borderline p-6 rounded-sm shadow-[2px_2px_0px_rgba(222,219,211,0.5)] card-hover transition-all flex flex-col h-64 group cursor-pointer" vid="110">
+                    <div class="flex justify-between items-start mb-4" vid="111">
+                        <span class="font-sans text-[8px] uppercase font-bold tracking-[0.2em] text-muted" vid="112">C-056 / ECON</span>
+                        <div class="w-1.5 h-1.5 rounded-full bg-accent" vid="113"></div>
+                    </div>
+                    <h3 class="font-serif text-xl text-ink mb-3 group-hover:italic transition-all" vid="114">Opportunity Cost</h3>
+                    <p class="font-sans text-xs leading-relaxed text-muted mb-6 flex-1 line-clamp-4" vid="115">The value of the next-best alternative when a decision is made; it's what you give up to do something else.</p>
+                    <div class="pt-4 border-t border-borderline/50 flex items-center justify-between" vid="116">
+                        <span class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted" vid="117">9 Connections</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="opacity-0 group-hover:opacity-100 transition-opacity" vid="118"><path d="M5 12h14m-7-7 7 7-7 7" vid="119"></path></svg>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-borderline p-6 rounded-sm shadow-[2px_2px_0px_rgba(222,219,211,0.5)] card-hover transition-all flex flex-col h-64 group cursor-pointer" vid="120">
+                    <div class="flex justify-between items-start mb-4" vid="121">
+                        <span class="font-sans text-[8px] uppercase font-bold tracking-[0.2em] text-muted" vid="122">C-021 / SYST</span>
+                        <div class="w-1.5 h-1.5 rounded-full bg-accent" vid="123"></div>
+                    </div>
+                    <h3 class="font-serif text-xl text-ink mb-3 group-hover:italic transition-all" vid="124">Entropy</h3>
+                    <p class="font-sans text-xs leading-relaxed text-muted mb-6 flex-1 line-clamp-4" vid="125">The measure of disorder or randomness in a system. Left alone, systems tend to move toward higher disorder.</p>
+                    <div class="pt-4 border-t border-borderline/50 flex items-center justify-between" vid="126">
+                        <span class="font-sans text-[9px] uppercase font-bold tracking-widest text-muted" vid="127">11 Connections</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="opacity-0 group-hover:opacity-100 transition-opacity" vid="128"><path d="M5 12h14m-7-7 7 7-7 7" vid="129"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 flex justify-center" vid="130">
+                <button class="font-sans text-[10px] uppercase font-bold tracking-widest text-muted border border-borderline px-8 py-3 rounded-full hover:bg-white hover:text-ink hover:border-ink transition-all" vid="131">
+                    Load More Entries (134 Remaining)
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <nav class="h-20 bg-sidebar border-t border-borderline flex items-center justify-center px-8 relative z-50 flex-shrink-0" vid="132">
+        <div class="flex items-center gap-2 max-w-4xl w-full" vid="133">
+            <a href="#" class="flex-1 font-sans text-[10px] uppercase font-bold tracking-widest py-3 rounded-full flex flex-col items-center justify-center transition-colors text-muted hover:bg-borderline/30" vid="134">
+                <span vid="135">Collections</span>
+                <span class="font-normal opacity-60 text-[8px] mt-1" vid="136">24 Items</span>
+            </a>
+            <a href="#" class="flex-1 font-sans text-[10px] uppercase font-bold tracking-widest py-3 rounded-full flex flex-col items-center justify-center transition-colors bg-ink text-inverse-text shadow-lg" vid="137">
+                <span vid="138">Concepts</span>
+                <span class="font-normal opacity-80 text-[8px] mt-1" vid="139">142 Items</span>
+            </a>
+            <a href="#" class="flex-1 font-sans text-[10px] uppercase font-bold tracking-widest py-3 rounded-full flex flex-col items-center justify-center transition-colors text-muted hover:bg-borderline/30" vid="140">
+                <span vid="141">Frameworks</span>
+                <span class="font-normal opacity-60 text-[8px] mt-1" vid="142">18 Items</span>
+            </a>
+            <a href="#" class="flex-1 font-sans text-[10px] uppercase font-bold tracking-widest py-3 rounded-full flex flex-col items-center justify-center transition-colors text-muted hover:bg-borderline/30" vid="143">
+                <span vid="144">Biases</span>
+                <span class="font-normal opacity-60 text-[8px] mt-1" vid="145">56 Items</span>
+            </a>
+            <div class="h-8 w-px bg-borderline mx-4" vid="146"></div>
+            <button class="p-3 text-muted hover:text-ink transition-colors" vid="147">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="148">
+                    <circle cx="11" cy="11" r="8" vid="149"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" vid="150"></line>
+                </svg>
+            </button>
+        </div>
+    </nav>
+</body></html>
