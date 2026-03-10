@@ -3,441 +3,442 @@
 <head vid="1">
     <meta charset="UTF-8" vid="2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
-    <title vid="4">Interlinked &amp; Intertwined by teo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet" vid="7">
+    <title vid="4">Interlinked &amp; Intertwined - Selection</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <style vid="6">
+        @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap');
 
-    <style vid="8">
         :root {
-            --bg-paper: #121212;
-            --ink-main: #e5e0d8;
-            --ink-subtle: #a19d94;
-            --accent-matcha: #4B0082;
-            --accent-blur: rgba(75, 0, 130, 0.6);
-
+            --bg-void: #f8f7f2;
+            --text-primary: #1a1a1a;
+            --accent-gold: #e6b97e;
+            --accent-glow: rgba(230, 185, 126, 0.4);
+            --font-serif: 'Shippori Mincho', serif;
             --font-display: 'Cormorant Garamond', serif;
-            --font-tech: 'Space Mono', monospace;
-            --font-shippori: 'Shippori Mincho', serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
-            background-color: var(--bg-paper);
-            color: var(--ink-main);
-            font-family: var(--font-tech);
+            background-color: var(--bg-void);
+            color: var(--text-primary);
+            font-family: var(--font-serif);
+            margin: 0;
+            overflow: hidden;
             height: 100vh;
             width: 100vw;
-            overflow: hidden;
-            position: relative;
-        }
-
-
-        .layout-container {
-            width: 100%;
-            height: 100%;
-            display: grid;
-            grid-template-rows: auto 1fr auto;
-            padding: 3rem;
-            position: relative;
-            z-index: 10;
-        }
-
-
-        header {
             display: flex;
-            justify-content: flex-end;
-            align-items: flex-start;
-        }
-
-        .author-tag {
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-
-        .canvas-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
 
-        svg.constellation {
-            width: 100%;
-            height: 100%;
-            overflow: visible;
-        }
-
-
-        .constellation-line {
-            stroke: var(--ink-subtle);
-            stroke-width: 1px;
-            stroke-dasharray: 4, 4;
-            fill: none;
-            opacity: 0.8;
-            transition: stroke 0.3s ease;
-        }
-
-        .constellation-point {
-            fill: var(--bg-paper);
-            stroke: var(--ink-subtle);
-            stroke-width: 1px;
-            r: 4;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .constellation-point:hover {
-            fill: var(--accent-matcha);
-            stroke: var(--ink-main);
-            r: 6;
-        }
-
-
-
-
-        .path-text {
-            font-family: var(--font-tech);
-            font-size: 0.75rem;
-            fill: var(--ink-main);
-            text-transform: lowercase;
-            letter-spacing: 0.05em;
-        }
-
-
-
-        .nav-label {
-            position: absolute;
-            font-family: var(--font-display);
-            font-style: italic;
-            font-size: 2rem;
-            cursor: pointer;
-            text-decoration: none;
-            color: var(--ink-main);
-            transform: translate(-50%, -50%);
-            white-space: nowrap;
-            transition: all 0.3s ease;
-        }
-
-        .nav-label span.num {
-            font-family: var(--font-tech);
-            font-style: normal;
-            font-size: 1.2rem;
-            background: var(--ink-main);
-            color: var(--bg-paper);
-            padding: 4px 10px;
-            border-radius: 50%;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-
-        .nav-label:hover {
-            color: var(--accent-matcha);
-            transform: translate(-50%, -50%) scale(1.1);
-            text-shadow: 0 0 8px var(--accent-blur), 0 0 20px var(--accent-blur);
-        }
-
-
-        .nav-1 {
-            top: 10%;
-            left: 20%;
-        }
-
-        .nav-2 {
-            top: 10%;
-            left: 75%;
-        }
-
-        .nav-3 {
-            top: 50%;
-            left: 85%;
-        }
-
-        .nav-4 {
-            top: 85%;
-            left: 65%;
-        }
-
-        .nav-5 {
-            top: 70%;
-            left: 15%;
-        }
-
-
-        .title-block {
-            text-align: left;
-            position: relative;
-        }
-
-        h1 {
-            font-family: var(--font-shippori);
-            font-size: clamp(3rem, 8vw, 7rem);
-            font-weight: 400;
-            line-height: 0.9;
-            letter-spacing: -0.03em;
-            color: var(--ink-main);
-        }
-
-        h1 .glow-text {
-            color: var(--accent-matcha);
-            text-shadow: 0 0 20px var(--accent-blur), 0 0 45px var(--accent-blur);
-        }
-
-        .subtitle {
-            font-family: var(--font-tech);
-            font-size: 0.8rem;
-            margin-top: 1rem;
-            color: var(--ink-subtle);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .footer-link {
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: 1.5rem;
-            letter-spacing: -0.02em;
-            color: var(--ink-main);
-            text-decoration: none;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: var(--ink-subtle);
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-        }
-
-
-        .orb {
-            fill: var(--accent-matcha);
-            filter: blur(40px);
-            opacity: 0.8;
-            mix-blend-mode: screen;
-            animation: float 15s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            33% {
-                transform: translate(30px, -50px) scale(1.1);
-            }
-
-            66% {
-                transform: translate(-20px, 20px) scale(0.9);
-            }
-
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-        }
-
-        @keyframes drawLine {
-            from {
-                stroke-dashoffset: 4000;
-            }
-
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        .draw-anim {
-            stroke-dasharray: 4000;
-            stroke-dashoffset: 4000;
-            animation: drawLine 2.5s ease-out forwards;
-        }
-
-        #particle-canvas {
+        #mycelium-layer {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             z-index: 1;
             pointer-events: none;
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ampersand-hub {
+            font-size: 6rem;
+            color: #1a1a1a;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            cursor: default;
+            user-select: none;
+        }
+
+        #hub-node {
+            font-family: var(--font-display);
+            font-style: italic;
+            color: #1a1a1a;
+            font-size: clamp(6rem, 15vw, 12rem);
+            opacity: 0;
+            animation: nodeEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .aura {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(230, 185, 126, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: breathe 6s ease-in-out infinite;
+        }
+
+        .chapter-node {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0;
+            transform: scale(0.8);
+            z-index: 25;
+            padding: 1rem;
+        }
+
+        .node-circle {
+            width: 12px;
+            height: 12px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
+        }
+
+        .chapter-label {
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            opacity: 0.6;
+            transition: all 0.4s ease;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-top: 0.25rem;
+            white-space: nowrap;
+            transition: all 0.4s ease;
+        }
+
+        .chapter-node:hover {
+            transform: scale(1.1);
+        }
+
+        .chapter-node:hover .node-circle {
+            box-shadow: 0 0 25px var(--accent-gold), 0 0 50px rgba(0, 0, 0, 0.2);
+            transform: scale(1.5);
+        }
+
+        .chapter-node:hover .chapter-label,
+        .chapter-node:hover .chapter-title {
+            color: #1a1a1a;
+            opacity: 1;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 0.5;
+            }
+        }
+
+        .fade-in-node {
+            animation: nodeEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes nodeEntrance {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
     </style>
 </head>
 
-<body vid="9">
+<body vid="7">
 
-    <canvas id="particle-canvas"></canvas>
-    <div class="layout-container" vid="11">
+    <canvas id="mycelium-layer"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none;"></canvas>
 
-
-        <header vid="12">
-            <div class="author-tag" vid="13">hyperlynxt | teo</div>
-        </header>
-
-
-        <div class="canvas-wrapper" vid="14">
-
-
-            <svg class="constellation" style="position: absolute; top:0; left:0; pointer-events: none;" vid="15">
-                <circle cx="20%" cy="20%" r="80" class="orb" vid="16"></circle>
-                <circle cx="65%" cy="70%" r="60" class="orb"
-                    style="animation-delay: -5s; fill: var(--ink-subtle); opacity: 0.1;" vid="17"></circle>
-            </svg>
-
-
-
-
-            <svg class="constellation" id="diagram" preserveAspectRatio="none" vid="18">
-                <defs vid="19">
-                    <path id="path12" d="M 300 200 L 650 150" vid="20"></path>
-                    <path id="path23" d="M 650 150 L 750 500" vid="21"></path>
-                    <path id="path34" d="M 750 500 L 600 800" vid="22"></path>
-                    <path id="path45" d="M 600 800 L 250 650" vid="23"></path>
-                    <path id="path51" d="M 250 650 L 300 200" vid="24"></path>
-
-                    <path id="path14" d="M 300 200 L 600 800" vid="25"></path>
-                </defs>
-
-
-                <line x1="20%" y1="10%" x2="75%" y2="10%" class="constellation-line draw-anim"></line>
-                <line x1="75%" y1="10%" x2="85%" y2="50%" class="constellation-line draw-anim"
-                    style="animation-delay: 0.2s"></line>
-                <line x1="85%" y1="50%" x2="65%" y2="85%" class="constellation-line draw-anim"
-                    style="animation-delay: 0.4s"></line>
-                <line x1="65%" y1="85%" x2="15%" y2="70%" class="constellation-line draw-anim"
-                    style="animation-delay: 0.6s"></line>
-                <line x1="15%" y1="70%" x2="20%" y2="10%" class="constellation-line draw-anim"
-                    style="animation-delay: 0.8s"></line>
-
-
-                <line x1="20%" y1="10%" x2="65%" y2="85%" class="constellation-line draw-anim"
-                    style="stroke-dasharray: 2, 6; opacity: 0.5; animation-delay: 1.2s"></line>
-
-
-                <text x="45%" y="16%" transform="rotate(-5, 500, 200)" class="path-text" vid="32"></text>
-                <text x="72%" y="35%" transform="rotate(75, 750, 300)" class="path-text" vid="33"></text>
-                <text x="65%" y="68%" transform="rotate(140, 650, 650)" class="path-text" vid="34"></text>
-                <text x="35%" y="75%" transform="rotate(20, 350, 750)" class="path-text" vid="35"></text>
-                <text x="22%" y="45%" transform="rotate(-85, 250, 450)" class="path-text" vid="36"></text>
-
-
-                <circle cx="20%" cy="10%" class="constellation-point"></circle>
-                <circle cx="75%" cy="10%" class="constellation-point"></circle>
-                <circle cx="85%" cy="50%" class="constellation-point"></circle>
-                <circle cx="65%" cy="85%" class="constellation-point"></circle>
-                <circle cx="15%" cy="70%" class="constellation-point"></circle>
-            </svg>
-
-
-            <a href="small note.html" class="nav-label nav-1" style="transform: translate(-10%, -150%);" vid="42">
-                <span class="num" vid="43">1</span>notes
-            </a>
-            <a href="#" class="nav-label nav-2" style="transform: translate(10%, -120%);" vid="44">
-                <span class="num" vid="45">2</span>snippets
-            </a>
-            <a href="medium note.html" class="nav-label nav-3" style="transform: translate(20%, -50%);" vid="46">
-                <span class="num" vid="47">3</span>essays
-            </a>
-            <a href="quotes.html" class="nav-label nav-4" style="transform: translate(-10%, 60%);" vid="48">
-                <span class="num" vid="49">4</span>quotes
-            </a>
-            <a href="synaptic branching.html" class="nav-label nav-5" style="transform: translate(-100%, -20%);"
-                vid="50">
-                <span class="num" vid="51">5</span>concept dives
-            </a>
+    <header style="position: absolute; top: 3rem; right: 3rem; z-index: 50;">
+        <div
+            style="font-family: var(--font-serif); font-weight: 600; font-size: 1.5rem; letter-spacing: -0.02em; color: #1a1a1a;">
+            hyperlynxt | teo
         </div>
+    </header>
 
-
-        <div class="title-block" vid="52">
-            <div class="subtitle" vid="53">Personal Archive / Vol. 1</div>
-            <h1 vid="54">Inter<span class="glow-text">linked</span><br vid="55">&amp; Inter<span
-                    class="glow-text">twined</span></h1>
-        </div>
-        <div style="position: absolute; bottom: 3rem; right: 3rem; display: flex; gap: 1.5rem;">
-            <a href="#" class="footer-link" vid="60">Archive</a>
-            <a href="intros/Sectors JellyFish V2.html" class="footer-link" vid="61">Log</a>
+    <div
+        style="position: absolute; left: 2%; top: 35%; transform: translateY(-50%); z-index: 40; pointer-events: none;">
+        <h1
+            style="font-family: var(--font-display); font-size: clamp(4rem, 10vw, 8rem); line-height: 0.9; font-weight: 300; letter-spacing: -0.05em; color: #1a1a1a;">
+            <div style="opacity: 0; animation: fadeIn 1s ease-out forwards;">Interlinked</div>
+            <div
+                style="position: relative; z-index: 50; margin: -2vw 0; opacity: 0; animation: scaleIn 1s ease 0.3s forwards;">
+                <span
+                    style="font-style: italic; color: #1b3022; padding: 0 0.5rem; font-size: clamp(5rem, 12vw, 10rem);">&amp;</span>
+            </div>
+            <div style="opacity: 0; animation: fadeIn 1s ease-out 0.5s forwards;">Intertwined</div>
+        </h1>
+        <div style="margin-top: 2rem; margin-left: 2rem; opacity: 0; animation: fadeIn 1.5s ease-out 1s forwards;">
+            <p
+                style="font-family: var(--font-serif); font-size: 1.1rem; color: #4a4a4a; white-space: nowrap; line-height: 1.6; letter-spacing: 0.05em;">
+                A mosaic of a life made of wonder.<br>The texture of my self, gathered in one place.
+            </p>
         </div>
     </div>
 
-    </div>
+    <main class="content-layer" vid="15">
+        <div class="ampersand-hub" style="left: 20%; top: -3%;" vid="16">
+            <span id="hub-node" vid="18">&amp;</span>
+        </div>
 
-    <script>
-        const canvas = document.getElementById('particle-canvas');
+
+        <a href="#" class="chapter-node fade-in-node"
+            style="top: 12%; left: 70%; translate: -50% 0; animation-delay: 0.4s;" vid="19">
+            <div class="node-circle" vid="20"></div>
+            <span class="chapter-label" vid="21">Part I</span>
+            <span class="chapter-title" vid="22">Notes</span>
+        </a>
+
+        <a href="quotes/Quotes Landing Page.html" class="chapter-node fade-in-node"
+            style="top: 29%; left: 83%; animation-delay: 0.6s;" vid="23">
+            <div class="node-circle" vid="24"></div>
+            <span class="chapter-label" vid="25">Part II</span>
+            <span class="chapter-title" vid="26">Quotes Felt</span>
+        </a>
+
+        <a href="concepts/Concept Cards Page.html" class="chapter-node fade-in-node"
+            style="top: 70%; left: 78%; animation-delay: 0.8s;" vid="27">
+            <div class="node-circle" vid="28"></div>
+            <span class="chapter-label" vid="29">Part III</span>
+            <span class="chapter-title" vid="30">Concepts Toolkit</span>
+        </a>
+
+        <a href="#" class="chapter-node fade-in-node"
+            style="top: 77%; left: 70%; translate: -50% 0; animation-delay: 1.0s;" vid="31">
+            <div class="node-circle" vid="32"></div>
+            <span class="chapter-label" vid="33">Part IV</span>
+            <span class="chapter-title" vid="34">Linguistic Treats</span>
+        </a>
+
+        <a href="#" class="chapter-node fade-in-node" style="top: 70%; left: 47%; animation-delay: 1.2s;" vid="35">
+            <div class="node-circle" vid="36"></div>
+            <span class="chapter-label" vid="37">Part V</span>
+            <span class="chapter-title" vid="38">Cinema Annotations</span>
+        </a>
+
+        <a href="#" class="chapter-node fade-in-node" style="top: 29%; left: 42%; animation-delay: 1.4s;" vid="39">
+            <div class="node-circle" vid="40"></div>
+            <span class="chapter-label" vid="41">Part VI</span>
+            <span class="chapter-title" vid="42">Reading Annotations</span>
+        </a>
+    </main>
+
+    <script vid="44">
+        const canvas = document.getElementById('mycelium-layer');
         const ctx = canvas.getContext('2d');
+        const hubNode = document.getElementById('hub-node');
+        const chapterNodes = document.querySelectorAll('.node-circle');
 
-        let width, height;
-        let particles = [];
+        const CONFIG = {
+            maxPaths: 45,
+            color: 'rgba(42, 42, 42, {opacity})',
+            strokeWidth: { min: 0.5, max: 1.5 },
+            opacity: { min: 0.4, max: 0.8 },
+            growthSpeed: 0.006,
+            lifeSpan: { min: 300, max: 700 }
+        };
 
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
+        let activePaths = [];
+        let dpr = window.devicePixelRatio || 1;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth * dpr;
+            canvas.height = window.innerHeight * dpr;
+            ctx.scale(dpr, dpr);
+            activePaths = [];
         }
 
-        class Particle {
+        const random = (min, max) => Math.random() * (max - min) + min;
+
+        function getCenter(element) {
+            const rect = element.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2
+            };
+        }
+
+        function getBezierPoint(t, p0, p1, p2, p3) {
+            const cX = 3 * (p1.x - p0.x);
+            const bX = 3 * (p2.x - p1.x) - cX;
+            const aX = p3.x - p0.x - cX - bX;
+
+            const cY = 3 * (p1.y - p0.y);
+            const bY = 3 * (p2.y - p1.y) - cY;
+            const aY = p3.y - p0.y - cY - bY;
+
+            const x = (aX * Math.pow(t, 3)) + (bX * Math.pow(t, 2)) + (cX * t) + p0.x;
+            const y = (aY * Math.pow(t, 3)) + (bY * Math.pow(t, 2)) + (cY * t) + p0.y;
+            return { x, y };
+        }
+
+        class MyceliumPath {
             constructor() {
-                this.reset();
+                this.phase = 'growing';
+                this.progress = 0;
+                this.life = random(CONFIG.lifeSpan.min, CONFIG.lifeSpan.max);
+                this.width = random(CONFIG.strokeWidth.min, CONFIG.strokeWidth.max);
+                this.opacity = random(CONFIG.opacity.min, CONFIG.opacity.max);
+                this.initPoints();
             }
 
-            reset() {
-                this.x = Math.random() * width;
-                this.y = height + 10;
-                this.size = Math.random() * 1.5 + 0.5;
-                this.speed = Math.random() * 0.4 + 0.1;
-                this.opacity = Math.random() * 0.5;
-                this.drift = (Math.random() - 0.5) * 0.2;
+            initPoints() {
+                const targetNodes = Array.from(chapterNodes);
+                const randomNode = targetNodes[Math.floor(Math.random() * targetNodes.length)];
+
+                this.start = getCenter(hubNode);
+                this.end = getCenter(randomNode);
+
+                this.start.x += random(-5, 5);
+                this.start.y += random(-5, 5);
+                this.end.x += random(-8, 8);
+                this.end.y += random(-8, 8);
+
+                this.cpOffsets = {
+                    cp1x: random(-20, 20),
+                    cp1y: random(-20, 20),
+                    cp2x: random(-20, 20),
+                    cp2y: random(-20, 20),
+                    freq: random(0.0005, 0.002),
+                    amp: random(10, 50)
+                };
             }
 
-            update() {
-                this.y -= this.speed;
-                this.x += this.drift;
-
-                if (this.y < -10) {
-                    this.reset();
+            update(time) {
+                if (this.phase === 'growing') {
+                    this.progress += CONFIG.growthSpeed;
+                    if (this.progress >= 1) { this.progress = 1; this.phase = 'sustained'; }
+                } else if (this.phase === 'sustained') {
+                    this.life--;
+                    if (this.life <= 0) this.phase = 'dying';
+                } else if (this.phase === 'dying') {
+                    this.progress -= CONFIG.growthSpeed * 1.2;
+                    if (this.progress <= 0) { this.progress = 0; this.dead = true; }
                 }
+
+                const dx = this.end.x - this.start.x;
+                const dy = this.end.y - this.start.y;
+
+                const noise1 = Math.sin(time * this.cpOffsets.freq) * this.cpOffsets.amp;
+                const noise2 = Math.cos(time * this.cpOffsets.freq) * this.cpOffsets.amp;
+
+                this.cp1 = {
+                    x: this.start.x + dx * 0.4 + this.cpOffsets.cp1x + noise1,
+                    y: this.start.y + dy * 0.4 + this.cpOffsets.cp1y + noise2
+                };
+
+                this.cp2 = {
+                    x: this.start.x + dx * 0.7 + this.cpOffsets.cp2x - noise1,
+                    y: this.start.y + dy * 0.7 + this.cpOffsets.cp2y - noise2
+                };
             }
 
             draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(75, 0, 130, ${this.opacity})`;
-                ctx.fill();
-            }
-        }
+                if (this.progress <= 0) return;
 
-        function init() {
-            resize();
-            particles = [];
-            for (let i = 0; i < 60; i++) {
-                particles.push(new Particle());
-                particles[i].y = Math.random() * height;
+                ctx.beginPath();
+                ctx.moveTo(this.start.x, this.start.y);
+
+                const segments = 20;
+                for (let i = 1; i <= segments; i++) {
+                    let t = i / segments;
+                    if (t > this.progress) t = this.progress;
+
+                    const p = getBezierPoint(t, this.start, this.cp1, this.cp2, this.end);
+                    ctx.lineTo(p.x, p.y);
+
+                    if (t === this.progress) break;
+                }
+
+                ctx.strokeStyle = CONFIG.color.replace('{opacity}', this.opacity);
+                ctx.lineWidth = this.width;
+                ctx.lineCap = 'round';
+
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.1)';
+                ctx.shadowBlur = 4;
+
+                ctx.stroke();
             }
         }
 
         function animate() {
-            ctx.clearRect(0, 0, width, height);
+            const time = Date.now();
+            ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
 
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+            for (let i = activePaths.length - 1; i >= 0; i--) {
+                if (activePaths[i].dead) {
+                    activePaths.splice(i, 1);
+                }
+            }
+            if (activePaths.length < CONFIG.maxPaths && Math.random() < 0.15) {
+                activePaths.push(new MyceliumPath());
+            }
+
+            activePaths.forEach(path => {
+                path.update(time);
+                path.draw();
             });
 
             requestAnimationFrame(animate);
         }
 
-        init();
-        animate();
-        window.addEventListener('resize', init);
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        setTimeout(() => {
+            animate();
+        }, 1000);
     </script>
+
 </body>
 
 </html>
