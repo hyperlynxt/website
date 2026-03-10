@@ -203,6 +203,19 @@
             border-right: 20vw solid transparent;
             background-clip: padding-box;
         }
+
+        #author-menu::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        #author-menu::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #author-menu::-webkit-scrollbar-thumb {
+            background-color: #263524;
+            border-radius: 9999px;
+        }
     </style>
 </head>
 
@@ -219,7 +232,9 @@
                 &amp;
                 Intertwined</a>
             <div class="h-4 w-px bg-[#1A1A18]/20"></div>
-            <span class="font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45]">Quotes</span>
+            <a href="Quotes Landing Page.html"
+                class="font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] transition-colors"
+                style="text-decoration: none;">Quotes</a>
         </div>
         <div class="flex items-center gap-3">
             <span class="font-serif text-base text-ink tracking-wide">hyperlynxt | teo</span>
@@ -246,43 +261,148 @@
                     </svg>
                 </div>
                 <div class="h-10 w-px bg-borderline mx-2"></div>
-                <div class="flex items-center gap-2">
-                    <span class="font-sans text-[9px] uppercase font-bold tracking-widest text-[#4A4A45]">Sort:</span>
-                    <div id="sort-dropdown" class="sort-dropdown relative">
-                        <button id="sort-trigger"
-                            class="sort-trigger flex items-center gap-2 font-sans text-[10px] uppercase font-bold tracking-widest text-ink px-4 py-1.5 rounded-full border border-borderline hover:border-ink transition-all bg-page/80">
-                            <span id="sort-label">Recently Added</span>
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.5" class="sort-chevron transition-transform duration-200">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </button>
-                        <div id="sort-menu"
-                            class="sort-menu hidden absolute right-0 top-full mt-2 z-50 bg-page border border-borderline shadow-lg min-w-[180px] py-1">
-                            <button
-                                class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
-                                data-sort="default" vid="sort-opt-doc">Chronological</button>
-                            <button
-                                class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
-                                data-sort="category" vid="sort-opt-cat">By Theme (A-Z)</button>
-                            <button
-                                class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-[#EFEBE4] hover:text-ink transition-colors"
-                                data-sort="recent" vid="sort-opt-rec">Recently Added</button>
+                <div class="flex items-center gap-4">
+                    <!-- Authors Dropdown -->
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="font-sans text-[9px] uppercase font-bold tracking-widest text-[#4A4A45]">Authors:</span>
+                        <div id="author-dropdown" class="author-dropdown relative">
+                            <button id="author-trigger"
+                                class="author-trigger flex items-center justify-between w-[150px] gap-2 font-sans text-[10px] uppercase font-bold tracking-widest text-ink px-4 py-1.5 rounded-full border border-borderline hover:border-ink transition-all bg-page/80">
+                                <span id="author-label" class="overflow-hidden text-ellipsis whitespace-nowrap">All
+                                    Collections</span>
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5"
+                                    class="author-chevron transition-transform duration-200 flex-shrink-0">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div id="author-menu"
+                                class="author-menu hidden absolute right-0 top-full mt-2 z-50 bg-page border border-borderline shadow-lg min-w-[200px] max-h-[400px] overflow-y-auto py-1">
+                                <button
+                                    class="author-option active w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="all">All Collections</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="a.a. milne">A.A. Milne</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="alfie">Alfie</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="amanda lovelace">Amanda Lovelace</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="anais nin">Anaïs Nin</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="blackpurist">BlackPurist</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="carl jung">Carl Jung</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="epicurus">Epicurus</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="franz kafka">Franz Kafka</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="hadith qudsi">Hadith Qudsi</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="johann wolfgang von goethe">Johann Wolfgang von Goethe</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="kait rokowsky">Kait Rokowsky</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="lao tzu">Lao Tzu</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="lori deschene">Lori Deschene</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="marcus aurelius">Marcus Aurelius</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="me">Me</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="michel de montaigne">Michel de Montaigne</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="nathaniel drew">Nathaniel Drew</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="oscar wilde">Oscar Wilde</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="petitfellas">PetitFellas</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="rudy francisco">Rudy Francisco</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="sartre">Sartre</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="social media">Social Media</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="stanislaw jerzy lec">Stanislaw Jerzy Lec</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="takeshi kovacs">Takeshi Kovacs</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="uma thurman">Uma Thurman</button>
+                                <button
+                                    class="author-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-filter="unknown">Unknown</button>
+                            </div>
                         </div>
                     </div>
-                    <!-- Direction toggle -->
-                    <button id="sort-dir-btn" title="Toggle sort direction"
-                        class="flex items-center justify-center w-7 h-7 rounded-full border border-borderline hover:border-ink text-[#4A4A45] hover:text-ink transition-all bg-page/80">
-                        <svg id="sort-dir-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            style="transition: transform 0.25s ease;">
-                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                            <polyline points="5 12 12 5 19 12"></polyline>
-                        </svg>
-                    </button>
+
+                    <!-- Sort -->
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="font-sans text-[9px] uppercase font-bold tracking-widest text-[#4A4A45]">Sort:</span>
+                        <div id="sort-dropdown" class="sort-dropdown relative">
+                            <button id="sort-trigger"
+                                class="sort-trigger flex items-center gap-2 font-sans text-[10px] uppercase font-bold tracking-widest text-ink px-4 py-1.5 rounded-full border border-borderline hover:border-ink transition-all bg-page/80">
+                                <span id="sort-label">Recently Added</span>
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" class="sort-chevron transition-transform duration-200">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div id="sort-menu"
+                                class="sort-menu hidden absolute right-0 top-full mt-2 z-50 bg-page border border-borderline shadow-lg min-w-[180px] py-1">
+                                <button
+                                    class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-sort="default" vid="sort-opt-doc">Chronological</button>
+                                <button
+                                    class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-muted hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-sort="category" vid="sort-opt-cat">By Theme (A-Z)</button>
+                                <button
+                                    class="sort-option w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-[#EFEBE4] hover:text-ink transition-colors"
+                                    data-sort="recent" vid="sort-opt-rec">Recently Added</button>
+                            </div>
+                        </div>
+                        <!-- Direction toggle -->
+                        <button id="sort-dir-btn" title="Toggle sort direction"
+                            class="flex items-center justify-center w-7 h-7 rounded-full border border-borderline hover:border-ink text-[#4A4A45] hover:text-ink transition-all bg-page/80">
+                            <svg id="sort-dir-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                style="transition: transform 0.25s ease;">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <polyline points="5 12 12 5 19 12"></polyline>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
     </header>
 
     <div class="border-b border-borderline bg-white/30 flex-shrink-0">
@@ -344,53 +464,7 @@
 
     <div class="flex flex-1 catalog-container mx-auto w-full px-8 lg:px-16" vid="24">
 
-        <aside class="w-56 pr-4 hidden lg:block border-r border-[#1A1A18]/10 sticky top-0 h-screen overflow-y-auto"
-            vid="25">
-            <div class="pt-2 pb-20" vid="26">
-                <section class="mb-10" vid="37">
-
-
-                    <section class="mb-10" vid="27">
-                        <h3 class="text-xs tracking-[0.2em] uppercase text-[#7A7A73] font-semibold mb-6" vid="28">
-                            Authors
-                        </h3>
-                        <nav class="flex flex-col gap-4 text-lg text-[#5A5A55]" vid="29">
-                            <a href="#" class="sidebar-link active" data-filter="all" vid="30">All Collections</a>
-                            <a href="#" class="sidebar-link" data-filter="a.a. milne">A.A. Milne</a>
-                            <a href="#" class="sidebar-link" data-filter="alfie">Alfie</a>
-                            <a href="#" class="sidebar-link" data-filter="amanda lovelace">Amanda Lovelace</a>
-                            <a href="#" class="sidebar-link" data-filter="anais nin">Anaïs Nin</a>
-                            <a href="#" class="sidebar-link" data-filter="blackpurist">BlackPurist</a>
-                            <a href="#" class="sidebar-link" data-filter="carl jung">Carl Jung</a>
-                            <a href="#" class="sidebar-link" data-filter="epicurus">Epicurus</a>
-                            <a href="#" class="sidebar-link" data-filter="franz kafka">Franz Kafka</a>
-                            <a href="#" class="sidebar-link" data-filter="hadith qudsi">Hadith Qudsi</a>
-                            <a href="#" class="sidebar-link" data-filter="johann wolfgang von goethe">Johann Wolfgang
-                                von
-                                Goethe</a>
-                            <a href="#" class="sidebar-link" data-filter="kait rokowsky">Kait Rokowsky</a>
-                            <a href="#" class="sidebar-link" data-filter="lao tzu">Lao Tzu</a>
-                            <a href="#" class="sidebar-link" data-filter="lori deschene">Lori Deschene</a>
-                            <a href="#" class="sidebar-link" data-filter="marcus aurelius">Marcus Aurelius</a>
-                            <a href="#" class="sidebar-link" data-filter="me">Me</a>
-                            <a href="#" class="sidebar-link" data-filter="michel de montaigne">Michel de Montaigne</a>
-                            <a href="#" class="sidebar-link" data-filter="nathaniel drew">Nathaniel Drew</a>
-                            <a href="#" class="sidebar-link" data-filter="oscar wilde">Oscar Wilde</a>
-                            <a href="#" class="sidebar-link" data-filter="petitfellas">PetitFellas</a>
-                            <a href="#" class="sidebar-link" data-filter="rudy francisco">Rudy Francisco</a>
-                            <a href="#" class="sidebar-link" data-filter="sartre">Sartre</a>
-                            <a href="#" class="sidebar-link" data-filter="social media">Social Media</a>
-                            <a href="#" class="sidebar-link" data-filter="stanislaw jerzy lec">Stanislaw Jerzy Lec</a>
-                            <a href="#" class="sidebar-link" data-filter="takeshi kovacs">Takeshi Kovacs</a>
-                            <a href="#" class="sidebar-link" data-filter="uma thurman">Uma Thurman</a>
-                            <a href="#" class="sidebar-link" data-filter="unknown">Unknown</a>
-                        </nav>
-                    </section>
-            </div>
-        </aside>
-
-
-        <main class="flex-1 lg:pl-20 pt-8 pb-20" vid="44">
+        <main class="flex-1 pt-8 pb-20" vid="44">
 
             <div class="masonry-grid" vid="48">
 
@@ -1566,13 +1640,17 @@
         const searchInput = document.getElementById('landing-search');
         const grid = document.querySelector('.masonry-grid');
         const cards = Array.from(document.querySelectorAll('.masonry-grid > a'));
-        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        const authorOptions = document.querySelectorAll('.author-option');
         const categoryPills = document.querySelectorAll('.pill-btn');
 
         const sortTrigger = document.getElementById('sort-trigger');
         const sortMenu = document.getElementById('sort-menu');
         const sortLabel = document.getElementById('sort-label');
         const sortOptions = document.querySelectorAll('.sort-option');
+
+        const authorTrigger = document.getElementById('author-trigger');
+        const authorMenu = document.getElementById('author-menu');
+        const authorLabel = document.getElementById('author-label');
 
         let activeSort = 'recent';
         let sortAsc = true;
@@ -1595,12 +1673,27 @@
         sortTrigger.addEventListener('click', (e) => {
             e.stopPropagation();
             const isOpen = !sortMenu.classList.contains('hidden');
+            authorMenu.classList.add('hidden'); // Close author menu if open
+            authorTrigger.querySelector('.author-chevron').style.transform = '';
             sortMenu.classList.toggle('hidden');
             sortTrigger.querySelector('.sort-chevron').style.transform = isOpen ? '' : 'rotate(180deg)';
         });
+
+        authorTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = !authorMenu.classList.contains('hidden');
+            sortMenu.classList.add('hidden'); // Close sort menu if open
+            sortTrigger.querySelector('.sort-chevron').style.transform = '';
+            authorMenu.classList.toggle('hidden');
+            authorTrigger.querySelector('.author-chevron').style.transform = isOpen ? '' : 'rotate(180deg)';
+        });
+
         document.addEventListener('click', () => {
             sortMenu.classList.add('hidden');
             sortTrigger.querySelector('.sort-chevron').style.transform = '';
+
+            authorMenu.classList.add('hidden');
+            authorTrigger.querySelector('.author-chevron').style.transform = '';
         });
 
         // Sort option selection
@@ -1714,26 +1807,35 @@
                 setPillActive(pill);
 
                 // Clear authors filter
-                sidebarLinks.forEach(l => l.classList.remove('active'));
+                authorOptions.forEach(l => l.classList.remove('active'));
+                authorLabel.textContent = "Filtered by Theme...";
 
                 searchInput.value = ''; // clear global search
                 applyFilter(pill.dataset.filter, 'attribute');
             });
         });
 
-        // Sidebar filter clicks (Authors) — exact attribute match
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', e => {
+        // Dropdown Author Option Select
+        authorOptions.forEach(opt => {
+            opt.addEventListener('click', (e) => {
                 e.preventDefault();
-                sidebarLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
+                authorOptions.forEach(l => l.classList.remove('active'));
+                opt.classList.add('active');
 
-                // Clear theme pill filter (Optionally set it to 'All Themes')
+                // Update Author Button text
+                authorLabel.textContent = opt.textContent.trim();
+
+                // Close the author dropdown menu
+                authorMenu.classList.add('hidden');
+                authorTrigger.querySelector('.author-chevron').style.transform = '';
+
+                // Deselect theme pills to prioritize the author filter
                 categoryPills.forEach(p => setPillInactive(p));
-                setPillActive(categoryPills[0]); // Reset to "All Themes" visually
+                setPillActive(categoryPills[0]); // Visual reset to "All Themes" since Author is active limit
 
-                searchInput.value = ''; // clear global search
-                applyFilter(link.dataset.filter, 'attribute');
+                searchInput.value = ''; // clear text search
+                const filter = opt.dataset.filter;
+                applyFilter(filter, 'attribute');
             });
         });
 
@@ -1741,13 +1843,22 @@
         searchInput.addEventListener('input', () => {
             const query = searchInput.value.trim().toLowerCase();
             if (query) {
-                sidebarLinks.forEach(l => l.classList.remove('active'));
+                // Remove active classes
+                authorOptions.forEach(l => l.classList.remove('active'));
+                authorLabel.textContent = "Search Filter...";
                 categoryPills.forEach(p => setPillInactive(p));
+                applyFilter(query, 'text');
             } else {
-                sidebarLinks[0].classList.add('active');
+                // Reset to "All Collections" and "All Themes"
+                authorOptions.forEach(l => l.classList.remove('active'));
+                authorOptions[0].classList.add('active');
+                authorLabel.textContent = authorOptions[0].textContent.trim();
+
+                categoryPills.forEach(p => setPillInactive(p));
                 setPillActive(categoryPills[0]);
+
+                applyFilter('all', 'attribute');
             }
-            applyFilter(query, 'text');
         });
 
         // Initial sorting boot
