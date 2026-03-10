@@ -92,6 +92,22 @@
             background: #263524;
         }
 
+        #category-pills::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        #category-pills::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #category-pills::-webkit-scrollbar-thumb {
+            background-color: #263524;
+            border-radius: 9999px;
+            border-left: 20vw solid transparent;
+            border-right: 20vw solid transparent;
+            background-clip: padding-box;
+        }
+
         .main-content {
             animation: fadeUp 0.4s ease-out;
         }
@@ -144,37 +160,65 @@
         </div>
     </header>
 
+    <div class="border-b border-[#1A1A18]/10 bg-[#F0EDE6]/80 flex-shrink-0 z-40 relative px-8 py-4 w-full">
+        <div id="category-pills" class="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
+            <button data-filter="all"
+                class="pill-btn px-5 py-2 bg-inverse text-inverse-text rounded-full font-sans text-[10px] uppercase font-bold tracking-widest whitespace-nowrap">All
+                Themes</button>
+            <button data-filter="art"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Art</button>
+            <button data-filter="behaviour"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Behaviour</button>
+            <button data-filter="family"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Family</button>
+            <button data-filter="fear and rumination"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Fear
+                &amp; Rumination</button>
+            <button data-filter="friendship"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Friendship</button>
+            <button data-filter="hardship"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Hardship</button>
+            <button data-filter="humour"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Humour</button>
+            <button data-filter="inner world"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Inner
+                World</button>
+            <button data-filter="life"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Life</button>
+            <button data-filter="love"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Love</button>
+            <button data-filter="memories"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Memories</button>
+            <button data-filter="people"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">People</button>
+            <button data-filter="personal"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Personal</button>
+            <button data-filter="poetry"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Poetry</button>
+            <button data-filter="relationship"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Relationship</button>
+            <button data-filter="routine"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Routine</button>
+            <button data-filter="sadness"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Sadness</button>
+            <button data-filter="self"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Self</button>
+            <button data-filter="social dynamics"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Social
+                Dynamics</button>
+            <button data-filter="society"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Society</button>
+            <button data-filter="unconsciousness"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Unconsciousness</button>
+            <button data-filter="undecided"
+                class="pill-btn px-5 py-2 hover:bg-white/40 border border-transparent hover:border-[#1A1A18]/20 rounded-full font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:text-[#1A1A18] whitespace-nowrap transition-all">Undecided</button>
+        </div>
+    </div>
+
     <div class="flex flex-1 overflow-hidden" vid="20">
 
 
         <aside class="w-[20rem] border-r border-[#1A1A18]/10 overflow-y-auto bg-[#F0EDE6] px-10 py-12 z-20" vid="21">
-            <section class="mb-12" vid="31">
-                <h3 class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73] font-bold mb-6" vid="32">Themes</h3>
-                <nav class="flex flex-col gap-4 text-base text-[#5A5A55]" vid="33">
-                    <a href="#" class="filter-link" data-filter="art">Art</a>
-                    <a href="#" class="filter-link" data-filter="behaviour">Behaviour</a>
-                    <a href="#" class="filter-link" data-filter="family">Family</a>
-                    <a href="#" class="filter-link" data-filter="fear and rumination">Fear &amp; Rumination</a>
-                    <a href="#" class="filter-link" data-filter="friendship">Friendship</a>
-                    <a href="#" class="filter-link" data-filter="hardship">Hardship</a>
-                    <a href="#" class="filter-link" data-filter="humour">Humour</a>
-                    <a href="#" class="filter-link" data-filter="inner world">Inner World</a>
-                    <a href="#" class="filter-link" data-filter="life">Life</a>
-                    <a href="#" class="filter-link" data-filter="love">Love</a>
-                    <a href="#" class="filter-link" data-filter="memories">Memories</a>
-                    <a href="#" class="filter-link" data-filter="people">People</a>
-                    <a href="#" class="filter-link" data-filter="personal">Personal</a>
-                    <a href="#" class="filter-link" data-filter="poetry">Poetry</a>
-                    <a href="#" class="filter-link" data-filter="relationship">Relationship</a>
-                    <a href="#" class="filter-link" data-filter="routine">Routine</a>
-                    <a href="#" class="filter-link" data-filter="sadness">Sadness</a>
-                    <a href="#" class="filter-link" data-filter="self">Self</a>
-                    <a href="#" class="filter-link" data-filter="social dynamics">Social Dynamics</a>
-                    <a href="#" class="filter-link" data-filter="society">Society</a>
-                    <a href="#" class="filter-link" data-filter="unconsciousness">Unconsciousness</a>
-                    <a href="#" class="filter-link" data-filter="undecided">Undecided</a>
-                </nav>
-            </section>
 
             <section class="mb-12" vid="22">
                 <h3 class="text-[10px] tracking-[0.2em] uppercase text-[#7A7A73] font-bold mb-6" vid="23">Authors</h3>
@@ -997,6 +1041,22 @@
             });
         })();
 
+        // Active state helpers for pills
+        const categoryPills = document.querySelectorAll('.pill-btn');
+        const sidebarLinks = document.querySelectorAll('.filter-link');
+        const activePillClasses = ['bg-inverse', 'text-inverse-text'];
+        const inactivePillClasses = ['hover:bg-white/40', 'border', 'border-transparent', 'hover:border-[#1A1A18]/20', 'text-[#4A4A45]', 'hover:text-[#1A1A18]'];
+
+        function setPillActive(pill) {
+            pill.classList.remove(...inactivePillClasses);
+            pill.classList.add(...activePillClasses);
+        }
+
+        function setPillInactive(pill) {
+            pill.classList.remove(...activePillClasses);
+            pill.classList.add(...inactivePillClasses);
+        }
+
         // Live search — filters sidebar list items
         document.getElementById('dive-search').addEventListener('input', function () {
             const query = this.value.trim().toLowerCase();
@@ -1004,6 +1064,14 @@
             const diveCount = document.getElementById('dive-count');
             let firstMatch = -1;
             let visible = 0;
+
+            if (query) {
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                categoryPills.forEach(p => setPillInactive(p));
+            } else {
+                sidebarLinks[0].classList.add('active');
+                setPillActive(categoryPills[0]);
+            }
 
             buttons.forEach((btn, i) => {
                 const text = btn.textContent.toLowerCase();
@@ -1025,12 +1093,50 @@
                 updateQuote(firstMatch);
             }
         });
-        // Sidebar filter clicks
-        document.querySelectorAll('.filter-link').forEach(link => {
+        // Sidebar Theme Pill Clicks
+        categoryPills.forEach(pill => {
+            pill.addEventListener('click', e => {
+                categoryPills.forEach(p => setPillInactive(p));
+                setPillActive(pill);
+
+                // Clear authors filter
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                document.getElementById('dive-search').value = '';
+
+                const filter = pill.dataset.filter;
+                const buttons = document.querySelectorAll('.list-item');
+                const diveCount = document.getElementById('dive-count');
+                let firstMatch = -1;
+                let visible = 0;
+
+                buttons.forEach((btn, i) => {
+                    const theme = btn.dataset.theme || '';
+                    const author = btn.dataset.author || '';
+                    const matches = !filter || filter === 'all' || theme === filter || author === filter;
+                    btn.style.display = matches ? '' : 'none';
+                    if (matches) { visible++; if (firstMatch === -1) firstMatch = i; }
+                });
+
+                const total = quotesData.length;
+                diveCount.textContent = (filter && filter !== 'all')
+                    ? `${String(visible).padStart(2, '0')} of ${String(total).padStart(2, '0')} entries`
+                    : `${String(total).padStart(2, '0')} Entries`;
+
+                if (firstMatch !== -1 && firstMatch !== activeQuoteIndex) updateQuote(firstMatch);
+            });
+        });
+
+        // Sidebar filter clicks (Authors)
+        sidebarLinks.forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
-                document.querySelectorAll('.filter-link').forEach(l => l.classList.remove('active'));
+                sidebarLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
+
+                // Clear theme pill filter
+                categoryPills.forEach(p => setPillInactive(p));
+                setPillActive(categoryPills[0]);
+
                 document.getElementById('dive-search').value = '';
 
                 const filter = link.dataset.filter;
@@ -1042,7 +1148,7 @@
                 buttons.forEach((btn, i) => {
                     const theme = btn.dataset.theme || '';
                     const author = btn.dataset.author || '';
-                    const matches = !filter || filter === 'all' || theme.includes(filter) || author.includes(filter);
+                    const matches = !filter || filter === 'all' || theme === filter || author === filter;
                     btn.style.display = matches ? '' : 'none';
                     if (matches) { visible++; if (firstMatch === -1) firstMatch = i; }
                 });
@@ -1052,7 +1158,7 @@
                     ? `${String(visible).padStart(2, '0')} of ${String(total).padStart(2, '0')} entries`
                     : `${String(total).padStart(2, '0')} Entries`;
 
-                if (firstMatch !== -1) updateQuote(firstMatch);
+                if (firstMatch !== -1 && firstMatch !== activeQuoteIndex) updateQuote(firstMatch);
             });
         });
     </script>
