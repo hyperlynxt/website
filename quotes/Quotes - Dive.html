@@ -123,6 +123,28 @@
                 transform: translateY(0);
             }
         }
+
+        .author-dropdown:hover .author-menu {
+            display: block;
+        }
+
+        .author-option.active {
+            color: var(--ink);
+            background-color: var(--sidebar);
+        }
+
+        #author-menu::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        #author-menu::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #author-menu::-webkit-scrollbar-thumb {
+            background-color: #263524;
+            border-radius: 9999px;
+        }
     </style>
 </head>
 
@@ -145,6 +167,108 @@
                 style="text-decoration: none;">Quotes</a>
         </div>
         <div class="flex items-center gap-5">
+            <!-- Authors Dropdown -->
+            <div class="hidden lg:flex items-center gap-2">
+                <span class="font-sans text-[9px] uppercase font-bold tracking-widest text-[#4A4A45]">Authors:</span>
+                <div id="author-dropdown" class="author-dropdown relative">
+                    <button id="author-trigger"
+                        class="author-trigger flex items-center justify-between w-[150px] gap-2 font-sans text-[10px] uppercase font-bold tracking-widest text-ink px-4 py-1.5 rounded-full border border-borderline hover:border-ink transition-all bg-page/80">
+                        <span id="author-label" class="overflow-hidden text-ellipsis whitespace-nowrap">All
+                            Collections</span>
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" class="author-chevron transition-transform duration-200 flex-shrink-0">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div id="author-menu"
+                        class="author-menu hidden absolute right-0 top-full mt-2 z-50 bg-[#F0EDE6] border border-[#1A1A18]/10 shadow-lg min-w-[200px] max-h-[400px] overflow-y-auto py-1">
+                        <button
+                            class="author-option filter-link active w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="all">All Collections</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="a.a. milne">A.A. Milne</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="alfie">Alfie</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="amanda lovelace">Amanda Lovelace</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="anais nin">Anaïs Nin</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="blackpurist">BlackPurist</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="carl jung">Carl Jung</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="epicurus">Epicurus</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="franz kafka">Franz Kafka</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="hadith qudsi">Hadith Qudsi</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="johann wolfgang von goethe">Johann Wolfgang von Goethe</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="kait rokowsky">Kait Rokowsky</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="lao tzu">Lao Tzu</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="lori deschene">Lori Deschene</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="marcus aurelius">Marcus Aurelius</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="me">Me</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="michel de montaigne">Michel de Montaigne</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="nathaniel drew">Nathaniel Drew</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="oscar wilde">Oscar Wilde</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="petitfellas">PetitFellas</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="rudy francisco">Rudy Francisco</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="sartre">Sartre</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="social media">Social Media</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="stanislaw jerzy lec">Stanislaw Jerzy Lec</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="takeshi kovacs">Takeshi Kovacs</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="uma thurman">Uma Thurman</button>
+                        <button
+                            class="author-option filter-link w-full text-left px-5 py-2.5 font-sans text-[10px] uppercase font-bold tracking-widest text-[#4A4A45] hover:bg-white/40 hover:text-[#1A1A18] transition-colors"
+                            data-filter="unknown">Unknown</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden lg:block h-4 w-px bg-[#1A1A18]/20"></div>
+
             <div class="relative hidden lg:block mr-4">
                 <input type="text" id="dive-search" placeholder="Search fragment..."
                     class="w-64 bg-transparent border border-[#1A1A18]/20 rounded-full px-5 py-1.5 font-sans text-[13px] text-[#1A1A18] placeholder:text-[#1A1A18]/40 focus:outline-none focus:border-[#1A1A18] transition-colors">
@@ -964,6 +1088,45 @@
 
         let activeQuoteIndex = 0;
 
+        const cardColors = ['orange', 'blue', 'emerald', 'purple', 'rose', 'grey'];
+
+        function renderQuotesList() {
+            const container = document.getElementById('quote-list-container');
+            container.innerHTML = '';
+
+            quotesData.forEach((item, i) => {
+                const color = cardColors[i % cardColors.length];
+                const isActive = i === activeQuoteIndex ? ' active' : '';
+
+                const button = document.createElement('button');
+                button.className = `list-item${isActive} text-left w-full group relative outline-none mb-6 rounded-xl border border-transparent hover:border-black/5`;
+                button.onclick = () => updateQuote(i);
+                button.setAttribute('data-theme', item.theme.toLowerCase());
+                button.setAttribute('data-author', item.author.toLowerCase());
+
+                button.innerHTML = `
+                    <article class="masonry-card card-glow card-accent-${color} p-6 lg:p-8 block w-full transition-transform hover:-translate-y-1">
+                        <span class="roman-numeral-center" style="font-size: 5rem; bottom: -0.5rem; right: 1rem; opacity: 0.03;">${item.numeral}</span>
+                        <div class="relative z-10 flex flex-col justify-center mb-6">
+                            <p class="text-xl leading-snug text-[#1A1A18] line-clamp-3 italic text-left">
+                                ${item.quote}
+                            </p>
+                        </div>
+                        <div class="relative z-10 flex flex-col gap-3 pt-4 border-t border-[#1A1A18]/5">
+                            <div class="text-[9px] self-start tracking-widest uppercase text-[#263524] bg-[#263524]/5 px-2 py-1">
+                                ${item.theme}
+                            </div>
+                            <p class="text-[9px] tracking-widest uppercase font-sans font-bold text-[#A5A59D]">
+                                ${item.author}
+                            </p>
+                        </div>
+                    </article>
+                `;
+                container.appendChild(button);
+            });
+        }
+
+
         function updateQuote(index) {
             activeQuoteIndex = index;
             const container = document.getElementById('main-content-container');
@@ -1017,37 +1180,54 @@
             }
         }
 
-        // Read URL hash immediately (script is at bottom of body, DOM is ready)
-        (function init() {
-            const hash = window.location.hash;
-            let startIndex = 0;
-            if (hash) {
-                const parsed = parseInt(hash.replace('#', ''), 10);
-                if (!isNaN(parsed) && parsed >= 0 && parsed < quotesData.length) {
-                    startIndex = parsed;
-                }
+        // Read URL hash immediately
+        const hash = window.location.hash;
+        let startIndex = 0;
+        if (hash) {
+            const parsed = parseInt(hash.replace('#', ''), 10);
+            if (!isNaN(parsed) && parsed >= 0 && parsed < quotesData.length) {
+                startIndex = parsed;
             }
-            // Set content instantly without animation on first load
-            const data = quotesData[startIndex];
-            document.getElementById('main-theme').innerText = data.theme;
-            document.getElementById('main-quote').innerHTML = data.quote;
-            document.getElementById('main-author').innerText = data.author;
-            const sourceEl = document.getElementById('main-source');
-            if (data.source) { sourceEl.innerText = data.source; sourceEl.style.display = 'block'; }
-            else { sourceEl.style.display = 'none'; }
-            document.getElementById('main-numeral').innerText = data.numeral;
-            activeQuoteIndex = startIndex;
-            document.querySelectorAll('.list-item').forEach((btn, i) => {
-                if (i === startIndex) btn.classList.add('active');
-                else btn.classList.remove('active');
-            });
-        })();
+        }
+
+        // Render quotes first
+        renderQuotesList();
+
+        // Set content instantly without animation on first load
+        const data = quotesData[startIndex];
+        document.getElementById('main-theme').innerText = data.theme;
+        document.getElementById('main-quote').innerHTML = data.quote;
+        document.getElementById('main-author').innerText = data.author;
+        const sourceEl = document.getElementById('main-source');
+        if (data.source) { sourceEl.innerText = data.source; sourceEl.style.display = 'block'; }
+        else { sourceEl.style.display = 'none'; }
+        document.getElementById('main-numeral').innerText = data.numeral;
+        activeQuoteIndex = startIndex;
+        document.querySelectorAll('.list-item').forEach((btn, i) => {
+            if (i === startIndex) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
 
         // Active state helpers for pills
         const categoryPills = document.querySelectorAll('.pill-btn');
-        const sidebarLinks = document.querySelectorAll('.filter-link');
+        const authorOptions = document.querySelectorAll('.author-option');
+        const authorTrigger = document.getElementById('author-trigger');
+        const authorMenu = document.getElementById('author-menu');
+        const authorLabel = document.getElementById('author-label');
         const activePillClasses = ['bg-inverse', 'text-inverse-text'];
         const inactivePillClasses = ['hover:bg-white/40', 'border', 'border-transparent', 'hover:border-[#1A1A18]/20', 'text-[#4A4A45]', 'hover:text-[#1A1A18]'];
+
+        // Custom dropdown open/close
+        authorTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = !authorMenu.classList.contains('hidden');
+            authorMenu.classList.toggle('hidden');
+            authorTrigger.querySelector('.author-chevron').style.transform = isOpen ? '' : 'rotate(180deg)';
+        });
+        document.addEventListener('click', () => {
+            authorMenu.classList.add('hidden');
+            authorTrigger.querySelector('.author-chevron').style.transform = '';
+        });
 
         function setPillActive(pill) {
             pill.classList.remove(...inactivePillClasses);
@@ -1059,7 +1239,7 @@
             pill.classList.add(...inactivePillClasses);
         }
 
-        // Live search — filters sidebar list items
+        // Live search — filters list items
         document.getElementById('dive-search').addEventListener('input', function () {
             const query = this.value.trim().toLowerCase();
             const buttons = document.querySelectorAll('.list-item');
@@ -1068,10 +1248,13 @@
             let visible = 0;
 
             if (query) {
-                sidebarLinks.forEach(l => l.classList.remove('active'));
+                authorOptions.forEach(l => l.classList.remove('active'));
+                authorLabel.textContent = "Search Filter...";
                 categoryPills.forEach(p => setPillInactive(p));
             } else {
-                sidebarLinks[0].classList.add('active');
+                authorOptions.forEach(l => l.classList.remove('active'));
+                authorOptions[0].classList.add('active');
+                authorLabel.textContent = authorOptions[0].textContent.trim();
                 setPillActive(categoryPills[0]);
             }
 
@@ -1102,7 +1285,8 @@
                 setPillActive(pill);
 
                 // Clear authors filter
-                sidebarLinks.forEach(l => l.classList.remove('active'));
+                authorOptions.forEach(l => l.classList.remove('active'));
+                authorLabel.textContent = "Filtered by Theme...";
                 document.getElementById('dive-search').value = '';
 
                 const filter = pill.dataset.filter;
@@ -1128,12 +1312,19 @@
             });
         });
 
-        // Sidebar filter clicks (Authors)
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', e => {
+        // Dropdown Author Option Select
+        authorOptions.forEach(opt => {
+            opt.addEventListener('click', e => {
                 e.preventDefault();
-                sidebarLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
+                authorOptions.forEach(l => l.classList.remove('active'));
+                opt.classList.add('active');
+
+                // Update Author Button text
+                authorLabel.textContent = opt.textContent.trim();
+
+                // Close the author dropdown menu
+                authorMenu.classList.add('hidden');
+                authorTrigger.querySelector('.author-chevron').style.transform = '';
 
                 // Clear theme pill filter
                 categoryPills.forEach(p => setPillInactive(p));
@@ -1141,7 +1332,7 @@
 
                 document.getElementById('dive-search').value = '';
 
-                const filter = link.dataset.filter;
+                const filter = opt.dataset.filter;
                 const buttons = document.querySelectorAll('.list-item');
                 const diveCount = document.getElementById('dive-count');
                 let firstMatch = -1;
