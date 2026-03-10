@@ -513,22 +513,20 @@
                 const isActive = i === activeQuoteIndex ? ' active' : '';
 
                 const button = document.createElement('button');
-                button.className = `list-item${isActive} text-left w-full group relative outline-none mb-3 border border-transparent hover:border-black/5`;
+                button.className = `list-item${isActive} flex items-start p-4 lg:p-5 text-left group relative outline-none mb-3 border border-transparent hover:border-black/5`;
                 button.onclick = () => updateQuote(i);
                 button.setAttribute('data-theme', item.theme.toLowerCase());
                 button.setAttribute('data-author', item.author.toLowerCase());
 
                 button.innerHTML = `
-                    <div class="masonry-card card-glow card-accent-${color} p-6 lg:p-8 block w-full transition-transform">
-                        <span class="text-[10px] absolute left-4 top-8 lg:top-8 opacity-30 italic font-serif pointer-events-none" style="z-index: 10;">${item.numeral}</span>
-                        <div class="relative z-10 pl-4 lg:pl-6 w-full text-left flex flex-col justify-center">
-                            <p class="text-xl leading-tight text-[#1A1A18] line-clamp-2 italic">
-                                ${item.quote}
-                            </p>
-                            <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-3">
-                                ${item.author}
-                            </p>
-                        </div>
+                    <span class="text-[10px] opacity-30 italic font-serif pointer-events-none w-6 mt-0.5" style="min-width: 1.5rem; flex-shrink: 0;">${item.numeral}</span>
+                    <div class="flex-1 text-left flex flex-col justify-center overflow-hidden ml-2">
+                        <p class="text-[15px] leading-snug text-[#1A1A18] line-clamp-2 italic pr-4">
+                            ${item.quote}
+                        </p>
+                        <p class="text-[9px] tracking-widest uppercase text-[#7A7A73] mt-2 group-hover:text-[#1A1A18] transition-colors truncate">
+                            ${item.author}
+                        </p>
                     </div>
                 `;
                 container.appendChild(button);
