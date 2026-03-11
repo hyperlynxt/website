@@ -1,0 +1,212 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Inversion — Atlas Field Notes</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;family=Inter:wght@400;500;600;700&amp;family=Reenie+Beanie&amp;display=swap" rel="stylesheet" vid="8">
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: {
+                            50: '#FDFCF9',
+                            100: '#F5F2EB',
+                            200: '#EAE5D8',
+                            300: '#D4CCBA',
+                            400: '#B8AE96',
+                            500: '#8C8070',
+                        },
+                        ink: '#2A2724',
+                        seal: '#8B2626',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['EB Garamond', 'serif'],
+                        hand: ['Reenie Beanie', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style vid="10">
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .hero-gradient {
+            background: linear-gradient(to bottom, #F5F2EB 0%, #FDFCF9 100%);
+        }
+        .wax-seal {
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2), 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        .hand-underline {
+            background: url("data:image/svg+xml,%3Csvg width='300' height='20' viewBox='0 0 300 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 10 C 50 15, 150 5, 295 12' stroke='%238C8070' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat bottom center;
+            background-size: 100% 20px;
+            padding-bottom: 15px;
+        }
+        .hand-circle {
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 5 C 20 5, 5 30, 8 60 C 12 90, 45 95, 75 85 C 95 75, 98 40, 85 20 C 75 5, 55 8, 48 12' stroke='%23B8AE96' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
+            background-size: 120% 120%;
+        }
+    </style>
+</head>
+<body class="bg-[#FDFCF9] text-ink font-sans h-screen w-screen overflow-hidden flex selection:bg-parchment-300/30" vid="11">
+
+    <main class="flex w-full h-full" vid="12">
+        
+        
+        <section class="w-[38%] h-full flex flex-col items-start justify-start px-12 py-16 hero-gradient border-r border-parchment-200 sticky top-0 overflow-y-auto no-scrollbar" vid="13">
+            <div class="w-full text-left" vid="14">
+                <div class="flex items-center gap-3 mb-8" vid="15">
+                    <span class="font-hand text-2xl text-parchment-500" vid="16">Mental Model</span>
+                    <span class="h-px flex-1 bg-parchment-300" vid="17"></span>
+                </div>
+                <h1 class="text-[52px] font-serif font-medium tracking-tighter text-ink leading-[1.05] mb-12 hand-underline" vid="18">
+                    The Art of
+                    <em class="block italic" vid="19">Thinking Backward</em>
+                </h1>
+
+                
+                <div class="space-y-6 relative" vid="20">
+                    <div class="grid grid-cols-2 gap-x-8 gap-y-6" vid="21">
+                        <div vid="22">
+                            <span class="font-hand text-xl text-parchment-500 block -mb-1" vid="23">Popularised By</span>
+                            <span class="text-[15px] font-serif italic text-ink" vid="24">Charlie Munger &amp; Carl Jacobi</span>
+                        </div>
+                        <div vid="25">
+                            <span class="font-hand text-xl text-parchment-500 block -mb-1" vid="26">Field Category</span>
+                            <span class="text-[15px] font-serif text-ink" vid="27">Systems Thinking</span>
+                        </div>
+                        <div vid="28">
+                            <span class="font-hand text-xl text-parchment-500 block -mb-1" vid="29">Origin</span>
+                            <span class="text-[15px] font-serif text-ink" vid="30">German Mathematics</span>
+                        </div>
+                        <div vid="31">
+                            <span class="font-hand text-xl text-parchment-500 block -mb-1" vid="32">Duration</span>
+                            <span class="text-[15px] font-serif text-ink" vid="33">6 min read</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-12 pt-8 border-t border-parchment-200" vid="34">
+                        <div class="relative flex items-center justify-center p-4 hand-circle" vid="35">
+                            <div class="w-16 h-16 bg-seal rounded-full wax-seal flex items-center justify-center transform -rotate-12 border-2 border-seal/50" vid="36">
+                                <span class="text-white font-serif font-bold text-xs uppercase tracking-tighter text-center leading-none" vid="37">MODER-<br vid="38">ATE</span>
+                            </div>
+                            <span class="absolute -bottom-6 left-0 right-0 text-center font-hand text-lg text-parchment-500" vid="39">Difficulty Badge</span>
+                        </div>
+                        <div vid="40">
+                            <span class="font-hand text-xl text-parchment-500 block -mb-1" vid="41">Atlas Score</span>
+                            <div class="flex items-start gap-2 mt-1" vid="42">
+                                <div class="flex items-center gap-1 text-2xl text-ink font-hand" vid="43">
+                                    <span vid="44">✳</span><span vid="45">✳</span><span vid="46">✳</span><span vid="47">✳</span><span class="opacity-20" vid="48">✳</span>
+                                </div>
+                                <div class="font-hand text-sm text-parchment-400 leading-none pt-2" vid="49">
+                                    ← <span class="italic" vid="50">"Highly foundational concepts"</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-8" vid="51">
+                        <span class="font-hand text-xl text-parchment-500 block -mb-1" vid="52">Related Concepts</span>
+                        <div class="flex flex-wrap gap-x-4 gap-y-1 mt-1" vid="53">
+                            <span class="text-sm font-serif italic text-ink/70" vid="54">Second-Order Effects</span>
+                            <span class="text-sm font-serif italic text-ink/70" vid="55">Pre-mortem</span>
+                            <span class="text-sm font-serif italic text-ink/70" vid="56">Occam's Razor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <div class="w-[62%] h-full overflow-y-auto no-scrollbar bg-[#FDFCF9] relative" vid="57">
+            <article class="w-full max-w-2xl mx-auto px-12 py-24 flex flex-col" vid="58">
+                
+                <blockquote class="border-l-[3px] border-ink pl-8 py-2 mb-16" vid="59">
+                    <p class="text-2xl font-serif italic text-parchment-500 leading-relaxed tracking-tight" vid="60">
+                        "Invert, always invert: Turn a situation or problem upside down. Look at it backward. What happens if all our plans go wrong?"
+                    </p>
+                </blockquote>
+
+                <div class="space-y-8 font-serif text-[20px] text-ink leading-relaxed" vid="61">
+                    <p vid="62">
+                        Inversion is the practice of thinking about problems in reverse. Instead of asking how to achieve a desired outcome, you ask how to achieve the opposite — and then avoid doing those things. It is one of the most powerful and consistently underused tools in the careful thinker's arsenal.
+                    </p>
+
+                    
+                    <div class="my-16 bg-parchment-100/50 border border-parchment-200 rounded-2xl p-8" vid="63">
+                        <h4 class="text-[11px] uppercase font-bold tracking-[0.2em] text-parchment-500 mb-6 flex items-center gap-2" vid="64">
+                            <span class="w-1.5 h-1.5 rounded-full bg-seal" vid="65"></span> Worked Example: Product Launch
+                        </h4>
+                        
+                        <div class="grid grid-cols-3 gap-4" vid="66">
+                            <div class="bg-white p-5 rounded-xl border border-parchment-200 shadow-sm" vid="67">
+                                <span class="text-[9px] font-bold text-parchment-400 uppercase tracking-widest block mb-3" vid="68">Problem</span>
+                                <p class="text-sm font-serif leading-snug" vid="69">Goal: Launch a successful new mobile application.</p>
+                            </div>
+                            <div class="bg-ink text-white p-5 rounded-xl shadow-lg transform scale-105" vid="70">
+                                <span class="text-[9px] font-bold text-parchment-400 uppercase tracking-widest block mb-3" vid="71">Inverted Question</span>
+                                <p class="text-sm font-serif leading-snug italic" vid="72">"How could we ensure this launch fails completely?"</p>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl border border-parchment-200 shadow-sm" vid="73">
+                                <span class="text-[9px] font-bold text-parchment-400 uppercase tracking-widest block mb-3" vid="74">Action</span>
+                                <p class="text-sm font-serif leading-snug" vid="75">Identify failure modes: Crash on open, bad UI, zero marketing.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p vid="76">
+                        The conceptual root of inversion is simple: avoiding stupidity is easier than seeking brilliance. It is mathematically and psychologically simpler to identify what guarantees failure and remove it, than to identify what guarantees success and execute it perfectly.
+                    </p>
+                </div>
+
+                <h2 class="text-[12px] font-sans font-bold tracking-[0.3em] text-ink uppercase border-b border-parchment-300 pb-4 mt-20 mb-10 w-full" vid="77">The Dual Process</h2>
+
+                <div class="flex flex-col gap-6 mb-16" vid="78">
+                    <div class="bg-parchment-100 rounded-3xl p-8 flex flex-col gap-4 border border-parchment-200" vid="79">
+                        <h3 class="font-serif text-[22px] text-ink leading-tight" vid="80">Forward Thinking</h3>
+                        <p class="font-sans text-[14px] text-ink/70 leading-relaxed" vid="81">
+                            Focuses on the optimal path. Requires precise execution and the assumption that all positive variables will align.
+                        </p>
+                    </div>
+
+                    <div class="bg-ink rounded-3xl p-8 flex flex-col gap-4 shadow-xl" vid="82">
+                        <h3 class="font-serif text-[22px] text-white leading-tight" vid="83">Backward Thinking</h3>
+                        <p class="font-sans text-[14px] text-parchment-400 leading-relaxed" vid="84">
+                            Focuses on structural resilience. Identifies catastrophic failure points and actively engineers them out.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-8 font-serif text-[20px] text-ink leading-relaxed mb-32" vid="85">
+                    <p vid="86">
+                        By combining both forward and backward thinking, you establish a margin of safety. You possess an offensive strategy for growth, paired with a defensive mechanism against ruin.
+                    </p>
+                </div>
+            </article>
+
+            
+            <div class="fixed bottom-10 right-10 z-50 flex items-center gap-2 bg-white/80 backdrop-blur-xl border border-parchment-300 p-2 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]" vid="87">
+                <button class="p-3 rounded-xl hover:bg-parchment-100 transition-colors text-parchment-500 hover:text-ink border border-transparent hover:border-parchment-200" vid="88">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="89"><path d="m15 18-6-6 6-6" vid="90"></path></svg>
+                </button>
+                <div class="h-6 w-px bg-parchment-200 mx-1" vid="91"></div>
+                <div class="px-4 py-2 flex flex-col items-center" vid="92">
+                    <span class="text-[9px] uppercase font-bold tracking-widest text-parchment-400 leading-none mb-1" vid="93">Reading</span>
+                    <span class="text-[13px] font-serif italic font-medium text-ink" vid="94">Inversion</span>
+                </div>
+                <div class="h-6 w-px bg-parchment-200 mx-1" vid="95"></div>
+                <button class="px-5 py-2.5 rounded-xl text-[11px] uppercase font-bold tracking-wider text-ink hover:bg-parchment-100 transition-colors" vid="96">Share</button>
+                <button class="px-5 py-2.5 rounded-xl bg-ink text-white text-[11px] uppercase font-bold tracking-wider hover:bg-ink/90 transition-all shadow-lg shadow-ink/20" vid="97">Archive</button>
+                <div class="h-6 w-px bg-parchment-200 mx-1" vid="98"></div>
+                <button class="p-3 rounded-xl hover:bg-parchment-100 transition-colors text-parchment-500 hover:text-ink" vid="99">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="100"><path d="M18 6 6 18" vid="101"></path><path d="m6 6 12 12" vid="102"></path></svg>
+                </button>
+            </div>
+        </div>
+        
+    </main>
+
+</body></html>

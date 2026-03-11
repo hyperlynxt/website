@@ -1,0 +1,194 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Inversion — Atlas Reading Mode</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" vid="8">
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: {
+                            50: '#FDFCF9',
+                            100: '#F5F2EB',
+                            200: '#EAE5D8',
+                            300: '#D4CCBA',
+                            400: '#B8AE96',
+                            500: '#8C8070',
+                        },
+                        ink: '#2A2724',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['EB Garamond', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style vid="10">
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .hero-gradient {
+            background: linear-gradient(to bottom, #F5F2EB 0%, #FDFCF9 100%);
+        }
+    </style>
+</head>
+<body class="bg-[#FDFCF9] text-ink font-sans h-screen w-screen overflow-hidden flex selection:bg-parchment-300/30" vid="11">
+
+    <main class="flex w-full h-full" vid="12">
+        
+        
+        <section class="w-[35%] h-full flex flex-col items-center justify-center px-10 hero-gradient border-r border-parchment-200 sticky top-0" vid="13">
+            <div class="max-w-xl w-full text-center" vid="14">
+                <div class="flex items-center justify-center gap-4 mb-8" vid="15">
+                    <span class="h-px w-12 bg-parchment-300" vid="16"></span>
+                    <span class="text-[12px] uppercase font-bold tracking-[0.3em] text-parchment-500" vid="17">Mental Model</span>
+                    <span class="h-px w-12 bg-parchment-300" vid="18"></span>
+                </div>
+                <h1 class="text-7xl font-serif font-medium tracking-tighter text-ink leading-none mb-10" vid="19">
+                    The Art of
+                    <em class="block italic" vid="20">Thinking Backward</em>
+                </h1>
+                <div class="flex flex-wrap justify-center gap-2 mb-12" vid="21">
+                    <span class="px-4 py-1.5 rounded-full border border-parchment-300 bg-white/50 text-[12px] font-medium text-ink shadow-sm" vid="22">Via Negativa</span>
+                    <span class="px-4 py-1.5 rounded-full border border-parchment-300 bg-white/50 text-[12px] font-medium text-ink shadow-sm" vid="23">Margin of Safety</span>
+                    <span class="px-4 py-1.5 rounded-full border border-parchment-300 bg-white/50 text-[12px] font-medium text-ink shadow-sm" vid="24">Falsification</span>
+                </div>
+
+                <!-- Metadata block -->
+                <div class="w-full border-t border-parchment-200 pt-8 space-y-6 text-left" vid="25">
+
+                    <div class="flex flex-col gap-1" vid="26">
+                        <span class="text-[9px] uppercase font-bold tracking-[0.25em] text-parchment-400 font-sans" vid="27">Popularised By</span>
+                        <span class="text-[14px] font-serif italic text-ink" vid="28">Charlie Munger &amp; Carl Jacobi</span>
+                    </div>
+
+                    <div class="flex flex-col gap-1" vid="29">
+                        <span class="text-[9px] uppercase font-bold tracking-[0.25em] text-parchment-400 font-sans" vid="30">Category</span>
+                        <span class="text-[14px] font-serif text-ink" vid="31">Decision-Making · Systems</span>
+                    </div>
+
+                    <div class="flex flex-col gap-1" vid="32">
+                        <span class="text-[9px] uppercase font-bold tracking-[0.25em] text-parchment-400 font-sans" vid="33">Origin</span>
+                        <span class="text-[14px] font-serif text-ink" vid="34">19th-century German mathematics</span>
+                    </div>
+
+                    <div class="flex flex-col gap-1" vid="35">
+                        <span class="text-[9px] uppercase font-bold tracking-[0.25em] text-parchment-400 font-sans" vid="36">Difficulty</span>
+                        <div class="flex items-center gap-1.5 mt-0.5" vid="37">
+                            <span class="w-2 h-2 rounded-full bg-ink" vid="38"></span>
+                            <span class="w-2 h-2 rounded-full bg-ink" vid="39"></span>
+                            <span class="w-2 h-2 rounded-full bg-ink" vid="40"></span>
+                            <span class="w-2 h-2 rounded-full bg-parchment-300" vid="41"></span>
+                            <span class="w-2 h-2 rounded-full bg-parchment-300" vid="42"></span>
+                            <span class="text-[11px] font-sans text-parchment-500 ml-1" vid="43">Moderate</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-1" vid="44">
+                        <span class="text-[9px] uppercase font-bold tracking-[0.25em] text-parchment-400 font-sans" vid="45">Reading Time</span>
+                        <span class="text-[14px] font-serif text-ink" vid="46">6 min</span>
+                    </div>
+
+                    <div class="flex flex-col gap-2" vid="47">
+                        <span class="text-[9px] uppercase font-bold tracking-[0.25em] text-parchment-400 font-sans" vid="48">Related Concepts</span>
+                        <div class="flex flex-col gap-2" vid="49">
+                            <div class="flex items-center gap-3 group cursor-pointer" vid="50">
+                                <span class="w-1 h-1 rounded-full bg-parchment-400" vid="51"></span>
+                                <span class="text-[13px] font-serif italic text-ink/70 group-hover:text-ink transition-colors" vid="52">Second-Order Effects</span>
+                            </div>
+                            <div class="flex items-center gap-3 group cursor-pointer" vid="53">
+                                <span class="w-1 h-1 rounded-full bg-parchment-400" vid="54"></span>
+                                <span class="text-[13px] font-serif italic text-ink/70 group-hover:text-ink transition-colors" vid="55">Hanlon's Razor</span>
+                            </div>
+                            <div class="flex items-center gap-3 group cursor-pointer" vid="56">
+                                <span class="w-1 h-1 rounded-full bg-parchment-400" vid="57"></span>
+                                <span class="text-[13px] font-serif italic text-ink/70 group-hover:text-ink transition-colors" vid="58">Pre-mortem Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        
+        <div class="w-[65%] h-full overflow-y-auto no-scrollbar bg-[#FDFCF9] relative" vid="59">
+            <article class="w-full max-w-2xl mx-auto px-12 py-24 flex flex-col" vid="60">
+                
+                <blockquote class="border-l-[3px] border-ink pl-8 py-2 mb-16" vid="61">
+                    <p class="text-2xl font-serif italic text-parchment-500 leading-relaxed tracking-tight" vid="62">
+                        "Invert, always invert: Turn a situation or problem upside down. Look at it backward. What happens if all our plans go wrong?"
+                    </p>
+                </blockquote>
+
+                <div class="space-y-8 font-serif text-[20px] text-ink leading-relaxed" vid="63">
+                    <p vid="64">
+                        Inversion is the practice of thinking about problems in reverse. Instead of asking how to achieve a desired outcome, you ask how to achieve the opposite — and then avoid doing those things. It is one of the most powerful and underused mental tools available to the careful thinker.
+                    </p>
+                    <p vid="65">
+                        The conceptual root of inversion is simple: avoiding stupidity is easier than seeking brilliance. It is mathematically and psychologically simpler to identify what guarantees failure and remove it, than to identify what guarantees success and execute it perfectly.
+                    </p>
+                    <p vid="66">
+                        Jacobi, the great 19th-century mathematician, made this his operating principle: <em vid="67">"Man muss immer umkehren"</em> — one must always invert. He applied it to calculus. Charlie Munger applied it to investing and to life. The insight generalised far beyond any single domain.
+                    </p>
+                    <p vid="68">
+                        Most people move through life asking forward-facing questions: How do I become more productive? How do I build a strong relationship? How do I make this business succeed? Inversion reframes each of these. Ask instead: What would make me reliably unproductive? What behaviours consistently destroy relationships? What decisions reliably ruin businesses? Catalog those answers — and then, with cold precision, refuse to do them.
+                    </p>
+                    <p vid="69">
+                        The value of this approach is not philosophical novelty but practical leverage. Negative space is often easier to map. The failure modes of any system are usually fewer, more legible, and more stable than the conditions for success. You gain asymmetric insight: by ruling out a bounded set of catastrophic inputs, you preserve a much larger domain of potentially successful ones.
+                    </p>
+                </div>
+
+                <h2 class="text-[12px] font-sans font-bold tracking-[0.3em] text-ink uppercase border-b border-parchment-300 pb-4 mt-20 mb-10 w-full" vid="70">The Dual Process</h2>
+
+                <div class="flex flex-col gap-6 mb-16" vid="71">
+                    <div class="bg-parchment-100 rounded-3xl p-8 flex flex-col gap-4 border border-parchment-200" vid="72">
+                        <h3 class="font-serif text-[22px] text-ink leading-tight" vid="73">Forward Thinking</h3>
+                        <p class="font-sans text-[14px] text-ink/70 leading-relaxed" vid="74">
+                            Focuses on the optimal path. Requires precise execution and the assumption that all positive variables will align.
+                        </p>
+                    </div>
+
+                    <div class="bg-ink rounded-3xl p-8 flex flex-col gap-4 shadow-xl" vid="75">
+                        <h3 class="font-serif text-[22px] text-white leading-tight" vid="76">Backward Thinking</h3>
+                        <p class="font-sans text-[14px] text-parchment-400 leading-relaxed" vid="77">
+                            Focuses on structural resilience. Identifies catastrophic failure points and actively engineers them out.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-8 font-serif text-[20px] text-ink leading-relaxed mb-32" vid="78">
+                    <p vid="79">
+                        By combining both forward and backward thinking, you establish a margin of safety. You possess an offensive strategy for growth, paired with a defensive mechanism against ruin.
+                    </p>
+                </div>
+            </article>
+
+            
+            <div class="fixed bottom-10 right-10 z-50 flex items-center gap-2 bg-white/80 backdrop-blur-xl border border-parchment-300 p-2 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]" vid="80">
+                <button class="p-3 rounded-xl hover:bg-parchment-100 transition-colors text-parchment-500 hover:text-ink border border-transparent hover:border-parchment-200" vid="81">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="82"><path d="m15 18-6-6 6-6" vid="83"></path></svg>
+                </button>
+                <div class="h-6 w-px bg-parchment-200 mx-1" vid="84"></div>
+                <div class="px-4 py-2 flex flex-col items-center" vid="85">
+                    <span class="text-[9px] uppercase font-bold tracking-widest text-parchment-400 leading-none mb-1" vid="86">Reading</span>
+                    <span class="text-[13px] font-serif italic font-medium text-ink" vid="87">Inversion</span>
+                </div>
+                <div class="h-6 w-px bg-parchment-200 mx-1" vid="88"></div>
+                <button class="px-5 py-2.5 rounded-xl text-[11px] uppercase font-bold tracking-wider text-ink hover:bg-parchment-100 transition-colors" vid="89">Share</button>
+                <button class="px-5 py-2.5 rounded-xl bg-ink text-white text-[11px] uppercase font-bold tracking-wider hover:bg-ink/90 transition-all shadow-lg shadow-ink/20" vid="90">Archive</button>
+                <div class="h-6 w-px bg-parchment-200 mx-1" vid="91"></div>
+                <button class="p-3 rounded-xl hover:bg-parchment-100 transition-colors text-parchment-500 hover:text-ink" vid="92">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="93"><path d="M18 6 6 18" vid="94"></path><path d="m6 6 12 12" vid="95"></path></svg>
+                </button>
+            </div>
+        </div>
+        
+    </main>
+
+</body></html>
