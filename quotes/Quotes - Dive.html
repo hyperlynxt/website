@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
     <title vid="4">Archive | Library &amp; Loom</title>
     <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        page: '#F8F7F4',
+                        sidebar: '#EFEBE4',
+                        inverse: '#2A2724',
+                        ink: '#1A1918',
+                        muted: '#6B675F',
+                        borderline: '#DEDBD3',
+                        accent: '#DCD8CE',
+                        'inverse-text': '#F5F3ED',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
     <link
@@ -143,8 +161,8 @@
         }
 
         .author-option.active {
-            color: var(--ink);
-            background-color: var(--sidebar);
+            color: #1A1A18;
+            background-color: #EFEBE4;
         }
 
         #author-menu::-webkit-scrollbar {
