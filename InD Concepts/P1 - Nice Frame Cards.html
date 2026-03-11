@@ -1,0 +1,218 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Inversion - Concepts &amp; Models</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" vid="8">
+    <script src="https://unpkg.com/@phosphor-icons/web" vid="9"></script>
+    <script vid="10">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: {
+                            DEFAULT: '#F7F5F0', 
+                            dock: '#EFECE5',    
+                            card: '#FFFFFF',    
+                            border: '#E6E2D8',  
+                            sidebar: '#F2EFEB'  
+                        },
+                        ink: {
+                            DEFAULT: '#1A1A18', 
+                            muted: '#666560',   
+                            light: '#999893',   
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        'widest-xl': '0.2em',
+                        'widest-lg': '0.15em',
+                        'widest-md': '0.1em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style vid="11">
+        html { scroll-behavior: smooth; }
+        body { 
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale; 
+        }
+        ::selection { background-color: #1A1A18; color: #F7F5F0; }
+    </style>
+</head>
+<body class="bg-parchment text-ink font-serif min-h-screen flex flex-col pb-[100px]" vid="12">
+
+    <header class="w-full px-10 py-8 flex justify-between items-center border-b border-parchment-border" vid="13">
+        <div class="flex items-center gap-4 text-[10px] font-sans tracking-widest-xl text-ink-muted uppercase" vid="14">
+            <span vid="15">Interlinked &amp; Intertwined</span>
+            <span class="w-px h-3 bg-parchment-border" vid="16"></span>
+            <span vid="17">Concepts &amp; Models</span>
+        </div>
+        <div class="flex items-center gap-2 text-[10px] font-sans tracking-widest-xl text-ink-muted lowercase" vid="18">
+            <span vid="19">hyperlynxt | teo</span>
+        </div>
+    </header>
+
+    <main class="max-w-[1440px] mx-auto w-full px-10 py-16 flex flex-col lg:flex-row gap-20" vid="20">
+        
+        <article class="flex-1 max-w-[800px]" vid="21">
+            <header class="mb-16" vid="22">
+                <nav class="text-[10px] font-sans tracking-widest-xl text-ink-light uppercase mb-10 flex items-center gap-3" vid="23">
+                    <a href="#" class="hover:text-ink transition-colors" vid="24">Concepts &amp; Models</a>
+                    <span class="text-parchment-border text-lg leading-none mt-[-2px]" vid="25">›</span>
+                    <span class="text-ink-muted" vid="26">Decision Making</span>
+                </nav>
+
+                <h1 class="text-[88px] font-medium tracking-tight mb-8" vid="27">Inversion</h1>
+
+                <div class="flex items-center gap-6 flex-wrap" vid="28">
+                    <span class="border border-parchment-border rounded-full px-3 py-1 text-[10px] font-sans tracking-widest-lg text-ink uppercase" vid="29">Decision Making</span>
+                    <div class="text-[10px] font-sans tracking-widest-lg text-ink-muted uppercase flex items-center gap-3" vid="30">
+                        <span vid="31">5 Min Read</span>
+                        <span class="text-parchment-border" vid="32">•</span>
+                        <span vid="33">Charlie Munger</span>
+                        <span class="text-parchment-border" vid="34">•</span>
+                        <span vid="35">Core Model</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="w-16 h-px bg-parchment-border mb-16" vid="36"></div>
+
+            <div class="prose prose-lg max-w-none text-[21px] leading-[1.8] text-ink" vid="37">
+                <section class="mb-20" vid="38">
+                    <p class="text-[32px] italic leading-[1.4] text-ink mb-10 font-medium tracking-tight" vid="39">
+                        "Approaching a situation from the opposite end of the natural starting point."
+                    </p>
+                    <p class="mb-6" vid="40">
+                        The concept of inversion is rooted in the mathematical principle developed by Carl Jacobi, who famously advised, "man muss immer umkehren" (invert, always invert). It is a cognitive tool that forces you to view a problem from the reverse angle. Instead of focusing on the desired outcome and the steps to get there, you focus on the worst possible outcome and the steps that would lead to it.
+                    </p>
+                    <p vid="41">
+                        Charlie Munger popularized this framework for modern decision-making, particularly in investing and life strategies. He recognized that it is often easier to identify and avoid stupidity than it is to seek brilliance. In complex systems, solving forward is prone to miscalculation, whereas solving backward reveals glaring pitfalls. By systematically avoiding the actions that guarantee failure, you inherently increase the probability of success.
+                    </p>
+                </section>
+
+                <section class="mb-20" vid="42">
+                    <h2 class="text-[11px] font-sans tracking-widest-xl text-ink-muted uppercase mb-10 font-semibold border-b border-parchment-border pb-4 inline-block" vid="43">How It Works</h2>
+                    <p class="mb-8" vid="44">
+                        Inversion operates by flipping the objective. If your goal is to build a healthy relationship, the forward-thinking approach asks, "What things make a relationship healthy?" The inversion approach asks, "What things consistently destroy relationships?" The resulting list—dishonesty, lack of communication, selfishness—provides a concrete set of anti-goals to rigorously avoid.
+                    </p>
+                    <blockquote class="border-l-[1.5px] border-ink/20 pl-8 py-2 my-12" vid="45">
+                        <p class="text-[26px] italic text-ink-muted leading-[1.5] mb-4" vid="46">
+                            "It is remarkable how much long-term advantage people like us have gotten by trying to be consistently not stupid, instead of trying to be very intelligent."
+                        </p>
+                        <footer class="text-[11px] font-sans uppercase tracking-widest-lg not-italic text-ink-light" vid="47">
+                            — Charlie Munger
+                        </footer>
+                    </blockquote>
+                </section>
+            </div>
+        </article>
+
+        
+        <aside class="w-[320px] flex-shrink-0 hidden lg:block relative" vid="48">
+            <div class="sticky top-12 bg-parchment-sidebar rounded-[24px] p-8 border border-parchment-border shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]" vid="49">
+                
+                
+                <div class="mb-10" vid="50">
+                    <h3 class="text-[10px] font-sans tracking-widest-xl text-ink-muted uppercase mb-3 font-semibold" vid="51">Key Tags</h3>
+                    <div class="text-[10px] font-sans tracking-widest-md text-ink flex flex-wrap gap-x-2 gap-y-1 uppercase font-medium" vid="52">
+                        <span vid="53">Core Model</span>
+                        <span class="text-parchment-border" vid="54">•</span>
+                        <span vid="55">Decision Making</span>
+                        <span class="text-parchment-border" vid="56">•</span>
+                        <span vid="57">Charlie Munger</span>
+                    </div>
+                </div>
+
+                
+                <div class="mb-10" vid="58">
+                    <h3 class="text-[10px] font-sans tracking-widest-xl text-ink-muted uppercase mb-5 font-semibold" vid="59">Frameworks Using This</h3>
+                    <div class="flex flex-col gap-4" vid="60">
+                        <a href="#" class="block p-5 bg-white rounded-2xl border border-parchment-border hover:border-ink/20 transition-all group overflow-hidden" vid="61">
+                            <span class="block text-[9px] font-sans tracking-widest-md text-ink-light uppercase mb-1.5" vid="62">Systems Design</span>
+                            <span class="text-[20px] font-medium leading-tight group-hover:text-ink-muted transition-colors block mb-4" vid="63">Sensemaking Architectures</span>
+                            <div class="h-0.5 w-full bg-parchment-border rounded-full" vid="64">
+                                <div class="h-full bg-ink w-[65%]" vid="65"></div>
+                            </div>
+                        </a>
+                        <a href="#" class="block p-5 bg-white rounded-2xl border border-parchment-border hover:border-ink/20 transition-all group overflow-hidden" vid="66">
+                            <span class="block text-[9px] font-sans tracking-widest-md text-ink-light uppercase mb-1.5" vid="67">Cognitive Models</span>
+                            <span class="text-[20px] font-medium leading-tight group-hover:text-ink-muted transition-colors block mb-4" vid="68">Failure Mapping</span>
+                            <div class="h-0.5 w-full bg-parchment-border rounded-full" vid="69">
+                                <div class="h-full bg-ink w-[40%]" vid="70"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                
+                <div class="mb-10" vid="71">
+                    <h3 class="text-[10px] font-sans tracking-widest-xl text-ink-muted uppercase mb-5 font-semibold" vid="72">Notes</h3>
+                    <div class="flex flex-col gap-6" vid="73">
+                        <div class="border-l-[1px] border-ink/30 pl-4 py-1" vid="74">
+                            <p class="italic text-[17px] leading-[1.5] text-ink/80 mb-2" vid="75">Consider the pre-mortem stage as a direct application of Jacobi's principle.</p>
+                            <span class="text-[9px] font-sans tracking-widest-lg text-ink-light uppercase" vid="76">14 Oct, 10:24</span>
+                        </div>
+                        <div class="border-l-[1px] border-ink/30 pl-4 py-1" vid="77">
+                            <p class="italic text-[17px] leading-[1.5] text-ink/80 mb-2" vid="78">Munger's avoidance of 'stupidity' is actually a high-leverage defensive strategy.</p>
+                            <span class="text-[9px] font-sans tracking-widest-lg text-ink-light uppercase" vid="79">16 Oct, 14:12</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="space-y-3 pt-6 border-t border-parchment-border" vid="80">
+                    <button class="w-full bg-ink text-white rounded-full py-3.5 text-[10px] font-sans tracking-widest-lg uppercase font-medium hover:bg-ink/80 transition-colors" vid="81">
+                        Save to Collection
+                    </button>
+                    <button class="w-full bg-transparent border border-ink/20 text-ink rounded-full py-3.5 text-[10px] font-sans tracking-widest-lg uppercase font-medium hover:bg-black/5 transition-colors" vid="82">
+                        Mark as Read
+                    </button>
+                </div>
+
+            </div>
+        </aside>
+
+    </main>
+
+    <nav class="fixed bottom-0 left-0 w-full bg-parchment-dock border-t border-parchment-border z-50" vid="83">
+        <div class="max-w-[1440px] mx-auto px-10 h-[88px] flex justify-between items-center" vid="84">
+            <div class="flex-1 flex justify-start items-center" vid="85">
+                <div class="flex flex-col items-center cursor-pointer hover:opacity-70 transition-opacity" vid="86">
+                    <span class="text-[10px] font-sans font-bold tracking-widest-lg text-ink uppercase" vid="87">Collections</span>
+                    <span class="text-[9px] font-sans tracking-widest-md text-ink-light uppercase mt-1" vid="88">24 Items</span>
+                </div>
+            </div>
+            <div class="flex-shrink-0 mx-8" vid="89">
+                <div class="bg-ink text-white rounded-full px-10 py-3.5 flex flex-col items-center cursor-default shadow-lg shadow-ink/10 relative -top-2" vid="90">
+                    <span class="text-[10px] font-sans font-bold tracking-widest-lg uppercase" vid="91">Concepts</span>
+                    <span class="text-[9px] font-sans tracking-widest-md text-white/60 uppercase mt-0.5" vid="92">8 Items</span>
+                </div>
+            </div>
+            <div class="flex-1 flex justify-end items-center gap-14" vid="93">
+                <div class="hidden md:flex flex-col items-center cursor-pointer hover:opacity-70 transition-opacity" vid="94">
+                    <span class="text-[10px] font-sans font-bold tracking-widest-lg text-ink uppercase" vid="95">Frameworks</span>
+                    <span class="text-[9px] font-sans tracking-widest-md text-ink-light uppercase mt-1" vid="96">5 Items</span>
+                </div>
+                <div class="hidden md:flex flex-col items-center cursor-pointer hover:opacity-70 transition-opacity" vid="97">
+                    <span class="text-[10px] font-sans font-bold tracking-widest-lg text-ink uppercase" vid="98">Biases</span>
+                    <span class="text-[9px] font-sans tracking-widest-md text-ink-light uppercase mt-1" vid="99">56 Items</span>
+                </div>
+                <div class="w-px h-10 bg-parchment-border hidden lg:block mx-2" vid="100"></div>
+                <button class="p-2 text-ink hover:text-ink-muted transition-colors flex items-center justify-center" vid="101">
+                    <i class="ph ph-magnifying-glass text-xl" vid="102"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+
+</body></html>

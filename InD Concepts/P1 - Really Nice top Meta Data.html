@@ -1,0 +1,467 @@
+<html lang="en" vid="0"><head vid="1">
+<meta charset="UTF-8" vid="2">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+<title vid="4">Index Mentis - Archival Repository</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" vid="7">
+<style vid="8">
+    :root {
+        --bg-base: #F8F7F4;
+        --bg-tint: #EFEBE4;
+        --bg-hover: #F5F3ED;
+        --ink-darkest: #1A1918;
+        --ink-dark: #2A2724;
+        --ink-muted: #6B675F;
+        --border-faint: rgba(222, 219, 211, 0.4);
+        --border-base: #DEDBD3;
+        --border-dark: #DCD8CE;
+        --accent-primary-bg: #EADCD9; 
+        --accent-primary-text: #8C4A3E;
+        --font-serif: 'EB Garamond', Georgia, serif;
+        --font-sans: 'Inter', -apple-system, sans-serif;
+        --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+        --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body, html {
+        height: 100%;
+        overflow: hidden; 
+        background-color: var(--bg-base);
+        color: var(--ink-dark);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .viewport {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+    }
+
+    .zone-1-header {
+        height: 56px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--sp-6);
+        background: rgba(248, 247, 244, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-base);
+        z-index: 50;
+    }
+
+    .zone-2-subheader {
+        height: 80px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--sp-6);
+        background: var(--bg-base);
+        z-index: 40;
+    }
+
+    .zone-stats-bar {
+        background: var(--bg-tint);
+        border-top: 1px solid var(--border-base);
+        padding: var(--sp-4) var(--sp-6);
+        display: flex;
+        align-items: center;
+        gap: var(--sp-12);
+        flex-shrink: 0;
+    }
+
+    
+    .zone-metadata-tags {
+        background: var(--bg-tint);
+        border-bottom: 1px solid var(--border-base);
+        padding: var(--sp-2) var(--sp-6) var(--sp-4);
+        display: flex;
+        align-items: center;
+        gap: var(--sp-3);
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .zone-metadata-tags::-webkit-scrollbar { display: none; }
+
+    .meta-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        background: rgba(255,255,255,0.4);
+        border: 1px solid var(--border-base);
+        border-radius: 4px;
+        font-family: var(--font-sans);
+        font-size: 11px;
+        color: var(--ink-muted);
+    }
+    .meta-pill .pill-label { font-weight: 600; text-transform: uppercase; font-size: 9px; margin-right: 6px; color: var(--ink-dark); opacity: 0.6; }
+
+    .stat-group {
+        display: flex;
+        align-items: baseline;
+        gap: var(--sp-3);
+    }
+
+    .stat-mini-label {
+        font-family: var(--font-sans);
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-muted);
+        font-weight: 600;
+    }
+
+    .stat-mini-value {
+        font-family: var(--font-serif);
+        font-size: 20px;
+        color: var(--ink-darkest);
+    }
+
+    .zone-3-main {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: var(--sp-12) 0;
+    }
+
+    .content-container {
+        width: 100%;
+        max-width: 1100px;
+        padding: 0 var(--sp-6);
+    }
+
+    
+    .connection-entry {
+        display: grid;
+        grid-template-columns: 1fr 280px;
+        gap: var(--sp-10);
+        margin-bottom: var(--sp-12);
+        padding-bottom: var(--sp-12);
+        border-bottom: 1px solid var(--border-faint);
+    }
+
+    .entry-main-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .entry-sidebar {
+        background: rgba(222, 219, 211, 0.2);
+        border-radius: 8px;
+        padding: var(--sp-4);
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-4);
+        border-left: 2px solid var(--border-base);
+    }
+
+    .sidebar-metric {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .sidebar-label {
+        font-family: var(--font-sans);
+        font-size: 9px;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: var(--ink-muted);
+    }
+
+    .sidebar-value {
+        font-family: var(--font-serif);
+        font-size: 18px;
+        color: var(--ink-darkest);
+    }
+
+    .sidebar-quote {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 14px;
+        color: var(--ink-muted);
+        line-height: 1.4;
+        padding-top: var(--sp-2);
+        border-top: 1px solid var(--border-faint);
+    }
+
+    .entry-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: var(--sp-4);
+    }
+
+    .entry-concept-name {
+        font-family: var(--font-serif);
+        font-size: 32px;
+        font-weight: 500;
+        color: var(--ink-darkest);
+    }
+
+    .entry-rationale {
+        font-family: var(--font-serif);
+        font-size: 22px;
+        color: var(--ink-dark);
+        line-height: 1.5;
+        margin-top: var(--sp-6);
+    }
+
+    .entry-category {
+        font-family: var(--font-sans);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--ink-muted);
+        margin-bottom: var(--sp-1);
+        display: block;
+    }
+
+    .zone-4-bottomnav {
+        height: 80px;
+        flex-shrink: 0;
+        background: var(--bg-tint);
+        border-top: 1px solid var(--border-base);
+        display: flex;
+        align-items: center;
+        padding: 0 var(--sp-6);
+        z-index: 50;
+    }
+
+    .flex-row { display: flex; align-items: center; }
+    .flex-col { display: flex; flex-direction: column; }
+    .gap-2 { gap: var(--sp-2); }
+    .gap-3 { gap: var(--sp-3); }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 99px;
+        font-family: var(--font-sans);
+        font-size: 13px;
+        font-weight: 500;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+    }
+    
+    .btn-outline { background: transparent; border: 1px solid var(--border-dark); color: var(--ink-dark); }
+    .btn-dark { background: var(--ink-darkest); border: 1px solid var(--ink-darkest); color: var(--bg-base); }
+    .btn-ghost { background: transparent; border: 1px solid transparent; color: var(--ink-muted); }
+    .btn-toggle-active { background: var(--bg-tint); border: 1px solid var(--border-base); color: var(--ink-dark); }
+
+    .brand-name { font-family: var(--font-serif); font-style: italic; font-size: 18px; color: var(--ink-darkest); }
+    .divider-vertical { width: 1px; height: 16px; background-color: var(--border-dark); margin: 0 var(--sp-4); }
+    .micro-label { font-family: var(--font-sans); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); font-weight: 600; }
+    
+    .icon-btn { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; color: var(--ink-muted); cursor: pointer; margin-right: var(--sp-4); }
+    .concept-title { font-family: var(--font-serif); font-size: 28px; font-weight: 500; color: var(--ink-darkest); }
+
+    .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 99px; font-family: var(--font-sans); font-size: 12px; font-weight: 500; }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .badge-primary { background: var(--accent-primary-bg); color: var(--accent-primary-text); }
+    .badge-primary .badge-dot { background: var(--accent-primary-text); }
+    .badge-secondary { border: 1px solid var(--border-dark); color: var(--ink-dark); }
+    .badge-tertiary { border: 1px solid var(--border-faint); color: var(--ink-muted); }
+
+    .bottom-nav-container { display: flex; align-items: center; width: 100%; max-width: 800px; margin: 0 auto; }
+    .nav-tabs { display: flex; flex: 1; justify-content: space-between; }
+    .nav-item { display: flex; flex-direction: column; align-items: center; padding: 8px 24px; border-radius: 99px; text-decoration: none; }
+    .nav-label { font-family: var(--font-sans); font-size: 13px; font-weight: 500; color: var(--ink-muted); }
+    .nav-count { font-family: var(--font-sans); font-size: 10px; color: var(--ink-muted); opacity: 0.8; }
+    .nav-active { background: var(--ink-darkest); }
+    .nav-active .nav-label, .nav-active .nav-count { color: var(--bg-base); opacity: 1; }
+    .nav-divider-vert { width: 1px; height: 32px; background: var(--border-dark); margin: 0 var(--sp-6); }
+    .search-btn { width: 40px; height: 40px; border-radius: 50%; border: none; background: transparent; cursor: pointer; color: var(--ink-dark); display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body vid="9">
+
+<div class="viewport" vid="10">
+    <header class="zone-1-header" vid="11">
+        <div class="flex-row" vid="12">
+            <span class="brand-name" vid="13">Index Mentis</span>
+            <div class="divider-vertical" vid="14"></div>
+            <span class="micro-label" vid="15">Archival Repository</span>
+        </div>
+        <div class="flex-row gap-3" vid="16">
+            <button class="btn btn-outline" vid="17">Share</button>
+            <button class="btn btn-dark" vid="18">Archive Entry</button>
+        </div>
+    </header>
+
+    <div class="zone-2-subheader" vid="19">
+        <div class="flex-row" vid="20">
+            <div class="icon-btn" vid="21">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="22"><path d="M19 12H5M12 19l-7-7 7-7" vid="23"></path></svg>
+            </div>
+            <div class="flex-col" vid="24">
+                <span class="micro-label" vid="25">Viewing Connections For</span>
+                <h1 class="concept-title" vid="26">Cognitive Dissonance</h1>
+            </div>
+        </div>
+        <div class="flex-row gap-2" vid="27">
+            <button class="btn btn-ghost" vid="28">Graph View</button>
+            <button class="btn btn-toggle-active" vid="29">List View</button>
+        </div>
+    </div>
+
+    <div class="zone-stats-bar" vid="30">
+        <div class="stat-group" vid="31">
+            <span class="stat-mini-label" vid="32">Primary</span>
+            <span class="stat-mini-value" vid="33">12</span>
+        </div>
+        <div class="stat-group" vid="34">
+            <span class="stat-mini-label" vid="35">Secondary</span>
+            <span class="stat-mini-value" vid="36">34</span>
+        </div>
+        <div class="stat-group" vid="37">
+            <span class="stat-mini-label" vid="38">Tertiary</span>
+            <span class="stat-mini-value" vid="39">89</span>
+        </div>
+        <div class="divider-vertical" vid="40"></div>
+        <div class="stat-group" vid="41">
+            <span class="stat-mini-label" vid="42">Top Cat</span>
+            <span class="stat-mini-value" vid="43" style="font-size: 15px; font-style: italic;">Epistemology</span>
+        </div>
+    </div>
+
+    
+    <div class="zone-metadata-tags" vid="44">
+        <div class="meta-pill" vid="45"><span class="pill-label" vid="46">Discipline</span>Psychology</div>
+        <div class="meta-pill" vid="47"><span class="pill-label" vid="48">Discipline</span>Cognitive Science</div>
+        <div class="meta-pill" vid="49"><span class="pill-label" vid="50">Thinker</span>Leon Festinger</div>
+        <div class="meta-pill" vid="51"><span class="pill-label" vid="52">Era</span>Mid-20th Century</div>
+        <div class="meta-pill" vid="53"><span class="pill-label" vid="54">Related</span>Belief Disconfirmation</div>
+        <div class="meta-pill" vid="55"><span class="pill-label" vid="56">Related</span>Motivated Reasoning</div>
+        <div class="meta-pill" vid="57"><span class="pill-label" vid="58">Framework</span>Consistency Theory</div>
+        <div class="meta-pill" vid="59"><span class="pill-label" vid="60">Thinker</span>Elliot Aronson</div>
+        <div class="meta-pill" vid="61"><span class="pill-label" vid="62">Related</span>Social Influence</div>
+    </div>
+
+    <main class="zone-3-main" vid="63">
+        <div class="content-container" vid="64">
+            
+            <article class="connection-entry" vid="65">
+                <div class="entry-main-content" vid="66">
+                    <div class="entry-meta" vid="67">
+                        <div class="flex-col" vid="68">
+                            <span class="entry-category" vid="69">Epistemology</span>
+                            <h2 class="entry-concept-name" vid="70">Confirmation Bias</h2>
+                        </div>
+                        <div class="badge badge-primary" vid="71">
+                            <span class="badge-dot" vid="72"></span>Primary Connection
+                        </div>
+                    </div>
+                    <p class="entry-rationale" vid="73">Both involve the active rejection or distortion of information that contradicts pre-existing internal structures, functioning as defense mechanisms for the ego.</p>
+                </div>
+                <aside class="entry-sidebar" vid="74">
+                    <div class="sidebar-metric" vid="75">
+                        <span class="sidebar-label" vid="76">Connection Strength</span>
+                        <span class="sidebar-value" vid="77">94% Overlap</span>
+                    </div>
+                    <div class="sidebar-metric" vid="78">
+                        <span class="sidebar-label" vid="79">Overlap Domains</span>
+                        <span class="sidebar-value" style="font-size: 14px;" vid="80">Logic, Perceptual Psych</span>
+                    </div>
+                    <blockquote class="sidebar-quote" vid="81">"The engine of mental maintenance is often the exclusion of truth."</blockquote>
+                </aside>
+            </article>
+
+            <article class="connection-entry" vid="82">
+                <div class="entry-main-content" vid="83">
+                    <div class="entry-meta" vid="84">
+                        <div class="flex-col" vid="85">
+                            <span class="entry-category" vid="86">Behavioral Econ</span>
+                            <h2 class="entry-concept-name" vid="87">Sunk Cost Fallacy</h2>
+                        </div>
+                        <div class="badge badge-secondary" vid="88">
+                            <span class="badge-dot" vid="89"></span>Secondary Connection
+                        </div>
+                    </div>
+                    <p class="entry-rationale" vid="90">A behavioral manifestation where dissonance is avoided by escalating commitment to a failing course of action, thereby justifying previous investments.</p>
+                </div>
+                <aside class="entry-sidebar" vid="91">
+                    <div class="sidebar-metric" vid="92">
+                        <span class="sidebar-label" vid="93">Connection Strength</span>
+                        <span class="sidebar-value" vid="94">72% Overlap</span>
+                    </div>
+                    <div class="sidebar-metric" vid="95">
+                        <span class="sidebar-label" vid="96">Overlap Domains</span>
+                        <span class="sidebar-value" style="font-size: 14px;" vid="97">Decision Sci, Finance</span>
+                    </div>
+                    <blockquote class="sidebar-quote" vid="98">"To quit is to admit the internal conflict was real all along."</blockquote>
+                </aside>
+            </article>
+
+            <article class="connection-entry" vid="99">
+                <div class="entry-main-content" vid="100">
+                    <div class="entry-meta" vid="101">
+                        <div class="flex-col" vid="102">
+                            <span class="entry-category" vid="103">Social Psych</span>
+                            <h2 class="entry-concept-name" vid="104">Groupthink</h2>
+                        </div>
+                        <div class="badge badge-tertiary" vid="105">
+                            <span class="badge-dot" vid="106"></span>Tertiary Connection
+                        </div>
+                    </div>
+                    <p class="entry-rationale" vid="107">Social dynamics that suppress dissent often leverage individual dissonance avoidance; challenging the group creates an uncomfortable internal conflict.</p>
+                </div>
+                <aside class="entry-sidebar" vid="108">
+                    <div class="sidebar-metric" vid="109">
+                        <span class="sidebar-label" vid="110">Connection Strength</span>
+                        <span class="sidebar-value" vid="111">48% Overlap</span>
+                    </div>
+                    <div class="sidebar-metric" vid="112">
+                        <span class="sidebar-label" vid="113">Overlap Domains</span>
+                        <span class="sidebar-value" style="font-size: 14px;" vid="114">Sociology, Management</span>
+                    </div>
+                    <blockquote class="sidebar-quote" vid="115">"Harmony is the sedative for individual cognitive unease."</blockquote>
+                </aside>
+            </article>
+        </div>
+    </main>
+
+    <nav class="zone-4-bottomnav" vid="116">
+        <div class="bottom-nav-container" vid="117">
+            <div class="nav-tabs" vid="118">
+                <a href="#" class="nav-item" vid="119">
+                    <span class="nav-label" vid="120">Collections</span>
+                    <span class="nav-count" vid="121">12</span>
+                </a>
+                <a href="#" class="nav-item nav-active" vid="122">
+                    <span class="nav-label" vid="123">Concepts</span>
+                    <span class="nav-count" vid="124">843</span>
+                </a>
+                <a href="#" class="nav-item" vid="125">
+                    <span class="nav-label" vid="126">Frameworks</span>
+                    <span class="nav-count" vid="127">45</span>
+                </a>
+                <a href="#" class="nav-item" vid="128">
+                    <span class="nav-label" vid="129">Biases</span>
+                    <span class="nav-count" vid="130">112</span>
+                </a>
+            </div>
+            <div class="nav-divider-vert" vid="131"></div>
+            <button class="search-btn" vid="132">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="133"><circle cx="11" cy="11" r="8" vid="134"></circle><path d="m21 21-4.3-4.3" vid="135"></path></svg>
+            </button>
+        </div>
+    </nav>
+</div>
+
+</body></html>

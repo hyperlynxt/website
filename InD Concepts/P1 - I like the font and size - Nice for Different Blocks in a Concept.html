@@ -1,0 +1,630 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Mental Model Detail View</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" vid="7">
+    <style vid="8">
+        :root {
+            
+            --bg-main: #F8F7F4;
+            --bg-sidebar: #EFEBE4;
+            --bg-white: #FFFFFF;
+            --bg-tint: #F0EBE1; 
+            --bg-dark: #2A2724; 
+            
+            --text-primary: #1A1918;
+            --text-muted: #8A857D;
+            --text-inverse: #F8F7F4;
+            
+            --border-subtle: #DEDAD1;
+            --border-dark: #1A1918;
+
+            
+            --font-serif: 'EB Garamond', serif;
+            --font-sans: 'Inter', sans-serif;
+
+            
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-6: 24px;
+            --space-8: 32px;
+            --space-12: 48px;
+            --space-16: 64px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-serif);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 1.125rem;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+        }
+
+        
+        .ui-label {
+            font-family: var(--font-sans);
+            font-size: 0.6875rem; 
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 400;
+        }
+
+        
+        .app-layout {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        
+        .sidebar {
+            width: 256px;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            z-index: 20;
+        }
+
+        .sidebar-header {
+            padding: var(--space-6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-name {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            border-radius: 4px;
+            transition: color 0.2s;
+        }
+
+        .icon-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .sidebar-nav {
+            padding: 0 var(--space-4);
+            margin-bottom: var(--space-8);
+        }
+
+        .nav-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-2) var(--space-3);
+            margin-bottom: var(--space-1);
+            text-decoration: none;
+            border-radius: 99px; 
+            transition: all 0.2s ease;
+            color: var(--text-muted);
+        }
+
+        .nav-item:hover {
+            background-color: rgba(26, 25, 24, 0.05);
+            color: var(--text-primary);
+        }
+
+        .nav-item.active {
+            background-color: var(--text-primary);
+            color: var(--text-inverse);
+        }
+
+        .nav-item.active .ui-label {
+            color: var(--text-inverse);
+        }
+
+        .nav-badge {
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            opacity: 0.6;
+        }
+
+        .sidebar-history {
+            flex: 1;
+            padding: 0 var(--space-6);
+            overflow-y: auto;
+        }
+
+        .history-label {
+            margin-bottom: var(--space-4);
+        }
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .history-item {
+            text-decoration: none;
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1rem;
+            padding-left: var(--space-3);
+            border-left: 2px solid var(--border-subtle);
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .history-item:hover {
+            color: var(--text-primary);
+            border-left-color: var(--text-muted);
+        }
+
+        .history-item.current {
+            color: var(--text-primary);
+            border-left-color: var(--text-primary);
+        }
+
+        .sidebar-footer {
+            padding: var(--space-6);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        
+        .main-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: var(--bg-main);
+            min-width: 0; 
+        }
+
+        
+        .top-header {
+            position: sticky;
+            top: 0;
+            height: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--space-8);
+            background-color: rgba(248, 247, 244, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 10;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .header-right {
+            display: flex;
+            gap: var(--space-3);
+        }
+
+        .btn {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-primary);
+        }
+
+        .btn-filled {
+            background: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            color: var(--text-inverse);
+        }
+
+        .btn-filled:hover {
+            background: #000000;
+        }
+
+        
+        .content-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: var(--space-16);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-12) var(--space-8);
+            display: flex;
+            gap: 80px;
+            align-items: flex-start;
+        }
+
+        
+        .reading-col {
+            flex: 1;
+            max-width: 720px;
+        }
+
+        .article-category {
+            margin-bottom: var(--space-6);
+        }
+
+        .article-title {
+            font-size: 4.5rem;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-8);
+            color: var(--text-primary);
+        }
+
+        .article-quote {
+            font-size: 1.75rem;
+            line-height: 1.4;
+            font-style: italic;
+            color: var(--text-primary);
+            padding-left: var(--space-6);
+            border-left: 2px solid var(--text-primary);
+            margin-bottom: var(--space-12);
+        }
+
+        .content-section {
+            margin-bottom: var(--space-12);
+        }
+
+        .section-header {
+            margin-bottom: var(--space-4);
+            color: var(--text-primary);
+        }
+
+        .reading-col p {
+            margin-bottom: var(--space-6);
+            color: #33312E; 
+        }
+
+        
+        .contrast-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            margin: var(--space-12) 0;
+        }
+
+        .contrast-card {
+            padding: var(--space-8);
+            border-radius: 4px;
+        }
+
+        .card-light {
+            background-color: var(--bg-tint);
+        }
+
+        .card-dark {
+            background-color: var(--bg-dark);
+            color: var(--text-inverse);
+        }
+
+        .card-dark .ui-label {
+            color: rgba(248, 247, 244, 0.6);
+        }
+
+        .card-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin: var(--space-4) 0;
+        }
+
+        
+        .custom-list {
+            list-style: none;
+            margin-bottom: var(--space-8);
+        }
+
+        .custom-list li {
+            display: flex;
+            margin-bottom: var(--space-3);
+            align-items: flex-start;
+        }
+
+        .custom-list li::before {
+            content: '/';
+            font-family: var(--font-sans);
+            color: var(--text-muted);
+            margin-right: var(--space-3);
+            font-weight: 400;
+        }
+
+        
+        .aside-col {
+            width: 320px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-12);
+            position: sticky;
+            top: 100px; 
+        }
+
+        .aside-section-title {
+            padding-bottom: var(--space-2);
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: var(--space-6);
+            color: var(--text-primary);
+        }
+
+        
+        .principle-item {
+            margin-bottom: var(--space-6);
+        }
+
+        .principle-title {
+            font-family: var(--font-serif);
+            font-size: 1.125rem;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .principle-desc {
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        
+        .related-card {
+            display: block;
+            text-decoration: none;
+            background-color: var(--bg-white);
+            padding: var(--space-4);
+            border: 1px solid transparent;
+            border-radius: 4px;
+            margin-bottom: var(--space-3);
+            transition: border-color 0.2s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .related-card:hover {
+            border-color: var(--border-subtle);
+        }
+
+        .related-card .ui-label {
+            display: block;
+            margin-bottom: var(--space-2);
+        }
+
+        .related-title {
+            font-family: var(--font-serif);
+            font-size: 1.125rem;
+            color: var(--text-primary);
+        }
+
+        
+        .curator-note {
+            background-color: var(--bg-tint);
+            padding: var(--space-6);
+            border-radius: 4px;
+        }
+
+        .curator-note p {
+            font-style: italic;
+            font-size: 1rem;
+            color: #4A4742; 
+            margin-top: var(--space-3);
+        }
+
+        
+        svg {
+            display: block;
+        }
+
+    </style>
+</head>
+<body vid="9">
+
+    <div class="app-layout" vid="10">
+        
+        
+        <aside class="sidebar" vid="11">
+            <div class="sidebar-header" vid="12">
+                <div class="brand-name" vid="13">Luminance</div>
+                <button class="icon-btn" aria-label="Collapse Sidebar" vid="14">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="15">
+                        <line x1="3" y1="12" x2="21" y2="12" vid="16"></line>
+                        <line x1="3" y1="6" x2="21" y2="6" vid="17"></line>
+                        <line x1="3" y1="18" x2="21" y2="18" vid="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav" vid="19">
+                <a href="#" class="nav-item" vid="20">
+                    <span class="ui-label" vid="21">Collections</span>
+                    <span class="nav-badge" vid="22">12</span>
+                </a>
+                <a href="#" class="nav-item active" vid="23">
+                    <span class="ui-label" vid="24">Mental Models</span>
+                    <span class="nav-badge" vid="25">48</span>
+                </a>
+                <a href="#" class="nav-item" vid="26">
+                    <span class="ui-label" vid="27">Frameworks</span>
+                    <span class="nav-badge" vid="28">06</span>
+                </a>
+                <a href="#" class="nav-item" vid="29">
+                    <span class="ui-label" vid="30">Saved Notes</span>
+                    <span class="nav-badge" vid="31">24</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-history" vid="32">
+                <div class="ui-label history-label" vid="33">History</div>
+                <div class="history-list" vid="34">
+                    <a href="#" class="history-item current" vid="35">Illumination &amp; Context</a>
+                    <a href="#" class="history-item" vid="36">The Map is Not the Territory</a>
+                    <a href="#" class="history-item" vid="37">First Principles Thinking</a>
+                    <a href="#" class="history-item" vid="38">Inversion</a>
+                    <a href="#" class="history-item" vid="39">Circle of Competence</a>
+                </div>
+            </div>
+
+            <div class="sidebar-footer" vid="40">
+                <span class="ui-label" style="opacity: 0.5;" vid="41">© 2024</span>
+            </div>
+        </aside>
+
+        
+        <main class="main-panel" vid="42">
+            
+            <header class="top-header" vid="43">
+                <div class="header-left" vid="44">
+                    <button class="icon-btn" aria-label="Go Back" vid="45">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="46">
+                            <line x1="19" y1="12" x2="5" y2="12" vid="47"></line>
+                            <polyline points="12 19 5 12 12 5" vid="48"></polyline>
+                        </svg>
+                    </button>
+                    <span class="ui-label" style="color: var(--text-primary); margin-left: var(--space-2);" vid="49">Strategy / Concept 02</span>
+                </div>
+                <div class="header-right" vid="50">
+                    <button class="btn btn-outline" vid="51">Share</button>
+                    <button class="btn btn-filled" vid="52">Archive Entry</button>
+                </div>
+            </header>
+
+            <div class="content-scroll" vid="53">
+                <div class="content-container" vid="54">
+                    
+                    
+                    <article class="reading-col" vid="55">
+                        <div class="ui-label article-category" vid="56">Observation Models</div>
+                        
+                        <h1 class="article-title" vid="57">Take notice of what light does.</h1>
+                        
+                        <blockquote class="article-quote" vid="58">
+                            To everything, light brings structure, shadow, and truth. Without changing the object itself, it completely alters how the object is perceived.
+                        </blockquote>
+
+                        <section class="content-section" vid="59">
+                            <h2 class="ui-label section-header" vid="60">The Phenomenon</h2>
+                            <p vid="61">In physical space, lighting determines hierarchy. A harsh spotlight demands immediate attention, obliterating subtle details in its glare, while washing out the periphery into deep shadow. Conversely, diffuse ambient light reveals texture and nuance across a broad surface evenly, treating all areas with democratic visibility.</p>
+                            <p vid="62">When we apply this as a mental model to information architecture and systems design, "light" translates to cognitive focus and interface contrast.</p>
+                        </section>
+
+                        <div class="contrast-grid" vid="63">
+                            <div class="contrast-card card-light" vid="64">
+                                <div class="ui-label" vid="65">Diffuse State</div>
+                                <h3 class="card-title" vid="66">Ambient Awareness</h3>
+                                <p style="font-size: 1rem; margin: 0;" vid="67">Information exists in harmony. Used for exploration, reading, and deep comprehension where context matters as much as the subject.</p>
+                            </div>
+                            <div class="contrast-card card-dark" vid="68">
+                                <div class="ui-label" vid="69">Focused State</div>
+                                <h3 class="card-title" vid="70">Directed Attention</h3>
+                                <p style="font-size: 1rem; margin: 0; color: rgba(248, 247, 244, 0.8);" vid="71">High contrast forces a singular path. Used for critical actions, alerts, and isolated tasks where distraction is a liability.</p>
+                            </div>
+                        </div>
+
+                        <section class="content-section" vid="72">
+                            <h2 class="ui-label section-header" vid="73">Application in Design</h2>
+                            <ul class="custom-list" vid="74">
+                                <li vid="75"><strong vid="76">Determine the light source:</strong> What is the primary objective of the screen? Let that be the brightest point.</li>
+                                <li vid="77"><strong vid="78">Embrace the shadows:</strong> Not everything needs high contrast. Muted tones and lower opacities create necessary depth and reduce cognitive load.</li>
+                                <li vid="79"><strong vid="80">Avoid multiple suns:</strong> An interface with too many high-contrast, competing elements creates visual anxiety and destroys hierarchy.</li>
+                                <li vid="81"><strong vid="82">Observe edge cases:</strong> Just as light behaves differently at the edge of an object, pay attention to how systems degrade or transition at their boundaries.</li>
+                            </ul>
+                            <p vid="83">Understanding this model allows a designer to choreograph user attention rather than simply laying out elements on a grid.</p>
+                        </section>
+                    </article>
+
+                    
+                    <aside class="aside-col" vid="84">
+                        
+                        <section vid="85">
+                            <div class="ui-label aside-section-title" vid="86">Key Principles</div>
+                            <div class="principle-item" vid="87">
+                                <div class="principle-title" vid="88">Focus vs. Context</div>
+                                <div class="principle-desc" vid="89">Light dictates whether we see the detail of the leaf or the shape of the tree.</div>
+                            </div>
+                            <div class="principle-item" vid="90">
+                                <div class="principle-title" vid="91">Negative Space as Shadow</div>
+                                <div class="principle-desc" vid="92">Shadow is not empty; it is the space that gives the light definition.</div>
+                            </div>
+                            <div class="principle-item" vid="93">
+                                <div class="principle-title" vid="94">Directional Cues</div>
+                                <div class="principle-desc" vid="95">The angle of illumination guides the eye naturally across a surface.</div>
+                            </div>
+                        </section>
+
+                        <section vid="96">
+                            <div class="ui-label aside-section-title" vid="97">Related Concepts</div>
+                            <a href="#" class="related-card" vid="98">
+                                <span class="ui-label" vid="99">Cognitive Bias</span>
+                                <span class="related-title" vid="100">Spotlight Effect</span>
+                            </a>
+                            <a href="#" class="related-card" vid="101">
+                                <span class="ui-label" vid="102">System Design</span>
+                                <span class="related-title" vid="103">Signal-to-Noise Ratio</span>
+                            </a>
+                            <a href="#" class="related-card" vid="104">
+                                <span class="ui-label" vid="105">Gestalt</span>
+                                <span class="related-title" vid="106">Figure-Ground Articulation</span>
+                            </a>
+                        </section>
+
+                        <section vid="107">
+                            <div class="curator-note" vid="108">
+                                <div class="ui-label" vid="109">Curator's Note</div>
+                                <p vid="110">This principle is heavily borrowed from photography and cinematography. Cinematographers don't just light subjects; they light the space to create emotion. Interfaces are no different.</p>
+                            </div>
+                        </section>
+
+                    </aside>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+</body></html>
